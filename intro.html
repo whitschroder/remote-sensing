@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Welcome to Archaeological Remote Sensing &#8212; Archaeological Remote Sensing</title>
+    <title>ANG: 6930 Archaeological Remote Sensing &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Week 1" href="week1.html" />
+    <link rel="next" title="Aerial Photography and Stereoscopic Imaging" href="aerial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -162,14 +162,34 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Welcome to Archaeological Remote Sensing
+                    ANG: 6930 Archaeological Remote Sensing
                 </a>
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week3.html">Week 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="photogrammetry.html">Aerial Photogrammetry: Digital Surface Models and Orthoimagery</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reality.html">Digital Surface Models and Orthoimagery in Reality Capture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="multispectral.html">Multispectral Satellite Imagery</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="bands.html">Landsat Band Ratios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndvi.html">Create a Normalized Difference Vegetation Index and Other Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pan.html">Pansharpening Imagery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lidar.html">Lidar for Archaeology</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geophys.html">Subsurface Remote Sensing and Geophysics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
     </div>
@@ -340,7 +360,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -351,11 +373,23 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Welcome to Archaeological Remote Sensing</h1>
+    <h1>ANG: 6930 Archaeological Remote Sensing</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ANG: 6930 Archaeological Remote Sensing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-schedule">Course Schedule</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-bibliography">Course Bibliography</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -365,17 +399,264 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-archaeological-remote-sensing">
-<h1>Welcome to Archaeological Remote Sensing<a class="headerlink" href="#welcome-to-archaeological-remote-sensing" title="Permalink to this heading">#</a></h1>
-<p>In this course we will learn about archaeological remote sensing.</p>
-<p>Check out the content pages bundled with this sample book to see more.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ang-6930-archaeological-remote-sensing">
+<h1>ANG: 6930 Archaeological Remote Sensing<a class="headerlink" href="#ang-6930-archaeological-remote-sensing" title="Permalink to this heading">#</a></h1>
+<p><strong>University of Florida</strong><br />
+<strong>Spring 2024</strong></p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/Intensity.png"><img alt="Intensity" class="bg-primary mb-1 align-center" src="_images/Intensity.png" style="width: 500px;" /></a>
+<br>
+<p><strong>Instructor</strong><br />
+Whittaker Schroder<br />
+Turlington B129<br />
+(352) 294-6396<br />
+<a class="reference external" href="mailto:wschroder&#37;&#52;&#48;ufl&#46;edu">wschroder<span>&#64;</span>ufl<span>&#46;</span>edu</a></p>
+<p><strong>Description</strong><br />
+Introduces the history, theory, and operation of remote sensing software.
+Includes an introduction to the electromagnetic spectrum and signals, sensors, image processing, and classification techniques.
+Provides a survey of the concepts and techniques of remote sensing and image analysis for mapping and monitoring natural resources,
+environment and land use, and an array of geoscientific applications at different scales.</p>
+<p>The class will explore the analysis of remote sensing datasets, from aerial photography, satellite imagery,
+laser scanning, microwave, and thermal sensors to interpret land cover change, land use, and other environmental applications.
+Students will learn how to preprocess, process, visualize, and analyze data primarily in ArcGIS Pro, with additional training
+in several other platforms. The course will also address ethical considerations in conducting remote sensing research.</p>
+<p><strong>Course Objectives</strong><br />
+By the end of the course, students will:</p>
+<ol class="arabic simple">
+<li><p>be able to explain the principles, fundamentals, and applications of remote sensing for spatial analysis in environmental and other disciplines.</p></li>
+<li><p>know how to access and analyze satellite and other remote sensing data for (socio)environmental applications.</p></li>
+<li><p>become familiar with processing remote sensing data across several platforms, including ArcGIS Pro, ENVI, Agisoft Metashape, LAStools, ERDAS Imagine, Quick Terrain Modeler, Google Earth Engine, and R.</p></li>
+<li><p>be able to evaluate and develop workflows for specific remote sensing analyses, from data collection to preprocessing, classification, and accuracy assessment.</p></li>
+<li><p>consider the ethical ramifications of their work and the challenges facing the use and collection of remote sensing data in the twenty-first century.</p></li>
+</ol>
+<p><strong>Prerequisites</strong><br />
+This class has no prerequisites, but some previous knowledge of GIS, coding, and photography will be beneficial.</p>
+<p><strong>Class Meetings</strong><br />
+Wednesday, Periods 2–4, 8:30–11:30 am<br />
+Turlington 2318</p>
+<p><strong>Office Hours</strong><br />
+Wednesday 1:00–3:00 pm<br />
+Turlington B129<br />
+<a class="reference external" href="https://ufl.zoom.us/j/8991776578">https://ufl.zoom.us/j/8991776578</a></p>
+<p><strong>Required Book</strong><br />
+Tempfli, Klaus, Norman Kerle, Gerrit C. Huurneman, Lucas L.F. Janssen (editors). Principles of Remote Sensing: An Introductory Textbook. <a class="reference external" href="https://webapps.itc.utwente.nl/librarywww/papers_2009/general/principlesremotesensing.pdf">https://webapps.itc.utwente.nl/librarywww/papers_2009/general/principlesremotesensing.pdf</a></p>
+<p>This textbook is available for free online.</p>
+<p><strong>Additional Required Readings</strong><br />
+Additional readings and case studies will be provided each week.</p>
+<p><strong>Grading</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A  93-100%</p></td>
+<td><p>B+ 87-89.9</p></td>
+<td><p>C+ 77-79.9</p></td>
+<td><p>D+ 67-69.9</p></td>
+<td><p>E&lt;60</p></td>
+</tr>
+<tr class="row-odd"><td><p>A- 90-92.9</p></td>
+<td><p>B  83-86.9</p></td>
+<td><p>C  73-76.9</p></td>
+<td><p>D  63-66.9</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>B- 80-82.9</p></td>
+<td><p>C- 70-72.9</p></td>
+<td><p>D- 60-62.9</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference external" href="https://catalog.ufl.edu/UGRD/academic-regulations/grades-grading-policies">https://catalog.ufl.edu/UGRD/academic-regulations/grades-grading-policies</a></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Attendance and Participation</p></td>
+<td><p>20%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Research site selection</p></td>
+<td><p>5%</p></td>
+</tr>
+<tr class="row-even"><td><p>Research question</p></td>
+<td><p>5%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lab write-ups</p></td>
+<td><p>40%</p></td>
+</tr>
+<tr class="row-even"><td><p>Final Project</p></td>
+<td><p>30%</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attendance and Participation</strong><br />
+Attendance is crucial to get the most out of this course.
+If you must miss a class meeting, please let me know by email
+or in person as soon as possible. I encourage you to discuss
+what you missed with another student or attend my office hours.
+Depending on the activity you missed, you may have an alternate
+reading or assignment to make up the credit. Participation includes
+engagement during lectures and contributions to discussions.
+Requirements for class attendance and make-up exams, assignments,
+and other work in this course are consistent with university policies
+(<a class="reference external" href="https://catalog.ufl.edu/UGRD/academic-regulations/attendance-policies">https://catalog.ufl.edu/UGRD/academic-regulations/attendance-policies</a>).</p>
+<p><strong>Labs</strong><br />
+Every class period will have a lab component to introduce topics and techniques.
+Lab work will continue outside of class and will be presented the following week.</p>
+<p><strong>Final Project</strong>
+Students will develop a project throughout the semester. After the first class meeting
+students will select a research site/area, ideally related to their dissertation or
+thesis project, to be posted as a Google Earth .kml file to the class blog. The next
+phase of the project will be the crafting of a research question. The final project will
+be a proposal and preliminary analysis of your research area, using methods and tools
+learned in class. If the data needed to address your research question are not available,
+discuss how you would realistically plan to acquire such data.</p>
+<p><strong>Academic Honesty and Integrity</strong><br />
+Please be familiar with the University of Florida’s Student Honor Code:
+<a class="reference external" href="https://sccr.dso.ufl.edu/policies/student-honor-code-student-conduct-code">https://sccr.dso.ufl.edu/policies/student-honor-code-student-conduct-code</a></p>
+<p><strong>Special Accommodations</strong><br />
+The process for requesting special accommodations is described at
+<a class="reference external" href="https://disability.ufl.edu/get-started">https://disability.ufl.edu/get-started</a>, including registering with the
+Disability Resource Center in Reid Hall and requesting an accommodation
+letter to be presented to the instructor.</p>
+<p><strong>Online Course Evaluation</strong><br />
+Students are expected to provide professional and respectful feedback on
+the quality of instruction in this course by completing course evaluations
+online via GatorEvals. Guidance on how to give feedback in a professional
+and respectful manner is available at <a class="reference external" href="https://gatorevals.aa.ufl.edu/students">https://gatorevals.aa.ufl.edu/students</a>.
+Students will be notified when the evaluation period opens and can complete
+evaluations through the email they receive from GatorEvals, in their Canvas
+course menu under GatorEvals, or via <a class="reference external" href="https://ufl.bluera.com/ufl">https://ufl.bluera.com/ufl</a>. Summaries of
+course evaluation results are available to students at
+<a class="reference external" href="https://gatorevals.aa.ufl.edu/public-results">https://gatorevals.aa.ufl.edu/public-results</a>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="course-schedule">
+<h1>Course Schedule<a class="headerlink" href="#course-schedule" title="Permalink to this heading">#</a></h1>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Week 1 <br> January 10</p></td>
+<td><p>Course Introduction <br> Introduction to Remote Sensing and spatial analysis (pattern and process) <br> History of Remote Sensing <br> GPS and GNSS <br> Review GIS <br> Readings: LKC ch. 1, Dale and Fortin 2014</p></td>
+</tr>
+<tr class="row-odd"><td><p>Week 2 <br> January 17</p></td>
+<td><p>Remote Sensing Foundations <br> Principles of photography <br> Introduction to sensors <br> Aerial photography and digital image processing <br> Reading: LKC ch. 2 <br> Lab 1: Interpreting aerial photography using stereoscopes, <br> taking measurements; <br> viewing aerial imagery in ArcGIS Pro and ENVI</p></td>
+</tr>
+<tr class="row-even"><td><p>Week 3 <br> January 24</p></td>
+<td><p>Photogrammetry Structure from Motion (SfM) <br> Ground control points <br> Orthorectification Orthophotos and digital surface models <br> Point clouds and interpolation <br> LAS files <br> Reading: LKC ch. 3 <br> Lab 2: Introduction to Agisoft Metashape <br> Project Abstracts Due</p></td>
+</tr>
+<tr class="row-odd"><td><p>Week 4 <br> January 31</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Week 5 <br> February 7</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Week 6 <br> February 14</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Week 7 <br> February 21</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Week 8 <br> February 28</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Week 9 <br> March 6</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Week 10 <br> March 13</p></td>
+<td><p><strong>Spring Break</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Week 11 <br> March 20</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Week 12 <br> March 27</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Week 13 <br> April 3</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Week 14 <br> April 10</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Week 15 <br> April 17</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Week 16 <br> April 24</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>May 1</p></td>
+<td><p><strong>Reading Day</strong></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="week1.html">Week 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week2.html">Week 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week3.html">Week 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="photogrammetry.html">Aerial Photogrammetry: Digital Surface Models and Orthoimagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multispectral.html">Multispectral Satellite Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lidar.html">Lidar for Archaeology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geophys.html">Subsurface Remote Sensing and Geophysics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="course-bibliography">
+<h1>Course Bibliography<a class="headerlink" href="#course-bibliography" title="Permalink to this heading">#</a></h1>
+<p>Berman, Gabrielle, Sara de la Rosa, and Tanya Accone. 2018.
+Ethical Considerations When Using Geospatial Technologies for Evidence Generation.
+UNICEF, Florence. <a class="reference external" href="https://www.unicef-irc.org/publications/pdf/DP%202018%2002.pdf">https://www.unicef-irc.org/publications/pdf/DP 2018 02.pdf</a></p>
+<p>Dale, Mark R.T. and Marie-Josée Fortin. 2014.
+“Chapter 1: Spatial Concepts and Notions.” In Spatial Analysis:
+A Guide for Ecologists, Second Edition, pp. 1–31. Cambridge University Press, Cambridge.</p>
+<p>Fernandez-Diaz, Juan Carlos, William E. Carter, Ramesh L. Shrestha, and
+Craig L. Glennie. 2014. Now You See It… Now You Don’t: Understanding
+Airborne Mapping LiDAR Collection and Data Product Generation for Archaeological
+Research in Mesoamerica. Remote Sensing 6(10):9951–10001.
+<a class="reference external" href="https://doi.org/10.3390/rs6109951">https://doi.org/10.3390/rs6109951</a></p>
+<p>Kashani, Alireza G., Michael J. Olsen, Christopher E. Parrish, and Nicholas Wilson.
+2015. A Review of LIDAR Radiometric Processing: From Ad Hoc Intensity
+Correction to Rigorous Radiometric Calibration. Sensors 15:28099–28128.
+<a class="reference external" href="https://doi.org/10.3390/s151128099">https://doi.org/10.3390/s151128099</a></p>
+<p>Mohan, Midhun, Rodrigo Vieira Leite, Eben North Broadbent, et al. 2021
+(forthcoming). Individual Tree Detection Using UAV-lidar and UAV-SfM Data:
+A Tutorial for Beginners. Remote Sensing 12.</p>
+<p>Olson, Kyle and Lynne M. Rouse. 2018. A Beginner’s Guide to Mesoscale
+Survey with Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371.
+<a class="reference external" href="https://doi.org/10.1017/aap.2018.26">https://doi.org/10.1017/aap.2018.26</a></p>
+<p>Scaioni, M., B. Höfle, A.P. Baungarten Kersting, L. Barazzetti, M. Previtali,
+and D. Wujanz. 2018. Methods from Information Extraction from LiDAR
+Intensity Data and Multispectral LiDAR Technology. The International Archives
+of the Photogrammetry, Remote Sensing and Spatial Information Sciences 52(3):1503–1510.
+&lt;<a class="reference external" href="https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLII-3/1503/">https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLII-3/1503/</a>
+2018/isprs-archives-XLII-3-1503-2018.pdf&gt;</p>
+<p>Fundamentals of Remote Sensing. A Canada Centre for Remote Sensing Tutorial.
+&lt;<a class="reference external" href="https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/earthsciences/pdf/resource/tutor/">https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/earthsciences/pdf/resource/tutor/</a>
+fundam/pdf/fundamentals_e.pdf&gt;</p>
+<p>ESRI. Introduction to Imagery and Remote Sensing.
+<a class="reference external" href="https://introduction-to-remote-sensing-learngis.hub.arcgis.com/pages/at-a-glance">https://introduction-to-remote-sensing-learngis.hub.arcgis.com/pages/at-a-glance</a></p>
+<p>Tempfli, Klaus, Norman Kerle, Gerrit C. Huurneman, Lucas L.F. Janssen (editors).
+Principles of Remote Sensing: An Introductory Textbook.
+<a class="reference external" href="https://webapps.itc.utwente.nl/librarywww/papers_2009/general/principlesremotesensing.pdf">https://webapps.itc.utwente.nl/librarywww/papers_2009/general/principlesremotesensing.pdf</a></p>
+<p>Young, James. LiDAR for Dummies. &lt;<a class="reference external" href="https://ibis.geog.ubc.ca/courses/geog373/lectures/">https://ibis.geog.ubc.ca/courses/geog373/lectures/</a>
+Handouts/LiDARforDummies.pdf&gt;</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -409,11 +690,11 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="right-next"
-       href="week1.html"
+       href="aerial.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 1</p>
+        <p class="prev-next-title">Aerial Photography and Stereoscopic Imaging</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -423,6 +704,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ANG: 6930 Archaeological Remote Sensing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-schedule">Course Schedule</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-bibliography">Course Bibliography</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

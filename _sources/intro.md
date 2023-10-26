@@ -1,8 +1,196 @@
-# Welcome to Archaeological Remote Sensing
+# ANG: 6930 Archaeological Remote Sensing
+**University of Florida**  
+**Spring 2024**
 
-In this course we will learn about archaeological remote sensing.
+```{image} /images/Intensity.png
+:alt: Intensity
+:class: bg-primary mb-1
+:width: 500px
+:align: center
+```
 
-Check out the content pages bundled with this sample book to see more.
+<br>
+
+**Instructor**  
+Whittaker Schroder  
+Turlington B129  
+(352) 294-6396  
+<wschroder@ufl.edu>
+
+**Description**  
+Introduces the history, theory, and operation of remote sensing software. 
+Includes an introduction to the electromagnetic spectrum and signals, sensors, image processing, and classification techniques. 
+Provides a survey of the concepts and techniques of remote sensing and image analysis for mapping and monitoring natural resources, 
+environment and land use, and an array of geoscientific applications at different scales. 
+
+The class will explore the analysis of remote sensing datasets, from aerial photography, satellite imagery, 
+laser scanning, microwave, and thermal sensors to interpret land cover change, land use, and other environmental applications. 
+Students will learn how to preprocess, process, visualize, and analyze data primarily in ArcGIS Pro, with additional training 
+in several other platforms. The course will also address ethical considerations in conducting remote sensing research.
+
+**Course Objectives**  
+By the end of the course, students will:
+1. be able to explain the principles, fundamentals, and applications of remote sensing for spatial analysis in environmental and other disciplines.
+2. know how to access and analyze satellite and other remote sensing data for (socio)environmental applications.
+3. become familiar with processing remote sensing data across several platforms, including ArcGIS Pro, ENVI, Agisoft Metashape, LAStools, ERDAS Imagine, Quick Terrain Modeler, Google Earth Engine, and R.
+4. be able to evaluate and develop workflows for specific remote sensing analyses, from data collection to preprocessing, classification, and accuracy assessment.
+5. consider the ethical ramifications of their work and the challenges facing the use and collection of remote sensing data in the twenty-first century.
+
+**Prerequisites**  
+This class has no prerequisites, but some previous knowledge of GIS, coding, and photography will be beneficial.
+
+**Class Meetings**  
+Wednesday, Periods 2–4, 8:30–11:30 am  
+Turlington 2318
+
+**Office Hours**  
+Wednesday 1:00–3:00 pm  
+Turlington B129  
+<https://ufl.zoom.us/j/8991776578>
+
+**Required Book**  
+Tempfli, Klaus, Norman Kerle, Gerrit C. Huurneman, Lucas L.F. Janssen (editors). Principles of Remote Sensing: An Introductory Textbook. <https://webapps.itc.utwente.nl/librarywww/papers_2009/general/principlesremotesensing.pdf>
+
+This textbook is available for free online.
+
+**Additional Required Readings**  
+Additional readings and case studies will be provided each week.
+
+**Grading**  
+|            |            |            |            |      |
+| ---        | ---        | ---        | ---        | ---  | 
+| A  93-100% | B+ 87-89.9 | C+ 77-79.9 | D+ 67-69.9 | E<60 |
+| A- 90-92.9 | B  83-86.9 | C  73-76.9 | D  63-66.9 |      |
+|            | B- 80-82.9 | C- 70-72.9 | D- 60-62.9 |      |
+
+<https://catalog.ufl.edu/UGRD/academic-regulations/grades-grading-policies>
+|                              |     |
+| ---                          | --- |
+| Attendance and Participation | 20% |
+| Research site selection      | 5%  |
+| Research question            | 5%  |
+| Lab write-ups                | 40% |
+| Final Project                | 30% |
+
+**Attendance and Participation**  
+Attendance is crucial to get the most out of this course. 
+If you must miss a class meeting, please let me know by email 
+or in person as soon as possible. I encourage you to discuss 
+what you missed with another student or attend my office hours. 
+Depending on the activity you missed, you may have an alternate 
+reading or assignment to make up the credit. Participation includes 
+engagement during lectures and contributions to discussions. 
+Requirements for class attendance and make-up exams, assignments, 
+and other work in this course are consistent with university policies 
+(<https://catalog.ufl.edu/UGRD/academic-regulations/attendance-policies>).
+
+**Labs**  
+Every class period will have a lab component to introduce topics and techniques. 
+Lab work will continue outside of class and will be presented the following week.
+
+**Final Project** 
+Students will develop a project throughout the semester. After the first class meeting
+students will select a research site/area, ideally related to their dissertation or 
+thesis project, to be posted as a Google Earth .kml file to the class blog. The next 
+phase of the project will be the crafting of a research question. The final project will 
+be a proposal and preliminary analysis of your research area, using methods and tools 
+learned in class. If the data needed to address your research question are not available, 
+discuss how you would realistically plan to acquire such data.
+
+**Academic Honesty and Integrity**  
+Please be familiar with the University of Florida’s Student Honor Code: 
+<https://sccr.dso.ufl.edu/policies/student-honor-code-student-conduct-code>
+
+**Special Accommodations**  
+The process for requesting special accommodations is described at 
+<https://disability.ufl.edu/get-started>, including registering with the 
+Disability Resource Center in Reid Hall and requesting an accommodation 
+letter to be presented to the instructor.
+
+**Online Course Evaluation**  
+Students are expected to provide professional and respectful feedback on 
+the quality of instruction in this course by completing course evaluations 
+online via GatorEvals. Guidance on how to give feedback in a professional 
+and respectful manner is available at <https://gatorevals.aa.ufl.edu/students>. 
+Students will be notified when the evaluation period opens and can complete 
+evaluations through the email they receive from GatorEvals, in their Canvas 
+course menu under GatorEvals, or via <https://ufl.bluera.com/ufl>. Summaries of 
+course evaluation results are available to students at 
+<https://gatorevals.aa.ufl.edu/public-results>.
+
+# Course Schedule
+
+|||
+| --- | --- |
+| Week 1 <br> January 10  | Course Introduction <br> Introduction to Remote Sensing and spatial analysis (pattern and process) <br> History of Remote Sensing <br> GPS and GNSS <br> Review GIS <br> Readings: LKC ch. 1, Dale and Fortin 2014 |
+| Week 2 <br> January 17  | Remote Sensing Foundations <br> Principles of photography <br> Introduction to sensors <br> Aerial photography and digital image processing <br> Reading: LKC ch. 2 <br> Lab 1: Interpreting aerial photography using stereoscopes, <br> taking measurements; <br> viewing aerial imagery in ArcGIS Pro and ENVI |
+| Week 3 <br> January 24  | Photogrammetry Structure from Motion (SfM) <br> Ground control points <br> Orthorectification Orthophotos and digital surface models <br> Point clouds and interpolation <br> LAS files <br> Reading: LKC ch. 3 <br> Lab 2: Introduction to Agisoft Metashape <br> Project Abstracts Due |
+| Week 4 <br> January 31  | |
+| Week 5 <br> February 7  | |
+| Week 6 <br> February 14 | |
+| Week 7 <br> February 21 | | 
+| Week 8 <br> February 28 | |
+| Week 9 <br> March 6	  | |
+| Week 10 <br> March 13   | **Spring Break** |
+| Week 11 <br> March 20   | |
+| Week 12 <br> March 27   | |
+| Week 13 <br> April 3    | |
+| Week 14 <br> April 10   | |
+| Week 15 <br> April 17   | |
+| Week 16 <br> April 24   | |
+| May 1	                  | **Reading Day** |
+
+# Table of Contents
 
 ```{tableofcontents}
 ```
+
+# Course Bibliography
+
+Berman, Gabrielle, Sara de la Rosa, and Tanya Accone. 2018. 
+Ethical Considerations When Using Geospatial Technologies for Evidence Generation. 
+UNICEF, Florence. <https://www.unicef-irc.org/publications/pdf/DP%202018%2002.pdf>
+
+Dale, Mark R.T. and Marie-Josée Fortin. 2014. 
+“Chapter 1: Spatial Concepts and Notions.” In Spatial Analysis: 
+A Guide for Ecologists, Second Edition, pp. 1–31. Cambridge University Press, Cambridge. 
+
+Fernandez-Diaz, Juan Carlos, William E. Carter, Ramesh L. Shrestha, and 
+Craig L. Glennie. 2014. Now You See It… Now You Don’t: Understanding 
+Airborne Mapping LiDAR Collection and Data Product Generation for Archaeological 
+Research in Mesoamerica. Remote Sensing 6(10):9951–10001. 
+<https://doi.org/10.3390/rs6109951>
+
+Kashani, Alireza G., Michael J. Olsen, Christopher E. Parrish, and Nicholas Wilson. 
+2015. A Review of LIDAR Radiometric Processing: From Ad Hoc Intensity 
+Correction to Rigorous Radiometric Calibration. Sensors 15:28099–28128. 
+<https://doi.org/10.3390/s151128099>
+
+Mohan, Midhun, Rodrigo Vieira Leite, Eben North Broadbent, et al. 2021 
+(forthcoming). Individual Tree Detection Using UAV-lidar and UAV-SfM Data: 
+A Tutorial for Beginners. Remote Sensing 12.
+
+Olson, Kyle and Lynne M. Rouse. 2018. A Beginner’s Guide to Mesoscale 
+Survey with Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371. 
+<https://doi.org/10.1017/aap.2018.26>
+
+Scaioni, M., B. Höfle, A.P. Baungarten Kersting, L. Barazzetti, M. Previtali, 
+and D. Wujanz. 2018. Methods from Information Extraction from LiDAR 
+Intensity Data and Multispectral LiDAR Technology. The International Archives 
+of the Photogrammetry, Remote Sensing and Spatial Information Sciences 52(3):1503–1510. 
+<https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLII-3/1503/
+2018/isprs-archives-XLII-3-1503-2018.pdf>
+
+Fundamentals of Remote Sensing. A Canada Centre for Remote Sensing Tutorial. 
+<https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/earthsciences/pdf/resource/tutor/
+fundam/pdf/fundamentals_e.pdf>
+
+ESRI. Introduction to Imagery and Remote Sensing. 
+<https://introduction-to-remote-sensing-learngis.hub.arcgis.com/pages/at-a-glance>
+
+Tempfli, Klaus, Norman Kerle, Gerrit C. Huurneman, Lucas L.F. Janssen (editors). 
+Principles of Remote Sensing: An Introductory Textbook. 
+<https://webapps.itc.utwente.nl/librarywww/papers_2009/general/principlesremotesensing.pdf>
+
+Young, James. LiDAR for Dummies. <https://ibis.geog.ubc.ca/courses/geog373/lectures/
+Handouts/LiDARforDummies.pdf>
