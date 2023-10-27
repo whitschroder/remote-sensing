@@ -384,10 +384,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-links">Additional links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
             </nav>
         </div>
@@ -401,23 +398,256 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="landsat-band-ratios">
 <h1>Landsat Band Ratios<a class="headerlink" href="#landsat-band-ratios" title="Permalink to this heading">#</a></h1>
-<p>Coming soon</p>
-<section id="coming-soon">
-<h2>Coming soon<a class="headerlink" href="#coming-soon" title="Permalink to this heading">#</a></h2>
-<p>Coming soon</p>
-</section>
-<section id="id1">
-<h2>Coming soon<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>Coming soon</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="citations">
-<h2>Citations<a class="headerlink" href="#citations" title="Permalink to this heading">#</a></h2>
-<span class="target" id="id2"></span></section>
-<section id="additional-links">
-<h2>Additional links<a class="headerlink" href="#additional-links" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Download imagery from <a class="reference external" href="https://earthexplorer.usgs.gov">USGS Earth Explorer</a> or another source.</p></li>
+<li><p>Band compositing</p>
+<ol class="arabic simple">
+<li><p>Visualize different band combinations with the combined .txt raster (usually _________MTL.txt and listed as a “Raster Product” when adding data to ArcGIS)</p></li>
+<li><p>Bilinear resampling (default) and DRA can improve visualization</p></li>
+<li><p>True color: 4-3-2</p></li>
+<li><p>San Bartolo: 5-3-2</p></li>
+<li><p>Parcak (Egypt): 5-4-3</p></li>
+<li><p><a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/">https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/</a></p></li>
+<li><p><a class="reference external" href="https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The%20two%20main%20sensors%20for,30%20and%2060%20meter%20resolution">https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The two main sensors for,30 and 60 meter resolution</a></p></li>
+<li><p><a class="reference external" href="https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8">https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8</a></p></li>
+<li><p><a class="reference external" href="https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations">https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations</a></p></li>
+<li><p>When researching band combinations, keep in mind each Landsat mission has different codes for bands:</p></li>
+</ol>
+</li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Landsat-7 ETM+ Bands (µm)</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Landsat-8 OLI and <em>TIRS</em> Bands (µm)</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>30 m Coastal/Aerosol</p></td>
+<td><p>0.435-0.451</p></td>
+<td><p>Band 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Band 1</p></td>
+<td><p>30 m Blue</p></td>
+<td><p>0.441-0.514</p></td>
+<td><p>30 m Blue</p></td>
+<td><p>0.452-0.512</p></td>
+<td><p>Band 2</p></td>
+</tr>
+<tr class="row-even"><td><p>Band 2</p></td>
+<td><p>30 m Green</p></td>
+<td><p>0.519-0.601</p></td>
+<td><p>30 m Green</p></td>
+<td><p>0.533-0.590</p></td>
+<td><p>Band 3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Band 3</p></td>
+<td><p>30 m Red</p></td>
+<td><p>0.631-0.692</p></td>
+<td><p>30 m Red</p></td>
+<td><p>0.636-0.673</p></td>
+<td><p>Band 4</p></td>
+</tr>
+<tr class="row-even"><td><p>Band 4</p></td>
+<td><p>30 m NIR</p></td>
+<td><p>0.772-0.898</p></td>
+<td><p>30 m NIR</p></td>
+<td><p>0.851-0.879</p></td>
+<td><p>Band 5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Band 5</p></td>
+<td><p>30 m SWIR-1</p></td>
+<td><p>1.547-1.749</p></td>
+<td><p>30 m SWIR-1</p></td>
+<td><p>1.566-1.651</p></td>
+<td><p>Band 6</p></td>
+</tr>
+<tr class="row-even"><td><p>Band 6</p></td>
+<td><p>60 m TIR</p></td>
+<td><p>10.31-12.36</p></td>
+<td><p><em>100 m TIR-1</em></p></td>
+<td><p><em>10.60-11.19</em></p></td>
+<td><p>Band 10</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><em>100 m TIR-2</em></p></td>
+<td><p><em>11.50-12.51</em></p></td>
+<td><p>Band 11</p></td>
+</tr>
+<tr class="row-even"><td><p>Band 7</p></td>
+<td><p>30 m SWIR-2</p></td>
+<td><p>2.064-2.345</p></td>
+<td><p>30 m SWIR-2</p></td>
+<td><p>2.107-2.294</p></td>
+<td><p>Band 7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Band 8</p></td>
+<td><p>15 m Pan</p></td>
+<td><p>0.515-0.896</p></td>
+<td><p>15 m Pan</p></td>
+<td><p>0.503-0.676</p></td>
+<td><p>Band 8</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>30 m Cirrus</p></td>
+<td><p>1.363-1.384</p></td>
+<td><p>Band 9</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="11">
+<li><p>Computing band ratios can also highlight features. The following spectral
+reflectance curve shows high reflectance values for different materials at different
+wavelengths and Landsat bands (Landsat 7 above and Landsat 8 below):</p></li>
+</ol>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/material.png"><img alt="Reflectance1" class="bg-primary mb-1 align-center" src="_images/material.png" style="width: 80%;" /></a>
+<p>Photo credit:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/material2.png"><img alt="Reflectance2" class="bg-primary mb-1 align-center" src="_images/material2.png" style="width: 80%;" /></a>
+<p>Photo credit:</p>
+<ol class="arabic simple" start="12">
+<li><p>Band ratios can eliminate issues discerning features in high shadow areas.
+In the following image deciduous and coniferous forest have different spectral
+reflectance in sunlit vs. shaded areas, but when the ratio is calculated, this
+discrepancy is fixed.</p></li>
+</ol>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/material3.png"><img alt="Reflectance3" class="bg-primary mb-1 align-center" src="_images/material3.png" style="width: 80%;" /></a>
+<p>Photo credit: Middlebury Remote Sensing</p>
+<ol class="arabic simple" start="13">
+<li><p>Band ratios are calculated by dividing a band with a high reflectance value
+for a specific material by the band with a low reflectance value for that same
+material using Raster Calculator (especially when the ratios for other materials
+will be neutral). In Landsat 8, the Band 5 / Band 4 ratio will highlight vegetation,
+Band 7 / Band 1 will highlight soil, and Band 1 / Band 5 will Band 2 / Band 6 will
+highlight water.</p></li>
+<li><p>Multiple rasters can then be combined with the Composite Bands tool
+(QGIS: Rgb composite) to create a new multiband raster. Keep track of the order
+each raster is listed, which will determine the order that the bands are displayed
+in the Symbology window.</p></li>
+<li><p>Image sharpening</p>
+<ol class="arabic simple">
+<li><p>All Landsat 8 bands are at 30 m resolution, except for Band 8 (Panchromatic),
+which is at 15 m resolution. The higher resolution Band 8 can be used to sharpen
+the imagery of the other bands. First determine if you need higher resolution
+(not always necessary or helpful for landscape scale analysis).</p></li>
+<li><p><a class="reference external" href="https://earthobservatory.nasa.gov/blogs/earthmatters/2017/06/13/how-to-pan-sharpen-landsat-imagery/#:~:text=Panchromatic%20sharpening%20(pan%2Dsharpening),usually%20only%20the%20visible%20bands">More info on pansharpening</a></p></li>
+<li><p>Other techniques: Principal components image sharpening, Brovey transformation
+(usually done in ENVI).</p></li>
+</ol>
+</li>
+<li><p>Principal components analysis</p>
+<ol class="arabic simple">
+<li><p>Generally done in ENVI – calculates variability through several iterations,
+with each iteration showing less variability.</p></li>
+<li><p>In ArcGIS Pro run the Principal Components Analysis tool by loading the
+individual raster bands and selecting the number of principal component iteration.
+Do not enter a filetype extension after the filename if you want to produce a raster
+for each iteration.</p></li>
+<li><p>The tool will load a new multiband raster containing all the principal components.
+You can manually load each individual component from the same folder.</p></li>
+<li><p>In QGIS, go to Plugins, Manage and Install Plugins, search for
+Semi-Automatic Classification Plugin, and install.</p></li>
+<li><p>There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it).</p></li>
+<li><p>Under SCP, click Band Set.</p></li>
+<li><p>From the Single band list, load the individual bands (you may need to click
+refresh and make sure the bands are in your Layers contents)</p></li>
+<li><p>Click Basic Tools, then Algorithm Band Weight. Each band is weighted equally
+(1) by default. If you’re working with multiple rasters from different sources
+(for example, if you are loading a DEM or other type of data), you will want to
+weigh each raster with a value of 1 / (Mean of all cells), which can be calculated
+with Zonal Statistics. If using only multiband data from the same satellite, these
+weights are only slightly different, and I haven’t noticed significant improvement
+when calculating exact weights.</p></li>
+<li><p>Click Band Processing, then PCA, select Number of Components and choose a
+number of iterations. Click Run.</p></li>
+<li><p>Note that the first iterations from ArcGIS Pro and QGIS were pretty
+different, but the second and third were almost identical.</p></li>
+</ol>
+</li>
+<li><p>Texture analysis</p>
+<ol class="arabic simple">
+<li><p>Not sure if this can be done with any built-in tools in ArcGIS.</p></li>
+<li><p>Open QGIS with GRASS (type QGIS in the search bar and this option should appear).</p></li>
+<li><p>Run r.texture, select input, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder.</p></li>
+</ol>
+</li>
+<li><p>Vegetation indices (NDVI)</p>
+<ol class="arabic simple">
+<li><p>The Normalized Difference Vegetation Index (NDVI) transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).</p></li>
+<li><p>Select the .txt file of combined bands in the Contents, go to Imagery, click the Indices dropdown, and select NDVI.</p></li>
+<li><p>Alternatively, in ArcGIS Pro or QGIS, go to Raster Calculator and use the formula</p></li>
+</ol>
+</li>
+</ol>
+<p>NDVI = (NIR Band 5 – R Band 4) / (NIR Band 5 + R Band 4)</p>
+<ol class="arabic simple" start="7">
+<li><p>Final composite</p>
+<ol class="arabic simple">
+<li><p>PCA1, PCA2, PCA3 – Principle components analysis, 1st, 2nd, and 3rd order
+vis – composite of visible bands (2, 3, 4)
+ir – composite of infrared bands (5, 6, 7)
+sb – San Bartolo composite of near infrared, green, and blue (5, 3, 2)
+Var – texture variance index, 3 x 3 neighborhood
+NDVI – Normalized Difference Vegetation Index</p></li>
+<li><p>Chowdhury and Schneider (2004) recommended for southern Yucatan a 7-band
+composite: PCA1(vis), PCA1 (ir), PCA2 (ir), Var(PCA1(vis)), Var(PCA1(ir)),
+Var(PCA2(ir)), NDVI</p></li>
+<li><p>Griffin (2012) recommended for Petén a 3-band composite: PCA1(sb),
+Var(PCA1(sb)), NDVI</p></li>
+</ol>
+</li>
+<li><p>Classification</p>
+<ol class="arabic simple">
+<li><p>Semi-automated supervised and unsupervised land use classification is possible in ArcGIS Pro with the Classification Wizard and in QGIS with the SCP plugin.</p></li>
+</ol>
+</li>
+</ol>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/rgb.png"><img alt="Comparison" class="bg-primary mb-1 align-center" src="_images/rgb.png" style="width: 80%;" /></a>
+<p>True Color RGB (left) and 5-3-2 composite (right), Southeastern Chiapas, Mexico<br />
+4/3/17, 16:23:16 Landsat 8,<br />
+CORNER_UL_LAT = 16.95093<br />
+CORNER_UL_LON = -91.54527</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/pca.png"><img alt="PCA" class="bg-primary mb-1 align-center" src="_images/pca.png" style="width: 80%;" /></a>
+<p>First order Principle Components Analysis of 5-3-2 composite (left)<br />
+Textural variance of PCA1 (center)<br />
+NDVI (right)</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/composite.png"><img alt="Composite" class="bg-primary mb-1 align-center" src="_images/composite.png" style="width: 80%;" /></a>
+<p>Preliminary interpretation:<br />
+Final composite: Var (red)-NDVI (green)-PCA1 (blue)<br />
+Green – vegetation</p>
+<ol class="arabic simple">
+<li><p>Light green – healthy vegetation</p></li>
+<li><p>Dark green – recently burned areas</p></li>
+<li><p>Greenish white – lower vegetation</p></li>
+<li><p>Whitish green – agriculture</p></li>
+<li><p>Greenish brown – murky water
+Blue – water, urban, and bare earth</p></li>
+<li><p>Dark blue – water</p></li>
+<li><p>Bright blue – sandy beaches</p></li>
+<li><p>Blue to magenta – exposed bedrock</p></li>
+<li><p>Various shades of blue – urban and land use
+Red – shorelines and immediate land use changes</p></li>
+</ol>
+<section id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Permalink to this heading">#</a></h2>
+<p>Amidon, Will. Middlebury Remote Sensing.
+<a class="reference external" href="https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured">https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured</a></p>
+<p>Chowdhury, Rinku Roy, and Laura Schneider. 2004. Land Cover and Land Use:
+Classification and Change Analysis. In Integrated Land-Change Science and Tropical
+Deforestation in the Southern Yucatan: Final Frontiers, ed. B.L. Turner II,
+Jacqueline Geoghegan, and David R. Foster, 105–143. Oxford: Oxford University Press.</p>
+<p>Griffin, Robert Edward. 2012. The Carrying Capacity of Ancient Maya Swidden
+Maize Cultivation: A Case Study in the Region Around San Bartolo, Petén, Guatemala.
+Unpublished PhD dissertation, Pennsylvania State University.</p>
 </section>
 </section>
 
@@ -484,10 +714,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-links">Additional links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
   </nav></div>
 
