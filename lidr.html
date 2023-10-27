@@ -385,7 +385,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-libraries">Install libraries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
             </nav>
         </div>
@@ -402,26 +402,27 @@ document.write(`
 <p>In this lab, students will learn how to load, visualize, and process lidar point clouds
 in R. Before proceeding, download the latest versions of R and R Studio at the following
 link: <a class="reference external" href="https://posit.co/download/rstudio-desktop">https://posit.co/download/rstudio-desktop</a>.</p>
+<p>Download the <a class="reference external" href="https://www.zrc-sazu.si/en/rvt">Relief Visualization Toolbox</a>.</p>
 <section id="install-libraries">
 <h2>Install libraries<a class="headerlink" href="#install-libraries" title="Permalink to this heading">#</a></h2>
 <p>In R Studio, install the following packages:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The lidR package is used for processing las point clouds</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># The lidR package is used for processing las point clouds</span>
 
-<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;lidR&quot;</span><span class="p">,</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;lidR&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 
 <span class="c1"># The following packages are used for several remote sensing </span>
 <span class="c1"># applications and for generating raster surfaces</span>
 
-<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;RStoolbox&quot;</span><span class="p">)</span>
-<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;terra&quot;</span><span class="p">)</span>
-<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;raster&quot;</span><span class="p">)</span>
-<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;rgdal&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;RStoolbox&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;terra&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;raster&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;rgdal&quot;</span><span class="p">)</span>
 
 <span class="c1"># ggplot is used to produce publication quality images</span>
-<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
 
 <span class="c1"># RColorBrewer loads several useful color palettes for data visualization</span>
-<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;RColorBrewer&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;RColorBrewer&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
@@ -429,8 +430,16 @@ link: <a class="reference external" href="https://posit.co/download/rstudio-desk
 <p>Coming soon</p>
 </div>
 </section>
-<section id="coming-soon">
-<h2>Coming soon<a class="headerlink" href="#coming-soon" title="Permalink to this heading">#</a></h2>
+<section id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Permalink to this heading">#</a></h2>
+<p>Kokalj, Ž., and M. Somrak. 2019. Why Not a Single Image? Combining Visualizations to
+Facilitate Fieldwork and On-Screen Mapping. Remote Sensing 11(7):747.
+[<a class="reference external" href="https://doi.org/10.3390/rs11070747">https://doi.org/10.3390/rs11070747</a>]</p>
+<p>Štular, Benjamin and Edisa Lozić. 2020. Comparison of Filters for Archaeology-Specific
+Ground Extraction from Airborne LiDAR Point Clouds. Remote Sensing 12(18):3025.
+[<a class="reference external" href="https://doi.org/10.3390/rs12183025">https://doi.org/10.3390/rs12183025</a>]</p>
+<p>Zakšek, K., K. Oštir, Ž Kokalj. 2011. Sky-View Factor as a Relief Visualization
+Technique. Remote Sensing 3(2):398-415. [<a class="reference external" href="https://doi.org/10.3390/rs3020398">https://doi.org/10.3390/rs3020398</a>]</p>
 </section>
 </section>
 
@@ -498,7 +507,7 @@ link: <a class="reference external" href="https://posit.co/download/rstudio-desk
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-libraries">Install libraries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
   </nav></div>
 
