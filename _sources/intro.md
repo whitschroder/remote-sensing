@@ -5,7 +5,7 @@
 ```{image} /images/Intensity.png
 :alt: Intensity
 :class: bg-primary mb-1
-:width: 500px
+:width: 80%
 :align: center
 ```
 
@@ -18,21 +18,24 @@ Turlington B129
 <wschroder@ufl.edu>
 
 **Description**  
-Introduces the history, theory, and operation of remote sensing software. 
-Includes an introduction to the electromagnetic spectrum and signals, sensors, image processing, and classification techniques. 
-Provides a survey of the concepts and techniques of remote sensing and image analysis for mapping and monitoring natural resources, 
-environment and land use, and an array of geoscientific applications at different scales. 
-
-The class will explore the analysis of remote sensing datasets, from aerial photography, satellite imagery, 
-laser scanning, microwave, and thermal sensors to interpret land cover change, land use, and other environmental applications. 
-Students will learn how to preprocess, process, visualize, and analyze data primarily in ArcGIS Pro, with additional training 
-in several other platforms. The course will also address ethical considerations in conducting remote sensing research.
+Remote sensing is the collection and analysis of spatial data through the 
+observation and scanning of large areas from a distance. The applications of remote
+sensing in archaeology are extensive, including site and feature prospection, mapping, 
+topographic analysis, hydrological analysis, 3D modeling, subsurface imaging, 
+vegetation, soil classification, among others. This course discusses the history and 
+theory of the use of remote sensing in archaeology. The class will explore the use and 
+analysis of remote sensing datasets from aerial photography, satellite imagery, 
+laser scanning, radar, and thermal sensors to interpret archaeological sites, landscapes, 
+land cover change, land use, and other archaeological and environmental applications. 
+In addition to assessing case studies of remote sensing applications in archaeology, 
+students will learn how to collect, preprocess, process, visualize, and analyze data. 
+The course will also address ethical considerations in conducting remote sensing research.
 
 **Course Objectives**  
 By the end of the course, students will:
-1. be able to explain the principles, fundamentals, and applications of remote sensing for spatial analysis in environmental and other disciplines.
-2. know how to access and analyze satellite and other remote sensing data for (socio)environmental applications.
-3. become familiar with processing remote sensing data across several platforms, including ArcGIS Pro, ENVI, Agisoft Metashape, LAStools, ERDAS Imagine, Quick Terrain Modeler, Google Earth Engine, and R.
+1. be able to explain the principles, fundamentals, and applications of remote sensing for spatial analysis in archaeology and other disciplines.
+2. know how to access and analyze satellite and other remote sensing data for archaeological and environmental applications.
+3. become familiar with processing remote sensing data across several platforms, including ArcGIS Pro, QGIS, ENVI, Agisoft Metashape, LAStools, Google Earth Engine, R, and Python.
 4. be able to evaluate and develop workflows for specific remote sensing analyses, from data collection to preprocessing, classification, and accuracy assessment.
 5. consider the ethical ramifications of their work and the challenges facing the use and collection of remote sensing data in the twenty-first century.
 
