@@ -179,6 +179,8 @@ Blue -- water, urban, and bare earth
 4. Various shades of blue -- urban and land use
 Red -- shorelines and immediate land use changes
 
+# Pansharpening Imagery
+
 ## Readings
 
 Amidon, Will. Middlebury Remote Sensing. 
@@ -189,6 +191,13 @@ Classification and Change Analysis. In Integrated Land-Change Science and Tropic
 Deforestation in the Southern Yucatan: Final Frontiers, ed. B.L. Turner II, 
 Jacqueline Geoghegan, and David R. Foster, 105–143. Oxford: Oxford University Press.
 
+Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
+Nelson, and Jessica Munson. 2008. Journal of Archaeological Science 35(10):2770-2777.
+
 Griffin, Robert Edward. 2012. The Carrying Capacity of Ancient Maya Swidden 
 Maize Cultivation: A Case Study in the Region Around San Bartolo, Petén, Guatemala. 
 Unpublished PhD dissertation, Pennsylvania State University.
+
+Saturno, William, Thomas L. Sever, Daniel E. Irwin, Burgess F. Howell, and Thomas G.
+Garrison. 2007. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
+El-Baz, pp. 137-160. Springer, New York.

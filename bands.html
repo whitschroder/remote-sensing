@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'bands';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Create a Normalized Difference Vegetation Index and Other Metrics" href="ndvi.html" />
-    <link rel="prev" title="Multispectral Satellite Imagery" href="multispectral.html" />
+    <link rel="next" title="Supervised and Unsupervised Land Cover Classification" href="supervised.html" />
+    <link rel="prev" title="Orthorectifying CORONA Satellite Imagery" href="corona.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,27 +169,20 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="photogrammetry.html">Aerial Photogrammetry: Digital Surface Models and Orthoimagery</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reality.html">Digital Surface Models and Orthoimagery in Reality Capture</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="multispectral.html">Multispectral Satellite Imagery</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Landsat Band Ratios</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ndvi.html">Create a Normalized Difference Vegetation Index and Other Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pan.html">Pansharpening Imagery</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Landsat Band Ratios</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="lidar.html">Lidar for Archaeology</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="lidar.html">Lidar for Archaeology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="geophys.html">Subsurface Remote Sensing and Geophysics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -384,8 +377,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Landsat Band Ratios</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pansharpening-imagery">Pansharpening Imagery</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -637,6 +635,9 @@ Blue – water, urban, and bare earth</p></li>
 <li><p>Various shades of blue – urban and land use
 Red – shorelines and immediate land use changes</p></li>
 </ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pansharpening-imagery">
+<h1>Pansharpening Imagery<a class="headerlink" href="#pansharpening-imagery" title="Permalink to this heading">#</a></h1>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Permalink to this heading">#</a></h2>
 <p>Amidon, Will. Middlebury Remote Sensing.
@@ -645,9 +646,14 @@ Red – shorelines and immediate land use changes</p></li>
 Classification and Change Analysis. In Integrated Land-Change Science and Tropical
 Deforestation in the Southern Yucatan: Final Frontiers, ed. B.L. Turner II,
 Jacqueline Geoghegan, and David R. Foster, 105–143. Oxford: Oxford University Press.</p>
+<p>Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
+Nelson, and Jessica Munson. 2008. Journal of Archaeological Science 35(10):2770-2777.</p>
 <p>Griffin, Robert Edward. 2012. The Carrying Capacity of Ancient Maya Swidden
 Maize Cultivation: A Case Study in the Region Around San Bartolo, Petén, Guatemala.
 Unpublished PhD dissertation, Pennsylvania State University.</p>
+<p>Saturno, William, Thomas L. Sever, Daniel E. Irwin, Burgess F. Howell, and Thomas G.
+Garrison. 2007. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
+El-Baz, pp. 137-160. Springer, New York.</p>
 </section>
 </section>
 
@@ -682,20 +688,20 @@ Unpublished PhD dissertation, Pennsylvania State University.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="multispectral.html"
+       href="corona.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Multispectral Satellite Imagery</p>
+        <p class="prev-next-title">Orthorectifying CORONA Satellite Imagery</p>
       </div>
     </a>
     <a class="right-next"
-       href="ndvi.html"
+       href="supervised.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Create a Normalized Difference Vegetation Index and Other Metrics</p>
+        <p class="prev-next-title">Supervised and Unsupervised Land Cover Classification</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -714,8 +720,13 @@ Unpublished PhD dissertation, Pennsylvania State University.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Landsat Band Ratios</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pansharpening-imagery">Pansharpening Imagery</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
