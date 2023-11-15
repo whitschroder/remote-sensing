@@ -377,7 +377,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-libraries">Install libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-and-load-libraries">Install and load libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-import-data">Download and import data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-raster-surfaces">Generate Raster Surfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-digital-elevation-model">Generate Digital Elevation Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-digital-surface-model">Generate Digital Surface Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-classification">Ground classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloth-simulation-function-csf">Cloth Simulation Function (CSF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progressive-morphological-filter">Progressive Morphological Filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiscale-curvature-classification">Multiscale Curvature Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-all-tiles-with-lascatalog">Classifying all tiles with lascatalog</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
             </nav>
@@ -395,10 +404,13 @@ document.write(`
 <p>In this lab, students will learn how to load, visualize, and process lidar point clouds
 in R. Before proceeding, download the latest versions of R and R Studio at the following
 link: <a class="reference external" href="https://posit.co/download/rstudio-desktop">https://posit.co/download/rstudio-desktop</a>.</p>
-<p>Download the <a class="reference external" href="https://www.zrc-sazu.si/en/rvt">Relief Visualization Toolbox</a>.</p>
-<section id="install-libraries">
-<h2>Install libraries<a class="headerlink" href="#install-libraries" title="Permalink to this heading">#</a></h2>
-<p>In R Studio, install the following packages:</p>
+<p>Processing lidar in R has several advantages, namely that it is free and open source.
+The drawback is that as a programming language, R is generally slower than others including
+Python and C++.</p>
+<section id="install-and-load-libraries">
+<h2>Install and load libraries<a class="headerlink" href="#install-and-load-libraries" title="Permalink to this heading">#</a></h2>
+<p>If you are not familiar with R, after downloading, open R Studio and install the
+following libraries or packages:</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># The lidR package is used for processing las point clouds</span>
 
 <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;lidR&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
@@ -418,21 +430,605 @@ link: <a class="reference external" href="https://posit.co/download/rstudio-desk
 <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;RColorBrewer&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Coming soon</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You only have to use the install.packages command once. After all packages are installed,
+you will just have to load the necessary libraries every time you run the code.</p>
+</div>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">lidR</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">RStoolbox</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rgdal</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="download-and-import-data">
+<h2>Download and import data<a class="headerlink" href="#download-and-import-data" title="Permalink to this heading">#</a></h2>
+<p>lidR is a point cloud oriented software, so we first have to download a point cloud in
+either .las or .laz format.</p>
+<p>In this lab, we will use publicly available data from the <a class="reference external" href="https://gliht.gsfc.nasa.gov">NASA G-LiHT</a> system.
+Data can be browsed at <a class="reference external" href="https://glihtdata.gsfc.nasa.gov/files/G-LiHT">https://glihtdata.gsfc.nasa.gov/files/G-LiHT</a>. For this exercise,
+download the <a class="reference external" href="https://glihtdata.gsfc.nasa.gov/files/G-LiHT/AMIGACarb_Yuc_Centro_GLAS_Apr2013/lidar/las/AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.las.gz">AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.las.gz</a> file.
+You will need <a class="reference external" href="https://www.7-zip.org">7-zip</a> to extract the .las file.</p>
+<p>Now, import the file into R. Assuming your file is in C:/, use the following code (or
+update the folder location in the R code):</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import file</span>
+<span class="c1"># Creates a string based on your file location</span>
+
+<span class="n">file</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.laz&quot;</span>
+
+<span class="c1"># Reads the file as an .las or .laz</span>
+
+<span class="n">las</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readLAS</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can summarize the .las statistics with the following code:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Summarize las statistics</span>
+<span class="c1"># Provides the header of the .las file</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">las</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>class        : LAS (v1.1 format 1)<br />
+memory       : 2.8 Gb<br />
+extent       : 277008.5, 278391.3, 2070914, 2079175 (xmin, xmax, ymin, ymax)<br />
+coord. ref.  : WGS 84 / UTM zone 16N<br />
+area         : 3.22 km²<br />
+points       : 50.99 million points<br />
+density      : 15.84 points/m²<br />
+density      : 10.43 pulses/m²</p>
+</div></blockquote>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Provides the header of the .las file and additional information.</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">las</span><span class="p">)</span>
+
+<span class="c1"># Displays the number of points and their classification</span>
+
+<span class="nf">table</span><span class="p">(</span><span class="n">las</span><span class="o">$</span><span class="n">Classification</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>           1           2<br />
+30522821       20462312</p>
+</div></blockquote>
+<p>The current American Society for Photogrammetry and Remote Sensing (ASPRS) standard
+classification codes for point data are:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Classification Value</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Created, never classified</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Unclassified</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Ground</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Low Vegetation</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Medium Vegetation</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>High Vegetation</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Building</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>Low Point (noise)</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Reserved</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>Water</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>Rail</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>Road Surface</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>Reserved</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>Wire - Guard (Shield)</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>Wire - Conductor (Phase)</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>Transmission Tower</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>Wire-structure Connector (e.g., Insulator)</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>Bridge Deck</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>High Noise</p></td>
+</tr>
+<tr class="row-odd"><td><p>19-63</p></td>
+<td><p>Reserved</p></td>
+</tr>
+<tr class="row-even"><td><p>64-255</p></td>
+<td><p>User definable</p></td>
+</tr>
+</tbody>
+</table>
+<p>We can see that the point data have only been classified into Ground, which is usually
+fine for archaeology. Later, we can further classify the points into vegetation, noise, etc.
+This lab will focus on how to perform the initial classification into ground and
+non-ground points.</p>
+<p>We can also filter the point cloud data, for example, if we only want to work with
+ground points. We can also load less data to aid in processing.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load only ground points (classified as 2) with only spatial x, y, z </span>
+<span class="c1"># coordinates, classification (c), and return number (r)</span>
+<span class="n">lasground</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readLAS</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;-keep_class 2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;xyzcr&quot;</span><span class="p">)</span>
+
+<span class="c1"># Displays all filter options</span>
+<span class="nf">readLAS</span><span class="p">(</span><span class="n">filter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;-help&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Attribute abbreviations for the select option:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>x</p></td>
+<td><p>x coordinates of points</p></td>
+</tr>
+<tr class="row-odd"><td><p>y</p></td>
+<td><p>y coordinates</p></td>
+</tr>
+<tr class="row-even"><td><p>z</p></td>
+<td><p>z coordinates (in reality xyz are always loaded by default)</p></td>
+</tr>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>classification code</p></td>
+</tr>
+<tr class="row-even"><td><p>r</p></td>
+<td><p>return number</p></td>
+</tr>
+<tr class="row-odd"><td><p>i</p></td>
+<td><p>intensity</p></td>
+</tr>
+<tr class="row-even"><td><p>t</p></td>
+<td><p>gpstime</p></td>
+</tr>
+<tr class="row-odd"><td><p>a</p></td>
+<td><p>scan angle</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>number of returns</p></td>
+</tr>
+<tr class="row-odd"><td><p>s</p></td>
+<td><p>synthetic flag</p></td>
+</tr>
+<tr class="row-even"><td><p>k</p></td>
+<td><p>keypoint flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>w</p></td>
+<td><p>withheld flag</p></td>
+</tr>
+<tr class="row-even"><td><p>o</p></td>
+<td><p>overlap flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>u</p></td>
+<td><p>user data</p></td>
+</tr>
+<tr class="row-even"><td><p>p</p></td>
+<td><p>point source id</p></td>
+</tr>
+<tr class="row-odd"><td><p>e</p></td>
+<td><p>edge of flight line flag</p></td>
+</tr>
+<tr class="row-even"><td><p>d</p></td>
+<td><p>direction of scan flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>R</p></td>
+<td><p>red channel (RGB)</p></td>
+</tr>
+<tr class="row-even"><td><p>G</p></td>
+<td><p>green channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>blue channel</p></td>
+</tr>
+<tr class="row-even"><td><p>N</p></td>
+<td><p>near-infrared channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>C</p></td>
+<td><p>scanner channel</p></td>
+</tr>
+<tr class="row-even"><td><p>W</p></td>
+<td><p>full waveform</p></td>
+</tr>
+</tbody>
+</table>
+<p>Now if we summarize just lasground, we get only the points we loaded with classification
+code 2.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">lasground</span><span class="p">)</span>
+
+<span class="nf">table</span><span class="p">(</span><span class="n">lasground</span><span class="o">$</span><span class="n">Classification</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>class        : LAS (v1.1 format 1)<br />
+memory       : 546.4 Mb<br />
+extent       : 277008.5, 278391.3, 2070914, 2079175 (xmin, xmax, ymin, ymax)<br />
+coord. ref.  : WGS 84 / UTM zone 16N<br />
+area         : 3.15 km²<br />
+points       : 20.46 million points<br />
+density      : 6.5 points/m²<br />
+density      : 3.33 pulses/m²</p>
+</div></blockquote>
+<blockquote>
+<div><p>           2<br />
+20462312</p>
+</div></blockquote>
+<p>The plot function displays point cloud data, but it is computationally intensive.
+I recommend viewing point clouds in dedicated software like Cloud Compare.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">lasground</span><span class="p">)</span>
+
+<span class="n">vox</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">voxelize_points</span><span class="p">(</span><span class="n">lasground</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">vox</span><span class="p">,</span><span class="w"> </span><span class="n">voxel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Jean-Romain Roussel, Tristan R.H. Goodbody, and Piotr Tompalski offer a <a class="reference external" href="https://r-lidar.github.io/lidRbook/io.html#plot">useful
+function</a> to plot cross sections of point data. Cross sections can be useful to view
+the accuracy of ground classification.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the x and y coordinates for the cross section, and the width of the </span>
+<span class="n">cross</span><span class="w"> </span><span class="n">section.</span>
+
+<span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277645</span><span class="p">,</span><span class="w"> </span><span class="m">2074590</span><span class="p">)</span>
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277718</span><span class="p">,</span><span class="w"> </span><span class="m">2074681</span><span class="p">)</span>
+<span class="n">width</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># Define the plot_crossection function</span>
+
+<span class="n">plot_crossection</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">colour_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">colour_by</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rlang</span><span class="o">::</span><span class="nf">enquo</span><span class="p">(</span><span class="n">colour_by</span><span class="p">)</span>
+<span class="w">  </span><span class="n">data_clip</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">clip_transect</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">)</span>
+<span class="w">  </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data_clip</span><span class="o">@</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Z</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">coord_equal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">theme_minimal</span><span class="p">()</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">is.null</span><span class="p">(</span><span class="n">colour_by</span><span class="p">))</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!!</span><span class="n">colour_by</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">labs</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nf">return</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Plot the crossection by elevation</span>
+
+<span class="n">data_clip</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">clip_transect</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">)</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data_clip</span><span class="o">@</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Z</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Z</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">coord_equal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_color_gradientn</span><span class="p">(</span><span class="n">colours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">height.colors</span><span class="p">(</span><span class="m">50</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/elevation.jpeg"><img alt="Elevation" class="bg-primary mb-1 align-center" src="_images/elevation.jpeg" style="width: 100%;" /></a>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the crossection by classification</span>
+
+<span class="nf">plot_crossection</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">colour_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">Classification</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/classification.jpeg"><img alt="Classification" class="bg-primary mb-1 align-center" src="_images/classification.jpeg" style="width: 100%;" /></a>
+<p>Based on this crossection, the ground classification failed in some areas. We’ll
+pursue options later to improve the ground classification in R.</p>
+</section>
+<section id="generate-raster-surfaces">
+<h2>Generate Raster Surfaces<a class="headerlink" href="#generate-raster-surfaces" title="Permalink to this heading">#</a></h2>
+<p>Several raster surfaces can be generated from point cloud data, including but not
+limited to digital elevation models. For example, we can get a sense of the distribution
+of points across the dataset by plotting the density of returns. Use
+<a class="reference external" href="https://r-graph-gallery.com/38-rcolorbrewers-palettes.html">R Color Brewer</a> for
+additional color palettes.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the density grid; res refers to the resolution or cell size of the resulting</span>
+<span class="c1"># surface. In this example, the resulting surface will show the number of points per</span>
+<span class="c1"># square meter.</span>
+
+<span class="n">density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasterize_density</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+
+<span class="c1"># Specify the color palette</span>
+
+<span class="n">cols</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">brewer.pal</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BuGn&quot;</span><span class="p">)</span>
+<span class="n">pal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colorRampPalette</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+
+<span class="c1"># Plot density</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">density</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">pal</span><span class="p">(</span><span class="m">20</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/bigdensity.jpeg"><img alt="Density" class="bg-primary mb-1 align-center" src="_images/bigdensity.jpeg" style="width: 100%;" /></a>
+<p>We can also generate a density surface using only ground classified points, and we
+can set the axis limits to better view the data.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">densitygr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasterize_density</span><span class="p">(</span><span class="n">lasground</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">density</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277400</span><span class="p">,</span><span class="w"> </span><span class="m">278100</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2074300</span><span class="p">,</span><span class="w"> </span><span class="m">2074850</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="nf">pal</span><span class="p">(</span><span class="m">20</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">densitygr</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277400</span><span class="p">,</span><span class="w"> </span><span class="m">278100</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2074300</span><span class="p">,</span><span class="w"> </span><span class="m">2074850</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="nf">pal</span><span class="p">(</span><span class="m">20</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/density.jpeg"><img alt="Density" class="bg-primary mb-1 align-center" src="_images/density.jpeg" style="width: 100%;" /></a>
+</section>
+<section id="generate-digital-elevation-model">
+<h2>Generate Digital Elevation Model<a class="headerlink" href="#generate-digital-elevation-model" title="Permalink to this heading">#</a></h2>
+<p>The lidR package has several <a class="reference external" href="https://r-lidar.github.io/lidRbook/dtm.html">interpolation algorithms</a>.
+We will use Invert Distance Weighting because it is a relatively simple algorithm with
+acceptable results.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">#DEM</span>
+
+<span class="n">dtm_idw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasterize_terrain</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">knnidw</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10L</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">dtm_idw</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277400</span><span class="p">,</span><span class="w"> </span><span class="m">278100</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2074300</span><span class="p">,</span><span class="w"> </span><span class="m">2074850</span><span class="p">))</span>
+
+<span class="c1">#Hillshade</span>
+
+<span class="n">dtm_prod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">terrain</span><span class="p">(</span><span class="n">dtm_idw</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;slope&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;aspect&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;radians&quot;</span><span class="p">)</span>
+<span class="n">dtm_hillshade</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shade</span><span class="p">(</span><span class="n">slope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dtm_prod</span><span class="o">$</span><span class="n">slope</span><span class="p">,</span><span class="w"> </span><span class="n">aspect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dtm_prod</span><span class="o">$</span><span class="n">aspect</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">315</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">dtm_hillshade</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">gray</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">30</span><span class="o">/</span><span class="m">30</span><span class="p">),</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277400</span><span class="p">,</span><span class="w"> </span><span class="m">278100</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2074300</span><span class="p">,</span><span class="w"> </span><span class="m">2074850</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/demhs.jpeg"><img alt="DEM" class="bg-primary mb-1 align-center" src="_images/demhs.jpeg" style="width: 100%;" /></a>
+<p>An issue with the default convex hull method of interpolation is that it interpolates
+too much of the edges of irregular point cloud extents. Using the concave hull option
+can be an improvement but better results are possible using a polygon based on the
+density surface extent to force proper edges. This step is not necessary for more
+uniform extents.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a new density surface with a coarser resolution. Not every square meter has</span>
+<span class="c1"># a return. Choose a value that will ensure continuous data with no gaps.</span>
+
+<span class="n">density</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasterize_density</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
+
+<span class="c1"># Convert density surface to raster</span>
+
+<span class="n">dens</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">raster</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
+
+<span class="c1"># Reclassify density (slice into single value) and convert to polygon</span>
+
+<span class="n">reclass</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="kc">Inf</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="n">reclass_m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">reclass</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">densreclass</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">reclassify</span><span class="p">(</span><span class="n">dens</span><span class="p">,</span><span class="w"> </span><span class="n">reclass_m</span><span class="p">)</span>
+<span class="n">densreclass</span><span class="p">[</span><span class="n">densreclass</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span>
+<span class="n">densreclasssr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as</span><span class="p">(</span><span class="n">densreclass</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SpatRaster&quot;</span><span class="p">)</span>
+<span class="n">lasspvect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.polygons</span><span class="p">(</span><span class="n">densreclasssr</span><span class="p">)</span>
+<span class="n">lassf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sf</span><span class="o">::</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">lasspvect</span><span class="p">)</span>
+<span class="n">lassfc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sf</span><span class="o">::</span><span class="nf">st_as_sfc</span><span class="p">(</span><span class="n">lassf</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">lassfc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We now have an outline of the point cloud extent that we can use in the interpolation
+as a shapefile.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/outline.jpeg"><img alt="Shape" class="bg-primary mb-1 align-center" src="_images/outline.jpeg" style="width: 100%;" /></a>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">dtm_idw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasterize_terrain</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">knnidw</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10L</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span>
+<span class="w">		</span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lassfc</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">dtm_idw</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277400</span><span class="p">,</span><span class="w"> </span><span class="m">278100</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2074300</span><span class="p">,</span><span class="w"> </span><span class="m">2074850</span><span class="p">))</span>
+
+<span class="c1">#Hillshade</span>
+
+<span class="n">dtm_prod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">terrain</span><span class="p">(</span><span class="n">dtm_idw</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;slope&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;aspect&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;radians&quot;</span><span class="p">)</span>
+<span class="n">dtm_hillshade</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shade</span><span class="p">(</span><span class="n">slope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dtm_prod</span><span class="o">$</span><span class="n">slope</span><span class="p">,</span><span class="w"> </span><span class="n">aspect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dtm_prod</span><span class="o">$</span><span class="n">aspect</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">315</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">dtm_hillshade</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">gray</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">30</span><span class="o">/</span><span class="m">30</span><span class="p">),</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277400</span><span class="p">,</span><span class="w"> </span><span class="m">278100</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2074300</span><span class="p">,</span><span class="w"> </span><span class="m">2074850</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/newdem.jpeg"><img alt="DEM" class="bg-primary mb-1 align-center" src="_images/newdem.jpeg" style="width: 100%;" /></a>
+</section>
+<section id="generate-digital-surface-model">
+<h2>Generate Digital Surface Model<a class="headerlink" href="#generate-digital-surface-model" title="Permalink to this heading">#</a></h2>
+<p>The digital surface model is a raster where each cell represents the highest elevation
+of returns. When generated from elevation (Z) data, the raster is a digital surface model.
+When generated from a normalized point cloud (elevation above ground), the raster is a
+canopy height model.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standard DSM</span>
+
+<span class="n">dsm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasterize_canopy</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">p2r</span><span class="p">())</span>
+<span class="n">col</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">height.colors</span><span class="p">(</span><span class="m">25</span><span class="p">)</span>
+
+<span class="c1"># DSM using circles with 0.15 m radius to fill gaps</span>
+
+<span class="n">dsm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasterize_canopy</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">p2r</span><span class="p">(</span><span class="n">subcircle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">),</span><span class="w"> </span><span class="n">pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;terra&quot;</span><span class="p">)</span>
+
+<span class="c1"># Filled DSM</span>
+
+<span class="n">fill.na</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nf">if </span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">}}</span>
+<span class="n">w</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+
+<span class="n">filled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terra</span><span class="o">::</span><span class="nf">focal</span><span class="p">(</span><span class="n">dsm</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fill.na</span><span class="p">)</span>
+
+<span class="c1"># Smoothed DSM</span>
+
+<span class="n">smoothed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terra</span><span class="o">::</span><span class="nf">focal</span><span class="p">(</span><span class="n">dsm</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">dsms</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">dsm</span><span class="p">,</span><span class="w"> </span><span class="n">filled</span><span class="p">,</span><span class="w"> </span><span class="n">smoothed</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">dsms</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Base&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Filled&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Smoothed&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">dsms</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277400</span><span class="p">,</span><span class="w"> </span><span class="m">278100</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2074300</span><span class="p">,</span><span class="w"> </span><span class="m">2074850</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/dsm.jpeg"><img alt="DSM" class="bg-primary mb-1 align-center" src="_images/dsm.jpeg" style="width: 100%;" /></a>
+</section>
+<section id="ground-classification">
+<h2>Ground classification<a class="headerlink" href="#ground-classification" title="Permalink to this heading">#</a></h2>
+<p>Although the point cloud was already classified into ground points, we have seen that
+the ground classification could be improved. Ground classification is computationally
+intensive, so we have to first retile the point cloud into more manageable, smaller
+chunks. To do this we will reload the point cloud as an las catalog.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">lascat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readLAScatalog</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># Set a location to retile into smaller .las files, create a 25 m buffer around tiles,</span>
+<span class="c1"># and set the tile size to 1600 x 1600 m</span>
+
+<span class="nf">opt_output_files</span><span class="p">(</span><span class="n">lascat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013 processed BE/Point Clouds/s460{XLEFT}_{YBOTTOM}&quot;</span>
+<span class="nf">opt_chunk_buffer</span><span class="p">(</span><span class="n">lascat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">25</span>
+<span class="nf">opt_chunk_size</span><span class="p">(</span><span class="n">lascat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1600</span>
+<span class="n">small</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">catalog_retile</span><span class="p">(</span><span class="n">lascat</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>R has 3 built-in ground classification algorithms, Cloth Simulation Function,
+Progressive Morphological Filter, and Multiscale Curvature Classification. Refer to
+<a class="reference external" href="https://doi.org/10.3390/rs12183025">Štular and Lozić</a> (2020) for recommendations for
+parameters.</p>
+<p>To experiment with ground classification algorithms, it is best to load a smaller
+dataset; for example, one of the tiles we created in the last step.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">lastest</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readLAS</span><span class="p">(</span><span class="s">&quot;C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013 processed BE/Point Clouds/s460276800_2073600.las&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="cloth-simulation-function-csf">
+<h2>Cloth Simulation Function (CSF)<a class="headerlink" href="#cloth-simulation-function-csf" title="Permalink to this heading">#</a></h2>
+<p>The CSF algorithm models the ground surface by first flipping the point cloud upside
+down and imagining draping a cloth over the points. Based on different paramaters
+representing the rigidity of the cloth, the resolution or point spacing, and the force
+of gravity or weight of the cloth, the function creates a surface over the points that
+is then flipped back over to model the ground.</p>
+<p>The CSF algorithm is advantageous because it is relatively fast. However, the results
+are error prone, with many points misclassified. The CSF algorithm is best used to
+quickly assess terrain models or to generate DEMs with coarser resolutions, especially
+if the end goal is modeling vegetation above ground.</p>
+<p>We will start with the
+<a class="reference external" href="https://search.r-project.org/CRAN/refmans/lidR/html/gnd_csf.html">default parameters</a>.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">mycsf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">csf</span><span class="p">(</span><span class="n">sloop_smooth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">class_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">cloth_resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">rigidness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500L</span><span class="p">,</span><span class="w"> </span><span class="n">time_step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">65</span><span class="p">)</span>
+<span class="n">lascsf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classify_ground</span><span class="p">(</span><span class="n">lastest</span><span class="p">,</span><span class="w"> </span><span class="n">mycsf</span><span class="p">)</span>
+
+<span class="c1"># Plot the new classification</span>
+
+<span class="nf">plot_crossection</span><span class="p">(</span><span class="n">lascsf</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">colour_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">Classification</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/csf1.jpeg"><img alt="CSF" class="bg-primary mb-1 align-center" src="_images/csf1.jpeg" style="width: 100%;" /></a>
+<p>The large mound is still not correctly classified. We can try different parameters:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">mycsf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">csf</span><span class="p">(</span><span class="n">sloop_smooth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">class_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="n">cloth_resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">rigidness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000L</span><span class="p">,</span><span class="w"> </span><span class="n">time_step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">75</span><span class="p">)</span>
+<span class="n">lascsf2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classify_ground</span><span class="p">(</span><span class="n">lastest</span><span class="p">,</span><span class="w"> </span><span class="n">mycsf</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/csf2.jpeg"><img alt="CSF" class="bg-primary mb-1 align-center" src="_images/csf2.jpeg" style="width: 100%;" /></a>
+<p>The results are improved on top of the mound, but now many of the ground points in
+flat areas are misclassified, leading to a noisey DEM. We can keep trying different
+parameters or use a different algorithm.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/csfplots.jpeg"><img alt="CSF" class="bg-primary mb-1 align-center" src="_images/csfplots.jpeg" style="width: 100%;" /></a>
+</section>
+<section id="progressive-morphological-filter">
+<h2>Progressive Morphological Filter<a class="headerlink" href="#progressive-morphological-filter" title="Permalink to this heading">#</a></h2>
+<p>The PMF algorithm uses a moving window to classify points as ground within a certain
+threshold of neighboring points. The filter is progressive because sequences of window
+sizes and thresholds are applied to the point cloud. The window size generally begins
+with a smaller size (in the units of the point cloud), then a larger size, then a final
+step with the original smaller size. The threshold generally increases from a smaller to
+a larger value, either linearly or exponentially. Exponentially is recommended because
+processing time is significantly reduced.</p>
+<p>The PMF algorithm has the potential to be highly accurate; however, the drawback is
+that processing time is much higher, and nearly an infinite number of parameters
+are available for experimentation, making it difficult to refine settings.</p>
+<p>We will begin with the recommended parameters in
+<a class="reference external" href="https://doi.org/10.3390/rs12183025">Štular and Lozić</a> (2020).</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="n">th</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">ws</span><span class="p">))</span>
+<span class="n">laspmf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classify_ground</span><span class="p">(</span><span class="n">lastest</span><span class="p">,</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">pmf</span><span class="p">(</span><span class="n">ws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ws</span><span class="p">,</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">th</span><span class="p">))</span>
+
+<span class="nf">plot_crossection</span><span class="p">(</span><span class="n">laspmf</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">colour_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">Classification</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/pmf.jpeg"><img alt="PMF" class="bg-primary mb-1 align-center" src="_images/pmf.jpeg" style="width: 100%;" /></a>
+<p>These results, in fact, look very similar to the already classified points provided
+in the original NASA G-LiHT dataset. Although
+<a class="reference external" href="https://doi.org/10.3390/rs12183025">Štular and Lozić</a> observed that decreasing the
+window size had no noticeable impact on results, I have found that for archaeological
+features, smaller window sizes are necessary.
+<a class="reference external" href="https://doi.org/10.1080/00934690.2020.1713287">VanValkenburgh and colleagues</a>
+(2020) used window sizes as low as 0.6 m.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="n">th</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">ws</span><span class="p">))</span>
+<span class="n">laspmf2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classify_ground</span><span class="p">(</span><span class="n">lastest</span><span class="p">,</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">pmf</span><span class="p">(</span><span class="n">ws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ws</span><span class="p">,</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">th</span><span class="p">))</span>
+
+<span class="nf">plot_crossection</span><span class="p">(</span><span class="n">laspmf2</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">colour_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">Classification</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The ground classification is significantly improved.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/pmf2.jpeg"><img alt="PMF" class="bg-primary mb-1 align-center" src="_images/pmf2.jpeg" style="width: 100%;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/pmfplots.jpeg"><img alt="PMF" class="bg-primary mb-1 align-center" src="_images/pmfplots.jpeg" style="width: 100%;" /></a>
+</section>
+<section id="multiscale-curvature-classification">
+<h2>Multiscale Curvature Classification<a class="headerlink" href="#multiscale-curvature-classification" title="Permalink to this heading">#</a></h2>
+<p>The MCC algorithm uses deviations from positive curvature thresholds to progressively
+eliminate non-ground points. The following default values lead to acceptable results:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">lasmcc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classify_ground</span><span class="p">(</span><span class="n">lastest</span><span class="p">,</span><span class="w"> </span><span class="nf">mcc</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span><span class="m">0.3</span><span class="p">))</span>
+
+<span class="nf">plot_crossection</span><span class="p">(</span><span class="n">lasmcc</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">colour_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">Classification</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/mcc.jpeg"><img alt="MCC" class="bg-primary mb-1 align-center" src="_images/mcc.jpeg" style="width: 100%;" /></a>
+<p>With minor tweaking, we can get even better results:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">lasmcc2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classify_ground</span><span class="p">(</span><span class="n">lastest</span><span class="p">,</span><span class="w"> </span><span class="nf">mcc</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0.3</span><span class="p">))</span>
+
+<span class="nf">plot_crossection</span><span class="p">(</span><span class="n">lasmcc2</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">colour_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">Classification</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/mcc2.jpeg"><img alt="MCC" class="bg-primary mb-1 align-center" src="_images/mcc2.jpeg" style="width: 100%;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/mccplot.jpeg"><img alt="MCC" class="bg-primary mb-1 align-center" src="_images/mccplot.jpeg" style="width: 100%;" /></a>
+</section>
+<section id="classifying-all-tiles-with-lascatalog">
+<h2>Classifying all tiles with lascatalog<a class="headerlink" href="#classifying-all-tiles-with-lascatalog" title="Permalink to this heading">#</a></h2>
+<p>We can now apply what we determine to be the most appropriate algorithm and parameters
+to the entire dataset using lascatalog. Let’s set up our lascatalog again.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">lascat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readLAScatalog</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Alternatively, you can load a set of .las files from a folder:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">lascat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readLAScatalog</span><span class="p">(</span><span class="s">&quot;C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013 processed BE/Point Clouds/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set the same tile size and buffer as before with new output files in a different folder.
+Then apply the MCC algorithm and parameters to the full dataset.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">opt_chunk_size</span><span class="p">(</span><span class="n">lascat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1600</span>
+<span class="nf">opt_chunk_buffer</span><span class="p">(</span><span class="n">lascat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">25</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">lascat</span><span class="p">,</span><span class="w"> </span><span class="n">chunk_pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">opt_output_files</span><span class="p">(</span><span class="n">lascat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013 processed BE/ground/s460{XLEFT}_{YBOTTOM}g&quot;</span>
+
+<span class="n">lasmccall</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classify_ground</span><span class="p">(</span><span class="n">lascat</span><span class="p">,</span><span class="w"> </span><span class="nf">mcc</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/chunks.jpeg"><img alt="Chunks" class="bg-primary mb-1 align-center" src="_images/chunks.jpeg" style="width: 100%;" /></a>
+<p>We can then process the DEM based on the new ground classification.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">dtm_idw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasterize_terrain</span><span class="p">(</span><span class="n">lasmccall</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">knnidw</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10L</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lassfc</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">dtm_idw</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/finaldem.jpeg"><img alt="DEM" class="bg-primary mb-1 align-center" src="_images/finaldem.jpeg" style="width: 100%;" /></a>
+<p>Once you are satisfied with the ground classification, you can output results as a
+raster.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">writeRaster</span><span class="p">(</span><span class="n">dtm_idw</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013 processed BE/s460gr.tif&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
 </section>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Permalink to this heading">#</a></h2>
-<p>Kokalj, Ž., and M. Somrak. 2019. Why Not a Single Image? Combining Visualizations to
-Facilitate Fieldwork and On-Screen Mapping. Remote Sensing 11(7):747.
-[<a class="reference external" href="https://doi.org/10.3390/rs11070747">https://doi.org/10.3390/rs11070747</a>]</p>
+<p>Roussel, Jean-Romain, Tristan R.H. Goodbody, and Piotr Tompalski. 2023. The lidR package.
+<a class="reference external" href="https://r-lidar.github.io/lidRbook/index.html">https://r-lidar.github.io/lidRbook/index.html</a></p>
 <p>Štular, Benjamin and Edisa Lozić. 2020. Comparison of Filters for Archaeology-Specific
 Ground Extraction from Airborne LiDAR Point Clouds. Remote Sensing 12(18):3025.
-[<a class="reference external" href="https://doi.org/10.3390/rs12183025">https://doi.org/10.3390/rs12183025</a>]</p>
-<p>Zakšek, K., K. Oštir, Ž Kokalj. 2011. Sky-View Factor as a Relief Visualization
-Technique. Remote Sensing 3(2):398-415. [<a class="reference external" href="https://doi.org/10.3390/rs3020398">https://doi.org/10.3390/rs3020398</a>]</p>
+<a class="reference external" href="https://doi.org/10.3390/rs12183025">https://doi.org/10.3390/rs12183025</a></p>
+<p>VanValkenburgh, Parker, K.C. Cushman, Luis Jaime Castillo Butters, Carol Rojas Vega,
+Carson B. Roberts, Charles Kepler, and James Kellner. 2020. Lasers without lost
+cities: using drone lidar to capture architectural complexity at Kuelap, Amazonas, Peru.
+<a class="reference external" href="https://doi.org/10.1080/00934690.2020.1713287">https://doi.org/10.1080/00934690.2020.1713287</a></p>
 </section>
 </section>
 
@@ -499,7 +1095,16 @@ Technique. Remote Sensing 3(2):398-415. [<a class="reference external" href="htt
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-libraries">Install libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-and-load-libraries">Install and load libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-import-data">Download and import data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-raster-surfaces">Generate Raster Surfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-digital-elevation-model">Generate Digital Elevation Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-digital-surface-model">Generate Digital Surface Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-classification">Ground classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloth-simulation-function-csf">Cloth Simulation Function (CSF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progressive-morphological-filter">Progressive Morphological Filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiscale-curvature-classification">Multiscale Curvature Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-all-tiles-with-lascatalog">Classifying all tiles with lascatalog</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
   </nav></div>
