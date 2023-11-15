@@ -196,7 +196,8 @@ density      : 3.33 pulses/m²
 20462312
 
 The plot function displays point cloud data, but it is computationally intensive.
-I recommend viewing point clouds in dedicated software like Cloud Compare.
+I recommend viewing point clouds in dedicated software like 
+[Cloud Compare](https://www.danielgm.net/cc/).
 
 ```R
 plot(lasground)
@@ -211,7 +212,7 @@ the accuracy of ground classification.
 
 ```R
 # Define the x and y coordinates for the cross section, and the width of the 
-cross section.
+# cross section.
 
 p1 <- c(277645, 2074590)
 p2 <- c(277718, 2074681)
@@ -404,7 +405,7 @@ plot(dtm_hillshade, col = gray(0:30/30), legend = FALSE, xlim = c(277400, 278100
 
 The digital surface model is a raster where each cell represents the highest elevation
 of returns. When generated from elevation (Z) data, the raster is a digital surface model.
-When generated from a normalized point cloud (elevation above ground), the raster is a
+When generated from a normalized point cloud (height above ground), the raster is a
 canopy height model.
 
 ```R

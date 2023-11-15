@@ -684,7 +684,8 @@ density      : 3.33 pulses/m²</p>
 20462312</p>
 </div></blockquote>
 <p>The plot function displays point cloud data, but it is computationally intensive.
-I recommend viewing point clouds in dedicated software like Cloud Compare.</p>
+I recommend viewing point clouds in dedicated software like
+<a class="reference external" href="https://www.danielgm.net/cc/">Cloud Compare</a>.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">lasground</span><span class="p">)</span>
 
 <span class="n">vox</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">voxelize_points</span><span class="p">(</span><span class="n">lasground</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
@@ -695,7 +696,7 @@ I recommend viewing point clouds in dedicated software like Cloud Compare.</p>
 function</a> to plot cross sections of point data. Cross sections can be useful to view
 the accuracy of ground classification.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the x and y coordinates for the cross section, and the width of the </span>
-<span class="n">cross</span><span class="w"> </span><span class="n">section.</span>
+<span class="c1"># cross section.</span>
 
 <span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277645</span><span class="p">,</span><span class="w"> </span><span class="m">2074590</span><span class="p">)</span>
 <span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277718</span><span class="p">,</span><span class="w"> </span><span class="m">2074681</span><span class="p">)</span>
@@ -835,7 +836,7 @@ as a shapefile.</p>
 <h2>Generate Digital Surface Model<a class="headerlink" href="#generate-digital-surface-model" title="Permalink to this heading">#</a></h2>
 <p>The digital surface model is a raster where each cell represents the highest elevation
 of returns. When generated from elevation (Z) data, the raster is a digital surface model.
-When generated from a normalized point cloud (elevation above ground), the raster is a
+When generated from a normalized point cloud (height above ground), the raster is a
 canopy height model.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standard DSM</span>
 
