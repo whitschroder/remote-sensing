@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lastools';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -377,8 +379,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data">Download data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-process-data">Pre-process data</a></li>
 </ul>
             </nav>
         </div>
@@ -392,28 +394,110 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lidar-processing-and-analysis-with-lastools">
 <h1>Lidar Processing and Analysis with LAStools<a class="headerlink" href="#lidar-processing-and-analysis-with-lastools" title="Permalink to this heading">#</a></h1>
-<p>Coming soon</p>
-<section id="coming-soon">
-<h2>Coming soon<a class="headerlink" href="#coming-soon" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Coming soon</p>
-</div>
+<p><a class="reference external" href="https://rapidlasso.de/product-overview/">LAStools</a> is a convenient and powerful
+set of tools for processing point cloud data in .las or .laz format. LAStools is a
+subscription-based software, but some of the more basic tools are free and open
+source, while others are free to use with restrictions (data all slightly altered
+and rasters are generated with diagnonal lines, for example).</p>
+<p>LAStools has a plugin for QGIS and a toolbox for ArcGIS Pro if you prefer to work
+with a GUI. LAStools also has standalone .exe files that can be run in their own GUI.
+However, I prefer running the tools directly in the Command Prompt to have full access
+to all options.</p>
+<p>To begin, download LAStools from <a class="reference external" href="http://rapidlasso.de/customer-support">http://rapidlasso.de/customer-support</a>. Unzip the folder
+directly into your C:\ drive, so that you have the folder structure C:\LAStools\bin.</p>
+<section id="download-data">
+<h2>Download data<a class="headerlink" href="#download-data" title="Permalink to this heading">#</a></h2>
+<p>For this lab, we will use data acquired by the University of Florida’s
+<a class="reference external" href="http://www.speclab.org/gatoreye.html">GatorEye</a> UAV lidar system, available at the
+following <a class="reference external" href="http://www.speclab.org/gatoreye-data-access.html">link</a> under “2019 Mexico
+June.”</p>
 </section>
-<section id="id1">
-<h2>Coming soon<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="pre-process-data">
+<h2>Pre-process data<a class="headerlink" href="#pre-process-data" title="Permalink to this heading">#</a></h2>
+<p>The raw data are organized by individual flight line. To work with the data, we have
+to first pre-process the .las files by merging them together, retiling the point cloud
+into equally sized tiles, then thinning the point cloud.</p>
+<p>In the Command Prompt, first navigate to your working folder, which can be your
+C:\LAStools\bin folder, for example. If you want to have a different working folder,
+you must add the LAStools to PATH.</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>C:<span class="se">\L</span>AStools<span class="se">\b</span>in
+</pre></div>
+</div>
+<p>The following command will merge all files. Refer to the
+<a class="reference external" href="https://downloads.rapidlasso.de/readme/lasmerge_README.md">lasmerge</a> README file.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-i</p></td>
+<td><p>input file</p></td>
+</tr>
+<tr class="row-odd"><td><p>*</p></td>
+<td><p>wild, input all files with the same extension</p></td>
+</tr>
+<tr class="row-even"><td><p>-o</p></td>
+<td><p>output file</p></td>
+</tr>
+<tr class="row-odd"><td><p>-epsg</p></td>
+<td><p>define the coordinate system</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>lasmerge<span class="w"> </span>-i<span class="w"> </span>C:<span class="se">\L</span>AStools<span class="se">\b</span>in<span class="se">\L</span>TZ<span class="se">\*</span>.las<span class="w"> </span>-o<span class="w"> </span>ltzmerged.las<span class="w"> </span>-epsg<span class="w"> </span><span class="m">32615</span>
+</pre></div>
+</div>
+<p>The next command will retile the merged .las into tile sizes measured in the units
+of the point cloud, meters.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-odir</p></td>
+<td><p>output directory</p></td>
+</tr>
+<tr class="row-odd"><td><p>-olas</p></td>
+<td><p>output file type (.las)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>lastile<span class="w"> </span>-i<span class="w"> </span>ltzmerged.las<span class="w"> </span>-tile_size<span class="w"> </span><span class="m">200</span><span class="w"> </span>-odir<span class="w"> </span>C:<span class="se">\L</span>AStools<span class="se">\b</span>in<span class="se">\L</span>TZ<span class="se">\t</span>iles<span class="w"> </span>-olas
+</pre></div>
+</div>
+<p>The next step thins the point cloud based on a step size of 0.1, which is equivalent
+to a maximum point density of <span class="math notranslate nohighlight">\(1 \over 0.1^2\)</span> or 100 points per meter.</p>
+<div class="math notranslate nohighlight">
+\[
+\text{point spacing} = \sqrt{1 \over \text{point density}}
+\]</div>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-step 0.1</p></td>
+<td><p>point spacing</p></td>
+</tr>
+<tr class="row-odd"><td><p>-random</p></td>
+<td><p>thinning selects random points</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>lasthin<span class="w"> </span>-i<span class="w"> </span>C:<span class="se">\L</span>AStools<span class="se">\b</span>in<span class="se">\L</span>TZ<span class="se">\t</span>iles<span class="se">\*</span>.las<span class="w"> </span>-step<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span>-random<span class="w"> </span>-odir<span class="w"> </span>C:<span class="se">\L</span>AStools<span class="se">\b</span>in<span class="se">\L</span>TZ<span class="se">\t</span>hin<span class="w"> </span>-olas
+</pre></div>
+</div>
+<p>In this example, we selected points for the thinned point cloud randomly. We could also
+have used -lowest to select the points with the lowest elevations or Z values.
+These point clouds are very noisey, however, so keeping lowest points would not only
+keep ground points. We could also have just selected last returns (-last_only), but
+we are assuming we want to keep vegetation data as well for this exercise.</p>
 </section>
 </section>
 
@@ -480,8 +564,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data">Download data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-process-data">Pre-process data</a></li>
 </ul>
   </nav></div>
 
