@@ -1,4 +1,4 @@
-# ANG: 6930 Archaeological Remote Sensing
+# ANG: 6930 Archaeological and Anthropological Remote Sensing
 **University of Florida**  
 **Spring 2024**
 
@@ -69,10 +69,11 @@ Additional readings and case studies will be provided each week.
 <https://catalog.ufl.edu/UGRD/academic-regulations/grades-grading-policies>
 |                              |     |
 | ---                          | --- |
-| Attendance and Participation | 20% |
-| Research site selection      | 5%  |
-| Research question            | 5%  |
-| Lab write-ups                | 40% |
+| Attendance and Participation | 10% |
+| Labs                         | 35% |
+| Project Site Selection       | 5%  |
+| Project Abstract             | 10% |
+| Peer Review Feedback         | 10% |
 | Final Project                | 30% |
 
 **Attendance and Participation**  
@@ -87,9 +88,16 @@ Requirements for class attendance and make-up exams, assignments,
 and other work in this course are consistent with university policies 
 (<https://catalog.ufl.edu/UGRD/academic-regulations/attendance-policies>).
 
+**Readings**  
+A goal of this course is to create a resource that students can use to learn 
+about remote sensing. In addition to assigned readings, students will bring 
+at least one outside reading of their choice to each class and present the 
+study in the context of that week’s topic.
+
 **Labs**  
 Every class period will have a lab component to introduce topics and techniques. 
 Lab work will continue outside of class and will be presented the following week.
+Students will keep a working portfolio of their lab work to be presented every week.
 
 **Final Project** 
 Students will develop a project throughout the semester. After the first class meeting
@@ -98,7 +106,9 @@ thesis project, to be posted as a Google Earth .kml file to the class blog. The 
 phase of the project will be the crafting of a research question. The final project will 
 be a proposal and preliminary analysis of your research area, using methods and tools 
 learned in class. If the data needed to address your research question are not available, 
-discuss how you would realistically plan to acquire such data.
+discuss how you would realistically plan to acquire such data. Students will present 
+project updates and conduct peer review of their classmates’ projects prior to 
+final submission.
 
 **Academic Honesty and Integrity**  
 Please be familiar with the University of Florida’s Student Honor Code: 
