@@ -161,8 +161,7 @@ course evaluation results are available to students at
 # Course Bibliography
 
 Fundamentals of Remote Sensing. A Canada Centre for Remote Sensing Tutorial. 
-<https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/earthsciences/pdf/resource/tutor/
-fundam/pdf/fundamentals_e.pdf>
+<https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/earthsciences/pdf/resource/tutor/fundam/pdf/fundamentals_e.pdf>
 
 ESRI. Introduction to Imagery and Remote Sensing. 
 <https://introduction-to-remote-sensing-learngis.hub.arcgis.com/pages/at-a-glance>

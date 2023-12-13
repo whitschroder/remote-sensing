@@ -9,7 +9,7 @@ East. Near Eastern Archaeology 77(3):171-175. [JSTOR](https://www.jstor.org/stab
 
 Casana, Jesse. 2020. Global-Scale Archaeological Prospection Using CORONA Satellite
 Imagery: Automated, Crowd-Sourced, and Expert-led Approaches. Journal of Field
-Archaeology 45. [https://doi.org/10.1080/00934690.2020.1713285]
+Archaeology 45. <https://doi.org/10.1080/00934690.2020.1713285>
 
 Casana, Jesse and Jackson Cothren. 2013. The CORONA Atlas Project: Orthorectification of
 CORONA Satellite Imagery and Regional-Scale Archaeological Exploration in the Near East.
@@ -18,12 +18,12 @@ Heritage Convention. SpringerBriefs in Archaeology 5. [PDF](https://www.academia
 
 Casana, Jesse, Jackson Cothren, and Tuna Kalayci. 2012. Swords into Ploughshares: 
 Archaeological Applications of CORONA Satellite Imagery in the Near East. 
-Internet Archaeology 32. [https://doi.org/10.11141/ia.32.2]
+Internet Archaeology 32. <https://doi.org/10.11141/ia.32.2>
 
 Casana, J., D. Goodman, and C. Ferwerda. 2023. A wall or a road? A remote sensing-based 
 investigation of fortifications on Rome's eastern frontier. Antiquity, 1-18. 
-[https://doi.org/10.15184/aqy.2023.153]
+<https://doi.org/10.15184/aqy.2023.153>
 
 Lindsay, Ian and Arshaluys Mkrtchyan. 2023. Free and Low-Cost Aerial Remote Sensing in
 Archaeology: An Overview of Data Sources and Recent Applications in the South Caucasus.
-Advances in Archaeological Practice 11(2):164-183. [https://doi.org/10.1017/aap.2023.3]
+Advances in Archaeological Practice 11(2):164-183. <https://doi.org/10.1017/aap.2023.3>

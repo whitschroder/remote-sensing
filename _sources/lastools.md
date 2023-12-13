@@ -148,5 +148,4 @@ Scaioni, M., B. Höfle, A.P. Baungarten Kersting, L. Barazzetti, M. Previtali,
 and D. Wujanz. 2018. Methods from Information Extraction from LiDAR 
 Intensity Data and Multispectral LiDAR Technology. The International Archives 
 of the Photogrammetry, Remote Sensing and Spatial Information Sciences 52(3):1503–1510. 
-<https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLII-3/1503/
-2018/isprs-archives-XLII-3-1503-2018.pdf>
+<https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLII-3/1503/2018/isprs-archives-XLII-3-1503-2018.pdf>
