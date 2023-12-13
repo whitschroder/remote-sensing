@@ -160,40 +160,6 @@ course evaluation results are available to students at
 
 # Course Bibliography
 
-Berman, Gabrielle, Sara de la Rosa, and Tanya Accone. 2018. 
-Ethical Considerations When Using Geospatial Technologies for Evidence Generation. 
-UNICEF, Florence. <https://www.unicef-irc.org/publications/pdf/DP%202018%2002.pdf>
-
-Dale, Mark R.T. and Marie-Josée Fortin. 2014. 
-“Chapter 1: Spatial Concepts and Notions.” In Spatial Analysis: 
-A Guide for Ecologists, Second Edition, pp. 1–31. Cambridge University Press, Cambridge. 
-
-Fernandez-Diaz, Juan Carlos, William E. Carter, Ramesh L. Shrestha, and 
-Craig L. Glennie. 2014. Now You See It… Now You Don’t: Understanding 
-Airborne Mapping LiDAR Collection and Data Product Generation for Archaeological 
-Research in Mesoamerica. Remote Sensing 6(10):9951–10001. 
-<https://doi.org/10.3390/rs6109951>
-
-Kashani, Alireza G., Michael J. Olsen, Christopher E. Parrish, and Nicholas Wilson. 
-2015. A Review of LIDAR Radiometric Processing: From Ad Hoc Intensity 
-Correction to Rigorous Radiometric Calibration. Sensors 15:28099–28128. 
-<https://doi.org/10.3390/s151128099>
-
-Mohan, Midhun, Rodrigo Vieira Leite, Eben North Broadbent, et al. 2021 
-(forthcoming). Individual Tree Detection Using UAV-lidar and UAV-SfM Data: 
-A Tutorial for Beginners. Remote Sensing 12.
-
-Olson, Kyle and Lynne M. Rouse. 2018. A Beginner’s Guide to Mesoscale 
-Survey with Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371. 
-<https://doi.org/10.1017/aap.2018.26>
-
-Scaioni, M., B. Höfle, A.P. Baungarten Kersting, L. Barazzetti, M. Previtali, 
-and D. Wujanz. 2018. Methods from Information Extraction from LiDAR 
-Intensity Data and Multispectral LiDAR Technology. The International Archives 
-of the Photogrammetry, Remote Sensing and Spatial Information Sciences 52(3):1503–1510. 
-<https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLII-3/1503/
-2018/isprs-archives-XLII-3-1503-2018.pdf>
-
 Fundamentals of Remote Sensing. A Canada Centre for Remote Sensing Tutorial. 
 <https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/earthsciences/pdf/resource/tutor/
 fundam/pdf/fundamentals_e.pdf>
@@ -204,6 +170,3 @@ ESRI. Introduction to Imagery and Remote Sensing.
 Tempfli, Klaus, Norman Kerle, Gerrit C. Huurneman, Lucas L.F. Janssen (editors). 
 Principles of Remote Sensing: An Introductory Textbook. 
 <https://webapps.itc.utwente.nl/librarywww/papers_2009/general/principlesremotesensing.pdf>
-
-Young, James. LiDAR for Dummies. <https://ibis.geog.ubc.ca/courses/geog373/lectures/
-Handouts/LiDARforDummies.pdf>

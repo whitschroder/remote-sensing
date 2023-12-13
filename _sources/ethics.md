@@ -2,6 +2,10 @@
 
 ## Readings
 
+Berman, Gabrielle, Sara de la Rosa, and Tanya Accone. 2018. 
+Ethical Considerations When Using Geospatial Technologies for Evidence Generation. 
+UNICEF, Florence. <https://www.unicef-irc.org/publications/pdf/DP%202018%2002.pdf>
+
 Casana, Jesse. 2015. Satellite Imagery-Based Analysis of Archaeological Looting in
 Syria. Near Eastern Archaeology 78(3):142-152.
 

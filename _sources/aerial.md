@@ -10,6 +10,10 @@
 
 ## Readings
 
+Dale, Mark R.T. and Marie-Josée Fortin. 2014. 
+“Chapter 1: Spatial Concepts and Notions.” In Spatial Analysis: 
+A Guide for Ecologists, Second Edition, pp. 1–31. Cambridge University Press, Cambridge.
+
 Gajski, D., R. Župan, I. Racetin, R. Krstić. 2023. Straightforward Stereoscopic 
 Techniques for Archaeometric Interpretation of Archeological Artifacts. 
 Heritage 6:5066-5081. <https://doi.org/10.3390/heritage6070268>

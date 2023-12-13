@@ -136,3 +136,17 @@ lastile -i C:\LAStools\bin\LTZ\Ground\Tiles\Ground\*.las -reverse_tiling -o C:\L
 ```Bash
 blast2dem -i C:\LAStools\bin\LTZ\Ground\ltzground.las -keep_class 2 -o C:\LAStools\bin\LTZ\Ground\ltzwild.tif
 ```
+
+## Readings
+
+Kashani, Alireza G., Michael J. Olsen, Christopher E. Parrish, and Nicholas Wilson. 
+2015. A Review of LIDAR Radiometric Processing: From Ad Hoc Intensity 
+Correction to Rigorous Radiometric Calibration. Sensors 15:28099–28128. 
+<https://doi.org/10.3390/s151128099>
+
+Scaioni, M., B. Höfle, A.P. Baungarten Kersting, L. Barazzetti, M. Previtali, 
+and D. Wujanz. 2018. Methods from Information Extraction from LiDAR 
+Intensity Data and Multispectral LiDAR Technology. The International Archives 
+of the Photogrammetry, Remote Sensing and Spatial Information Sciences 52(3):1503–1510. 
+<https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLII-3/1503/
+2018/isprs-archives-XLII-3-1503-2018.pdf>
