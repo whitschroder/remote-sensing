@@ -1,6 +1,6 @@
 # ANG: 6930 Archaeological and Anthropological Remote Sensing
 **University of Florida**  
-**Spring 2024**
+**Spring 2025**
 
 ```{image} /images/Intensity.png
 :alt: Intensity

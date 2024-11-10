@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Visualizing and Processing Lidar Point Clouds in R with the lidR Package &#8212; Archaeological Remote Sensing</title>
   
@@ -15,53 +14,52 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lidr';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -69,6 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="Manipulating Remotely-Sensed Big Data in Google Earth Engine" href="gee.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -76,32 +75,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -109,7 +92,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -117,16 +99,25 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -139,6 +130,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
@@ -153,11 +147,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="_static/tikal2.png" class="logo__image only-light" alt="Archaeological Remote Sensing - Home"/>
-    <script>document.write(`<img src="_static/tikal2.png" class="logo__image only-dark" alt="Archaeological Remote Sensing - Home"/>`);</script>
+    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Archaeological Remote Sensing - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -198,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -207,14 +208,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -336,26 +337,20 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -396,10 +391,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="visualizing-and-processing-lidar-point-clouds-in-r-with-the-lidr-package">
-<h1>Visualizing and Processing Lidar Point Clouds in R with the lidR Package<a class="headerlink" href="#visualizing-and-processing-lidar-point-clouds-in-r-with-the-lidr-package" title="Permalink to this heading">#</a></h1>
+<h1>Visualizing and Processing Lidar Point Clouds in R with the lidR Package<a class="headerlink" href="#visualizing-and-processing-lidar-point-clouds-in-r-with-the-lidr-package" title="Link to this heading">#</a></h1>
 <p>In this lab, students will learn how to load, visualize, and process lidar point clouds
 in R. Before proceeding, download the latest versions of R and R Studio at the following
 link: <a class="reference external" href="https://posit.co/download/rstudio-desktop">https://posit.co/download/rstudio-desktop</a>.</p>
@@ -407,7 +402,7 @@ link: <a class="reference external" href="https://posit.co/download/rstudio-desk
 The drawback is that as a programming language, R is generally slower than others including
 Python and C++.</p>
 <section id="install-and-load-libraries">
-<h2>Install and load libraries<a class="headerlink" href="#install-and-load-libraries" title="Permalink to this heading">#</a></h2>
+<h2>Install and load libraries<a class="headerlink" href="#install-and-load-libraries" title="Link to this heading">#</a></h2>
 <p>If you are not familiar with R, after downloading, open R Studio and install the
 following libraries or packages:</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># The lidR package is used for processing las point clouds</span>
@@ -445,7 +440,7 @@ you will just have to load the necessary libraries every time you run the code.<
 </div>
 </section>
 <section id="download-and-import-data">
-<h2>Download and import data<a class="headerlink" href="#download-and-import-data" title="Permalink to this heading">#</a></h2>
+<h2>Download and import data<a class="headerlink" href="#download-and-import-data" title="Link to this heading">#</a></h2>
 <p>lidR is a point cloud oriented software, so we first have to download a point cloud in
 either .las or .laz format.</p>
 <p>In this lab, we will use publicly available data from the <a class="reference external" href="https://gliht.gsfc.nasa.gov">NASA G-LiHT</a> system.
@@ -496,7 +491,7 @@ density      : 10.43 pulses/m²</p>
 </div></blockquote>
 <p>The current American Society for Photogrammetry and Remote Sensing (ASPRS) standard
 classification codes for point data are:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Classification Value</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -568,6 +563,7 @@ classification codes for point data are:</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>We can see that the point data have only been classified into Ground, which is usually
 fine for archaeology. Later, we can further classify the points into vegetation, noise, etc.
 This lab will focus on how to perform the initial classification into ground and
@@ -583,7 +579,7 @@ ground points. We can also load less data to aid in processing.</p>
 </pre></div>
 </div>
 <p>Attribute abbreviations for the select option:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head"><p></p></th>
@@ -661,6 +657,7 @@ ground points. We can also load less data to aid in processing.</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>Now if we summarize just lasground, we get only the points we loaded with classification
 code 2.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">lasground</span><span class="p">)</span>
@@ -736,7 +733,7 @@ the accuracy of ground classification.</p>
 pursue options later to improve the ground classification in R.</p>
 </section>
 <section id="generate-raster-surfaces">
-<h2>Generate Raster Surfaces<a class="headerlink" href="#generate-raster-surfaces" title="Permalink to this heading">#</a></h2>
+<h2>Generate Raster Surfaces<a class="headerlink" href="#generate-raster-surfaces" title="Link to this heading">#</a></h2>
 <p>Several raster surfaces can be generated from point cloud data, including but not
 limited to digital elevation models. For example, we can get a sense of the distribution
 of points across the dataset by plotting the density of returns. Use
@@ -770,7 +767,7 @@ can set the axis limits to better view the data.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/density.jpeg"><img alt="Density" class="bg-primary mb-1 align-center" src="_images/density.jpeg" style="width: 100%;" /></a>
 </section>
 <section id="generate-digital-elevation-model">
-<h2>Generate Digital Elevation Model<a class="headerlink" href="#generate-digital-elevation-model" title="Permalink to this heading">#</a></h2>
+<h2>Generate Digital Elevation Model<a class="headerlink" href="#generate-digital-elevation-model" title="Link to this heading">#</a></h2>
 <p>The lidR package has several <a class="reference external" href="https://r-lidar.github.io/lidRbook/dtm.html">interpolation algorithms</a>.
 We will use Invert Distance Weighting because it is a relatively simple algorithm with
 acceptable results.</p>
@@ -832,7 +829,7 @@ as a shapefile.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/newdem.jpeg"><img alt="DEM" class="bg-primary mb-1 align-center" src="_images/newdem.jpeg" style="width: 100%;" /></a>
 </section>
 <section id="generate-digital-surface-model">
-<h2>Generate Digital Surface Model<a class="headerlink" href="#generate-digital-surface-model" title="Permalink to this heading">#</a></h2>
+<h2>Generate Digital Surface Model<a class="headerlink" href="#generate-digital-surface-model" title="Link to this heading">#</a></h2>
 <p>The digital surface model is a raster where each cell represents the highest elevation
 of returns. When generated from elevation (Z) data, the raster is a digital surface model.
 When generated from a normalized point cloud (height above ground), the raster is a
@@ -865,7 +862,7 @@ canopy height model.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/dsm.jpeg"><img alt="DSM" class="bg-primary mb-1 align-center" src="_images/dsm.jpeg" style="width: 100%;" /></a>
 </section>
 <section id="ground-classification">
-<h2>Ground classification<a class="headerlink" href="#ground-classification" title="Permalink to this heading">#</a></h2>
+<h2>Ground classification<a class="headerlink" href="#ground-classification" title="Link to this heading">#</a></h2>
 <p>Although the point cloud was already classified into ground points, we have seen that
 the ground classification could be improved. Ground classification is computationally
 intensive, so we have to first retile the point cloud into more manageable, smaller
@@ -892,7 +889,7 @@ dataset; for example, one of the tiles we created in the last step.</p>
 </div>
 </section>
 <section id="cloth-simulation-function-csf">
-<h2>Cloth Simulation Function (CSF)<a class="headerlink" href="#cloth-simulation-function-csf" title="Permalink to this heading">#</a></h2>
+<h2>Cloth Simulation Function (CSF)<a class="headerlink" href="#cloth-simulation-function-csf" title="Link to this heading">#</a></h2>
 <p>The CSF algorithm models the ground surface by first flipping the point cloud upside
 down and imagining draping a cloth over the points. Based on different paramaters
 representing the rigidity of the cloth, the resolution or point spacing, and the force
@@ -925,7 +922,7 @@ parameters or use a different algorithm.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/csfplots.jpeg"><img alt="CSF" class="bg-primary mb-1 align-center" src="_images/csfplots.jpeg" style="width: 100%;" /></a>
 </section>
 <section id="progressive-morphological-filter">
-<h2>Progressive Morphological Filter<a class="headerlink" href="#progressive-morphological-filter" title="Permalink to this heading">#</a></h2>
+<h2>Progressive Morphological Filter<a class="headerlink" href="#progressive-morphological-filter" title="Link to this heading">#</a></h2>
 <p>The PMF algorithm uses a moving window to classify points as ground within a certain
 threshold of neighboring points. The filter is progressive because sequences of window
 sizes and thresholds are applied to the point cloud. The window size generally begins
@@ -965,7 +962,7 @@ features, smaller window sizes are necessary.
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/pmfplots.jpeg"><img alt="PMF" class="bg-primary mb-1 align-center" src="_images/pmfplots.jpeg" style="width: 100%;" /></a>
 </section>
 <section id="multiscale-curvature-classification">
-<h2>Multiscale Curvature Classification<a class="headerlink" href="#multiscale-curvature-classification" title="Permalink to this heading">#</a></h2>
+<h2>Multiscale Curvature Classification<a class="headerlink" href="#multiscale-curvature-classification" title="Link to this heading">#</a></h2>
 <p>The MCC algorithm uses deviations from positive curvature thresholds to progressively
 eliminate non-ground points. The following default values lead to acceptable results:</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">lasmcc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classify_ground</span><span class="p">(</span><span class="n">lastest</span><span class="p">,</span><span class="w"> </span><span class="nf">mcc</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span><span class="m">0.3</span><span class="p">))</span>
@@ -984,7 +981,7 @@ eliminate non-ground points. The following default values lead to acceptable res
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/mccplot.jpeg"><img alt="MCC" class="bg-primary mb-1 align-center" src="_images/mccplot.jpeg" style="width: 100%;" /></a>
 </section>
 <section id="classifying-all-tiles-with-lascatalog">
-<h2>Classifying all tiles with lascatalog<a class="headerlink" href="#classifying-all-tiles-with-lascatalog" title="Permalink to this heading">#</a></h2>
+<h2>Classifying all tiles with lascatalog<a class="headerlink" href="#classifying-all-tiles-with-lascatalog" title="Link to this heading">#</a></h2>
 <p>We can now apply what we determine to be the most appropriate algorithm and parameters
 to the entire dataset using lascatalog. Let’s set up our lascatalog again.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">lascat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readLAScatalog</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
@@ -1019,7 +1016,7 @@ raster.</p>
 </div>
 </section>
 <section id="readings">
-<h2>Readings<a class="headerlink" href="#readings" title="Permalink to this heading">#</a></h2>
+<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
 <p>Fernandez-Diaz, Juan Carlos, William E. Carter, Ramesh L. Shrestha, and
 Craig L. Glennie. 2014. Now You See It… Now You Don’t: Understanding
 Airborne Mapping LiDAR Collection and Data Product Generation for Archaeological
@@ -1073,8 +1070,8 @@ Handouts/LiDARforDummies.pdf&gt;</p>
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="gee.html"
@@ -1101,7 +1098,9 @@ Handouts/LiDARforDummies.pdf&gt;</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1141,9 +1140,10 @@ By Whittaker Schroder
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1167,8 +1167,8 @@ By Whittaker Schroder
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
