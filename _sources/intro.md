@@ -1,4 +1,4 @@
-# ANG: 6930 Archaeological and Anthropological Remote Sensing
+# ANG: 6930 Remote Sensing of Cultural Landscapes
 **University of Florida**  
 **Spring 2025**
 
