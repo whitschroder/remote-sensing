@@ -43,13 +43,12 @@ By the end of the course, students will:
 This class has no prerequisites, but some previous knowledge of GIS, coding, and photography will be beneficial.
 
 **Class Meetings**  
-Wednesday, Periods 2–4, 8:30–11:30 am  
-Turlington 2318
+Tuesday, Periods 3–5, 9:35–11:35 am  
+Turlington B304
 
 **Office Hours**  
-Wednesday 1:00–3:00 pm  
-Turlington B129  
-<https://ufl.zoom.us/j/8991776578>
+Tuesday 12:00–2:00 pm  
+Turlington B129
 
 **Required Book**  
 Tempfli, Klaus, Norman Kerle, Gerrit C. Huurneman, Lucas L.F. Janssen (editors). Principles of Remote Sensing: An Introductory Textbook. <https://webapps.itc.utwente.nl/librarywww/papers_2009/general/principlesremotesensing.pdf>
@@ -69,11 +68,10 @@ Additional readings and case studies will be provided each week.
 <https://catalog.ufl.edu/UGRD/academic-regulations/grades-grading-policies>
 |                              |     |
 | ---                          | --- |
-| Attendance and Participation | 10% |
-| Labs                         | 35% |
-| Project Site Selection       | 5%  |
+| Attendance and Participation | 20% |
+| Labs and Portfolio           | 30% |
+| Project Site Selection       | 10%  |
 | Project Abstract             | 10% |
-| Peer Review Feedback         | 10% |
 | Final Project                | 30% |
 
 **Attendance and Participation**  
@@ -107,8 +105,7 @@ phase of the project will be the crafting of a research question. The final proj
 be a proposal and preliminary analysis of your research area, using methods and tools 
 learned in class. If the data needed to address your research question are not available, 
 discuss how you would realistically plan to acquire such data. Students will present 
-project updates and conduct peer review of their classmates’ projects prior to 
-final submission.
+project updates prior to final submission.
 
 **Academic Honesty and Integrity**  
 Please be familiar with the University of Florida’s Student Honor Code: 
@@ -135,23 +132,20 @@ course evaluation results are available to students at
 
 |||
 | --- | --- |
-| Week 1 <br> January 10  | Course Introduction <br> Introduction to Remote Sensing and spatial analysis (pattern and process) <br> History of Remote Sensing <br> GPS and GNSS <br> Review GIS <br> Readings: LKC ch. 1, Dale and Fortin 2014 |
-| Week 2 <br> January 17  | Remote Sensing Foundations <br> Principles of photography <br> Introduction to sensors <br> Aerial photography and digital image processing <br> Reading: LKC ch. 2 <br> Lab 1: Interpreting aerial photography using stereoscopes, <br> taking measurements; <br> viewing aerial imagery in ArcGIS Pro and ENVI |
-| Week 3 <br> January 24  | Drone Mission Planning <br> Photogrammetry Structure from Motion (SfM) <br> Ground control points <br> Reading: LKC ch. 3 <br> Lab 2: Drone Mission Planning in QGIS <br> Project Abstracts Due |
-| Week 4 <br> January 31  | Orthorectification Orthophotos and digital surface models <br> Point clouds and interpolation <br> LAS files <br> Lab 3: Photogrammetry Workflow in Agisoft Metashape |
-| Week 5 <br> February 7  | Sources for lower resolution digital elevation models <br> Introduction to topographic analysis <br> Lab 4: Topographic Analysis in QGIS |
-| Week 6 <br> February 14 | Leveraging historic satellite and aerial photos <br> Orthorectification and georeferencing <br> Lab 5: Orthorectifying CORONA Satellite Imagery |
-| Week 7 <br> February 21 | Introduction to multispectral satellite imagery <br> Lab 6: Landsat Band Ratios and Spectral Indices | 
-| Week 8 <br> February 28 | Land cover classification <br> Lab 7: Supervised and Unsupervised Land Cover Classification in QGIS |
-| Week 9 <br> March 6	  | Remotely-sensed big data <br> Introduction to machine learning <br> Decision trees and random forest algorithms <br> Lab 8: Manipulating Remotely-Sensed Big Data in Google Earth Engine |
-| Week 10 <br> March 13   | **Spring Break** |
-| Week 11 <br> March 20   | Lidar for Archaeology <br> Data collection <br> Download datasets <br> Visualization and ground classification <br> Lab 9: Visualizing and Processing Lidar Point Clouds in R with the lidR Package |
-| Week 12 <br> March 27   | Drone lidar <br> Data preprocessing <br> Raster derivatives for topographic analysis <br> Lab 10: Lidar Processing and Analysis with LAStools |
-| Week 13 <br> April 3    | Machine learning approaches in aerial remote sensing <br> TensorFlow, Python, and Google Colab <br> Lab 11: Machine Learning Approaches in Remote Sensing |
-| Week 14 <br> April 10   | Subsurface Remote Sensing and Geophysics |
-| Week 15 <br> April 17   | Ground Penetrating Radar processing <br> Guest Lecture |
-| Week 16 <br> April 24   | Ethics in Remote Sensing |
-| May 1	                  | **Reading Day** |
+| Week 1 <br> January 14  | Course Introduction <br> Introduction to Remote Sensing and spatial analysis (pattern and process) <br> History of Remote Sensing <br> GPS and GNSS <br> Review GIS <br> Readings: LKC ch. 1, Dale and Fortin 2014 |
+| Week 2 <br> January 21  | Remote Sensing Foundations <br> Principles of photography <br> Introduction to sensors <br> Aerial photography and digital image processing <br> Reading: LKC ch. 2 <br> Lab 1: Interpreting aerial photography using stereoscopes, <br> taking measurements; <br> viewing aerial imagery in ArcGIS Pro and ENVI |
+| Week 3 <br> January 28  | Drone Mission Planning <br> Photogrammetry Structure from Motion (SfM) <br> Ground control points <br> Reading: LKC ch. 3 <br> Lab 2: Drone Mission Planning in QGIS <br> Project Abstracts Due |
+| Week 4 <br> February 4  | Orthorectification Orthophotos and digital surface models <br> Point clouds and interpolation <br> LAS files <br> Lab 3: Photogrammetry Workflow in Agisoft Metashape |
+| Week 5 <br> February 11 | Sources for lower resolution digital elevation models <br> Introduction to topographic analysis <br> Lab 4: Topographic Analysis in QGIS |
+| Week 6 <br> February 18 | Leveraging historic satellite and aerial photos <br> Orthorectification and georeferencing <br> Lab 5: Orthorectifying CORONA Satellite Imagery |
+| Week 7 <br> February 25 | Introduction to multispectral satellite imagery <br> Lab 6: Landsat Band Ratios and Spectral Indices | 
+| Week 8 <br> March 4     | Land cover classification <br> Lab 7: Supervised and Unsupervised Land Cover Classification in QGIS |
+| Week 9 <br> March 11	  | Remotely-sensed big data <br> Introduction to machine learning <br> Decision trees and random forest algorithms <br> Lab 8: Manipulating Remotely-Sensed Big Data in Google Earth Engine |
+| Week 10 <br> March 25   | **Spring Break** |
+| Week 11 <br> April 1    | Lidar for Archaeology <br> Data collection <br> Download datasets <br> Visualization and ground classification <br> Lab 9: Visualizing and Processing Lidar Point Clouds in R with the lidR Package |
+| Week 12 <br> April 8    | Drone lidar <br> Data preprocessing <br> Raster derivatives for topographic analysis <br> Lab 10: Lidar Processing and Analysis with LAStools |
+| Week 13 <br> April 15   | Machine learning approaches in aerial remote sensing <br> TensorFlow, Python, and Google Colab <br> Lab 11: Machine Learning Approaches in Remote Sensing |
+| Week 14 <br> April 22   | Subsurface Remote Sensing and Geophysics |
 
 # Table of Contents
 
