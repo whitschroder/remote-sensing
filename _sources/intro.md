@@ -43,7 +43,7 @@ By the end of the course, students will:
 This class has no prerequisites, but some previous knowledge of GIS, coding, and photography will be beneficial.
 
 **Class Meetings**  
-Tuesday, Periods 3–5, 9:35–11:35 am  
+Tuesday, Periods 3–5, 9:35–12:35 pm  
 Turlington B304
 
 **Office Hours**  
