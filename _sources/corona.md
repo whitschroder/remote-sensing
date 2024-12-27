@@ -2,6 +2,46 @@
 
 This lab involves the georeferencing and orthorectification of CORONA satellite imagery.
 
+## Corona Atlas
+
+The [Corona Atlas](https://corona.cast.uark.edu/) project has georeferenced and orthorectified some CORONA imagery. This project has developed an interface called [Sunspot](https://sunspot.cast.uark.edu/home/login) for automatic image correction, by invitation only.
+
+## USGS Earth Explorer
+
+Uncorrected CORONA imagery is available through the [USGS Earth Explorer](https://earthexplorer.usgs.gov/). To access imagery, create a free account, and select a location on the map. Click Data Sets and choose the Declassified Data options. Click Results. Only some imagery is available for download, while the rest have not been scanned digitally. Download the imagery and metadata.
+
+## Stitching Imagery
+
+[Hugin](https://hugin.sourceforge.io/) can be used to stitch the CORONA imagery into a single transect. Load images, Align images, and Create panorama.
+
+## ArcGIS Pro
+
+Add the resulting panorama to an ArcGIS Pro map. Check the panorama carefully for any errors. If necessary, stitch the imagery with different parameters in Hugin.
+
+Copy the metadata from USGS Earth Explorer into a .csv file in the following format:
+
+| Point     | Latitude        | Longitude       |
+| ---       | ---             | ---             |
+| Center    | Decimal Degrees | Decimal Degrees |
+| NW Corner | Decimal Degrees | Decimal Degrees |
+| NE Corner | Decimal Degrees | Decimal Degrees |
+| SE Corner | Decimal Degrees | Decimal Degrees |
+| SW Corner | Decimal Degrees | Decimal Degrees |
+
+Make sure your ArcGIS Pro map is in the appropriate coordinate system for decimal degrees, add the .csv file, and use the [XY Table to Point](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/xy-table-to-point.htm) tool to add the coordinates to the map.
+
+Refer to the [Georeferencing tools](https://pro.arcgis.com/en/pro-app/latest/help/data/imagery/georeferencing-tools.htm) in ArcGIS Pro. Using the Imagery basemap or Google Earth Pro, identify at least 10 control points to georeference the CORONA imagery. Use the Spline transformation for higher accuracy.
+
+## QGIS
+
+The procedure is similar in QGIS. To add the .csv file with coordinates to QGIS, use the Add Delimited Text Layer option under Layer.
+
+Refer to the [Georeferencer](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_raster/georeferencer.html) for instructions.
+
+## Limitations
+
+This procedure is simplified and uses a "rubber sheet" method that stretches imagery two dimensionally, generating a relatively accurate georeferenced image. However, this method does not take into account topography (three dimensional orthorectification). Using an SRTM elevation raster for georeferencing can improve results. Refer to the many publications by Casana and colleagues for more complex approaches.
+
 ## Readings
 
 Casana, Jesse. 2014. New Approaches to Spatial Archaeometry: Applications from the Near
