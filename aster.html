@@ -433,6 +433,7 @@
 <section id="define-vertical-projection">
 <h2>Define Vertical Projection<a class="headerlink" href="#define-vertical-projection" title="Link to this heading">#</a></h2>
 <p>To conduct topographic analysis, ideally the horizontal and vertical measurement units will be the same. SRTM and ASTER data, however, are not defined in this way. The horizontal units are measured in degrees (latitude, longitude), while the vertical units are measured in meters. ArcGIS Pro can compensate for this discrepancy, but the vertical projection must first be defined. In ArcGIS Pro, the Define Projection tool can be used to define the vertical projection as Gravity-related, WGS 1984 Geoid. All tools will now apply a Z factor that is multiplied to the vertical units to compensate for the difference between horizontal and vertical units.</p>
+<p>In QGIS, the vertical projection must be defined alongside the horizontal projection. However, the QGIS tools do not automatically calculate the Z factor. For this reason, when working in QGIS always ensure that the data are projected to have the same horizontal and vertical units. Using the r.proj tool, redefine the projection into a projected coordinate system (UTM). Use Google Earth to determine the correct UTM zone.</p>
 </section>
 <section id="contours">
 <h2>Contours<a class="headerlink" href="#contours" title="Link to this heading">#</a></h2>

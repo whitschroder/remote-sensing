@@ -38,6 +38,8 @@ Artifacts in ASTER data can be further removed by using the DTM filter (slope-ba
 
 To conduct topographic analysis, ideally the horizontal and vertical measurement units will be the same. SRTM and ASTER data, however, are not defined in this way. The horizontal units are measured in degrees (latitude, longitude), while the vertical units are measured in meters. ArcGIS Pro can compensate for this discrepancy, but the vertical projection must first be defined. In ArcGIS Pro, the Define Projection tool can be used to define the vertical projection as Gravity-related, WGS 1984 Geoid. All tools will now apply a Z factor that is multiplied to the vertical units to compensate for the difference between horizontal and vertical units.
 
+In QGIS, the vertical projection must be defined alongside the horizontal projection. However, the QGIS tools do not automatically calculate the Z factor. For this reason, when working in QGIS always ensure that the data are projected to have the same horizontal and vertical units. Using the r.proj tool, redefine the projection into a projected coordinate system (UTM). Use Google Earth to determine the correct UTM zone.
+
 ## Contours
 
 A DEM alone is not particularly useful for visualizing topography. More commonly, contour lines are generated to show topography. The Contour tool in ArcGIS Pro can create linear contours at defined intervals. Each contour represents the elevation along that line -- closer contour lines represent steeper terrain. The Simplify Line tool can be used to smooth out these contours generated from a high resolution DEM.
