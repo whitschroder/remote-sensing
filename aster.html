@@ -372,10 +372,24 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dem-vs-dsm-vs-dtm">DEM vs. DSM vs. DTM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#srtm">SRTM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aster">ASTER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-calculator">Raster Calculator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtm-filter">DTM Filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-vertical-projection">Define Vertical Projection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contours">Contours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hillshade">Hillshade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monochromatic-multidirectional-hillshade">Monochromatic Multidirectional Hillshade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slope">Slope</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aspect">Aspect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aspect-slope">Aspect-Slope</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvature">Curvature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relief-visualization-toolbox">Relief Visualization Toolbox</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transparency-and-blending">Transparency and Blending</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topographic-position-index">Topographic Position Index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geomorphons">Geomorphons</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-links">Additional links</a></li>
 </ul>
             </nav>
         </div>
@@ -389,31 +403,86 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="topographic-analysis-with-aster-and-srtm-digital-elevation-models">
 <h1>Topographic Analysis with ASTER and SRTM Digital Elevation Models<a class="headerlink" href="#topographic-analysis-with-aster-and-srtm-digital-elevation-models" title="Link to this heading">#</a></h1>
-<p>Coming soon</p>
-<section id="coming-soon">
-<h2>Coming soon<a class="headerlink" href="#coming-soon" title="Link to this heading">#</a></h2>
-<p>Coming soon</p>
+<p>In this lab, students will compare several global digital elevation datasets and create raster derivatives for topographic analysis.</p>
+<section id="dem-vs-dsm-vs-dtm">
+<h2>DEM vs. DSM vs. DTM<a class="headerlink" href="#dem-vs-dsm-vs-dtm" title="Link to this heading">#</a></h2>
+<p>The terms digital elevation model (DEM), digital surface model (DSM), and digital terrain model (DTM) do not have consistent definitions. In some usages, DEM can refer to any raster surface that reflects height, and therefore a DSM and a DTM are a type of DEM. In other uses, DEM and DTM are synonymous and refer to only the elevation of the ground. In the United States, a DTM more often refers to a DEM that has additional data, namely vectors that mark additional data, including rivers, ridges, and breaklines. Some archaeologists have suggested using DTM to refer to a DEM that includes above ground archaeological features. The term used most consistently is DSM, which models all ground and above ground objects.</p>
 </section>
-<section id="id1">
-<h2>Coming soon<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>Coming soon</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+<section id="srtm">
+<h2>SRTM<a class="headerlink" href="#srtm" title="Link to this heading">#</a></h2>
+<p>The Shuttle Radar Topography Mission (SRTM) used two radar antennae mounted on the Space Shuttle Endeavour in 2000 to produce the first near global DEM, specifically 80% of the Earth’s land surface between 60° north and 56° south latitude. Radar is generally able to penetrate vegetation, but topographic mapping can still be challenging in densely forested areas and rugged terrain.</p>
+<p>SRTM data are available in three formats:</p>
+<p><b>SRTM Non-Void Filled</b> elevation data contains voids from densely forested areas and rugged terrain at a resolution of 1-arc second (approximately 30 m at the equator) in the United States and 3-arc seconds (approximately 90 m at the equator) outside the United States.</p>
+<p><b>SRTM Void Filled</b> elevation data combined interpolation and other data sources to fill voids. The resolution is 1-arc second (approximately 30 m at the equator) in the United States and 3-arc seconds (approximately 90 m at the equator) outside the United States.</p>
+<p><b>SRTM 1 Arc-Second Global</b> is a near-global dataset with improved resolution of 1-arc second (approximately 30 m at the equator), except for areas above 50° north and below 50° south latitude, which were sampled at a resolution of 1-arc second by 2-arc seconds. Some voids may still be present.</p>
+<p>SRTM data are available through the <a class="reference external" href="https://earthexplorer.usgs.gov/">USGS Earth Explorer</a>.</p>
+</section>
+<section id="aster">
+<h2>ASTER<a class="headerlink" href="#aster" title="Link to this heading">#</a></h2>
+<p>The Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) was a Japanese multispectral sensor mounted on NASA’s Terra satellite in 1999. Stereo imagery was processed to generate the first version of the ASTER Global Digital Elevation Model (GDEM), perhaps more appropriately called a DSM, covering 99% of the Earth’s land surface between 83° north and 83° south latitude. The third version of the GDEM was released in 2019 with significant improvements, removing above ground artifacts.</p>
+<p>ASTER data are no longer available through the USGS Earth Explorer and can instead be downloaded from <a class="reference external" href="https://search.earthdata.nasa.gov/search">NASA Earth Data Search</a>.</p>
+</section>
+<section id="raster-calculator">
+<h2>Raster Calculator<a class="headerlink" href="#raster-calculator" title="Link to this heading">#</a></h2>
+<p>A simple comparison of SRTM and ASTER data can be done with Raster Calculator, subtracting one surface from the other. The resulting surface can be used to visualize the location of artifacts, and a histogram can give a sense of the distribution of errors.</p>
+</section>
+<section id="dtm-filter">
+<h2>DTM Filter<a class="headerlink" href="#dtm-filter" title="Link to this heading">#</a></h2>
+<p>Artifacts in ASTER data can be further removed by using the DTM filter (slope-based) tool in QGIS. This tool takes a DEM as its input and smooths areas of significant slope.</p>
+</section>
+<section id="define-vertical-projection">
+<h2>Define Vertical Projection<a class="headerlink" href="#define-vertical-projection" title="Link to this heading">#</a></h2>
+<p>To conduct topographic analysis, ideally the horizontal and vertical measurement units will be the same. SRTM and ASTER data, however, are not defined in this way. The horizontal units are measured in degrees (latitude, longitude), while the vertical units are measured in meters. ArcGIS Pro can compensate for this discrepancy, but the vertical projection must first be defined. In ArcGIS Pro, the Define Projection tool can be used to define the vertical projection as Gravity-related, WGS 1984 Geoid. All tools will now apply a Z factor that is multiplied to the vertical units to compensate for the difference between horizontal and vertical units.</p>
+</section>
+<section id="contours">
+<h2>Contours<a class="headerlink" href="#contours" title="Link to this heading">#</a></h2>
+<p>A DEM alone is not particularly useful for visualizing topography. More commonly, contour lines are generated to show topography. The Contour tool in ArcGIS Pro can create linear contours at defined intervals. Each contour represents the elevation along that line – closer contour lines represent steeper terrain. The Simplify Line tool can be used to smooth out these contours generated from a high resolution DEM.</p>
+</section>
+<section id="hillshade">
+<h2>Hillshade<a class="headerlink" href="#hillshade" title="Link to this heading">#</a></h2>
+<p>Hillshading or shaded relief is a technique used to model how light and shadow might fall across a landscape. The Azimuth represents the hypothetical direction of the light source, while Altitude represents the vertical angle of the light source relative to the viewer. The convention is to have the direction of the light source coming from the northwest, although this direction would of course change throughout the day and year based on the position of the sun.</p>
+</section>
+<section id="monochromatic-multidirectional-hillshade">
+<h2>Monochromatic Multidirectional Hillshade<a class="headerlink" href="#monochromatic-multidirectional-hillshade" title="Link to this heading">#</a></h2>
+<p>A drawback of using Hillshade is that in areas with steeper slopes, some areas will be over and under exposed. This effect can be improved by modeling the Hillshade from several different angles (Azimuths) and combining them. In ArcGIS Pro, a Multidirectional option is available under Imagery -&gt; Raster Functions -&gt; Surface -&gt; Hillshade.</p>
+</section>
+<section id="slope">
+<h2>Slope<a class="headerlink" href="#slope" title="Link to this heading">#</a></h2>
+<p>Slope refers to the rate of change in elevation from one location to the next, in other words, the first derivative of elevation. A Slope map can highlight topography more dramatically than a Hillshade. The drawback is that a Slope map will not show the direction of the slope, so elevated areas can be impossible to distinguish from low lying areas.</p>
+</section>
+<section id="aspect">
+<h2>Aspect<a class="headerlink" href="#aspect" title="Link to this heading">#</a></h2>
+<p>Aspect refers to the rate of change in slope from one location to the next, in other words, the second derivative of elevation. In simpler terms, Aspect refers to the direction of the slope. Aspect alone may not be useful for visualizing topography, but it represents an important intermediate variable that can be used in topographic analyses.</p>
+</section>
+<section id="aspect-slope">
+<h2>Aspect-Slope<a class="headerlink" href="#aspect-slope" title="Link to this heading">#</a></h2>
+<p>A mix of the slope and aspect surfaces can combine the best of the slope map’s topographic visualization with the directionality calculated in the aspect. An Aspect-Slope map can be generated in ArcGIS Pro under Imagery -&gt; Raster Functions -&gt; Surface -&gt; Aspect-Slope. Note that this Raster Functions does not automatically apply a Z Factor. The Z Factor value can be copied from the Hillshade tool, for example, for better results.</p>
+</section>
+<section id="curvature">
+<h2>Curvature<a class="headerlink" href="#curvature" title="Link to this heading">#</a></h2>
+<p>Curvature refers to the rate of change in aspect from one location to the next, in other words, the third derivative of elevation. A negative curvature value indicates that the surface is upwardly concave, while a positive curvature value indicates that the surface is upwardly convex. The average absolute curvature of a surface can also generally serve as an index of the ruggedness of the landscape, with higher values reflecting more rugged terrain. Curvature is used as an intermediate measurement for hydrological analyses and ground point classification algorithms. The Curvature tool is available in ArcGIS Pro.</p>
+</section>
+<section id="relief-visualization-toolbox">
+<h2>Relief Visualization Toolbox<a class="headerlink" href="#relief-visualization-toolbox" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://iaps.zrc-sazu.si/en/rvt">Relief Visualization Toolbox</a> is a useful set of tools that include additional algorithms for topographic modeling. The toolbox can be added to ArcGIS Pro, QGIS, or it can be run as a stand-alone interface. Several tools are useful for archaeological analysis, including Openness, simplified local relief model (SLRM), Sky-view factor, and Multiple directions hillshade. The latter differs from ArcGIS Pro’s monochromatic Multidirectional Hillshade by combining the different hillshade directions into a multiband image displayed with RGB filters. The <a class="reference external" href="https://iaps.zrc-sazu.si/sites/default/files/rvt_2.2.1_0.pdf">manual</a> describes these visualizations in more detail.</p>
+</section>
+<section id="transparency-and-blending">
+<h2>Transparency and Blending<a class="headerlink" href="#transparency-and-blending" title="Link to this heading">#</a></h2>
+<p>Several visualizations can be displayed at once using transparency or blending. Adding a 50% transparency to an upper layer over a lower layer can be useful, for example placing a transparent DEM over hillshade or slope. Blending, in contrast, more evenly combines two layers. Multiply is commonly used to darken imagery, where whiter areas become transparent in the top layer and blacker areas become darker by multiplying the colors of the base and upper layer.</p>
+<p>A <a class="reference external" href="https://www.rrim.jp/en/">Red Relief Image Map</a> has become a popular topographic visualization technique. This approach blends (multiplies) a red slope map over an openness or simplified local relief model. Instructions to create a simple red relief surface are available at the <a class="reference external" href="https://ancientmayasettlement.com/2022/02/12/a-recipe-for-simple-red-relief/">Ancient Maya Settlement blog</a>.</p>
+</section>
+<section id="topographic-position-index">
+<h2>Topographic Position Index<a class="headerlink" href="#topographic-position-index" title="Link to this heading">#</a></h2>
+<p>A Topographic Position Index (TPI) models landforms in relation to their relative topographic position, for example, on hill summits, slopes, or valleys. A simple TPI can be generated by averaging an elevation surface and subtracting this surface from the original DEM to determine the prominence of topographic positions. To average an elevation surface, the Focal Statistics tool in ArcGIS Pro applies a statistic (in this case the mean) to all of the cells within a defined neighborhood. The default neighborhood is a 3 x 3 pixel area. The size of the neighborhood depends on the scale of analysis, but some trial and error is necessary. Using Raster Calculator, the resulting average surface is subtracted from the original DEM. The result is displayed with a Stretch symbology by default. For the TPI, the symbology should be changed to Classify with 5 classes (Valley, Lower Slopes, Flat Slopes, Upper Slopes, and Ridge). Appropriate values for these classes depend on the standard deviation (σ) of the data, for example -1σ, -0.5σ, 0.5σ, 1σ, and maximum, respectively. The standard deviation can be found under More -&gt; Show statistics.</p>
+</section>
+<section id="geomorphons">
+<h2>Geomorphons<a class="headerlink" href="#geomorphons" title="Link to this heading">#</a></h2>
+<p>Another approach to classifying landforms relies on the Geomorphons method. This tool has additional categories beyond a simple topographic position index. Geomorphons traditionally consist of 10 classes: 1) Flat, 2) Summit, 3) Ridge, 4) Shoulder, 5) Spur, 6) Slope, 7) Hollow, 8) Footslope, 9) Valley, and 10) Depression. The SAGA Geomorphons tool in QGIS classifies a DEM into these categories, based on parameters that like the Topographic Position Index are used to define the neighborhood or radius.</p>
 </section>
 <section id="citations">
 <h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">#</a></h2>
-<div class="docutils container" id="id2">
-<div role="list" class="citation-list">
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>HdHPK14<span class="fn-bracket">]</span></span>
-<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="additional-links">
-<h2>Additional links<a class="headerlink" href="#additional-links" title="Link to this heading">#</a></h2>
+<p>Golden, Charles and Bryce Davenport. “The Promise and Problem of Modeling Viewsheds in the Western Maya Lowlands.” <a class="reference external" href="https://www.academia.edu/2611078/Golden_and_Davenport_The_Promise_and_Problems_of_Modeling_Viewsheds_in_the_Western_Maya_Lowlands">PDF</a></p>
+<p>Jasiewicz, Jarosław and Stepinski, Tomasz F. 2013 Geomorphons – a pattern recognition approach to classification and mapping of landforms. <a class="reference external" href="https://doi.org/10.1016/j.geomorph.2012.11.005">https://doi.org/10.1016/j.geomorph.2012.11.005</a></p>
 </section>
 </section>
 
@@ -482,10 +551,24 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dem-vs-dsm-vs-dtm">DEM vs. DSM vs. DTM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#srtm">SRTM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aster">ASTER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-calculator">Raster Calculator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtm-filter">DTM Filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-vertical-projection">Define Vertical Projection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contours">Contours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hillshade">Hillshade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monochromatic-multidirectional-hillshade">Monochromatic Multidirectional Hillshade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slope">Slope</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aspect">Aspect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aspect-slope">Aspect-Slope</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvature">Curvature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relief-visualization-toolbox">Relief Visualization Toolbox</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transparency-and-blending">Transparency and Blending</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topographic-position-index">Topographic Position Index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geomorphons">Geomorphons</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-links">Additional links</a></li>
 </ul>
   </nav></div>
 
