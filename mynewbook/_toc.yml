@@ -1,0 +1,20 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: install
+- file: aerial
+- file: corona
+- file: agisoft
+- file: drones
+- file: aster
+- file: bands
+- file: supervised
+- file: gee
+- file: lidr
+- file: lastools
+- file: ml
+- file: gpr
+- file: ethics

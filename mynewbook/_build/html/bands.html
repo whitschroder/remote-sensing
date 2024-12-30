@@ -1,0 +1,780 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Landsat Band Ratios &#8212; Archaeological Remote Sensing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bands';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Supervised and Unsupervised Land Cover Classification" href="supervised.html" />
+    <link rel="prev" title="Topographic Analysis with ASTER and SRTM Digital Elevation Models" href="aster.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/tikal2.png" class="logo__image only-light" alt="Archaeological Remote Sensing - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Archaeological Remote Sensing - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    ANG 6930: Remote Sensing of Cultural Landscapes
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Landsat Band Ratios</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/whitschroder/remote-sensing" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/whitschroder/remote-sensing/issues/new?title=Issue%20on%20page%20%2Fbands.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/bands.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Landsat Band Ratios</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Landsat Band Ratios</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pansharpening-imagery">Pansharpening Imagery</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="landsat-band-ratios">
+<h1>Landsat Band Ratios<a class="headerlink" href="#landsat-band-ratios" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Download imagery from <a class="reference external" href="https://earthexplorer.usgs.gov">USGS Earth Explorer</a> or another source.</p></li>
+<li><p>Band compositing</p>
+<ol class="arabic simple">
+<li><p>Visualize different band combinations with the combined .txt raster (usually _________MTL.txt and listed as a “Raster Product” when adding data to ArcGIS)</p></li>
+<li><p>Bilinear resampling (default) and DRA can improve visualization</p></li>
+<li><p>True color: 4-3-2</p></li>
+<li><p>San Bartolo: 5-3-2</p></li>
+<li><p>Parcak (Egypt): 5-4-3</p></li>
+<li><p><a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/">https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/</a></p></li>
+<li><p><a class="reference external" href="https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The%20two%20main%20sensors%20for,30%20and%2060%20meter%20resolution">https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The two main sensors for,30 and 60 meter resolution</a></p></li>
+<li><p><a class="reference external" href="https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8">https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8</a></p></li>
+<li><p><a class="reference external" href="https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations">https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations</a></p></li>
+<li><p>When researching band combinations, keep in mind each Landsat mission has different codes for bands:</p></li>
+</ol>
+</li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Landsat-7 ETM+ Bands (µm)</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Landsat-8 OLI and <em>TIRS</em> Bands (µm)</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>30 m Coastal/Aerosol</p></td>
+<td><p>0.435-0.451</p></td>
+<td><p>Band 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Band 1</p></td>
+<td><p>30 m Blue</p></td>
+<td><p>0.441-0.514</p></td>
+<td><p>30 m Blue</p></td>
+<td><p>0.452-0.512</p></td>
+<td><p>Band 2</p></td>
+</tr>
+<tr class="row-even"><td><p>Band 2</p></td>
+<td><p>30 m Green</p></td>
+<td><p>0.519-0.601</p></td>
+<td><p>30 m Green</p></td>
+<td><p>0.533-0.590</p></td>
+<td><p>Band 3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Band 3</p></td>
+<td><p>30 m Red</p></td>
+<td><p>0.631-0.692</p></td>
+<td><p>30 m Red</p></td>
+<td><p>0.636-0.673</p></td>
+<td><p>Band 4</p></td>
+</tr>
+<tr class="row-even"><td><p>Band 4</p></td>
+<td><p>30 m NIR</p></td>
+<td><p>0.772-0.898</p></td>
+<td><p>30 m NIR</p></td>
+<td><p>0.851-0.879</p></td>
+<td><p>Band 5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Band 5</p></td>
+<td><p>30 m SWIR-1</p></td>
+<td><p>1.547-1.749</p></td>
+<td><p>30 m SWIR-1</p></td>
+<td><p>1.566-1.651</p></td>
+<td><p>Band 6</p></td>
+</tr>
+<tr class="row-even"><td><p>Band 6</p></td>
+<td><p>60 m TIR</p></td>
+<td><p>10.31-12.36</p></td>
+<td><p><em>100 m TIR-1</em></p></td>
+<td><p><em>10.60-11.19</em></p></td>
+<td><p>Band 10</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><em>100 m TIR-2</em></p></td>
+<td><p><em>11.50-12.51</em></p></td>
+<td><p>Band 11</p></td>
+</tr>
+<tr class="row-even"><td><p>Band 7</p></td>
+<td><p>30 m SWIR-2</p></td>
+<td><p>2.064-2.345</p></td>
+<td><p>30 m SWIR-2</p></td>
+<td><p>2.107-2.294</p></td>
+<td><p>Band 7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Band 8</p></td>
+<td><p>15 m Pan</p></td>
+<td><p>0.515-0.896</p></td>
+<td><p>15 m Pan</p></td>
+<td><p>0.503-0.676</p></td>
+<td><p>Band 8</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>30 m Cirrus</p></td>
+<td><p>1.363-1.384</p></td>
+<td><p>Band 9</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic simple" start="11">
+<li><p>Computing band ratios can also highlight features. The following spectral
+reflectance curve shows high reflectance values for different materials at different
+wavelengths and Landsat bands (Landsat 7 above and Landsat 8 below):</p></li>
+</ol>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/material.png"><img alt="Reflectance1" class="bg-primary mb-1 align-center" src="_images/material.png" style="width: 80%;" /></a>
+<p>Photo credit:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/material2.png"><img alt="Reflectance2" class="bg-primary mb-1 align-center" src="_images/material2.png" style="width: 80%;" /></a>
+<p>Photo credit:</p>
+<ol class="arabic simple" start="12">
+<li><p>Band ratios can eliminate issues discerning features in high shadow areas.
+In the following image deciduous and coniferous forest have different spectral
+reflectance in sunlit vs. shaded areas, but when the ratio is calculated, this
+discrepancy is fixed.</p></li>
+</ol>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/material3.png"><img alt="Reflectance3" class="bg-primary mb-1 align-center" src="_images/material3.png" style="width: 80%;" /></a>
+<p>Photo credit: Middlebury Remote Sensing</p>
+<ol class="arabic simple" start="13">
+<li><p>Band ratios are calculated by dividing a band with a high reflectance value
+for a specific material by the band with a low reflectance value for that same
+material using Raster Calculator (especially when the ratios for other materials
+will be neutral). In Landsat 8, the Band 5 / Band 4 ratio will highlight vegetation,
+Band 7 / Band 1 will highlight soil, and Band 1 / Band 5 will Band 2 / Band 6 will
+highlight water.</p></li>
+<li><p>Multiple rasters can then be combined with the Composite Bands tool
+(QGIS: Rgb composite) to create a new multiband raster. Keep track of the order
+each raster is listed, which will determine the order that the bands are displayed
+in the Symbology window.</p></li>
+<li><p>Image sharpening</p>
+<ol class="arabic simple">
+<li><p>All Landsat 8 bands are at 30 m resolution, except for Band 8 (Panchromatic),
+which is at 15 m resolution. The higher resolution Band 8 can be used to sharpen
+the imagery of the other bands. First determine if you need higher resolution
+(not always necessary or helpful for landscape scale analysis).</p></li>
+<li><p><a class="reference external" href="https://earthobservatory.nasa.gov/blogs/earthmatters/2017/06/13/how-to-pan-sharpen-landsat-imagery/#:~:text=Panchromatic%20sharpening%20(pan%2Dsharpening),usually%20only%20the%20visible%20bands">More info on pansharpening</a></p></li>
+<li><p>Other techniques: Principal components image sharpening, Brovey transformation
+(usually done in ENVI).</p></li>
+</ol>
+</li>
+<li><p>Principal components analysis</p>
+<ol class="arabic simple">
+<li><p>Generally done in ENVI – calculates variability through several iterations,
+with each iteration showing less variability.</p></li>
+<li><p>In ArcGIS Pro run the Principal Components Analysis tool by loading the
+individual raster bands and selecting the number of principal component iteration.
+Do not enter a filetype extension after the filename if you want to produce a raster
+for each iteration.</p></li>
+<li><p>The tool will load a new multiband raster containing all the principal components.
+You can manually load each individual component from the same folder.</p></li>
+<li><p>In QGIS, go to Plugins, Manage and Install Plugins, search for
+Semi-Automatic Classification Plugin, and install.</p></li>
+<li><p>There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it).</p></li>
+<li><p>Under SCP, click Band Set.</p></li>
+<li><p>From the Single band list, load the individual bands (you may need to click
+refresh and make sure the bands are in your Layers contents)</p></li>
+<li><p>Click Basic Tools, then Algorithm Band Weight. Each band is weighted equally
+(1) by default. If you’re working with multiple rasters from different sources
+(for example, if you are loading a DEM or other type of data), you will want to
+weigh each raster with a value of 1 / (Mean of all cells), which can be calculated
+with Zonal Statistics. If using only multiband data from the same satellite, these
+weights are only slightly different, and I haven’t noticed significant improvement
+when calculating exact weights.</p></li>
+<li><p>Click Band Processing, then PCA, select Number of Components and choose a
+number of iterations. Click Run.</p></li>
+<li><p>Note that the first iterations from ArcGIS Pro and QGIS were pretty
+different, but the second and third were almost identical.</p></li>
+</ol>
+</li>
+<li><p>Texture analysis</p>
+<ol class="arabic simple">
+<li><p>Not sure if this can be done with any built-in tools in ArcGIS.</p></li>
+<li><p>Open QGIS with GRASS (type QGIS in the search bar and this option should appear).</p></li>
+<li><p>Run r.texture, select input, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder.</p></li>
+</ol>
+</li>
+<li><p>Vegetation indices (NDVI)</p>
+<ol class="arabic simple">
+<li><p>The Normalized Difference Vegetation Index (NDVI) transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).</p></li>
+<li><p>Select the .txt file of combined bands in the Contents, go to Imagery, click the Indices dropdown, and select NDVI.</p></li>
+<li><p>Alternatively, in ArcGIS Pro or QGIS, go to Raster Calculator and use the formula</p></li>
+</ol>
+</li>
+</ol>
+<p>NDVI = (NIR Band 5 – R Band 4) / (NIR Band 5 + R Band 4)</p>
+<ol class="arabic simple" start="7">
+<li><p>Final composite</p>
+<ol class="arabic simple">
+<li><p>PCA1, PCA2, PCA3 – Principle components analysis, 1st, 2nd, and 3rd order
+vis – composite of visible bands (2, 3, 4)
+ir – composite of infrared bands (5, 6, 7)
+sb – San Bartolo composite of near infrared, green, and blue (5, 3, 2)
+Var – texture variance index, 3 x 3 neighborhood
+NDVI – Normalized Difference Vegetation Index</p></li>
+<li><p>Chowdhury and Schneider (2004) recommended for southern Yucatan a 7-band
+composite: PCA1(vis), PCA1 (ir), PCA2 (ir), Var(PCA1(vis)), Var(PCA1(ir)),
+Var(PCA2(ir)), NDVI</p></li>
+<li><p>Griffin (2012) recommended for Petén a 3-band composite: PCA1(sb),
+Var(PCA1(sb)), NDVI</p></li>
+</ol>
+</li>
+<li><p>Classification</p>
+<ol class="arabic simple">
+<li><p>Semi-automated supervised and unsupervised land use classification is possible in ArcGIS Pro with the Classification Wizard and in QGIS with the SCP plugin.</p></li>
+</ol>
+</li>
+</ol>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/rgb.png"><img alt="Comparison" class="bg-primary mb-1 align-center" src="_images/rgb.png" style="width: 80%;" /></a>
+<p>True Color RGB (left) and 5-3-2 composite (right), Southeastern Chiapas, Mexico<br />
+4/3/17, 16:23:16 Landsat 8,<br />
+CORNER_UL_LAT = 16.95093<br />
+CORNER_UL_LON = -91.54527</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/pca.png"><img alt="PCA" class="bg-primary mb-1 align-center" src="_images/pca.png" style="width: 80%;" /></a>
+<p>First order Principle Components Analysis of 5-3-2 composite (left)<br />
+Textural variance of PCA1 (center)<br />
+NDVI (right)</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/composite.png"><img alt="Composite" class="bg-primary mb-1 align-center" src="_images/composite.png" style="width: 80%;" /></a>
+<p>Preliminary interpretation:<br />
+Final composite: Var (red)-NDVI (green)-PCA1 (blue)<br />
+Green – vegetation</p>
+<ol class="arabic simple">
+<li><p>Light green – healthy vegetation</p></li>
+<li><p>Dark green – recently burned areas</p></li>
+<li><p>Greenish white – lower vegetation</p></li>
+<li><p>Whitish green – agriculture</p></li>
+<li><p>Greenish brown – murky water
+Blue – water, urban, and bare earth</p></li>
+<li><p>Dark blue – water</p></li>
+<li><p>Bright blue – sandy beaches</p></li>
+<li><p>Blue to magenta – exposed bedrock</p></li>
+<li><p>Various shades of blue – urban and land use
+Red – shorelines and immediate land use changes</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pansharpening-imagery">
+<h1>Pansharpening Imagery<a class="headerlink" href="#pansharpening-imagery" title="Link to this heading">#</a></h1>
+<section id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
+<p>Amidon, Will. Middlebury Remote Sensing.
+<a class="reference external" href="https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured">https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured</a></p>
+<p>Chowdhury, Rinku Roy, and Laura Schneider. 2004. Land Cover and Land Use:
+Classification and Change Analysis. In Integrated Land-Change Science and Tropical
+Deforestation in the Southern Yucatan: Final Frontiers, ed. B.L. Turner II,
+Jacqueline Geoghegan, and David R. Foster, 105–143. Oxford: Oxford University Press.</p>
+<p>Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
+Nelson, and Jessica Munson. 2008. Journal of Archaeological Science 35(10):2770-2777.</p>
+<p>Griffin, Robert Edward. 2012. The Carrying Capacity of Ancient Maya Swidden
+Maize Cultivation: A Case Study in the Region Around San Bartolo, Petén, Guatemala.
+Unpublished PhD dissertation, Pennsylvania State University.</p>
+<p>Saturno, William, Thomas L. Sever, Daniel E. Irwin, Burgess F. Howell, and Thomas G.
+Garrison. 2007. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
+El-Baz, pp. 137-160. Springer, New York.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="aster.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Topographic Analysis with ASTER and SRTM Digital Elevation Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="supervised.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Supervised and Unsupervised Land Cover Classification</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Landsat Band Ratios</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pansharpening-imagery">Pansharpening Imagery</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Whittaker Schroder
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
