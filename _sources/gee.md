@@ -186,7 +186,6 @@ Export.image.toDrive({
   image: classified,
   description: 'classified',
   maxPixels:1e9,
-  }
 });
 ```
 

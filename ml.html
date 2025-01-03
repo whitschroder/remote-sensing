@@ -371,6 +371,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-libraries">Install Python Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-data">Prepare Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
             </nav>
@@ -385,6 +387,34 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="machine-learning-approaches-in-remote-sensing">
 <h1>Machine Learning Approaches in Remote Sensing<a class="headerlink" href="#machine-learning-approaches-in-remote-sensing" title="Link to this heading">#</a></h1>
+<p>This lab uses a modified approach to <a class="reference external" href="https://towardsdatascience.com/neural-network-for-satellite-data-classification-using-tensorflow-in-python-a13bcf38f3e1">image classification using neural networks</a> in the TensorFlow Python library.</p>
+<section id="install-python-libraries">
+<h2>Install Python Libraries<a class="headerlink" href="#install-python-libraries" title="Link to this heading">#</a></h2>
+<p>We will use <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a> to run the Python code for this exercise. Your computer should already have Python installed. Run the following code in Jupyter Notebook to locate Python.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">locate_python</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exec_prefix</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">locate_python</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now in the Command Prompt navigate to the Scripts folder in the Python location folder and run the following lines to install the necessary libraries.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyrsgis</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">Tensorflow</span>
+</pre></div>
+</div>
+</section>
+<section id="prepare-data">
+<h2>Prepare Data<a class="headerlink" href="#prepare-data" title="Link to this heading">#</a></h2>
+</section>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
 <p>Bickler, Simon H. 2021. Machine Learning Arrives in Archaeology. Advances in Archaeological
@@ -460,6 +490,8 @@ Remote Sensing 13(9):1759. <a class="reference external" href="https://doi.org/1
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-libraries">Install Python Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-data">Prepare Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
   </nav></div>

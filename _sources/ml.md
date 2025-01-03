@@ -1,5 +1,39 @@
 # Machine Learning Approaches in Remote Sensing
 
+This lab uses a modified approach to [image classification using neural networks](https://towardsdatascience.com/neural-network-for-satellite-data-classification-using-tensorflow-in-python-a13bcf38f3e1) in the TensorFlow Python library.
+
+## Install Python Libraries
+
+We will use [Jupyter Notebook](https://jupyter.org/) to run the Python code for this exercise. Your computer should already have Python installed. Run the following code in Jupyter Notebook to locate Python.
+
+```Python
+import sys
+
+locate_python = sys.exec_prefix
+
+print(locate_python)
+```
+
+Now in the Command Prompt navigate to the Scripts folder in the Python location folder and run the following lines to install the necessary libraries.
+
+```
+pip install pyrsgis
+```
+
+```
+pip install scikit-learn
+```
+
+```
+pip install numpy
+```
+
+```
+pip install Tensorflow
+```
+
+## Prepare Data
+
 ## Readings
 
 Bickler, Simon H. 2021. Machine Learning Arrives in Archaeology. Advances in Archaeological
