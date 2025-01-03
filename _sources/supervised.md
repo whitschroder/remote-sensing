@@ -1,21 +1,18 @@
 # Supervised and Unsupervised Land Cover Classification
 
-Coming soon
+In this lab, we will conduct supervised and unsupervised land cover classifications of Landsat satellite imagery.
 
-## Coming soon
+## Supervised Classification in QGIS
 
-Coming soon
+In QGIS, under Plugins, install the Semi-Automatic Classification Plugin and restart QGIS. If you receive an error message, you may need to upgrade some dependencies. If so, open the OSGEO4W Shell and run the following command:
 
-## Coming soon
-
-Coming soon
-
-```R
-print("Hello World")
+```
+pip3 install --upgrade remotior-sensus scikit-learn torch
 ```
 
+After restarting QGIS, an SCP toolbar should now be available.
 
-
+## Unsupervised Classification in QGIS
 
 ## Citations
 

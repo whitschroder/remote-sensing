@@ -1,9 +1,41 @@
 # Landsat Band Ratios
 
-1. Download imagery from [USGS Earth Explorer](https://earthexplorer.usgs.gov) or another source.
-2. Band compositing
-   1. Visualize different band combinations with the combined .txt raster (usually _________MTL.txt and listed as a “Raster Product” when adding data to ArcGIS)
-   2. Bilinear resampling (default) and DRA can improve visualization
+## Introduction to Landsat Imagery
+
+The Landsat program is a joint NASA and USGS program and the longest running satellite imagery enterprise in the U.S. and the world. The program has so far launched 9 satellites since 1972 with Landsat 1 through 2021 with Landsat 9. The spatial resolution varies from 15 to 100 m, and the temporal resolution (meaning the time it takes for the same location to be photographed) is approximately 16 days. Landsat imagery is divided into scenes each measuring approximately 185 x 185 km.
+
+The main instrument consists of a multispectral scanner that records data in separate bands. The specific wavelength ranges differ across missions, but the multispectral scanners typically record information across the visible (blue, green, red), near infrared (NIR), and short wave infrared (SWIR) spectrum.
+
+The most recent Landsat missions (7, 8, and 9) have the highest quality data. The bands and their corresponding wavelengths are shown below.
+
+| Landsat-7 ETM+ Bands (µm) | |      | Landsat-8 OLI and *TIRS* Bands (µm)  | |       | Landsat 9 OLI and *TIRS-2* Bands (µm) |
+| ---    | ---         | ---         | ---                  | ---           | ---     | ---                                   |
+|        |             |             | 30 m Coastal/Aerosol | 0.435-0.451   | Band 1  | 0.433-0.453
+| Band 1 | 30 m Blue   | 0.441-0.514 | 30 m Blue            | 0.452-0.512   | Band 2  | 0.450-0.515
+| Band 2 | 30 m Green  | 0.519-0.601 | 30 m Green           | 0.533-0.590   | Band 3  | 0.525-0.600
+| Band 3 | 30 m Red    | 0.631-0.692 | 30 m Red             | 0.636-0.673   | Band 4  | 0.630-0.680
+| Band 4 | 30 m NIR    | 0.772-0.898 | 30 m NIR             | 0.851-0.879   | Band 5  | 0.845-0.885
+| Band 5 | 30 m SWIR-1 | 1.547-1.749 | 30 m SWIR-1          | 1.566-1.651   | Band 6  | 1.560-1.660
+| Band 6 | 60 m TIR    | 10.31-12.36 | *100 m TIR-1*        | *10.60-11.19* | Band 10 | *10.30-11.30*
+|        |             |             | *100 m TIR-2*        | *11.50-12.51* | Band 11 | *11.50-12.50*
+| Band 7 | 30 m SWIR-2 | 2.064-2.345 | 30 m SWIR-2          | 2.107-2.294   | Band 7  | 2.100-2.300
+| Band 8 | 15 m Pan    | 0.515-0.896 | 15 m Pan             | 0.503-0.676   | Band 8  | 0.500-0.680
+|        |             |             | 30 m Cirrus          | 1.363-1.384   | Band 9  | 1.360-1.390
+
+Earlier missions (Landsat 1-5) might be useful for historic purposes, and their bands and corresponding wavelengths are shown below. The Landsat 6 mission failed to reach orbit.
+
+## Download Imagery
+
+Imagery can be downloaded from [USGS Earth Explorer](https://earthexplorer.usgs.gov). Under Search Criteria, identify an area of interest and filter by Cloud Cover (under 10%). Under Data Sets, select Landsat Collection 2 Level-1 and Landsat 8-9 OLI/TIRS C2 L1, then click on Results. For this exercise, we will work with Landsat imagery around 16° 20' 23'' N and 90° 38' 27'' W. The Landsat 8 imagery acquired on 2017/4/3 is of a high quality with low cloud cover. Click on Product Options and download the Product Bundle. Extract all of the files to your desired folder.
+
+This folder should contain several Geotiff files and metadata. Each band is stored as a separate Geotiff file. To view band combinations, we will have to load these bands together as a single composite, multiband image.
+
+In ArcGIS Pro, we just have to add the combined .txt file or Raster Product (usually ______MTL.txt). We can then alter the visualization and band combination under Symbology.
+
+In QGIS, we have to build a virtual raster. Go to Raster -> Miscellaneous -> Build Virtual Raster. Under Input layers, we will add only the 30 meter bands listed in the chart above: Bands 1, 2, 3, 4, 5, 6, 7, and 9, in order. Set Resolution to Highest and Place each input file into a separate band. The visualization and band combination can be edited under the Properties of the Virtual raster. Bilinear Resampling and an updated canvas (DRA in ArcGIS Pro) can improve visualization.
+
+## Band Compositing
+
    3. True color: 4-3-2
    4. San Bartolo: 5-3-2
    5. Parcak (Egypt): 5-4-3
@@ -12,21 +44,6 @@
    8. https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8
    9. https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations
    10. When researching band combinations, keep in mind each Landsat mission has different codes for bands:
-
-| Landsat-7 ETM+ Bands (µm) | |      | Landsat-8 OLI and *TIRS* Bands (µm)  | |       |
-| ---    | ---         | ---         | ---                  | ---           | ---     |
-|        |             |             | 30 m Coastal/Aerosol | 0.435-0.451   | Band 1  |
-| Band 1 | 30 m Blue   | 0.441-0.514 | 30 m Blue            | 0.452-0.512   | Band 2  |
-| Band 2 | 30 m Green  | 0.519-0.601 | 30 m Green           | 0.533-0.590   | Band 3  |
-| Band 3 | 30 m Red    | 0.631-0.692 | 30 m Red             | 0.636-0.673   | Band 4  |
-| Band 4 | 30 m NIR    | 0.772-0.898 | 30 m NIR             | 0.851-0.879   | Band 5  |
-| Band 5 | 30 m SWIR-1 | 1.547-1.749 | 30 m SWIR-1          | 1.566-1.651   | Band 6  |
-| Band 6 | 60 m TIR    | 10.31-12.36 | *100 m TIR-1*        | *10.60-11.19* | Band 10 |
-|        |             |             | *100 m TIR-2*        | *11.50-12.51* | Band 11 |
-| Band 7 | 30 m SWIR-2 | 2.064-2.345 | 30 m SWIR-2          | 2.107-2.294   | Band 7  |
-| Band 8 | 15 m Pan    | 0.515-0.896 | 15 m Pan             | 0.503-0.676   | Band 8  |
-|        |             |             | 30 m Cirrus          | 1.363-1.384   | Band 9  |
-
    11. Computing band ratios can also highlight features. The following spectral 
 reflectance curve shows high reflectance values for different materials at different
 wavelengths and Landsat bands (Landsat 7 above and Landsat 8 below):
@@ -74,7 +91,8 @@ highlight water.
 each raster is listed, which will determine the order that the bands are displayed 
 in the Symbology window.
 
-3. Image sharpening
+## Image Sharpening
+
    1. All Landsat 8 bands are at 30 m resolution, except for Band 8 (Panchromatic), 
 which is at 15 m resolution. The higher resolution Band 8 can be used to sharpen 
 the imagery of the other bands. First determine if you need higher resolution 
@@ -82,7 +100,9 @@ the imagery of the other bands. First determine if you need higher resolution
    2. [More info on pansharpening](https://earthobservatory.nasa.gov/blogs/earthmatters/2017/06/13/how-to-pan-sharpen-landsat-imagery/#:~:text=Panchromatic%20sharpening%20(pan%2Dsharpening),usually%20only%20the%20visible%20bands)
    3. Other techniques: Principal components image sharpening, Brovey transformation 
 (usually done in ENVI).
-4. Principal components analysis
+
+## Principal components analysis
+
    1. Generally done in ENVI – calculates variability through several iterations, 
 with each iteration showing less variability.
    2. In ArcGIS Pro run the Principal Components Analysis tool by loading the 
@@ -108,11 +128,13 @@ when calculating exact weights.
 number of iterations. Click Run.
    10. Note that the first iterations from ArcGIS Pro and QGIS were pretty 
 different, but the second and third were almost identical.
-5. Texture analysis
+
+## Texture analysis
    1. Not sure if this can be done with any built-in tools in ArcGIS.
    2. Open QGIS with GRASS (type QGIS in the search bar and this option should appear).
    3. Run r.texture, select input, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder.
-6. Vegetation indices (NDVI)
+
+## Vegetation indices (NDVI)
    1. The Normalized Difference Vegetation Index (NDVI) transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).
    2. Select the .txt file of combined bands in the Contents, go to Imagery, click the Indices dropdown, and select NDVI.
    3. Alternatively, in ArcGIS Pro or QGIS, go to Raster Calculator and use the formula 
@@ -178,8 +200,6 @@ Blue -- water, urban, and bare earth
 3. Blue to magenta -- exposed bedrock
 4. Various shades of blue -- urban and land use
 Red -- shorelines and immediate land use changes
-
-# Pansharpening Imagery
 
 ## Readings
 

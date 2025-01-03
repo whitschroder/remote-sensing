@@ -176,7 +176,6 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Landsat Band Ratios</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
@@ -371,13 +370,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Landsat Band Ratios</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pansharpening-imagery">Pansharpening Imagery</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-landsat-imagery">Introduction to Landsat Imagery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-imagery">Download Imagery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-compositing">Band Compositing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -390,23 +391,11 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="landsat-band-ratios">
 <h1>Landsat Band Ratios<a class="headerlink" href="#landsat-band-ratios" title="Link to this heading">#</a></h1>
-<ol class="arabic simple">
-<li><p>Download imagery from <a class="reference external" href="https://earthexplorer.usgs.gov">USGS Earth Explorer</a> or another source.</p></li>
-<li><p>Band compositing</p>
-<ol class="arabic simple">
-<li><p>Visualize different band combinations with the combined .txt raster (usually _________MTL.txt and listed as a “Raster Product” when adding data to ArcGIS)</p></li>
-<li><p>Bilinear resampling (default) and DRA can improve visualization</p></li>
-<li><p>True color: 4-3-2</p></li>
-<li><p>San Bartolo: 5-3-2</p></li>
-<li><p>Parcak (Egypt): 5-4-3</p></li>
-<li><p><a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/">https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/</a></p></li>
-<li><p><a class="reference external" href="https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The%20two%20main%20sensors%20for,30%20and%2060%20meter%20resolution">https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The two main sensors for,30 and 60 meter resolution</a></p></li>
-<li><p><a class="reference external" href="https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8">https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8</a></p></li>
-<li><p><a class="reference external" href="https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations">https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations</a></p></li>
-<li><p>When researching band combinations, keep in mind each Landsat mission has different codes for bands:</p></li>
-</ol>
-</li>
-</ol>
+<section id="introduction-to-landsat-imagery">
+<h2>Introduction to Landsat Imagery<a class="headerlink" href="#introduction-to-landsat-imagery" title="Link to this heading">#</a></h2>
+<p>The Landsat program is a joint NASA and USGS program and the longest running satellite imagery enterprise in the U.S. and the world. The program has so far launched 9 satellites since 1972 with Landsat 1 through 2021 with Landsat 9. The spatial resolution varies from 15 to 100 m, and the temporal resolution (meaning the time it takes for the same location to be photographed) is approximately 16 days. Landsat imagery is divided into scenes each measuring approximately 185 x 185 km.</p>
+<p>The main instrument consists of a multispectral scanner that records data in separate bands. The specific wavelength ranges differ across missions, but the multispectral scanners typically record information across the visible (blue, green, red), near infrared (NIR), and short wave infrared (SWIR) spectrum.</p>
+<p>The most recent Landsat missions (7, 8, and 9) have the highest quality data. The bands and their corresponding wavelengths are shown below.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Landsat-7 ETM+ Bands (µm)</p></th>
@@ -415,6 +404,7 @@
 <th class="head"><p>Landsat-8 OLI and <em>TIRS</em> Bands (µm)</p></th>
 <th class="head"><p></p></th>
 <th class="head"><p></p></th>
+<th class="head"><p>Landsat 9 OLI and <em>TIRS-2</em> Bands (µm)</p></th>
 </tr>
 </thead>
 <tbody>
@@ -424,6 +414,7 @@
 <td><p>30 m Coastal/Aerosol</p></td>
 <td><p>0.435-0.451</p></td>
 <td><p>Band 1</p></td>
+<td><p>0.433-0.453</p></td>
 </tr>
 <tr class="row-odd"><td><p>Band 1</p></td>
 <td><p>30 m Blue</p></td>
@@ -431,6 +422,7 @@
 <td><p>30 m Blue</p></td>
 <td><p>0.452-0.512</p></td>
 <td><p>Band 2</p></td>
+<td><p>0.450-0.515</p></td>
 </tr>
 <tr class="row-even"><td><p>Band 2</p></td>
 <td><p>30 m Green</p></td>
@@ -438,6 +430,7 @@
 <td><p>30 m Green</p></td>
 <td><p>0.533-0.590</p></td>
 <td><p>Band 3</p></td>
+<td><p>0.525-0.600</p></td>
 </tr>
 <tr class="row-odd"><td><p>Band 3</p></td>
 <td><p>30 m Red</p></td>
@@ -445,6 +438,7 @@
 <td><p>30 m Red</p></td>
 <td><p>0.636-0.673</p></td>
 <td><p>Band 4</p></td>
+<td><p>0.630-0.680</p></td>
 </tr>
 <tr class="row-even"><td><p>Band 4</p></td>
 <td><p>30 m NIR</p></td>
@@ -452,6 +446,7 @@
 <td><p>30 m NIR</p></td>
 <td><p>0.851-0.879</p></td>
 <td><p>Band 5</p></td>
+<td><p>0.845-0.885</p></td>
 </tr>
 <tr class="row-odd"><td><p>Band 5</p></td>
 <td><p>30 m SWIR-1</p></td>
@@ -459,6 +454,7 @@
 <td><p>30 m SWIR-1</p></td>
 <td><p>1.566-1.651</p></td>
 <td><p>Band 6</p></td>
+<td><p>1.560-1.660</p></td>
 </tr>
 <tr class="row-even"><td><p>Band 6</p></td>
 <td><p>60 m TIR</p></td>
@@ -466,6 +462,7 @@
 <td><p><em>100 m TIR-1</em></p></td>
 <td><p><em>10.60-11.19</em></p></td>
 <td><p>Band 10</p></td>
+<td><p><em>10.30-11.30</em></p></td>
 </tr>
 <tr class="row-odd"><td><p></p></td>
 <td><p></p></td>
@@ -473,6 +470,7 @@
 <td><p><em>100 m TIR-2</em></p></td>
 <td><p><em>11.50-12.51</em></p></td>
 <td><p>Band 11</p></td>
+<td><p><em>11.50-12.50</em></p></td>
 </tr>
 <tr class="row-even"><td><p>Band 7</p></td>
 <td><p>30 m SWIR-2</p></td>
@@ -480,6 +478,7 @@
 <td><p>30 m SWIR-2</p></td>
 <td><p>2.107-2.294</p></td>
 <td><p>Band 7</p></td>
+<td><p>2.100-2.300</p></td>
 </tr>
 <tr class="row-odd"><td><p>Band 8</p></td>
 <td><p>15 m Pan</p></td>
@@ -487,6 +486,7 @@
 <td><p>15 m Pan</p></td>
 <td><p>0.503-0.676</p></td>
 <td><p>Band 8</p></td>
+<td><p>0.500-0.680</p></td>
 </tr>
 <tr class="row-even"><td><p></p></td>
 <td><p></p></td>
@@ -494,11 +494,31 @@
 <td><p>30 m Cirrus</p></td>
 <td><p>1.363-1.384</p></td>
 <td><p>Band 9</p></td>
+<td><p>1.360-1.390</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<ol class="arabic simple" start="11">
+<p>Earlier missions (Landsat 1-5) might be useful for historic purposes, and their bands and corresponding wavelengths are shown below. The Landsat 6 mission failed to reach orbit.</p>
+</section>
+<section id="download-imagery">
+<h2>Download Imagery<a class="headerlink" href="#download-imagery" title="Link to this heading">#</a></h2>
+<p>Imagery can be downloaded from <a class="reference external" href="https://earthexplorer.usgs.gov">USGS Earth Explorer</a>. Under Search Criteria, identify an area of interest and filter by Cloud Cover (under 10%). Under Data Sets, select Landsat Collection 2 Level-1 and Landsat 8-9 OLI/TIRS C2 L1, then click on Results. For this exercise, we will work with Landsat imagery around 16° 20’ 23’’ N and 90° 38’ 27’’ W. The Landsat 8 imagery acquired on 2017/4/3 is of a high quality with low cloud cover. Click on Product Options and download the Product Bundle. Extract all of the files to your desired folder.</p>
+<p>This folder should contain several Geotiff files and metadata. Each band is stored as a separate Geotiff file. To view band combinations, we will have to load these bands together as a single composite, multiband image.</p>
+<p>In ArcGIS Pro, we just have to add the combined .txt file or Raster Product (usually ______MTL.txt). We can then alter the visualization and band combination under Symbology.</p>
+<p>In QGIS, we have to build a virtual raster. Go to Raster -&gt; Miscellaneous -&gt; Build Virtual Raster. Under Input layers, we will add only the 30 meter bands listed in the chart above: Bands 1, 2, 3, 4, 5, 6, 7, and 9, in order. Set Resolution to Highest and Place each input file into a separate band. The visualization and band combination can be edited under the Properties of the Virtual raster. Bilinear Resampling and an updated canvas (DRA in ArcGIS Pro) can improve visualization.</p>
+</section>
+<section id="band-compositing">
+<h2>Band Compositing<a class="headerlink" href="#band-compositing" title="Link to this heading">#</a></h2>
+<ol class="arabic simple" start="3">
+<li><p>True color: 4-3-2</p></li>
+<li><p>San Bartolo: 5-3-2</p></li>
+<li><p>Parcak (Egypt): 5-4-3</p></li>
+<li><p><a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/">https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/</a></p></li>
+<li><p><a class="reference external" href="https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The%20two%20main%20sensors%20for,30%20and%2060%20meter%20resolution">https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The two main sensors for,30 and 60 meter resolution</a></p></li>
+<li><p><a class="reference external" href="https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8">https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8</a></p></li>
+<li><p><a class="reference external" href="https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations">https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations</a></p></li>
+<li><p>When researching band combinations, keep in mind each Landsat mission has different codes for bands:</p></li>
 <li><p>Computing band ratios can also highlight features. The following spectral
 reflectance curve shows high reflectance values for different materials at different
 wavelengths and Landsat bands (Landsat 7 above and Landsat 8 below):</p></li>
@@ -526,7 +546,10 @@ highlight water.</p></li>
 (QGIS: Rgb composite) to create a new multiband raster. Keep track of the order
 each raster is listed, which will determine the order that the bands are displayed
 in the Symbology window.</p></li>
-<li><p>Image sharpening</p>
+</ol>
+</section>
+<section id="image-sharpening">
+<h2>Image Sharpening<a class="headerlink" href="#image-sharpening" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>All Landsat 8 bands are at 30 m resolution, except for Band 8 (Panchromatic),
 which is at 15 m resolution. The higher resolution Band 8 can be used to sharpen
@@ -536,8 +559,9 @@ the imagery of the other bands. First determine if you need higher resolution
 <li><p>Other techniques: Principal components image sharpening, Brovey transformation
 (usually done in ENVI).</p></li>
 </ol>
-</li>
-<li><p>Principal components analysis</p>
+</section>
+<section id="principal-components-analysis">
+<h2>Principal components analysis<a class="headerlink" href="#principal-components-analysis" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Generally done in ENVI – calculates variability through several iterations,
 with each iteration showing less variability.</p></li>
@@ -565,21 +589,21 @@ number of iterations. Click Run.</p></li>
 <li><p>Note that the first iterations from ArcGIS Pro and QGIS were pretty
 different, but the second and third were almost identical.</p></li>
 </ol>
-</li>
-<li><p>Texture analysis</p>
+</section>
+<section id="texture-analysis">
+<h2>Texture analysis<a class="headerlink" href="#texture-analysis" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Not sure if this can be done with any built-in tools in ArcGIS.</p></li>
 <li><p>Open QGIS with GRASS (type QGIS in the search bar and this option should appear).</p></li>
 <li><p>Run r.texture, select input, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder.</p></li>
 </ol>
-</li>
-<li><p>Vegetation indices (NDVI)</p>
+</section>
+<section id="vegetation-indices-ndvi">
+<h2>Vegetation indices (NDVI)<a class="headerlink" href="#vegetation-indices-ndvi" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>The Normalized Difference Vegetation Index (NDVI) transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).</p></li>
 <li><p>Select the .txt file of combined bands in the Contents, go to Imagery, click the Indices dropdown, and select NDVI.</p></li>
 <li><p>Alternatively, in ArcGIS Pro or QGIS, go to Raster Calculator and use the formula</p></li>
-</ol>
-</li>
 </ol>
 <p>NDVI = (NIR Band 5 – R Band 4) / (NIR Band 5 + R Band 4)</p>
 <ol class="arabic simple" start="7">
@@ -631,8 +655,6 @@ Blue – water, urban, and bare earth</p></li>
 Red – shorelines and immediate land use changes</p></li>
 </ol>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="pansharpening-imagery">
-<h1>Pansharpening Imagery<a class="headerlink" href="#pansharpening-imagery" title="Link to this heading">#</a></h1>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
 <p>Amidon, Will. Middlebury Remote Sensing.
@@ -717,13 +739,15 @@ El-Baz, pp. 137-160. Springer, New York.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Landsat Band Ratios</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pansharpening-imagery">Pansharpening Imagery</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-landsat-imagery">Introduction to Landsat Imagery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-imagery">Download Imagery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-compositing">Band Compositing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

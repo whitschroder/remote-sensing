@@ -176,7 +176,6 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bands.html">Landsat Band Ratios</a></li>
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Supervised and Unsupervised Land Cover Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
@@ -371,8 +370,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-qgis">Supervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification-in-qgis">Unsupervised Classification in QGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-links">Additional links</a></li>
 </ul>
@@ -388,23 +387,23 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="supervised-and-unsupervised-land-cover-classification">
 <h1>Supervised and Unsupervised Land Cover Classification<a class="headerlink" href="#supervised-and-unsupervised-land-cover-classification" title="Link to this heading">#</a></h1>
-<p>Coming soon</p>
-<section id="coming-soon">
-<h2>Coming soon<a class="headerlink" href="#coming-soon" title="Link to this heading">#</a></h2>
-<p>Coming soon</p>
-</section>
-<section id="id1">
-<h2>Coming soon<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>Coming soon</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
+<p>In this lab, we will conduct supervised and unsupervised land cover classifications of Landsat satellite imagery.</p>
+<section id="supervised-classification-in-qgis">
+<h2>Supervised Classification in QGIS<a class="headerlink" href="#supervised-classification-in-qgis" title="Link to this heading">#</a></h2>
+<p>In QGIS, under Plugins, install the Semi-Automatic Classification Plugin and restart QGIS. If you receive an error message, you may need to upgrade some dependencies. If so, open the OSGEO4W Shell and run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">remotior</span><span class="o">-</span><span class="n">sensus</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">torch</span>
 </pre></div>
 </div>
+<p>After restarting QGIS, an SCP toolbar should now be available.</p>
+</section>
+<section id="unsupervised-classification-in-qgis">
+<h2>Unsupervised Classification in QGIS<a class="headerlink" href="#unsupervised-classification-in-qgis" title="Link to this heading">#</a></h2>
 </section>
 <section id="citations">
 <h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">#</a></h2>
-<div class="docutils container" id="id2">
+<div class="docutils container" id="id1">
 <div role="list" class="citation-list">
-<div class="citation" id="id3" role="doc-biblioentry">
+<div class="citation" id="id2" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>HdHPK14<span class="fn-bracket">]</span></span>
 <p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
 </div>
@@ -481,8 +480,8 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-qgis">Supervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification-in-qgis">Unsupervised Classification in QGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-links">Additional links</a></li>
 </ul>
