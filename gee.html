@@ -375,6 +375,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-cloud-free-composite">Generate a Cloud Free Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-ndvi">Calculate NDVI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-land-cover-classification">Supervised Land Cover Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-imagery">Export Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
             </nav>
@@ -542,6 +543,19 @@
 </div>
 <p>We can now view the land cover classification in the map section, and we can view a confusion matrix of the validation data. We can further refine the classification by altering and adding training polygons.</p>
 </section>
+<section id="export-imagery">
+<h2>Export Imagery<a class="headerlink" href="#export-imagery" title="Link to this heading">#</a></h2>
+<p>We can also export any imagery generated in Google Earth Engine to our local drive for additional processing or data presentation. Depending on the size of the data (more than 1,000,000,000 pixels), you may need to import a grid and export data in smaller chunks.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">Export</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">toDrive</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="nx">classified</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;classified&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">maxPixels</span><span class="o">:</span><span class="mf">1e9</span><span class="p">,</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Once you have run the code, go to the Tasks section and run the unsubmitted tasks. Here you can set the resolution and other parameters. By default, the imagery will be exported to your Google Drive main folder where you can then download locally.</p>
+</section>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
 <p>Alcover Firpi, Omar A. 2016. Satellite Data for All? Review of Google Earth Engine
@@ -631,6 +645,7 @@ Multisensor and Multitemporal Satellite Data. PNAS 117(31):18240-18250.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-cloud-free-composite">Generate a Cloud Free Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-ndvi">Calculate NDVI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-land-cover-classification">Supervised Land Cover Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-imagery">Export Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
   </nav></div>

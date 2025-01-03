@@ -177,6 +177,21 @@ print('Validation overall accuracy: ', testAccuracy.accuracy());
 
 We can now view the land cover classification in the map section, and we can view a confusion matrix of the validation data. We can further refine the classification by altering and adding training polygons.
 
+## Export Imagery
+
+We can also export any imagery generated in Google Earth Engine to our local drive for additional processing or data presentation. Depending on the size of the data (more than 1,000,000,000 pixels), you may need to import a grid and export data in smaller chunks.
+
+```JavaScript
+Export.image.toDrive({
+  image: classified,
+  description: 'classified',
+  maxPixels:1e9,
+  }
+});
+```
+
+Once you have run the code, go to the Tasks section and run the unsubmitted tasks. Here you can set the resolution and other parameters. By default, the imagery will be exported to your Google Drive main folder where you can then download locally.
+
 ## Readings
 
 Alcover Firpi, Omar A. 2016. Satellite Data for All? Review of Google Earth Engine 
