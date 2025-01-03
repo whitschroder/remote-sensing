@@ -22,7 +22,7 @@ The most recent Landsat missions (7, 8, and 9) have the highest quality data. Th
 | Band 8 | 15 m Pan    | 0.515-0.896 | 15 m Pan             | 0.503-0.676   | Band 8  | 0.500-0.680
 |        |             |             | 30 m Cirrus          | 1.363-1.384   | Band 9  | 1.360-1.390
 
-Earlier missions (Landsat 1-5) might be useful for historic purposes, and their bands and corresponding wavelengths are shown below. The Landsat 6 mission failed to reach orbit.
+Earlier missions (Landsat 1-5) might be useful for historic purposes, and their bands and corresponding wavelengths are available [here](https://en.wikipedia.org/wiki/Landsat_program). The Landsat 6 mission failed to reach orbit.
 
 ## Download Imagery
 
