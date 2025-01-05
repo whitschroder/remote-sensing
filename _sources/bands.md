@@ -1,10 +1,21 @@
-# Landsat Band Ratios
+# Multispectral Imagery
+
+This lab introduces how to visualize and process multispectral and multiband imagery using Landsat satellite data.
 
 ## Introduction to Landsat Imagery
 
 The Landsat program is a joint NASA and USGS program and the longest running satellite imagery enterprise in the U.S. and the world. The program has so far launched 9 satellites since 1972 with Landsat 1 through 2021 with Landsat 9. The spatial resolution varies from 15 to 100 m, and the temporal resolution (meaning the time it takes for the same location to be photographed) is approximately 16 days. Landsat imagery is divided into scenes each measuring approximately 185 x 185 km.
 
-The main instrument consists of a multispectral scanner that records data in separate bands. The specific wavelength ranges differ across missions, but the multispectral scanners typically record information across the visible (blue, green, red), near infrared (NIR), and short wave infrared (SWIR) spectrum.
+The main instrument consists of a multispectral scanner that records data in separate bands. The specific wavelength ranges differ across missions, but the multispectral scanners typically record information across the visible (blue, green, red), near infrared (NIR), short wave infrared (SWIR), and thermal infrared (TIR) spectrum.
+
+```{image} /images/spectrum.jpg
+:alt: Spectrum
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+Photo credit: [Victor Blacus](https://commons.wikimedia.org/wiki/File%3AElectromagnetic-Spectrum.svg)
 
 The most recent Landsat missions (7, 8, and 9) have the highest quality data. The bands and their corresponding wavelengths are shown below.
 
@@ -36,17 +47,14 @@ In QGIS, we have to build a virtual raster. Go to Raster -> Miscellaneous -> Bui
 
 ## Band Compositing
 
-   3. True color: 4-3-2
-   4. San Bartolo: 5-3-2
-   5. Parcak (Egypt): 5-4-3
-   6. https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/
-   7. https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The%20two%20main%20sensors%20for,30%20and%2060%20meter%20resolution
-   8. https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8
-   9. https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations
-   10. When researching band combinations, keep in mind each Landsat mission has different codes for bands:
-   11. Computing band ratios can also highlight features. The following spectral 
-reflectance curve shows high reflectance values for different materials at different
-wavelengths and Landsat bands (Landsat 7 above and Landsat 8 below):
+Multiband imagery can be visualized with different band combinations using the red, green, and blue additive color model. In this system, 3 bands can be viewed at one time, each displayed as red, green, or blue. A fourth channel, alpha, can be optionally blended on top of the 3 traditional bands.
+
+Band composites can be referenced with the 3 numbers each representing the relevant band, in order of red, green, or blue. The band combination 4-3-2, therefore, indicates that Band 4, Band 3, and Band 2 will be displayed as red, green, and blue, respectively. In Landsat 8 and 9, Band 4 is red, Band 3 is green, and Band 2 is blue, meaning that when displayed as 4-3-2, we are viewing the visible spectrum or true color of the image.
+
+Different materials, for example, vegetation, water, soil, rock, etc., reflect the electromagnetic spectrum differently. Spectral reflectance is the ratio of the amount of light reflected by a surface to the amount of light that hits it at different wavelengths. A spectral reflectance curve shows the variations in spectral reflectance across different wavelengths and materials.
+
+The following spectral reflectance curves show reflectance values for different materials at different
+wavelengths and Landsat bands (Landsat 7 above and Landsat 8 and 9 below):
 
 ```{image} /images/material.png
 :alt: Reflectance1
@@ -55,7 +63,7 @@ wavelengths and Landsat bands (Landsat 7 above and Landsat 8 below):
 :align: center
 ```
 
-Photo credit:
+Photo credit: [SEOS eLearning](https://seos-project.eu/remotesensing/remotesensing-c01-p06.html)
 
 ```{image} /images/material2.png
 :alt: Reflectance2
@@ -64,7 +72,35 @@ Photo credit:
 :align: center
 ```
 
-Photo credit:
+Photo credit: [Wulf et al. 2015](http://dx.doi.org/10.13140/RG.2.1.2134.2249)
+
+Here are some useful band combinations in Landsat 8 and 9:
+
+|                                  |       |
+| ---                              | ---   |
+| Natural Color                    | 4-3-2 |
+| Shortwave Infrared (Urban)       | 7-6-4 |
+| Color Infrared (Vegetation)      | 5-4-3 |
+| Agriculture                      | 6-5-2 |
+| Atmospheric Penetration          | 7-6-5 |
+| Healthy Vegetation               | 5-6-2 |
+| Land/Water                       | 5-6-4 |
+| Natural with Atmospheric Removal | 7-5-3 |
+| Shortwave Infrared               | 7-5-4 |
+| Vegetation Analysis              | 6-5-4 |
+| Geology                          | 7-6-2 |
+| Bathymetric                      | 4-3-1 |
+| Forest Fires                     | 7-5-2 |
+| Bare Earth                       | 6-3-2 |
+| Vegetation/Water                 | 5-7-1 |
+| Archaeology (Parcak/Egypt)       | 5-4-3 |
+| Archaeology (Saturno/Guatemala)  | 5-3-2 |
+
+See also: [ESRI](https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/), [NV5](https://www.nv5geospatialsoftware.com/Learn/Blogs/Blog-Details/the-many-band-combinations-of-landsat-8), [GIS Geography](https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The%20two%20main%20sensors%20for,30%20and%2060%20meter%20resolution), [Open Weather](https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations) 
+
+## Band Ratios
+
+Computing band ratios can also highlight features.
 
    12. Band ratios can eliminate issues discerning features in high shadow areas. 
 In the following image deciduous and coniferous forest have different spectral
@@ -90,6 +126,13 @@ highlight water.
 (QGIS: Rgb composite) to create a new multiband raster. Keep track of the order 
 each raster is listed, which will determine the order that the bands are displayed 
 in the Symbology window.
+
+## Vegetation indices (NDVI)
+   1. The Normalized Difference Vegetation Index (NDVI) transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).
+   2. Select the .txt file of combined bands in the Contents, go to Imagery, click the Indices dropdown, and select NDVI.
+   3. Alternatively, in ArcGIS Pro or QGIS, go to Raster Calculator and use the formula 
+
+NDVI = (NIR Band 5 – R Band 4) / (NIR Band 5 + R Band 4)
 
 ## Image Sharpening
 
@@ -134,12 +177,11 @@ different, but the second and third were almost identical.
    2. Open QGIS with GRASS (type QGIS in the search bar and this option should appear).
    3. Run r.texture, select input, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder.
 
-## Vegetation indices (NDVI)
-   1. The Normalized Difference Vegetation Index (NDVI) transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).
-   2. Select the .txt file of combined bands in the Contents, go to Imagery, click the Indices dropdown, and select NDVI.
-   3. Alternatively, in ArcGIS Pro or QGIS, go to Raster Calculator and use the formula 
+## Creating a Final Composite
 
-NDVI = (NIR Band 5 – R Band 4) / (NIR Band 5 + R Band 4)
+Multiple bands (including any of the original bands and derivatives) can be combined into a new multiband image. Theoretically, an infinite number of bands could be combined into a composite, but researchers should select the most useful bands for their application. Although the human eye can only view 3 bands at once (with perhaps a 4th alpha channel), classification algorithms can easily work with multidimensional data.
+
+In ArcGIS Pro, the Composite Bands tool can combine several bands into a single file. In QGIS (GRASS), the r.composite tool can be used to combine only 3 bands, or bands can be combined into a virtual raster. 
 
 7. Final composite
    1. PCA1, PCA2, PCA3 – Principle components analysis, 1st, 2nd, and 3rd order

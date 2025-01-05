@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Landsat Band Ratios &#8212; Archaeological Remote Sensing</title>
+    <title>Multispectral Imagery &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -175,7 +175,7 @@
 <li class="toctree-l1"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Landsat Band Ratios</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Multispectral Imagery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
@@ -360,7 +360,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Landsat Band Ratios</h1>
+    <h1>Multispectral Imagery</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -373,10 +373,12 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-landsat-imagery">Introduction to Landsat Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-imagery">Download Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-compositing">Band Compositing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-ratios">Band Ratios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
             </nav>
@@ -389,12 +391,15 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="landsat-band-ratios">
-<h1>Landsat Band Ratios<a class="headerlink" href="#landsat-band-ratios" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="multispectral-imagery">
+<h1>Multispectral Imagery<a class="headerlink" href="#multispectral-imagery" title="Link to this heading">#</a></h1>
+<p>This lab introduces how to visualize and process multispectral and multiband imagery using Landsat satellite data.</p>
 <section id="introduction-to-landsat-imagery">
 <h2>Introduction to Landsat Imagery<a class="headerlink" href="#introduction-to-landsat-imagery" title="Link to this heading">#</a></h2>
 <p>The Landsat program is a joint NASA and USGS program and the longest running satellite imagery enterprise in the U.S. and the world. The program has so far launched 9 satellites since 1972 with Landsat 1 through 2021 with Landsat 9. The spatial resolution varies from 15 to 100 m, and the temporal resolution (meaning the time it takes for the same location to be photographed) is approximately 16 days. Landsat imagery is divided into scenes each measuring approximately 185 x 185 km.</p>
-<p>The main instrument consists of a multispectral scanner that records data in separate bands. The specific wavelength ranges differ across missions, but the multispectral scanners typically record information across the visible (blue, green, red), near infrared (NIR), and short wave infrared (SWIR) spectrum.</p>
+<p>The main instrument consists of a multispectral scanner that records data in separate bands. The specific wavelength ranges differ across missions, but the multispectral scanners typically record information across the visible (blue, green, red), near infrared (NIR), short wave infrared (SWIR), and thermal infrared (TIR) spectrum.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/spectrum.jpg"><img alt="Spectrum" class="bg-primary mb-1 align-center" src="_images/spectrum.jpg" style="width: 80%;" /></a>
+<p>Photo credit: <a class="reference external" href="https://commons.wikimedia.org/wiki/File%3AElectromagnetic-Spectrum.svg">Victor Blacus</a></p>
 <p>The most recent Landsat missions (7, 8, and 9) have the highest quality data. The bands and their corresponding wavelengths are shown below.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -510,23 +515,82 @@
 </section>
 <section id="band-compositing">
 <h2>Band Compositing<a class="headerlink" href="#band-compositing" title="Link to this heading">#</a></h2>
-<ol class="arabic simple" start="3">
-<li><p>True color: 4-3-2</p></li>
-<li><p>San Bartolo: 5-3-2</p></li>
-<li><p>Parcak (Egypt): 5-4-3</p></li>
-<li><p><a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/">https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/</a></p></li>
-<li><p><a class="reference external" href="https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The%20two%20main%20sensors%20for,30%20and%2060%20meter%20resolution">https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The two main sensors for,30 and 60 meter resolution</a></p></li>
-<li><p><a class="reference external" href="https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8">https://www.l3harrisgeospatial.com/Learn/Blogs/Blog-Details/ArtMID/10198/ArticleID/15691/The-Many-Band-Combinations-of-Landsat-8</a></p></li>
-<li><p><a class="reference external" href="https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations">https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations</a></p></li>
-<li><p>When researching band combinations, keep in mind each Landsat mission has different codes for bands:</p></li>
-<li><p>Computing band ratios can also highlight features. The following spectral
-reflectance curve shows high reflectance values for different materials at different
-wavelengths and Landsat bands (Landsat 7 above and Landsat 8 below):</p></li>
-</ol>
+<p>Multiband imagery can be visualized with different band combinations using the red, green, and blue additive color model. In this system, 3 bands can be viewed at one time, each displayed as red, green, or blue. A fourth channel, alpha, can be optionally blended on top of the 3 traditional bands.</p>
+<p>Band composites can be referenced with the 3 numbers each representing the relevant band, in order of red, green, or blue. The band combination 4-3-2, therefore, indicates that Band 4, Band 3, and Band 2 will be displayed as red, green, and blue, respectively. In Landsat 8 and 9, Band 4 is red, Band 3 is green, and Band 2 is blue, meaning that when displayed as 4-3-2, we are viewing the visible spectrum or true color of the image.</p>
+<p>Different materials, for example, vegetation, water, soil, rock, etc., reflect the electromagnetic spectrum differently. Spectral reflectance is the ratio of the amount of light reflected by a surface to the amount of light that hits it at different wavelengths. A spectral reflectance curve shows the variations in spectral reflectance across different wavelengths and materials.</p>
+<p>The following spectral reflectance curves show reflectance values for different materials at different
+wavelengths and Landsat bands (Landsat 7 above and Landsat 8 and 9 below):</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/material.png"><img alt="Reflectance1" class="bg-primary mb-1 align-center" src="_images/material.png" style="width: 80%;" /></a>
-<p>Photo credit:</p>
+<p>Photo credit: <a class="reference external" href="https://seos-project.eu/remotesensing/remotesensing-c01-p06.html">SEOS eLearning</a></p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/material2.png"><img alt="Reflectance2" class="bg-primary mb-1 align-center" src="_images/material2.png" style="width: 80%;" /></a>
-<p>Photo credit:</p>
+<p>Photo credit: <a class="reference external" href="http://dx.doi.org/10.13140/RG.2.1.2134.2249">Wulf et al. 2015</a></p>
+<p>Here are some useful band combinations in Landsat 8 and 9:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Natural Color</p></td>
+<td><p>4-3-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Shortwave Infrared (Urban)</p></td>
+<td><p>7-6-4</p></td>
+</tr>
+<tr class="row-even"><td><p>Color Infrared (Vegetation)</p></td>
+<td><p>5-4-3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Agriculture</p></td>
+<td><p>6-5-2</p></td>
+</tr>
+<tr class="row-even"><td><p>Atmospheric Penetration</p></td>
+<td><p>7-6-5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Healthy Vegetation</p></td>
+<td><p>5-6-2</p></td>
+</tr>
+<tr class="row-even"><td><p>Land/Water</p></td>
+<td><p>5-6-4</p></td>
+</tr>
+<tr class="row-odd"><td><p>Natural with Atmospheric Removal</p></td>
+<td><p>7-5-3</p></td>
+</tr>
+<tr class="row-even"><td><p>Shortwave Infrared</p></td>
+<td><p>7-5-4</p></td>
+</tr>
+<tr class="row-odd"><td><p>Vegetation Analysis</p></td>
+<td><p>6-5-4</p></td>
+</tr>
+<tr class="row-even"><td><p>Geology</p></td>
+<td><p>7-6-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bathymetric</p></td>
+<td><p>4-3-1</p></td>
+</tr>
+<tr class="row-even"><td><p>Forest Fires</p></td>
+<td><p>7-5-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bare Earth</p></td>
+<td><p>6-3-2</p></td>
+</tr>
+<tr class="row-even"><td><p>Vegetation/Water</p></td>
+<td><p>5-7-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Archaeology (Parcak/Egypt)</p></td>
+<td><p>5-4-3</p></td>
+</tr>
+<tr class="row-even"><td><p>Archaeology (Saturno/Guatemala)</p></td>
+<td><p>5-3-2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>See also: <a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/">ESRI</a>, <a class="reference external" href="https://www.nv5geospatialsoftware.com/Learn/Blogs/Blog-Details/the-many-band-combinations-of-landsat-8">NV5</a>, <a class="reference external" href="https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The%20two%20main%20sensors%20for,30%20and%2060%20meter%20resolution">GIS Geography</a>, <a class="reference external" href="https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations">Open Weather</a></p>
+</section>
+<section id="band-ratios">
+<h2>Band Ratios<a class="headerlink" href="#band-ratios" title="Link to this heading">#</a></h2>
+<p>Computing band ratios can also highlight features.</p>
 <ol class="arabic simple" start="12">
 <li><p>Band ratios can eliminate issues discerning features in high shadow areas.
 In the following image deciduous and coniferous forest have different spectral
@@ -547,6 +611,15 @@ highlight water.</p></li>
 each raster is listed, which will determine the order that the bands are displayed
 in the Symbology window.</p></li>
 </ol>
+</section>
+<section id="vegetation-indices-ndvi">
+<h2>Vegetation indices (NDVI)<a class="headerlink" href="#vegetation-indices-ndvi" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>The Normalized Difference Vegetation Index (NDVI) transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).</p></li>
+<li><p>Select the .txt file of combined bands in the Contents, go to Imagery, click the Indices dropdown, and select NDVI.</p></li>
+<li><p>Alternatively, in ArcGIS Pro or QGIS, go to Raster Calculator and use the formula</p></li>
+</ol>
+<p>NDVI = (NIR Band 5 – R Band 4) / (NIR Band 5 + R Band 4)</p>
 </section>
 <section id="image-sharpening">
 <h2>Image Sharpening<a class="headerlink" href="#image-sharpening" title="Link to this heading">#</a></h2>
@@ -598,14 +671,10 @@ different, but the second and third were almost identical.</p></li>
 <li><p>Run r.texture, select input, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder.</p></li>
 </ol>
 </section>
-<section id="vegetation-indices-ndvi">
-<h2>Vegetation indices (NDVI)<a class="headerlink" href="#vegetation-indices-ndvi" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>The Normalized Difference Vegetation Index (NDVI) transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).</p></li>
-<li><p>Select the .txt file of combined bands in the Contents, go to Imagery, click the Indices dropdown, and select NDVI.</p></li>
-<li><p>Alternatively, in ArcGIS Pro or QGIS, go to Raster Calculator and use the formula</p></li>
-</ol>
-<p>NDVI = (NIR Band 5 – R Band 4) / (NIR Band 5 + R Band 4)</p>
+<section id="creating-a-final-composite">
+<h2>Creating a Final Composite<a class="headerlink" href="#creating-a-final-composite" title="Link to this heading">#</a></h2>
+<p>Multiple bands (including any of the original bands and derivatives) can be combined into a new multiband image. Theoretically, an infinite number of bands could be combined into a composite, but researchers should select the most useful bands for their application. Although the human eye can only view 3 bands at once (with perhaps a 4th alpha channel), classification algorithms can easily work with multidimensional data.</p>
+<p>In ArcGIS Pro, the Composite Bands tool can combine several bands into a single file. In QGIS (GRASS), the r.composite tool can be used to combine only 3 bands, or bands can be combined into a virtual raster.</p>
 <ol class="arabic simple" start="7">
 <li><p>Final composite</p>
 <ol class="arabic simple">
@@ -742,10 +811,12 @@ El-Baz, pp. 137-160. Springer, New York.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-landsat-imagery">Introduction to Landsat Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-imagery">Download Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-compositing">Band Compositing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-ratios">Band Ratios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
   </nav></div>
