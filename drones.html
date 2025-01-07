@@ -375,10 +375,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagery-overlap">Imagery Overlap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camera-settings">Camera Settings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-sampling-distance">Ground Sampling Distance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblique-imagery">Oblique Imagery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagery-overlap">Imagery Overlap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-qgis">Drone Mission Planning in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-pix4dcapture-pro">Drone Mission Planning in Pix4Dcapture Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
@@ -398,8 +400,15 @@
 digital surface models and orthorectified aerial imagery. Although several examples of
 automated drone mission planning software and apps exist (e.g. <a class="reference external" href="https://www.pix4d.com/product/pix4dcapture/">Pix4Dcapture</a>, <a class="reference external" href="https://www.dronedeploy.com/">Drone Deploy</a>, <a class="reference external" href="https://www.mapsmadeeasy.com/map_pilot/">Map Pilot Pro</a>), remote pilots should understand the methods and math
 behind drone mission planning for photogrammetry.</p>
-<section id="imagery-overlap">
-<h2>Imagery Overlap<a class="headerlink" href="#imagery-overlap" title="Link to this heading">#</a></h2>
+<section id="camera-settings">
+<h2>Camera Settings<a class="headerlink" href="#camera-settings" title="Link to this heading">#</a></h2>
+<p>To acquire quality imagery, keep note of your camera settings. Taking a single photo from a static drone is relatively simple, but when acquiring imagery over a large survey area, keep in mind that the drone is moving while it takes the photos. A conservative approach would be to program the drone to fly a specified path and to come to a full stop at set waypoints before taking photos. This approach reduces battery life and is not always necessary. Quality imagery can be taken from a moving drone, but an effort must be made to reduce blur.</p>
+<p>Generally, drones equipped with mechanical rather than electronic/rolling shutters are more suitable for reducing blur. A mechanical shutter exposes all parts of the sensor to light at the same time, whereas a rolling shutter exposes the sensor to light each line of pixels from top to bottom at a time. Rolling shutters may also introduce added distortion. Note that quality imagery for mapping purposes can be acquired with rolling shutters, but added effort must ensure that blur is reduced elsewhere.</p>
+<p>Another way to control blur is with shutter speed. Measured as a fraction, smaller values (measured in seconds) represent faster shutter speeds. A faster shutter speed is suitable for moving targets to reduce blur, faster than 1/1000, for example. However, increasing the shutter speed has adverse effects on other camera settings. The exposure triangle is a useful model to understand how camera settings affect the quality of the photo.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/triangle.png"><img alt="triangle" class="bg-primary mb-1 align-center" src="_images/triangle.png" style="width: 80%;" /></a>
+<p>Image credit: <a class="reference external" href="https://papadopavlos.com/blogs/photography-explained/what-is-the-exposure-triangle">Papadopavlos</a></p>
+<p>A faster shutter speed allows less light to reach the sensor, leading to a darker, underexposed image. We can compensate by adjusting other settings, including aperture and ISO. Aperture refers to the size of the opening in the lens, measured as an f-stop, also a fraction. The smaller the denominator of the f-stop the wider the opening and the larger the denominator of the f-stop the smaller the opening. A wider aperture will let in more light compared to a smaller aperture. Additionally, aperture affects the depth of field, determining what parts of a photo will be in focus, with smaller apertures having greater depths of field and larger apertures having shallower depths of field. For drone mapping, we want the whole landscape to be in focus, so we want a greater depth of field. In general an f-stop of f/8 or lower is preferred. Finally, ISO is a measure of the sensitivity to light (previously determined by the type of film used and now integrated into digital cameras.) A lower ISO is less sensitive to light, while a higher ISO is more sensitive. A higher ISO will therefore allow more light to hit the sensor. However, lower ISO numbers create sharper images, while higher ISO numbers introduce noise. Ideally, for drone imagery, you will not want an ISO higher than 200 or 400.</p>
+<p>On a clear sunny day, the automatic settings on your camera will likely be sufficient. However, keep an eye on these settings and adjust manually if necessary, especially if flying in overcast or dark conditions.</p>
 </section>
 <section id="ground-sampling-distance">
 <h2>Ground Sampling Distance<a class="headerlink" href="#ground-sampling-distance" title="Link to this heading">#</a></h2>
@@ -438,10 +447,36 @@ by the image width of the photo in pixels.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/obliquegsd.png"><img alt="Oblique" class="bg-primary mb-1 align-center" src="_images/obliquegsd.png" style="width: 80%;" /></a>
 <p>In this image, c represents the focal length (f), pel’ the sensor width (Sw), h the flight altitude (H), t the oblique angle of the camera (measured not from the front of the drone but rather from the vertical, i.e. subtracting the camera angle from 90), PP the central pixel of the image, N the nadir point beneath the drone, PP’ the center of the camera sensor, y’ the distance between the center of the camera sensor and the pixel of interest for calculating GSD, and β the additional angle beyond the camera angle to reach the pixel of interest. Three different ground sampling distances are shown, the resolution relative to the orthogonal, a vertical facade, and the ground itself.</p>
 </section>
-<section id="drone-mission-planning-in-qgis">
-<h2>Drone Mission Planning in QGIS<a class="headerlink" href="#drone-mission-planning-in-qgis" title="Link to this heading">#</a></h2>
+<section id="imagery-overlap">
+<h2>Imagery Overlap<a class="headerlink" href="#imagery-overlap" title="Link to this heading">#</a></h2>
+<p>For drone photogrammetry, you must ensure that your photos have enough overlap to identify tie points. Front overlap refers to the amount of vertical overlap in your photos (height of the photo and direction the drone is flying), while side overlap refers to the amount of horizontal overlap in your photos (width of the photo and distance between flight transects). Generally, a key point or object must be visible in at least 3 photos for adequate modeling. A 50% overlap in one direction, therefore is not sufficient. Generally, 60-80% overlap should be sufficient – and side overlap can be slightly lower than front overlap if necessary. Nevertheless, a good guideline is 70% front and side overlap, which may need to be adjusted depending on flight conditions.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/footprint.JPG"><img alt="Drone" class="bg-primary mb-1 align-center" src="_images/footprint.JPG" style="width: 80%;" /></a>
 <p>Image credit: <a class="reference external" href="https://www.mdpi.com/1424-8220/22/6/2297">Luna et al. 2022</a></p>
+<p>Finally, flight overlap and drone altitude will affect the speed that the drone can fly while taking photos. The shutter speed is also a factor, but the effects are generally negligible at speeds faster than 1/1000. A more significant factor is the photo interval, or the number of seconds between photos. A good rule of thumb is to allow 2 seconds between photos. To calculate drone speed, we need to know the dimensions of our photos, which we can calculate using ground sampling distance. This time, we use the height rather than the width of the photos because of the directionality of the flight.</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Distance Covered (Dh)} = \text{Image Height (IMh) * Ground Sampling Distance (GSD)}
+\]</div>
+<p>For the desired overlap, the drone should not traverse the full Distance Covered (Dh) value but rather a fraction of that distance. For 70% overlap, we want the drone to traverse only 30% of the distance. Therefore,</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Drone Speed (s)} = {{\text{Distance Covered (Dh) * (1 - Overlap)}} \over {\text{100 * Photo Interval}}}
+\]</div>
+<p>A useful calculator is available <a class="reference external" href="https://www.pix-pro.com/blog/photogrammetry-calculator">here</a>.</p>
+<p>The final variable is the distance between transects. Here, we use the horizontal distance covered.</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Transect Spacing} = {{\text{Distance Covered (Dw) * (1 - Overlap)}} \over {\text{100}}}
+\]</div>
+</section>
+<section id="drone-mission-planning-in-qgis">
+<h2>Drone Mission Planning in QGIS<a class="headerlink" href="#drone-mission-planning-in-qgis" title="Link to this heading">#</a></h2>
+<p>Several plugins are available in QGIS for drone mission planning. The Flight Planner plugin requires drone camera specifications, an area of interest, and an optional terrain layer as input, and the plugin outputs a flight path with waypoints. These waypoints can then be uploaded to the drone, using for example the <a class="reference external" href="https://flylitchi.com/">Litchi</a> app.</p>
+<p>Another option is the <a class="reference external" href="https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission">UAV Mapping Path Generator (for Litchi)</a>, which requires slightly different inputs to generate similar outputs.</p>
+</section>
+<section id="drone-mission-planning-in-pix4dcapture-pro">
+<h2>Drone Mission Planning in Pix4Dcapture Pro<a class="headerlink" href="#drone-mission-planning-in-pix4dcapture-pro" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://www.pix4d.com/product/pix4dcapture/">Pix4Dcapture Pro</a> app is recommended for most drone mission planning.</p>
 </section>
 <section id="required-readings">
 <h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>
@@ -531,10 +566,12 @@ Applications. Sensors 22:2297. <a class="reference external" href="https://doi.o
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagery-overlap">Imagery Overlap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camera-settings">Camera Settings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-sampling-distance">Ground Sampling Distance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblique-imagery">Oblique Imagery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagery-overlap">Imagery Overlap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-qgis">Drone Mission Planning in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-pix4dcapture-pro">Drone Mission Planning in Pix4Dcapture Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>

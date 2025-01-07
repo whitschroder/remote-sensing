@@ -5,7 +5,25 @@ digital surface models and orthorectified aerial imagery. Although several examp
 automated drone mission planning software and apps exist (e.g. [Pix4Dcapture](https://www.pix4d.com/product/pix4dcapture/), [Drone Deploy](https://www.dronedeploy.com/), [Map Pilot Pro](https://www.mapsmadeeasy.com/map_pilot/)), remote pilots should understand the methods and math
 behind drone mission planning for photogrammetry.
 
-## Imagery Overlap
+## Camera Settings
+
+To acquire quality imagery, keep note of your camera settings. Taking a single photo from a static drone is relatively simple, but when acquiring imagery over a large survey area, keep in mind that the drone is moving while it takes the photos. A conservative approach would be to program the drone to fly a specified path and to come to a full stop at set waypoints before taking photos. This approach reduces battery life and is not always necessary. Quality imagery can be taken from a moving drone, but an effort must be made to reduce blur.
+
+Generally, drones equipped with mechanical rather than electronic/rolling shutters are more suitable for reducing blur. A mechanical shutter exposes all parts of the sensor to light at the same time, whereas a rolling shutter exposes the sensor to light each line of pixels from top to bottom at a time. Rolling shutters may also introduce added distortion. Note that quality imagery for mapping purposes can be acquired with rolling shutters, but added effort must ensure that blur is reduced elsewhere.
+
+Another way to control blur is with shutter speed. Measured as a fraction, smaller values (measured in seconds) represent faster shutter speeds. A faster shutter speed is suitable for moving targets to reduce blur, faster than 1/1000, for example. However, increasing the shutter speed has adverse effects on other camera settings. The exposure triangle is a useful model to understand how camera settings affect the quality of the photo.
+
+```{image} /images/triangle.png
+:alt: triangle
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+Image credit: [Papadopavlos](https://papadopavlos.com/blogs/photography-explained/what-is-the-exposure-triangle)
+
+A faster shutter speed allows less light to reach the sensor, leading to a darker, underexposed image. We can compensate by adjusting other settings, including aperture and ISO. Aperture refers to the size of the opening in the lens, measured as an f-stop, also a fraction. The smaller the denominator of the f-stop the wider the opening and the larger the denominator of the f-stop the smaller the opening. A wider aperture will let in more light compared to a smaller aperture. Additionally, aperture affects the depth of field, determining what parts of a photo will be in focus, with smaller apertures having greater depths of field and larger apertures having shallower depths of field. For drone mapping, we want the whole landscape to be in focus, so we want a greater depth of field. In general an f-stop of f/8 or lower is preferred. Finally, ISO is a measure of the sensitivity to light (previously determined by the type of film used and now integrated into digital cameras.) A lower ISO is less sensitive to light, while a higher ISO is more sensitive. A higher ISO will therefore allow more light to hit the sensor. However, lower ISO numbers create sharper images, while higher ISO numbers introduce noise. Ideally, for drone imagery, you will not want an ISO higher than 200 or 400.
+
+On a clear sunny day, the automatic settings on your camera will likely be sufficient. However, keep an eye on these settings and adjust manually if necessary, especially if flying in overcast or dark conditions.
 
 ## Ground Sampling Distance
 
@@ -72,7 +90,9 @@ To determine ground resolution of oblique imagery, additional calculations are r
 
 In this image, c represents the focal length (f), pel' the sensor width (Sw), h the flight altitude (H), t the oblique angle of the camera (measured not from the front of the drone but rather from the vertical, i.e. subtracting the camera angle from 90), PP the central pixel of the image, N the nadir point beneath the drone, PP' the center of the camera sensor, y' the distance between the center of the camera sensor and the pixel of interest for calculating GSD, and β the additional angle beyond the camera angle to reach the pixel of interest. Three different ground sampling distances are shown, the resolution relative to the orthogonal, a vertical facade, and the ground itself. 
 
-## Drone Mission Planning in QGIS
+## Imagery Overlap
+
+For drone photogrammetry, you must ensure that your photos have enough overlap to identify tie points. Front overlap refers to the amount of vertical overlap in your photos (height of the photo and direction the drone is flying), while side overlap refers to the amount of horizontal overlap in your photos (width of the photo and distance between flight transects). Generally, a key point or object must be visible in at least 3 photos for adequate modeling. A 50% overlap in one direction, therefore is not sufficient. Generally, 60-80% overlap should be sufficient -- and side overlap can be slightly lower than front overlap if necessary. Nevertheless, a good guideline is 70% front and side overlap, which may need to be adjusted depending on flight conditions.
 
 ```{image} /images/footprint.JPG
 :alt: Drone
@@ -82,7 +102,35 @@ In this image, c represents the focal length (f), pel' the sensor width (Sw), h 
 ```
 Image credit: [Luna et al. 2022](https://www.mdpi.com/1424-8220/22/6/2297)
 
+Finally, flight overlap and drone altitude will affect the speed that the drone can fly while taking photos. The shutter speed is also a factor, but the effects are generally negligible at speeds faster than 1/1000. A more significant factor is the photo interval, or the number of seconds between photos. A good rule of thumb is to allow 2 seconds between photos. To calculate drone speed, we need to know the dimensions of our photos, which we can calculate using ground sampling distance. This time, we use the height rather than the width of the photos because of the directionality of the flight.
 
+$$
+\text{Distance Covered (Dh)} = \text{Image Height (IMh) * Ground Sampling Distance (GSD)}
+$$
+
+For the desired overlap, the drone should not traverse the full Distance Covered (Dh) value but rather a fraction of that distance. For 70% overlap, we want the drone to traverse only 30% of the distance. Therefore,
+
+$$
+\text{Drone Speed (s)} = {{\text{Distance Covered (Dh) * (1 - Overlap)}} \over {\text{100 * Photo Interval}}}
+$$
+
+A useful calculator is available [here](https://www.pix-pro.com/blog/photogrammetry-calculator).
+
+The final variable is the distance between transects. Here, we use the horizontal distance covered.
+
+$$
+\text{Transect Spacing} = {{\text{Distance Covered (Dw) * (1 - Overlap)}} \over {\text{100}}}
+$$ 
+
+## Drone Mission Planning in QGIS
+
+Several plugins are available in QGIS for drone mission planning. The Flight Planner plugin requires drone camera specifications, an area of interest, and an optional terrain layer as input, and the plugin outputs a flight path with waypoints. These waypoints can then be uploaded to the drone, using for example the [Litchi](https://flylitchi.com/) app.
+
+Another option is the [UAV Mapping Path Generator (for Litchi)](https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission), which requires slightly different inputs to generate similar outputs.
+
+## Drone Mission Planning in Pix4Dcapture Pro
+
+The [Pix4Dcapture Pro](https://www.pix4d.com/product/pix4dcapture/) app is recommended for most drone mission planning. 
 
 ## Required Readings
 
