@@ -1,4 +1,4 @@
-# Manipulating Remotely-Sensed Big Data in Google Earth Engine
+# 8. Manipulating Remotely-Sensed Big Data in Google Earth Engine
 
 Google Earth Engine provides an interface to process large amounts of spatial imagery with a few lines of code. Rather than searching for and downloading many raster files, Google Earth Engine processes imagery in the cloud. In this lab, students will learn how to conduct a supervised land classification in Google Earth Engine using JavaScript.
 
@@ -190,6 +190,14 @@ Export.image.toDrive({
 ```
 
 Once you have run the code, go to the Tasks section and run the unsubmitted tasks. Here you can set the resolution and other parameters. By default, the imagery will be exported to your Google Drive main folder where you can then download locally.
+
+## Additional Links
+
+To develop more skills in Google Earth Engine, additional code is available at the following links:
+
+[Remote Sensing with Google Earth Engine](https://calekochenour.github.io/remote-sensing-textbook/introduction.html)
+
+[Remotely Sensing Cities and Environments](https://andrewmaclachlan.github.io/CASA0023/5_GEE_I.html)
 
 ## Readings
 

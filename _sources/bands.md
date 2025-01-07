@@ -1,4 +1,4 @@
-# Multispectral Imagery
+# 6. Multispectral Imagery
 
 This lab introduces how to visualize and process multispectral and multiband imagery using Landsat satellite data.
 
@@ -243,7 +243,22 @@ Blue -- water, urban, and bare earth
 4. Various shades of blue -- urban and land use
 Red -- shorelines and immediate land use changes
 
-## Readings
+## Required Readings
+
+Davis, D. S., Domic, A. I., Manahira, G., & Douglass, K. 2024. Geophysics Elucidate Long-term Socio-ecological Dynamics of Foraging, Pastoralism, and Mixed Subsistence Strategies on SW Madagascar. Journal of Anthropological Archaeology 75(101612). <https://doi.org/10.1016/j.jaa.2024.101612>
+
+Estanqueiro, Marta, Aleksandar Šalamon, Helen Lewis, Barry Molloy, and Dragan Jovanović. 2023. 
+Sentinel-2 Imagery Analyses for Archaeological Site Detection: An Application to Late Bronze Age Settlements in Serbian Banat, Southern Carpathian Basin. Journal of Archaeological Science: Reports 51:104188.
+<https://doi.org/10.1016/j.jasrep.2023.104188>
+
+Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
+Nelson, and Jessica Munson. 2008. Evaluating the Use of IKONOS Satellite Imagery in 
+Lowland Maya Settlement Archaeology. Journal of Archaeological Science 35(10):2770-2777.
+<https://doi.org/10.1016/j.jas.2008.05.003>
+
+Parcak, Sarah. 2009. Satellite Remote Sensing for Archaeology. Routledge, New York.
+
+## Additional Readings
 
 Amidon, Will. Middlebury Remote Sensing. 
 <https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured>
@@ -252,14 +267,12 @@ Chowdhury, Rinku Roy, and Laura Schneider. 2004. Land Cover and Land Use:
 Classification and Change Analysis. In Integrated Land-Change Science and Tropical 
 Deforestation in the Southern Yucatan: Final Frontiers, ed. B.L. Turner II, 
 Jacqueline Geoghegan, and David R. Foster, 105–143. Oxford: Oxford University Press.
-
-Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
-Nelson, and Jessica Munson. 2008. Journal of Archaeological Science 35(10):2770-2777.
+<https://doi.org/10.1093/oso/9780199245307.003.0015>
 
 Griffin, Robert Edward. 2012. The Carrying Capacity of Ancient Maya Swidden 
 Maize Cultivation: A Case Study in the Region Around San Bartolo, Petén, Guatemala. 
-Unpublished PhD dissertation, Pennsylvania State University.
+Unpublished PhD dissertation, Pennsylvania State University. <https://etda.libraries.psu.edu/catalog/15390>
 
 Saturno, William, Thomas L. Sever, Daniel E. Irwin, Burgess F. Howell, and Thomas G.
-Garrison. 2007. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
-El-Baz, pp. 137-160. Springer, New York.
+Garrison. 2007. Putting Us on the Map: Remote Sensing Investigation of the Ancient Maya Landscape. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
+El-Baz, pp. 137-160. Springer, New York. <https://link.springer.com/chapter/10.1007/0-387-44455-6_6>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Ground Penetrating Radar &#8212; Archaeological Remote Sensing</title>
+    <title>12. Ground Penetrating Radar &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Ethics in Remote Sensing" href="ethics.html" />
-    <link rel="prev" title="Machine Learning Approaches in Remote Sensing" href="ml.html" />
+    <link rel="prev" title="11. Machine Learning Approaches in Remote Sensing" href="ml.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -170,18 +170,21 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
-<li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bands.html">Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agisoft.html">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -360,7 +363,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ground Penetrating Radar</h1>
+    <h1>12. Ground Penetrating Radar</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,9 +386,36 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ground-penetrating-radar">
-<h1>Ground Penetrating Radar<a class="headerlink" href="#ground-penetrating-radar" title="Link to this heading">#</a></h1>
+<h1>12. Ground Penetrating Radar<a class="headerlink" href="#ground-penetrating-radar" title="Link to this heading">#</a></h1>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
+<p>Barba, L. and G. Pereira. 2003. Geophysical Study of Loma Guadalupe Archaeological Site in Michoacan, Mexico. Archaeologia Polona 41:118–122. <a class="reference external" href="https://doi.org/10.13140/RG.2.1.3177.8803">https://doi.org/10.13140/RG.2.1.3177.8803</a></p>
+<p>Barba, L., J. Blancas, A. Ortiz, and D. Carballo. 2009. Geophysical Prospection and Aerial Photography in
+La Laguna, Tlaxcala, Mexico. ArchéoSciences 33(suppl.):17–20. <a class="reference external" href="https://doi.org/10.4000/archeosciences.1194">https://doi.org/10.4000/archeosciences.1194</a></p>
+<p>Barba, L., J. Blancas, A. Ortiz, and J. Ligorred. 2009. GPR Detection of Karst and Archaeological Targets below the Historical Centre of Merida, Yucatán, Mexico. Studia Universitatis Babes-Bolyai, Geologia, 54(2):27–31.
+<a class="reference external" href="https://doi.org/10.5038/1937-8602.54.2.6">https://doi.org/10.5038/1937-8602.54.2.6</a></p>
+<p>Campana, S., L. Marasco, A. Pecci, L. Barba, S. Piro, and D. Zamuner. 2009. Integration of Ground Remote Sensing Surveys and Archaeological Excavation to Characterize the Medieval Mound (Scarlino, Tuscany-Italy).
+ArchéoSciences 33(suppl.):133–135. <a class="reference external" href="https://doi.org/10.4000/archeosciences.1442">https://doi.org/10.4000/archeosciences.1442</a></p>
+<p>Conyers, L. B. 2006 Ground-Penetrating Radar. In Remote Sensing in Archaeology: An
+Explicitly North American Perspective, edited by J. K. Johnson. The University of Alabama Press, Alabama.</p>
+<p>Daniels, Jr., J. T. 2014. Nondestructive Geophysical and Archaeometric Investigations at the Southern Belize Sites of Lubaantun and Nim Li Punit. University of California, San Diego.</p>
+<p>Dixon, C. C. 2006. The use of Ground-Penetrating Radar to Detect Cultural Features: Ceren, El Salvador.</p>
+<p>Gaffney, V. et al. 2018. Durrington Walls and the Stonehenge Hidden Landscape Project 2010–2016. Archaeological
+Prospection 25(3):255–269. <a class="reference external" href="https://doi.org/10.1002/arp.1707">https://doi.org/10.1002/arp.1707</a></p>
+<p>Munro-Stasiuk, M. J. and T.K. Manahan. 2010. Investigating Ancient Maya Agricultural Adaptation through Ground-penetrating Radar (GPR) Analysis of Karst Terrain, Northern Yucatán, Mexico. Acta Carsologica 39(1):123–135.
+<a class="reference external" href="https://doi.org/10.3986/ac.v39i1.118">https://doi.org/10.3986/ac.v39i1.118</a></p>
+<p>Pérez-Pérez, J., E.M.C. de Tapia, L. Barba-Pingarrón, J.E. Gama-Castro, and A. Peralta-Higuera.
+2012. Remote Sensing Detection of Potential Sites in a Prehispanic Domestic Agricultural Terrace System
+in Cerro San Lucas, Teotihuacan, Mexico. Boletin de La Sociedad Geologica Mexicana 64(1):109–118. <a class="reference external" href="https://doi.org/10.18268/BSGM2012v64n1a9">https://doi.org/10.18268/BSGM2012v64n1a9</a></p>
+<p>Saey, T., M. Van Meirvenne, P. De Smedt, B. Stichelbaut, S. Delefortrie, E. Baldwin, and V. Gaffney.
+2015. Combining EMI and GPR for Non-invasive Soil Sensing at the Stonehenge World Heritage Site:
+The Reconstruction of a WW1 Practice Trench. European Journal of Soil Science 66(1):166–178.
+<a class="reference external" href="https://doi.org/10.1111/ejss.12177">https://doi.org/10.1111/ejss.12177</a></p>
+<p>Safi, K. N., O.C. Mazariegos, C.P. Lipo, and H. Neff. 2012. Using Ground-Penetrating Radar to Examine Spatial Organization at the Late Classic Maya Site of El Baúl, Cotzumalhuapa, Guatemala. Geoarchaeology 27(5):410–425.
+<a class="reference external" href="https://doi.org/10.1002/gea.21414">https://doi.org/10.1002/gea.21414</a></p>
+<p>Skaggs, S., T.G. Powis, C.R. Rucker, and G. Micheletti. 2016. An Iterative Approach to Ground Penetrating Radar at the Maya Site of Pacbitun, Belize. Remote Sensing 8(10):1–26. <a class="reference external" href="https://doi.org/10.3390/rs8100805">https://doi.org/10.3390/rs8100805</a></p>
+<p>Valdés, J. A. and J. Kaplan. 2000. Ground-Penetrating Radar at the Maya Site of Kaminaljuyu, Guatemala. International Journal of Phytoremediation 21(1):329–342. <a class="reference external" href="https://doi.org/10.1179/jfa.2000.27.3.329">https://doi.org/10.1179/jfa.2000.27.3.329</a></p>
+<p>Verdonck, L., A. Launaro, F. Vermeulen, and M. Millett. 2020. Ground-Penetrating Radar Survey at Falerii Novi: A New Approach to the Study of Roman Cities. Antiquity 94(375):705–723. <a class="reference external" href="https://doi.org/10.15184/aqy.2020.82">https://doi.org/10.15184/aqy.2020.82</a></p>
 </section>
 </section>
 
@@ -425,7 +455,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Machine Learning Approaches in Remote Sensing</p>
+        <p class="prev-next-title">11. Machine Learning Approaches in Remote Sensing</p>
       </div>
     </a>
     <a class="right-next"

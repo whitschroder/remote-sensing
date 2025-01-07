@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 2 &#8212; Archaeological Remote Sensing</title>
+    <title>7. Supervised and Unsupervised Land Cover Classification &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -60,9 +60,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week2';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'classification';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Manipulating Remotely-Sensed Big Data in Google Earth Engine" href="gee.html" />
+    <link rel="prev" title="6. Multispectral Imagery" href="bands.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +115,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -168,7 +168,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
@@ -176,7 +176,7 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Supervised and Unsupervised Land Cover Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
@@ -257,7 +257,7 @@
       
       
       
-      <li><a href="https://github.com/whitschroder/remote-sensing/issues/new?title=Issue%20on%20page%20%2Fweek2.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/whitschroder/remote-sensing/issues/new?title=Issue%20on%20page%20%2Fclassification.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -287,7 +287,7 @@
       
       
       
-      <li><a href="_sources/week2.md" target="_blank"
+      <li><a href="_sources/classification.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -363,7 +363,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 2</h1>
+    <h1>7. Supervised and Unsupervised Land Cover Classification</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -373,8 +373,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-qgis">Supervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification-in-qgis">Unsupervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 </ul>
             </nav>
         </div>
@@ -386,30 +387,31 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-2">
-<h1>Week 2<a class="headerlink" href="#week-2" title="Link to this heading">#</a></h1>
-<p>Coming soon</p>
-<section id="coming-soon">
-<h2>Coming soon<a class="headerlink" href="#coming-soon" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="supervised-and-unsupervised-land-cover-classification">
+<h1>7. Supervised and Unsupervised Land Cover Classification<a class="headerlink" href="#supervised-and-unsupervised-land-cover-classification" title="Link to this heading">#</a></h1>
+<p>In this lab, we will conduct supervised and unsupervised land cover classifications of Landsat satellite imagery.</p>
+<section id="supervised-classification-in-qgis">
+<h2>Supervised Classification in QGIS<a class="headerlink" href="#supervised-classification-in-qgis" title="Link to this heading">#</a></h2>
+<p>In QGIS, under Plugins, install the Semi-Automatic Classification Plugin and restart QGIS. If you receive an error message, you may need to upgrade some dependencies. If so, open the OSGEO4W Shell and run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">remotior</span><span class="o">-</span><span class="n">sensus</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">torch</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Coming soon</p>
-</div>
+<p>After restarting QGIS, an SCP toolbar should now be available.</p>
 </section>
-<section id="id1">
-<h2>Coming soon<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="unsupervised-classification-in-qgis">
+<h2>Unsupervised Classification in QGIS<a class="headerlink" href="#unsupervised-classification-in-qgis" title="Link to this heading">#</a></h2>
+</section>
+<section id="required-readings">
+<h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>
+<p>Brondízio, Eduardo S. and Rinku Roy Chowdhury. 2010. Spatiotemporal Methodologies in Environmental Anthropology: Geographic Information Systems, Remote Sensing, Landscape Changes, and Local Knowledge.
+In Environmental Social Sciences: Methods and Research Design, edited by Ismael Vaccaro, Eric Alden Smith,
+and Shankar Aswani, pp. 266-298. Cambridge University Press, Cambridge.
+<a class="reference external" href="https://doi.org/10.1017/CBO9780511760242.014">https://doi.org/10.1017/CBO9780511760242.014</a></p>
+<p>Jiang, Hong. 2003. Stories Remote Sensing Can Tell: Integrating Remote Sensing Analysis with Ethnographic
+Research in the Study of Cultural Landscapes. Human Ecology 31(2):215-232.
+<a class="reference external" href="https://www.academia.edu/76251287/Stories_Remote_Sensing_Images_Can_Tell_Integrating_Remote_Sensing_Analysis_with_Ethnographic_Research_in_the_Study_of_Cultural_Landscapes?uc-g-sw=76868782">PDF</a></p>
+<p>Morrison, Kathleen D. et al. 2021. Mapping Past Human Land Use Using Archaeological Data: A New Classification for Global Land Use Synthesis and Data Harmonization. PLoS One 16(4):e0246662.
+<a class="reference external" href="https://doi.org/10.1371/journal.pone.0246662">https://doi.org/10.1371/journal.pone.0246662</a></p>
 </section>
 </section>
 
@@ -443,6 +445,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="bands.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">6. Multispectral Imagery</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gee.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -460,8 +480,9 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-qgis">Supervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification-in-qgis">Unsupervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 </ul>
   </nav></div>
 

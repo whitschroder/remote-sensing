@@ -1,4 +1,4 @@
-# Visualizing and Processing Lidar Point Clouds in R with the lidR Package
+# 9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package
 
 In this lab, students will learn how to load, visualize, and process lidar point clouds
 in R. Before proceeding, download the latest versions of R and R Studio at the following

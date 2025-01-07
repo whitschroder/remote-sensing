@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Digital Surface Models and Orthoimagery in Agisoft Metashape &#8212; Archaeological Remote Sensing</title>
+    <title>3. Digital Surface Models and Orthoimagery in Agisoft Metashape &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -63,8 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'agisoft';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Drone Mission Planning for Photogrammetry" href="drones.html" />
-    <link rel="prev" title="Orthorectifying CORONA Satellite Imagery" href="corona.html" />
+    <link rel="next" title="4. Drone Mission Planning for Photogrammetry" href="drones.html" />
+    <link rel="prev" title="2. Orthorectifying CORONA Satellite Imagery" href="corona.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -170,18 +170,21 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
-<li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bands.html">Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -360,7 +363,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Digital Surface Models and Orthoimagery in Agisoft Metashape</h1>
+    <h1>3. Digital Surface Models and Orthoimagery in Agisoft Metashape</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,7 +394,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="digital-surface-models-and-orthoimagery-in-agisoft-metashape">
-<h1>Digital Surface Models and Orthoimagery in Agisoft Metashape<a class="headerlink" href="#digital-surface-models-and-orthoimagery-in-agisoft-metashape" title="Link to this heading">#</a></h1>
+<h1>3. Digital Surface Models and Orthoimagery in Agisoft Metashape<a class="headerlink" href="#digital-surface-models-and-orthoimagery-in-agisoft-metashape" title="Link to this heading">#</a></h1>
 <p>In this lab, students will learn how to develop a workflow in Agisoft Metashape (previously
 known as Agisoft Photoscan) to load, process, and export spatial data from aerial
 photographs using photogrammetry or Structure from Motion (SfM). Nearly all steps of the workflow are under the Workflow drop-down menu.</p>
@@ -441,9 +444,10 @@ photographs using photogrammetry or Structure from Motion (SfM). Nearly all step
 </section>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
-<p>Casana, Jesse, Adam Wiewel, Autumn Cool, Austin Chad Hill, Kevin D. Fisher, and
-Elise J. Laugier. 2017. Advances in Archaeological Practice 5(4):310-327.
-[<a class="reference external" href="https://doi.org/10.1017/aap.2017.23">https://doi.org/10.1017/aap.2017.23</a>]</p>
+<p>Magnani, Matthew, Matthew Douglass, Whittaker Schroder, Jonathan Reeves, and David R. Braun. 2020. The Digital Revolution to Come: Photogrammetry in Archaeological Practice. American Antiquity 85(4):737-760. <a class="reference external" href="https://digitalcommons.library.umaine.edu/ant_facpub/65/">https://digitalcommons.library.umaine.edu/ant_facpub/65/</a></p>
+<p>McCarthy, John. 2014. Multi-image photogrammetry as a practical tool for cultural heritage survey and community engagement. Journal of Archaeological Science 43:175-185. <a class="reference external" href="https://doi.org/10.1016/j.jas.2014.01.010">https://doi.org/10.1016/j.jas.2014.01.010</a></p>
+<p>Roosevelt, Christopher H. 2015. Excavation is <s>Destruction</s> Digitization: Advances in Archaeological Practice. Journal of Field Archaeology 40:325-346. <a class="reference external" href="https://doi.org/10.1179/2042458215Y.0000000004">https://doi.org/10.1179/2042458215Y.0000000004</a></p>
+<p>Yastikli, Naci. 2007. Documentation of Cultural Heritage Using Digital Photogrammetry and Laser Scanning. Journal of Cultural Heritage 8(4):423-427. <a class="reference external" href="https://doi.org/10.1016/j.culher.2007.06.003">https://doi.org/10.1016/j.culher.2007.06.003</a></p>
 </section>
 </section>
 
@@ -483,7 +487,7 @@ Elise J. Laugier. 2017. Advances in Archaeological Practice 5(4):310-327.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Orthorectifying CORONA Satellite Imagery</p>
+        <p class="prev-next-title">2. Orthorectifying CORONA Satellite Imagery</p>
       </div>
     </a>
     <a class="right-next"
@@ -491,7 +495,7 @@ Elise J. Laugier. 2017. Advances in Archaeological Practice 5(4):310-327.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Drone Mission Planning for Photogrammetry</p>
+        <p class="prev-next-title">4. Drone Mission Planning for Photogrammetry</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

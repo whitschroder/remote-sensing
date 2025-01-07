@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Orthorectifying CORONA Satellite Imagery &#8212; Archaeological Remote Sensing</title>
+    <title>2. Orthorectifying CORONA Satellite Imagery &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -63,8 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'corona';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Digital Surface Models and Orthoimagery in Agisoft Metashape" href="agisoft.html" />
-    <link rel="prev" title="Aerial Photography and Stereoscopic Imaging" href="aerial.html" />
+    <link rel="next" title="3. Digital Surface Models and Orthoimagery in Agisoft Metashape" href="agisoft.html" />
+    <link rel="prev" title="1. Aerial Photography and Stereoscopic Imaging" href="aerial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -170,18 +170,21 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Orthorectifying CORONA Satellite Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
-<li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bands.html">Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agisoft.html">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -360,7 +363,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Orthorectifying CORONA Satellite Imagery</h1>
+    <h1>2. Orthorectifying CORONA Satellite Imagery</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,7 +379,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
             </nav>
         </div>
@@ -389,7 +393,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="orthorectifying-corona-satellite-imagery">
-<h1>Orthorectifying CORONA Satellite Imagery<a class="headerlink" href="#orthorectifying-corona-satellite-imagery" title="Link to this heading">#</a></h1>
+<h1>2. Orthorectifying CORONA Satellite Imagery<a class="headerlink" href="#orthorectifying-corona-satellite-imagery" title="Link to this heading">#</a></h1>
 <p>This lab involves the georeferencing and orthorectification of CORONA satellite imagery.</p>
 <section id="corona-atlas">
 <h2>Corona Atlas<a class="headerlink" href="#corona-atlas" title="Link to this heading">#</a></h2>
@@ -450,13 +454,22 @@
 <h2>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">#</a></h2>
 <p>This procedure is simplified and uses a “rubber sheet” method that stretches imagery two dimensionally, generating a relatively accurate georeferenced image. However, this method does not take into account topography (three dimensional orthorectification). Using an SRTM elevation raster for georeferencing can improve results. Refer to the many publications by Casana and colleagues for more complex approaches.</p>
 </section>
-<section id="readings">
-<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
-<p>Casana, Jesse. 2014. New Approaches to Spatial Archaeometry: Applications from the Near
-East. Near Eastern Archaeology 77(3):171-175. <a class="reference external" href="https://www.jstor.org/stable/10.5615/neareastarch.77.3.0171">JSTOR</a></p>
+<section id="required-readings">
+<h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>
 <p>Casana, Jesse. 2020. Global-Scale Archaeological Prospection Using CORONA Satellite
 Imagery: Automated, Crowd-Sourced, and Expert-led Approaches. Journal of Field
 Archaeology 45. <a class="reference external" href="https://doi.org/10.1080/00934690.2020.1713285">https://doi.org/10.1080/00934690.2020.1713285</a></p>
+<p>Casana, J., D. Goodman, and C. Ferwerda. 2023. A wall or a road? A remote sensing-based
+investigation of fortifications on Rome’s eastern frontier. Antiquity, 1-18.
+<a class="reference external" href="https://doi.org/10.15184/aqy.2023.153">https://doi.org/10.15184/aqy.2023.153</a></p>
+<p>Lindsay, Ian and Arshaluys Mkrtchyan. 2023. Free and Low-Cost Aerial Remote Sensing in
+Archaeology: An Overview of Data Sources and Recent Applications in the South Caucasus.
+Advances in Archaeological Practice 11(2):164-183. <a class="reference external" href="https://doi.org/10.1017/aap.2023.3">https://doi.org/10.1017/aap.2023.3</a></p>
+</section>
+<section id="additional-readings">
+<h2>Additional Readings<a class="headerlink" href="#additional-readings" title="Link to this heading">#</a></h2>
+<p>Casana, Jesse. 2014. New Approaches to Spatial Archaeometry: Applications from the Near
+East. Near Eastern Archaeology 77(3):171-175. <a class="reference external" href="https://www.jstor.org/stable/10.5615/neareastarch.77.3.0171">JSTOR</a></p>
 <p>Casana, Jesse and Jackson Cothren. 2013. The CORONA Atlas Project: Orthorectification of
 CORONA Satellite Imagery and Regional-Scale Archaeological Exploration in the Near East.
 In A Primer on Space Archaeology: In Observance of the 40th Anniversary of the World
@@ -464,12 +477,8 @@ Heritage Convention. SpringerBriefs in Archaeology 5. <a class="reference extern
 <p>Casana, Jesse, Jackson Cothren, and Tuna Kalayci. 2012. Swords into Ploughshares:
 Archaeological Applications of CORONA Satellite Imagery in the Near East.
 Internet Archaeology 32. <a class="reference external" href="https://doi.org/10.11141/ia.32.2">https://doi.org/10.11141/ia.32.2</a></p>
-<p>Casana, J., D. Goodman, and C. Ferwerda. 2023. A wall or a road? A remote sensing-based
-investigation of fortifications on Rome’s eastern frontier. Antiquity, 1-18.
-<a class="reference external" href="https://doi.org/10.15184/aqy.2023.153">https://doi.org/10.15184/aqy.2023.153</a></p>
-<p>Lindsay, Ian and Arshaluys Mkrtchyan. 2023. Free and Low-Cost Aerial Remote Sensing in
-Archaeology: An Overview of Data Sources and Recent Applications in the South Caucasus.
-Advances in Archaeological Practice 11(2):164-183. <a class="reference external" href="https://doi.org/10.1017/aap.2023.3">https://doi.org/10.1017/aap.2023.3</a></p>
+<p>Zhang, Yixin, Ningyuan Wang, Jie He, Tao Zhang, Xin Zhang, and Hongpeng Luo. 2024. A Convenient Archaeological Ruins Identification Method through Elevation Information Extraction from CORONA Stereo Pairs.
+Heritage Science 12:322. <a class="reference external" href="https://www.nature.com/articles/s40494-024-01427-7">https://www.nature.com/articles/s40494-024-01427-7</a></p>
 </section>
 </section>
 
@@ -509,7 +518,7 @@ Advances in Archaeological Practice 11(2):164-183. <a class="reference external"
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Aerial Photography and Stereoscopic Imaging</p>
+        <p class="prev-next-title">1. Aerial Photography and Stereoscopic Imaging</p>
       </div>
     </a>
     <a class="right-next"
@@ -517,7 +526,7 @@ Advances in Archaeological Practice 11(2):164-183. <a class="reference external"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Digital Surface Models and Orthoimagery in Agisoft Metashape</p>
+        <p class="prev-next-title">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -544,7 +553,8 @@ Advances in Archaeological Practice 11(2):164-183. <a class="reference external"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
   </nav></div>
 

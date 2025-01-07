@@ -1,4 +1,4 @@
-# Lidar Processing and Analysis with LAStools
+# Bonus: Lidar Processing and Analysis with LAStools
 
 [LAStools](https://rapidlasso.de/product-overview/) is a convenient and powerful
 set of tools for processing point cloud data in .las or .laz format. LAStools is a

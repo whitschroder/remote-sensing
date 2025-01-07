@@ -1,4 +1,4 @@
-# Drone Mission Planning for Photogrammetry
+# 4. Drone Mission Planning for Photogrammetry
 
 This lab teaches students how to plan drone flights for photogrammetric production of 
 digital surface models and orthorectified aerial imagery. Although several examples of
@@ -84,12 +84,26 @@ Image credit: [Luna et al. 2022](https://www.mdpi.com/1424-8220/22/6/2297)
 
 
 
-## Readings
-
-Luna, M.A., M.S. Ale Isaac, A.R. Ragab, P. Campoy, P. Flores Peña, M. Molina. 2022. 
-Fast Multi-UAV Path Planning for Optimal Area Coverage in Aerial Sensing 
-Applications. Sensors 22:2297. <https://doi.org/10.3390/s22062297>
+## Required Readings
 
 Olson, Kyle and Lynne M. Rouse. 2018. A Beginner’s Guide to Mesoscale Survey with 
 Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371. 
 <https://doi.org/10.1017/aap.2018.26>
+
+Roosevelt, Christopher H. 2014. Mapping Site-level Microtopography with Real-Time Kinematic Global Navigation Satellite Systems (RTK GNSS) and Unmanned Aerial Vehicle Photogrammetry (UAVP). Open Archaeology 1:29-53.
+<https://doi.org/10.2478/opar-2014-0003>
+
+Casana, Jesse, Adam Wiewel, Autumn Cool, Austin Chad Hill, Kevin D. Fisher, and 
+Elise J. Laugier. 2017. Advances in Archaeological Practice 5(4):310-327. 
+<https://doi.org/10.1017/aap.2017.23>
+
+## Additional Readings
+
+Lambers, Karsten, Henri Eisenbeiss, Martin Sauerbier, Denise Kupferschmidt, Thomas Gaisecker,
+Soheil Sotoodeh, and Thomas Hanusch. 2007. Combining photogrammetry and laser scanning for the
+recording and modelling of the Late Intermediate Period site of Pinchango Alto, Palpa, Peru. Journal
+of Archaeological Science 34(10):1702-1712. <https://doi.org/10.1016/j.jas.2006.12.008>
+
+Luna, M.A., M.S. Ale Isaac, A.R. Ragab, P. Campoy, P. Flores Peña, M. Molina. 2022. 
+Fast Multi-UAV Path Planning for Optimal Area Coverage in Aerial Sensing 
+Applications. Sensors 22:2297. <https://doi.org/10.3390/s22062297>

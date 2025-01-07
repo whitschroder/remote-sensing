@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lidar Processing and Analysis with LAStools &#8212; Archaeological Remote Sensing</title>
+    <title>Bonus: Lidar Processing and Analysis with LAStools &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lastools';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Machine Learning Approaches in Remote Sensing" href="ml.html" />
-    <link rel="prev" title="Visualizing and Processing Lidar Point Clouds in R with the lidR Package" href="lidr.html" />
+    <link rel="next" title="10. Annotating Lidar Data" href="annotate.html" />
+    <link rel="prev" title="9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package" href="lidr.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -172,18 +172,21 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
-<li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bands.html">Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lidar Processing and Analysis with LAStools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agisoft.html">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Bonus: Lidar Processing and Analysis with LAStools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -362,7 +365,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lidar Processing and Analysis with LAStools</h1>
+    <h1>Bonus: Lidar Processing and Analysis with LAStools</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -387,8 +390,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lidar-processing-and-analysis-with-lastools">
-<h1>Lidar Processing and Analysis with LAStools<a class="headerlink" href="#lidar-processing-and-analysis-with-lastools" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="bonus-lidar-processing-and-analysis-with-lastools">
+<h1>Bonus: Lidar Processing and Analysis with LAStools<a class="headerlink" href="#bonus-lidar-processing-and-analysis-with-lastools" title="Link to this heading">#</a></h1>
 <p><a class="reference external" href="https://rapidlasso.de/product-overview/">LAStools</a> is a convenient and powerful
 set of tools for processing point cloud data in .las or .laz format. LAStools is a
 subscription-based software, but some of the more basic tools are free and open
@@ -642,15 +645,15 @@ of the Photogrammetry, Remote Sensing and Spatial Information Sciences 52(3):150
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</p>
+        <p class="prev-next-title">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</p>
       </div>
     </a>
     <a class="right-next"
-       href="ml.html"
+       href="annotate.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Machine Learning Approaches in Remote Sensing</p>
+        <p class="prev-next-title">10. Annotating Lidar Data</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

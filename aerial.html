@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Aerial Photography and Stereoscopic Imaging &#8212; Archaeological Remote Sensing</title>
+    <title>1. Aerial Photography and Stereoscopic Imaging &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'aerial';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Orthorectifying CORONA Satellite Imagery" href="corona.html" />
+    <link rel="next" title="2. Orthorectifying CORONA Satellite Imagery" href="corona.html" />
     <link rel="prev" title="Install Required Software" href="install.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -170,18 +170,21 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Aerial Photography and Stereoscopic Imaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
-<li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bands.html">Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agisoft.html">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -360,7 +363,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Aerial Photography and Stereoscopic Imaging</h1>
+    <h1>1. Aerial Photography and Stereoscopic Imaging</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -370,7 +373,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
             </nav>
         </div>
@@ -383,22 +387,23 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="aerial-photography-and-stereoscopic-imaging">
-<h1>Aerial Photography and Stereoscopic Imaging<a class="headerlink" href="#aerial-photography-and-stereoscopic-imaging" title="Link to this heading">#</a></h1>
+<h1>1. Aerial Photography and Stereoscopic Imaging<a class="headerlink" href="#aerial-photography-and-stereoscopic-imaging" title="Link to this heading">#</a></h1>
 <p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/image-analyst/introduction-to-stereo-mapping.htm">Stereo Mapping in ArcGIS Pro</a></p>
 <p><a class="reference external" href="https://stereo.jpn.org/eng/stphmkr">Stereo Photo Maker Download</a></p>
 <p><a class="reference external" href="https://stereoscopy.blog/2019/09/08/how-to-use-stereo-photo-maker-basic-tutorial">Stereo Photo Maker Tutorial</a></p>
 <p><a class="reference external" href="https://agisoft.freshdesk.com/support/solutions/articles/31000153699-stereo-pair-selection-measurements-and-navigation">Metashape</a></p>
-<section id="readings">
-<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
-<p>Dale, Mark R.T. and Marie-Josée Fortin. 2014.
-“Chapter 1: Spatial Concepts and Notions.” In Spatial Analysis:
-A Guide for Ecologists, Second Edition, pp. 1–31. Cambridge University Press, Cambridge.</p>
-<p>Gajski, D., R. Župan, I. Racetin, R. Krstić. 2023. Straightforward Stereoscopic
-Techniques for Archaeometric Interpretation of Archeological Artifacts.
-Heritage 6:5066-5081. <a class="reference external" href="https://doi.org/10.3390/heritage6070268">https://doi.org/10.3390/heritage6070268</a></p>
+<section id="required-readings">
+<h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>
 <p>Verhoeven, Geert J. 2009. Providing an Archaeological Bird’s-eye View – an Overall
 Picture of Ground-based Means to Execute Low-altitude Aerial Photography (LAAP) in
 Archaeology. Archaeological Prospection 16:233-249. <a class="reference external" href="https://www.academia.edu/423604/Providing_An_Archaeological_Birds_eye_View_an_Overall_Picture_of_Ground_based_Means_to_Execute_Low_altitude_Aerial_Photography_LAAP_In_Archaeology">PDF</a></p>
+</section>
+<section id="additional-readings">
+<h2>Additional Readings<a class="headerlink" href="#additional-readings" title="Link to this heading">#</a></h2>
+<p>Campana, Douglas V. 1977. Making Stereo-Photomacrographs for Archaeological Studies. Journal of Field Archaeology 4(4):435-440. <a class="reference external" href="https://doi.org/10.2307/529399">https://doi.org/10.2307/529399</a></p>
+<p>Gajski, D., R. Župan, I. Racetin, R. Krstić. 2023. Straightforward Stereoscopic
+Techniques for Archaeometric Interpretation of Archeological Artifacts.
+Heritage 6:5066-5081. <a class="reference external" href="https://doi.org/10.3390/heritage6070268">https://doi.org/10.3390/heritage6070268</a></p>
 </section>
 </section>
 
@@ -446,7 +451,7 @@ Archaeology. Archaeological Prospection 16:233-249. <a class="reference external
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Orthorectifying CORONA Satellite Imagery</p>
+        <p class="prev-next-title">2. Orthorectifying CORONA Satellite Imagery</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -467,7 +472,8 @@ Archaeology. Archaeological Prospection 16:233-249. <a class="reference external
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
   </nav></div>
 

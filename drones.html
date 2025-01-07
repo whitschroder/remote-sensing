@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Drone Mission Planning for Photogrammetry &#8212; Archaeological Remote Sensing</title>
+    <title>4. Drone Mission Planning for Photogrammetry &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'drones';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Topographic Analysis with ASTER and SRTM Digital Elevation Models" href="aster.html" />
-    <link rel="prev" title="Digital Surface Models and Orthoimagery in Agisoft Metashape" href="agisoft.html" />
+    <link rel="next" title="5. Topographic Analysis with ASTER and SRTM Digital Elevation Models" href="topo.html" />
+    <link rel="prev" title="3. Digital Surface Models and Orthoimagery in Agisoft Metashape" href="agisoft.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -172,18 +172,21 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Drone Mission Planning for Photogrammetry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bands.html">Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agisoft.html">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -362,7 +365,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Drone Mission Planning for Photogrammetry</h1>
+    <h1>4. Drone Mission Planning for Photogrammetry</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,7 +379,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-sampling-distance">Ground Sampling Distance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblique-imagery">Oblique Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-qgis">Drone Mission Planning in QGIS</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
             </nav>
         </div>
@@ -389,7 +393,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="drone-mission-planning-for-photogrammetry">
-<h1>Drone Mission Planning for Photogrammetry<a class="headerlink" href="#drone-mission-planning-for-photogrammetry" title="Link to this heading">#</a></h1>
+<h1>4. Drone Mission Planning for Photogrammetry<a class="headerlink" href="#drone-mission-planning-for-photogrammetry" title="Link to this heading">#</a></h1>
 <p>This lab teaches students how to plan drone flights for photogrammetric production of
 digital surface models and orthorectified aerial imagery. Although several examples of
 automated drone mission planning software and apps exist (e.g. <a class="reference external" href="https://www.pix4d.com/product/pix4dcapture/">Pix4Dcapture</a>, <a class="reference external" href="https://www.dronedeploy.com/">Drone Deploy</a>, <a class="reference external" href="https://www.mapsmadeeasy.com/map_pilot/">Map Pilot Pro</a>), remote pilots should understand the methods and math
@@ -439,14 +443,26 @@ by the image width of the photo in pixels.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/footprint.JPG"><img alt="Drone" class="bg-primary mb-1 align-center" src="_images/footprint.JPG" style="width: 80%;" /></a>
 <p>Image credit: <a class="reference external" href="https://www.mdpi.com/1424-8220/22/6/2297">Luna et al. 2022</a></p>
 </section>
-<section id="readings">
-<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
-<p>Luna, M.A., M.S. Ale Isaac, A.R. Ragab, P. Campoy, P. Flores Peña, M. Molina. 2022.
-Fast Multi-UAV Path Planning for Optimal Area Coverage in Aerial Sensing
-Applications. Sensors 22:2297. <a class="reference external" href="https://doi.org/10.3390/s22062297">https://doi.org/10.3390/s22062297</a></p>
+<section id="required-readings">
+<h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>
 <p>Olson, Kyle and Lynne M. Rouse. 2018. A Beginner’s Guide to Mesoscale Survey with
 Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371.
 <a class="reference external" href="https://doi.org/10.1017/aap.2018.26">https://doi.org/10.1017/aap.2018.26</a></p>
+<p>Roosevelt, Christopher H. 2014. Mapping Site-level Microtopography with Real-Time Kinematic Global Navigation Satellite Systems (RTK GNSS) and Unmanned Aerial Vehicle Photogrammetry (UAVP). Open Archaeology 1:29-53.
+<a class="reference external" href="https://doi.org/10.2478/opar-2014-0003">https://doi.org/10.2478/opar-2014-0003</a></p>
+<p>Casana, Jesse, Adam Wiewel, Autumn Cool, Austin Chad Hill, Kevin D. Fisher, and
+Elise J. Laugier. 2017. Advances in Archaeological Practice 5(4):310-327.
+<a class="reference external" href="https://doi.org/10.1017/aap.2017.23">https://doi.org/10.1017/aap.2017.23</a></p>
+</section>
+<section id="additional-readings">
+<h2>Additional Readings<a class="headerlink" href="#additional-readings" title="Link to this heading">#</a></h2>
+<p>Lambers, Karsten, Henri Eisenbeiss, Martin Sauerbier, Denise Kupferschmidt, Thomas Gaisecker,
+Soheil Sotoodeh, and Thomas Hanusch. 2007. Combining photogrammetry and laser scanning for the
+recording and modelling of the Late Intermediate Period site of Pinchango Alto, Palpa, Peru. Journal
+of Archaeological Science 34(10):1702-1712. <a class="reference external" href="https://doi.org/10.1016/j.jas.2006.12.008">https://doi.org/10.1016/j.jas.2006.12.008</a></p>
+<p>Luna, M.A., M.S. Ale Isaac, A.R. Ragab, P. Campoy, P. Flores Peña, M. Molina. 2022.
+Fast Multi-UAV Path Planning for Optimal Area Coverage in Aerial Sensing
+Applications. Sensors 22:2297. <a class="reference external" href="https://doi.org/10.3390/s22062297">https://doi.org/10.3390/s22062297</a></p>
 </section>
 </section>
 
@@ -486,15 +502,15 @@ Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Digital Surface Models and Orthoimagery in Agisoft Metashape</p>
+        <p class="prev-next-title">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</p>
       </div>
     </a>
     <a class="right-next"
-       href="aster.html"
+       href="topo.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Topographic Analysis with ASTER and SRTM Digital Elevation Models</p>
+        <p class="prev-next-title">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -519,7 +535,8 @@ Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-sampling-distance">Ground Sampling Distance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblique-imagery">Oblique Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-qgis">Drone Mission Planning in QGIS</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
   </nav></div>
 

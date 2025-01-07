@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Multispectral Imagery &#8212; Archaeological Remote Sensing</title>
+    <title>6. Multispectral Imagery &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -63,8 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'bands';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Supervised and Unsupervised Land Cover Classification" href="supervised.html" />
-    <link rel="prev" title="Topographic Analysis with ASTER and SRTM Digital Elevation Models" href="aster.html" />
+    <link rel="next" title="7. Supervised and Unsupervised Land Cover Classification" href="classification.html" />
+    <link rel="prev" title="5. Topographic Analysis with ASTER and SRTM Digital Elevation Models" href="topo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -170,18 +170,21 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aerial.html">Aerial Photography and Stereoscopic Imaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="corona.html">Orthorectifying CORONA Satellite Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="agisoft.html">Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
-<li class="toctree-l1"><a class="reference internal" href="drones.html">Drone Mission Planning for Photogrammetry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aster.html">Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised and Unsupervised Land Cover Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gee.html">Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lidr.html">Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lastools.html">Lidar Processing and Analysis with LAStools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Machine Learning Approaches in Remote Sensing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agisoft.html">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Multispectral Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -360,7 +363,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Multispectral Imagery</h1>
+    <h1>6. Multispectral Imagery</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -379,7 +382,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
             </nav>
         </div>
@@ -392,7 +396,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multispectral-imagery">
-<h1>Multispectral Imagery<a class="headerlink" href="#multispectral-imagery" title="Link to this heading">#</a></h1>
+<h1>6. Multispectral Imagery<a class="headerlink" href="#multispectral-imagery" title="Link to this heading">#</a></h1>
 <p>This lab introduces how to visualize and process multispectral and multiband imagery using Landsat satellite data.</p>
 <section id="introduction-to-landsat-imagery">
 <h2>Introduction to Landsat Imagery<a class="headerlink" href="#introduction-to-landsat-imagery" title="Link to this heading">#</a></h2>
@@ -724,22 +728,33 @@ Blue – water, urban, and bare earth</p></li>
 Red – shorelines and immediate land use changes</p></li>
 </ol>
 </section>
-<section id="readings">
-<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
+<section id="required-readings">
+<h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>
+<p>Davis, D. S., Domic, A. I., Manahira, G., &amp; Douglass, K. 2024. Geophysics Elucidate Long-term Socio-ecological Dynamics of Foraging, Pastoralism, and Mixed Subsistence Strategies on SW Madagascar. Journal of Anthropological Archaeology 75(101612). <a class="reference external" href="https://doi.org/10.1016/j.jaa.2024.101612">https://doi.org/10.1016/j.jaa.2024.101612</a></p>
+<p>Estanqueiro, Marta, Aleksandar Šalamon, Helen Lewis, Barry Molloy, and Dragan Jovanović. 2023.
+Sentinel-2 Imagery Analyses for Archaeological Site Detection: An Application to Late Bronze Age Settlements in Serbian Banat, Southern Carpathian Basin. Journal of Archaeological Science: Reports 51:104188.
+<a class="reference external" href="https://doi.org/10.1016/j.jasrep.2023.104188">https://doi.org/10.1016/j.jasrep.2023.104188</a></p>
+<p>Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
+Nelson, and Jessica Munson. 2008. Evaluating the Use of IKONOS Satellite Imagery in
+Lowland Maya Settlement Archaeology. Journal of Archaeological Science 35(10):2770-2777.
+<a class="reference external" href="https://doi.org/10.1016/j.jas.2008.05.003">https://doi.org/10.1016/j.jas.2008.05.003</a></p>
+<p>Parcak, Sarah. 2009. Satellite Remote Sensing for Archaeology. Routledge, New York.</p>
+</section>
+<section id="additional-readings">
+<h2>Additional Readings<a class="headerlink" href="#additional-readings" title="Link to this heading">#</a></h2>
 <p>Amidon, Will. Middlebury Remote Sensing.
 <a class="reference external" href="https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured">https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured</a></p>
 <p>Chowdhury, Rinku Roy, and Laura Schneider. 2004. Land Cover and Land Use:
 Classification and Change Analysis. In Integrated Land-Change Science and Tropical
 Deforestation in the Southern Yucatan: Final Frontiers, ed. B.L. Turner II,
-Jacqueline Geoghegan, and David R. Foster, 105–143. Oxford: Oxford University Press.</p>
-<p>Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
-Nelson, and Jessica Munson. 2008. Journal of Archaeological Science 35(10):2770-2777.</p>
+Jacqueline Geoghegan, and David R. Foster, 105–143. Oxford: Oxford University Press.
+<a class="reference external" href="https://doi.org/10.1093/oso/9780199245307.003.0015">https://doi.org/10.1093/oso/9780199245307.003.0015</a></p>
 <p>Griffin, Robert Edward. 2012. The Carrying Capacity of Ancient Maya Swidden
 Maize Cultivation: A Case Study in the Region Around San Bartolo, Petén, Guatemala.
-Unpublished PhD dissertation, Pennsylvania State University.</p>
+Unpublished PhD dissertation, Pennsylvania State University. <a class="reference external" href="https://etda.libraries.psu.edu/catalog/15390">https://etda.libraries.psu.edu/catalog/15390</a></p>
 <p>Saturno, William, Thomas L. Sever, Daniel E. Irwin, Burgess F. Howell, and Thomas G.
-Garrison. 2007. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
-El-Baz, pp. 137-160. Springer, New York.</p>
+Garrison. 2007. Putting Us on the Map: Remote Sensing Investigation of the Ancient Maya Landscape. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
+El-Baz, pp. 137-160. Springer, New York. <a class="reference external" href="https://link.springer.com/chapter/10.1007/0-387-44455-6_6">https://link.springer.com/chapter/10.1007/0-387-44455-6_6</a></p>
 </section>
 </section>
 
@@ -774,20 +789,20 @@ El-Baz, pp. 137-160. Springer, New York.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="aster.html"
+       href="topo.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Topographic Analysis with ASTER and SRTM Digital Elevation Models</p>
+        <p class="prev-next-title">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</p>
       </div>
     </a>
     <a class="right-next"
-       href="supervised.html"
+       href="classification.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Supervised and Unsupervised Land Cover Classification</p>
+        <p class="prev-next-title">7. Supervised and Unsupervised Land Cover Classification</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -817,7 +832,8 @@ El-Baz, pp. 137-160. Springer, New York.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
   </nav></div>
 

@@ -1,4 +1,4 @@
-# Digital Surface Models and Orthoimagery in Agisoft Metashape
+# 3. Digital Surface Models and Orthoimagery in Agisoft Metashape
 
 In this lab, students will learn how to develop a workflow in Agisoft Metashape (previously
 known as Agisoft Photoscan) to load, process, and export spatial data from aerial
@@ -62,6 +62,10 @@ This step is also optional and stretches a texture over the model based on stitc
 
 ## Readings
 
-Casana, Jesse, Adam Wiewel, Autumn Cool, Austin Chad Hill, Kevin D. Fisher, and 
-Elise J. Laugier. 2017. Advances in Archaeological Practice 5(4):310-327. 
-[https://doi.org/10.1017/aap.2017.23]
+Magnani, Matthew, Matthew Douglass, Whittaker Schroder, Jonathan Reeves, and David R. Braun. 2020. The Digital Revolution to Come: Photogrammetry in Archaeological Practice. American Antiquity 85(4):737-760. <https://digitalcommons.library.umaine.edu/ant_facpub/65/>
+
+McCarthy, John. 2014. Multi-image photogrammetry as a practical tool for cultural heritage survey and community engagement. Journal of Archaeological Science 43:175-185. <https://doi.org/10.1016/j.jas.2014.01.010>
+
+Roosevelt, Christopher H. 2015. Excavation is <s>Destruction</s> Digitization: Advances in Archaeological Practice. Journal of Field Archaeology 40:325-346. <https://doi.org/10.1179/2042458215Y.0000000004>
+
+Yastikli, Naci. 2007. Documentation of Cultural Heritage Using Digital Photogrammetry and Laser Scanning. Journal of Cultural Heritage 8(4):423-427. <https://doi.org/10.1016/j.culher.2007.06.003>
