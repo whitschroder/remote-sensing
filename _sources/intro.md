@@ -139,8 +139,7 @@ course evaluation results are available to students at
 | --- | --- |
 | Week 1 <br> January 14  | Course Introduction <br> Introduction to Remote Sensing <br> History of Remote Sensing <br> GPS and GNSS <br> Review GIS <br> Lab 1: Aerial Photography and Stereoscopic Imaging |
 | Week 2 <br> January 21  | Project Site Selection Due (posted as a Google Earth .kml file on the Canvas discussion board <br> Leveraging historic satellite imagery <br> Orthorectification and georeferencing <br> Lab 2: Orthorectifying CORONA Satellite Imagery |
-| Week 3 <br> January 28  | Lab 3: Digital Surface Models and Orthoimagery in Agisoft Metashape <br> 
-Drone Mission Planning <br> Principles of photography <br> Photogrammetry Structure from Motion (SfM) <br> Ground control points <br> Lab 4: Drone Mission Planning for Photogrammetry |
+| Week 3 <br> January 28  | Lab 3: Digital Surface Models and Orthoimagery in Agisoft Metashape <br> Drone Mission Planning <br> Principles of photography <br> Photogrammetry Structure from Motion (SfM) <br> Ground control points <br> Lab 4: Drone Mission Planning for Photogrammetry |
 | Week 4 <br> February 4  | Data Sources <br> Lab 5: Topographic Analysis with ASTER and SRTM Digital Elevation Models |
 | Week 5 <br> February 11 | Introduction to multispectral satellite imagery <br> Lab 6: Multispectral Imagery |
 | Week 6 <br> February 18 | Land cover classification <br> Lab 7: Supervised and Unsupervised Land Cover Classification | 
