@@ -473,10 +473,23 @@ by the image width of the photo in pixels.</p>
 <h2>Drone Mission Planning in QGIS<a class="headerlink" href="#drone-mission-planning-in-qgis" title="Link to this heading">#</a></h2>
 <p>Several plugins are available in QGIS for drone mission planning. The Flight Planner plugin requires drone camera specifications, an area of interest, and an optional terrain layer as input, and the plugin outputs a flight path with waypoints. These waypoints can then be uploaded to the drone, using for example the <a class="reference external" href="https://flylitchi.com/">Litchi</a> app.</p>
 <p>Another option is the <a class="reference external" href="https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission">UAV Mapping Path Generator (for Litchi)</a>, which requires slightly different inputs to generate similar outputs.</p>
+<p>In the Flight Planner plugin, the input must be a polygon in a projected coordinate system, measured in meters, UTM, for example. Refer to the editing tools in <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html">QGIS</a> or <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/editing/a-quick-tour-of-editing.htm">ArcGIS Pro</a> to create polygons.</p>
+<p>The Flight Planner menu is available under Plugins in QGIS. After entering the specifications, click Run.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/flightplanner.jpg"><img alt="Flight Planner" class="bg-primary mb-1 align-center" src="_images/flightplanner.jpg" style="width: 80%;" /></a>
+<p>The plugin will produce the following transects:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/flightplan1.jpg"><img alt="Flight Plan 1" class="bg-primary mb-1 align-center" src="_images/flightplan1.jpg" style="width: 80%;" /></a>
+<p>And the waypoints file will include the GPS coordinates that can be uploaded to a flight app.</p>
+<p>The UAV Mapping Path Generator (for Litchi)/Drone Path is available under the Vector menu in QGIS. We use the following parameters, load an area of interest, and draw a line parallel to the desired transects when prompted.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/dronepath.jpg"><img alt="Drone Path" class="bg-primary mb-1 align-center" src="_images/dronepath.jpg" style="width: 80%;" /></a>
+<p>The plugin will produce the following transects:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/flightplan2.jpg"><img alt="Flight Plan 2" class="bg-primary mb-1 align-center" src="_images/flightplan2.jpg" style="width: 80%;" /></a>
+<p>We can now upload the waypoints .csv file into a flight planner like Litchi for further editing.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/litchi.jpg"><img alt="Litchi" class="bg-primary mb-1 align-center" src="_images/litchi.jpg" style="width: 80%;" /></a>
 </section>
 <section id="drone-mission-planning-in-pix4dcapture-pro">
 <h2>Drone Mission Planning in Pix4Dcapture Pro<a class="headerlink" href="#drone-mission-planning-in-pix4dcapture-pro" title="Link to this heading">#</a></h2>
-<p>The <a class="reference external" href="https://www.pix4d.com/product/pix4dcapture/">Pix4Dcapture Pro</a> app is recommended for most drone mission planning.</p>
+<p>The <a class="reference external" href="https://www.pix4d.com/product/pix4dcapture/">Pix4Dcapture Pro</a> app is recommended for most drone mission planning. Within the app, users can plan missions that are then uploaded to the drone.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/pix4d.png"><img alt="Pix4D" class="bg-primary mb-1 align-center" src="_images/pix4d.png" style="width: 80%;" /></a>
 </section>
 <section id="required-readings">
 <h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>

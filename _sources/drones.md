@@ -128,9 +128,65 @@ Several plugins are available in QGIS for drone mission planning. The Flight Pla
 
 Another option is the [UAV Mapping Path Generator (for Litchi)](https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission), which requires slightly different inputs to generate similar outputs.
 
+In the Flight Planner plugin, the input must be a polygon in a projected coordinate system, measured in meters, UTM, for example. Refer to the editing tools in [QGIS](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html) or [ArcGIS Pro](https://pro.arcgis.com/en/pro-app/latest/help/editing/a-quick-tour-of-editing.htm) to create polygons.
+
+The Flight Planner menu is available under Plugins in QGIS. After entering the specifications, click Run.
+
+```{image} /images/flightplanner.jpg
+:alt: Flight Planner
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+The plugin will produce the following transects:
+
+```{image} /images/flightplan1.jpg
+:alt: Flight Plan 1
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+And the waypoints file will include the GPS coordinates that can be uploaded to a flight app.
+
+The UAV Mapping Path Generator (for Litchi)/Drone Path is available under the Vector menu in QGIS. We use the following parameters, load an area of interest, and draw a line parallel to the desired transects when prompted.
+
+```{image} /images/dronepath.jpg
+:alt: Drone Path
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+The plugin will produce the following transects:
+
+```{image} /images/flightplan2.jpg
+:alt: Flight Plan 2
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+We can now upload the waypoints .csv file into a flight planner like Litchi for further editing.
+
+```{image} /images/litchi.jpg
+:alt: Litchi
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
 ## Drone Mission Planning in Pix4Dcapture Pro
 
-The [Pix4Dcapture Pro](https://www.pix4d.com/product/pix4dcapture/) app is recommended for most drone mission planning. 
+The [Pix4Dcapture Pro](https://www.pix4d.com/product/pix4dcapture/) app is recommended for most drone mission planning. Within the app, users can plan missions that are then uploaded to the drone.
+
+```{image} /images/pix4d.png
+:alt: Pix4D
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
 
 ## Required Readings
 

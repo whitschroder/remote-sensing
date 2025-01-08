@@ -60,6 +60,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'bands';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -378,9 +380,9 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-compositing">Band Compositing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-ratios">Band Ratios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
@@ -516,6 +518,16 @@
 <p>This folder should contain several Geotiff files and metadata. Each band is stored as a separate Geotiff file. To view band combinations, we will have to load these bands together as a single composite, multiband image.</p>
 <p>In ArcGIS Pro, we just have to add the combined .txt file or Raster Product (usually ______MTL.txt). We can then alter the visualization and band combination under Symbology.</p>
 <p>In QGIS, we have to build a virtual raster. Go to Raster -&gt; Miscellaneous -&gt; Build Virtual Raster. Under Input layers, we will add only the 30 meter bands listed in the chart above: Bands 1, 2, 3, 4, 5, 6, 7, and 9, in order. Set Resolution to Highest and Place each input file into a separate band. The visualization and band combination can be edited under the Properties of the Virtual raster. Bilinear Resampling and an updated canvas (DRA in ArcGIS Pro) can improve visualization.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/rgb.jpg"><img alt="RGB" class="bg-primary mb-1 align-center" src="_images/rgb.jpg" style="width: 80%;" /></a>
+<p>Landsat 8 and 9 data are delivered in a 16-bit unsigned format, while earlier Landsat imagery is delivered in an 8-bit unsigned format. To convert these digital numbers to reflectance values for subsequent analyses, refer to <a class="reference external" href="https://www.usgs.gov/faqs/how-do-i-use-a-scale-factor-landsat-level-2-science-products">scale factors</a> provided by the USGS. For Landsat 8 and 9, the scale factor is 0.0000275 with an offset of -0.2. In Raster Calculator, we can use the following expression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;16-bit raster&quot;</span> <span class="o">*</span> <span class="mf">0.0000275</span> <span class="o">-</span> <span class="mf">0.2</span>
+</pre></div>
+</div>
+<p>The values should be between 0 and 1, which multiplied by 100 gives the percent reflectance (0% to 100%). Some values may fall below 0 and above 1, representing noise. If necessary, these values can be removed using a conditional expression in Raster Calculator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Con</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span>  <span class="n">Con</span><span class="p">(</span><span class="s2">&quot;b4reflectance.tif&quot;</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b4reflectance.tif&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Values under 0 will be assigned a new value of 0.0001, values above 1 will be assigned a new value of 1, and all other values will remain unchanged. Alternatively, values under 0 can be assigned 0, or values under 0 and above 1 can be assigned NoData. I prefer to assign values under 0 a low value approaching 0 but not equaling 0. If values of 0 remain in the raster and algorithms are applied using division, values of 0 in the denominator would become NoData in these cases.</p>
 </section>
 <section id="band-compositing">
 <h2>Band Compositing<a class="headerlink" href="#band-compositing" title="Link to this heading">#</a></h2>
@@ -591,125 +603,116 @@ wavelengths and Landsat bands (Landsat 7 above and Landsat 8 and 9 below):</p>
 </table>
 </div>
 <p>See also: <a class="reference external" href="https://www.esri.com/arcgis-blog/products/product/imagery/band-combinations-for-landsat-8/">ESRI</a>, <a class="reference external" href="https://www.nv5geospatialsoftware.com/Learn/Blogs/Blog-Details/the-many-band-combinations-of-landsat-8">NV5</a>, <a class="reference external" href="https://gisgeography.com/landsat-8-bands-combinations/#:~:text=The%20two%20main%20sensors%20for,30%20and%2060%20meter%20resolution">GIS Geography</a>, <a class="reference external" href="https://openweather.co.uk/blog/post/satellite-imagery-landsat-8-and-its-band-combinations">Open Weather</a></p>
+<p>Here is a false color composite using Bands 5-3-2:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/532.jpg"><img alt="5-3-2" class="bg-primary mb-1 align-center" src="_images/532.jpg" style="width: 80%;" /></a>
 </section>
 <section id="band-ratios">
 <h2>Band Ratios<a class="headerlink" href="#band-ratios" title="Link to this heading">#</a></h2>
-<p>Computing band ratios can also highlight features.</p>
-<ol class="arabic simple" start="12">
-<li><p>Band ratios can eliminate issues discerning features in high shadow areas.
-In the following image deciduous and coniferous forest have different spectral
-reflectance in sunlit vs. shaded areas, but when the ratio is calculated, this
-discrepancy is fixed.</p></li>
-</ol>
-<a class="bg-primary mb-1 reference internal image-reference" href="_images/material3.png"><img alt="Reflectance3" class="bg-primary mb-1 align-center" src="_images/material3.png" style="width: 80%;" /></a>
-<p>Photo credit: Middlebury Remote Sensing</p>
-<ol class="arabic simple" start="13">
-<li><p>Band ratios are calculated by dividing a band with a high reflectance value
-for a specific material by the band with a low reflectance value for that same
+<p>Computing band ratios can also highlight features. Band ratios are calculated by dividing a band with a high reflectance value for a specific material by the band with a low reflectance value for that same
 material using Raster Calculator (especially when the ratios for other materials
 will be neutral). In Landsat 8, the Band 5 / Band 4 ratio will highlight vegetation,
-Band 7 / Band 1 will highlight soil, and Band 1 / Band 5 will Band 2 / Band 6 will
-highlight water.</p></li>
-<li><p>Multiple rasters can then be combined with the Composite Bands tool
-(QGIS: Rgb composite) to create a new multiband raster. Keep track of the order
-each raster is listed, which will determine the order that the bands are displayed
-in the Symbology window.</p></li>
-</ol>
+Band 7 / Band 1 will highlight soil, and Band 1 / Band 5 or Band 2 / Band 6 will
+highlight water.</p>
+<p>Here is a ratio of Band 5 / Band 4, with vegetation on the white end of the color scheme:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/ratio5-4.jpg"><img alt="Ratio 5-4" class="bg-primary mb-1 align-center" src="_images/ratio5-4.jpg" style="width: 80%;" /></a>
+<p>Band ratios can also eliminate issues discerning features in high shadow areas. In the following image deciduous and coniferous forest have different spectral reflectance in sunlit vs. shaded areas, but when the ratio is calculated, this discrepancy is fixed.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/material3.png"><img alt="Reflectance3" class="bg-primary mb-1 align-center" src="_images/material3.png" style="width: 80%;" /></a>
+<p>Photo credit: Middlebury Remote Sensing</p>
+<p>Raster Calculator in QGIS or ArcGIS Pro can be used to calculate these ratios.</p>
 </section>
 <section id="vegetation-indices-ndvi">
 <h2>Vegetation indices (NDVI)<a class="headerlink" href="#vegetation-indices-ndvi" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>The Normalized Difference Vegetation Index (NDVI) transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).</p></li>
-<li><p>Select the .txt file of combined bands in the Contents, go to Imagery, click the Indices dropdown, and select NDVI.</p></li>
-<li><p>Alternatively, in ArcGIS Pro or QGIS, go to Raster Calculator and use the formula</p></li>
-</ol>
-<p>NDVI = (NIR Band 5 – R Band 4) / (NIR Band 5 + R Band 4)</p>
-</section>
-<section id="image-sharpening">
-<h2>Image Sharpening<a class="headerlink" href="#image-sharpening" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>All Landsat 8 bands are at 30 m resolution, except for Band 8 (Panchromatic),
-which is at 15 m resolution. The higher resolution Band 8 can be used to sharpen
-the imagery of the other bands. First determine if you need higher resolution
-(not always necessary or helpful for landscape scale analysis).</p></li>
-<li><p><a class="reference external" href="https://earthobservatory.nasa.gov/blogs/earthmatters/2017/06/13/how-to-pan-sharpen-landsat-imagery/#:~:text=Panchromatic%20sharpening%20(pan%2Dsharpening),usually%20only%20the%20visible%20bands">More info on pansharpening</a></p></li>
-<li><p>Other techniques: Principal components image sharpening, Brovey transformation
-(usually done in ENVI).</p></li>
-</ol>
+<p>Building off the idea of band ratios, several indices can be calculated by performing map algebra to combine different bands. The Normalized Difference Vegetation Index (NDVI) is an example that transforms multiband data into a single raster that represents no vegetation (-1) to high vegetation (1).</p>
+<p>In ArcGIS Pro, the NDVI can be calculated by selecting the .txt file of combined bands in the Contents, going to Imagery, clicking the Indices dropdown, and selecting NDVI.</p>
+<p>Alternatively, we can calculate the NDVI in Raster Calculator using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{NDVI} = {\text{NIR Band 5 - Red Band 4} \over {\text{NIR Band 5 + Red Band 4}}}
+\]</div>
+<p>We can visualize the NDVI with a green color scheme.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/ndvi.jpg"><img alt="NDVI" class="bg-primary mb-1 align-center" src="_images/ndvi.jpg" style="width: 80%;" /></a>
 </section>
 <section id="principal-components-analysis">
 <h2>Principal components analysis<a class="headerlink" href="#principal-components-analysis" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Generally done in ENVI – calculates variability through several iterations,
-with each iteration showing less variability.</p></li>
-<li><p>In ArcGIS Pro run the Principal Components Analysis tool by loading the
-individual raster bands and selecting the number of principal component iteration.
-Do not enter a filetype extension after the filename if you want to produce a raster
-for each iteration.</p></li>
-<li><p>The tool will load a new multiband raster containing all the principal components.
-You can manually load each individual component from the same folder.</p></li>
-<li><p>In QGIS, go to Plugins, Manage and Install Plugins, search for
-Semi-Automatic Classification Plugin, and install.</p></li>
-<li><p>There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it).</p></li>
-<li><p>Under SCP, click Band Set.</p></li>
-<li><p>From the Single band list, load the individual bands (you may need to click
-refresh and make sure the bands are in your Layers contents)</p></li>
-<li><p>Click Basic Tools, then Algorithm Band Weight. Each band is weighted equally
-(1) by default. If you’re working with multiple rasters from different sources
-(for example, if you are loading a DEM or other type of data), you will want to
-weigh each raster with a value of 1 / (Mean of all cells), which can be calculated
-with Zonal Statistics. If using only multiband data from the same satellite, these
-weights are only slightly different, and I haven’t noticed significant improvement
-when calculating exact weights.</p></li>
-<li><p>Click Band Processing, then PCA, select Number of Components and choose a
-number of iterations. Click Run.</p></li>
-<li><p>Note that the first iterations from ArcGIS Pro and QGIS were pretty
-different, but the second and third were almost identical.</p></li>
-</ol>
+<p>Principal components analysis calculates variability through several iterations, with each iteration showing less variability.</p>
+<p>In ArcGIS Pro run the Principal Components Analysis tool by loading the individual raster bands and selecting the number of principal component iteration (this value should match the number of inputs). Change the output to a folder rather than a geodatabase, and do not enter a filetype extension after the filename if you want to produce a raster for each iteration. The tool will load a new multiband raster containing all the principal components. You can manually load each individual component from the same folder.</p>
+<p>In QGIS, go to Plugins, Manage and Install Plugins, search for Semi-Automatic Classification Plugin, and install. There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it). Under SCP, click Band Set. From the Single band list, load the individual bands (you may need to click refresh and make sure the bands are in your Layers contents). Click Basic Tools, then Algorithm Band Weight. Each band is weighted equally (1) by default. In this case, our rasters all have the same range, so we do not need to weigh them.</p>
+<p>Click Band Processing, then PCA, select Number of Components and choose a number of iterations. Click Run.</p>
+<p>Note that ArcGIS Pro and QGIS may produce different results, but variability will decrease with each iteration.</p>
+<p>The following image shows the first order PCA, second order PCA, and third order PCA from left to right.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/pca1.jpg"><img alt="PCA" class="bg-primary mb-1 align-center" src="_images/pca1.jpg" style="width: 80%;" /></a>
+<p>The following image shows the PCA composite, with PCA1, PCA2, and PCA3 shown as RGB.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/pcacomposite.jpg"><img alt="PCA Composite" class="bg-primary mb-1 align-center" src="_images/pcacomposite.jpg" style="width: 80%;" /></a>
 </section>
 <section id="texture-analysis">
 <h2>Texture analysis<a class="headerlink" href="#texture-analysis" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Not sure if this can be done with any built-in tools in ArcGIS.</p></li>
-<li><p>Open QGIS with GRASS (type QGIS in the search bar and this option should appear).</p></li>
-<li><p>Run r.texture, select input, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder.</p></li>
-</ol>
+<p>Texture analysis is used in remote sensing to highlight differences between materials. In QGIS, the GRASS tool <a class="reference external" href="https://grass.osgeo.org/grass-stable/manuals/r.texture.html">r.texture</a> calculates several metrics, variance being the most common method used.</p>
+<p>Run r.texture, select the input raster, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder. Note that this tool inputs the folder as a string, so do not use any spaces in your folder path.</p>
+<p>The following image is a texture (variance) analysis of the first order Principal Component Analysis, highlighting the differences between different types of land cover:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/texture.jpg"><img alt="Texture" class="bg-primary mb-1 align-center" src="_images/texture.jpg" style="width: 80%;" /></a>
+</section>
+<section id="image-sharpening">
+<h2>Image Sharpening<a class="headerlink" href="#image-sharpening" title="Link to this heading">#</a></h2>
+<p>All Landsat 8 bands are at 30 m resolution, except for Band 8 (Panchromatic), which is at 15 m resolution. The higher resolution Band 8 can be used to sharpen the imagery of the other bands. Pansharpening is typically done on three-band composites (see above). Each of these three bands is typically pansharpened separately and then combined into a new composite. The following formulae apply to an RGB composite (4-3-2), but any three bands can be used. Raster Calculator can be used to generate the pansharpened bands; be sure to specify the output resolution to be the same value as the panchromatic band (in this case 15 meters).</p>
+<p><b>The Brovey Transformation</b></p>
+<div class="math notranslate nohighlight">
+\[
+\text{New Band 4} = {\text{Band 4} \over \text{Band 4 + Band 3 + Band 2}} * \text{Panchromatic (Band 8)}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{New Band 3} = {\text{Band 3} \over \text{Band 4 + Band 3 + Band 2}} * \text{Band 8}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{New Band 2} = {\text{Band 2} \over \text{Band 4 + Band 3 + Band 2}} * \text{Band 8}
+\]</div>
+<p>The new bands can then be combined into a new, pansharpened composite. The following images compare the original 30 meter RGB composite (left) with the pansharpened 15 meter RGB composite (right):</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/panvsorig.jpg"><img alt="Original vs Pan" class="bg-primary mb-1 align-center" src="_images/panvsorig.jpg" style="width: 80%;" /></a>
+<br>
+<b>Simple Mean Transformation</b>
+<br>
+<div class="math notranslate nohighlight">
+\[
+\text{New Band 4} = {\text{0.5 * (Band 4 + Band 8)}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{New Band 3} = {\text{0.5 * (Band 3 + Band 8)}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{New Band 2} = {\text{0.5 * (Band 2 + Band 8)}}
+\]</div>
+<br>
+<b>Additional Transformations</b>
+<br>
+<p>Other transformations include Principal Components Analysis (PCA) pansharpening; Intensity, Hue, and saturation (IHS) pansharpening; and Gram-Schmidt pansharpening. These techniques are available in ArcGIS Pro’s <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/raster-functions/fundamentals-of-pan-sharpening-pro.htm">Create Pansharpened Raster Dataset</a> tool and in the QGIS/GRASS <a class="reference external" href="https://grass.osgeo.org/grass-stable/manuals/i.pansharpen.html">i.pansharpen</a> tool.</p>
+<p><a class="reference external" href="https://earthobservatory.nasa.gov/blogs/earthmatters/2017/06/13/how-to-pan-sharpen-landsat-imagery/#:~:text=Panchromatic%20sharpening%20(pan%2Dsharpening),usually%20only%20the%20visible%20bands">More info on pansharpening</a></p>
 </section>
 <section id="creating-a-final-composite">
 <h2>Creating a Final Composite<a class="headerlink" href="#creating-a-final-composite" title="Link to this heading">#</a></h2>
 <p>Multiple bands (including any of the original bands and derivatives) can be combined into a new multiband image. Theoretically, an infinite number of bands could be combined into a composite, but researchers should select the most useful bands for their application. Although the human eye can only view 3 bands at once (with perhaps a 4th alpha channel), classification algorithms can easily work with multidimensional data.</p>
 <p>In ArcGIS Pro, the Composite Bands tool can combine several bands into a single file. In QGIS (GRASS), the r.composite tool can be used to combine only 3 bands, or bands can be combined into a virtual raster.</p>
-<ol class="arabic simple" start="7">
-<li><p>Final composite</p>
+<p>Building the following composite, we will use the following variables:</p>
 <ol class="arabic simple">
-<li><p>PCA1, PCA2, PCA3 – Principle components analysis, 1st, 2nd, and 3rd order
-vis – composite of visible bands (2, 3, 4)
-ir – composite of infrared bands (5, 6, 7)
-sb – San Bartolo composite of near infrared, green, and blue (5, 3, 2)
-Var – texture variance index, 3 x 3 neighborhood
-NDVI – Normalized Difference Vegetation Index</p></li>
-<li><p>Chowdhury and Schneider (2004) recommended for southern Yucatan a 7-band
-composite: PCA1(vis), PCA1 (ir), PCA2 (ir), Var(PCA1(vis)), Var(PCA1(ir)),
-Var(PCA2(ir)), NDVI</p></li>
-<li><p>Griffin (2012) recommended for Petén a 3-band composite: PCA1(sb),
-Var(PCA1(sb)), NDVI</p></li>
+<li><p>PCA1, PCA2, PCA3 refer to the 1st, 2nd, and 3rd order of the Principal Components Analysis, respectively.</p></li>
+<li><p>vis – composite of visible bands (4, 3, 2)</p></li>
+<li><p>ir – composite of infrared bands (7, 6, 5)</p></li>
+<li><p>sb – San Bartolo composite of near infrared, green, and blue (5, 3, 2)</p></li>
+<li><p>Var – texture variance index, 3 x 3 neighborhood</p></li>
+<li><p>NDVI – Normalized Difference Vegetation Index</p></li>
 </ol>
-</li>
-<li><p>Classification</p>
-<ol class="arabic simple">
-<li><p>Semi-automated supervised and unsupervised land use classification is possible in ArcGIS Pro with the Classification Wizard and in QGIS with the SCP plugin.</p></li>
-</ol>
-</li>
-</ol>
+<p>Chowdhury and Schneider (2004) recommended for southern Yucatan a 7-band composite: PCA1(vis), PCA1 (ir), PCA2 (ir), Var(PCA1(vis)), Var(PCA1(ir)), Var(PCA2(ir)), NDVI</p>
+<p>Griffin (2012) recommended for Petén a 3-band composite: PCA1(sb), Var(PCA1(sb)), NDVI.</p>
+<p>Using Griffin (2012)’s recommendation, we generate the following results:</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/rgb.png"><img alt="Comparison" class="bg-primary mb-1 align-center" src="_images/rgb.png" style="width: 80%;" /></a>
 <p>True Color RGB (left) and 5-3-2 composite (right), Southeastern Chiapas, Mexico<br />
 4/3/17, 16:23:16 Landsat 8,<br />
 CORNER_UL_LAT = 16.95093<br />
 CORNER_UL_LON = -91.54527</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/pca.png"><img alt="PCA" class="bg-primary mb-1 align-center" src="_images/pca.png" style="width: 80%;" /></a>
-<p>First order Principle Components Analysis of 5-3-2 composite (left)<br />
-Textural variance of PCA1 (center)<br />
-NDVI (right)</p>
+<p>First order Principle Components Analysis of 5-3-2 composite (left), Textural variance of PCA1 (center), NDVI (right)</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/composite.png"><img alt="Composite" class="bg-primary mb-1 align-center" src="_images/composite.png" style="width: 80%;" /></a>
 <p>Preliminary interpretation:<br />
 Final composite: Var (red)-NDVI (green)-PCA1 (blue)<br />
@@ -828,9 +831,9 @@ El-Baz, pp. 137-160. Springer, New York. <a class="reference external" href="htt
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-compositing">Band Compositing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-ratios">Band Ratios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
