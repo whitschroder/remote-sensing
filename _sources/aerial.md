@@ -1,12 +1,29 @@
 # 1. Aerial Photography and Stereoscopic Imaging
 
-[Stereo Mapping in ArcGIS Pro](https://pro.arcgis.com/en/pro-app/latest/help/analysis/image-analyst/introduction-to-stereo-mapping.htm)
+In this lab we will use red and blue glasses to view aerial photography in 3D.
 
-[Stereo Photo Maker Download](https://stereo.jpn.org/eng/stphmkr)
+## Downloading Imagery
 
-[Stereo Photo Maker Tutorial](https://stereoscopy.blog/2019/09/08/how-to-use-stereo-photo-maker-basic-tutorial)
+For 3D viewing, aerial imagery must be acquired systematically with sufficient (generally 2/3) overlap across images. The [USGS Earth Explorer](https://earthexplorer.usgs.gov/) has historic aerial imagery over the U.S. Navigate to your area of interest and click points on the map to define a polygon. Under Search Criteria, click on Data Sets. In the next Data Sets menu, select Aerial Photo Single Frames, then click Results. Several options will be available for download.
 
-[Metashape](https://agisoft.freshdesk.com/support/solutions/articles/31000153699-stereo-pair-selection-measurements-and-navigation)
+## Stereoscopy in Agisoft Metashape
+
+In Agisoft Metashape Professional, go to Workflow -> Add Photos. Once added, click Workflow -> Align Photos. In later labs, we will discuss the alignment parameters in more detail. For now, keep the default options.
+
+Next, go to Tools -> Preferences. Under General -> Stereoscopic Display, select Anaglyph as the Mode, and click OK.
+
+Switch to stereo mode under Model Menu -> View Mode -> Stereo Mode. Click the Show Images button on the Toolbar. Select two overlapping images in the Photos pane, right click and select Look Through. View the stereo pairs with red and blue glasses in the Model window.
+
+```{image} /images/stereo.jpg
+:alt: Stereo
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+Additional instructions on stereoscopy in Agisoft Metashape is available [here](https://agisoft.freshdesk.com/support/solutions/articles/31000153699-stereo-pair-selection-measurements-and-navigation).
+
+Stereo Mapping is also available in [ArcGIS Pro](https://pro.arcgis.com/en/pro-app/latest/help/analysis/image-analyst/introduction-to-stereo-mapping.htm).
 
 ## Required Readings
 
