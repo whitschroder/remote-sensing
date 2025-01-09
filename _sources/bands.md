@@ -178,13 +178,19 @@ We can visualize the NDVI with a green color scheme.
 :align: center
 ```
 
-## Principal components analysis
+## Principal Component Analysis
 
 Principal components analysis calculates variability through several iterations, with each iteration showing less variability.
 
 In ArcGIS Pro run the Principal Components Analysis tool by loading the individual raster bands and selecting the number of principal component iteration (this value should match the number of inputs). Change the output to a folder rather than a geodatabase, and do not enter a filetype extension after the filename if you want to produce a raster for each iteration. The tool will load a new multiband raster containing all the principal components. You can manually load each individual component from the same folder.
 
-In QGIS, go to Plugins, Manage and Install Plugins, search for Semi-Automatic Classification Plugin, and install. There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it). Under SCP, click Band Set. From the Single band list, load the individual bands (you may need to click refresh and make sure the bands are in your Layers contents). Click Basic Tools, then Algorithm Band Weight. Each band is weighted equally (1) by default. In this case, our rasters all have the same range, so we do not need to weigh them. 
+In QGIS, go to Plugins, Manage and Install Plugins, search for Semi-Automatic Classification Plugin, and install. There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it). If you receive an error message, you may need to upgrade some dependencies. If so, open the OSGEO4W Shell and run the following command:
+
+```
+pip3 install --upgrade remotior-sensus scikit-learn torch
+```
+
+Under SCP, click Band Set. From the Single band list, load the individual bands (you may need to click refresh and make sure the bands are in your Layers contents). Each band is weighted equally (1) by default. In this case, our rasters all have the same range, so we do not need to weigh them. 
 
 Click Band Processing, then PCA, select Number of Components and choose a number of iterations. Click Run.
 
@@ -208,7 +214,7 @@ The following image shows the PCA composite, with PCA1, PCA2, and PCA3 shown as 
 :align: center
 ```
 
-## Texture analysis
+## Texture Analysis
 
 Texture analysis is used in remote sensing to highlight differences between materials. In QGIS, the GRASS tool [r.texture](https://grass.osgeo.org/grass-stable/manuals/r.texture.html) calculates several metrics, variance being the most common method used.
 

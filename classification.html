@@ -373,8 +373,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-qgis">Supervised Classification in QGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification-in-qgis">Unsupervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification-in-arcgis-pro">Unsupervised Classification in ArcGIS Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-qgis">Supervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-arcgis-pro">Supervised Classification in ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 </ul>
             </nav>
@@ -389,17 +391,52 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="supervised-and-unsupervised-land-cover-classification">
 <h1>7. Supervised and Unsupervised Land Cover Classification<a class="headerlink" href="#supervised-and-unsupervised-land-cover-classification" title="Link to this heading">#</a></h1>
-<p>In this lab, we will conduct supervised and unsupervised land cover classifications of Landsat satellite imagery.</p>
-<section id="supervised-classification-in-qgis">
-<h2>Supervised Classification in QGIS<a class="headerlink" href="#supervised-classification-in-qgis" title="Link to this heading">#</a></h2>
+<p>In this lab, we will conduct supervised and unsupervised land cover classifications of Landsat satellite imagery. Unsupervised classifications rely entirely on algorithms to classify differences in land cover. Supervised classifications instead use training data to define land cover types that assist the algorithm to classify land cover. Unsupervised classifications are generally not advisable unless the researcher has minimal understanding of the area of interest or is trying to parse out additional detail in land cover variation.</p>
+<section id="unsupervised-classification-in-qgis">
+<h2>Unsupervised Classification in QGIS<a class="headerlink" href="#unsupervised-classification-in-qgis" title="Link to this heading">#</a></h2>
 <p>In QGIS, under Plugins, install the Semi-Automatic Classification Plugin and restart QGIS. If you receive an error message, you may need to upgrade some dependencies. If so, open the OSGEO4W Shell and run the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">remotior</span><span class="o">-</span><span class="n">sensus</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">torch</span>
 </pre></div>
 </div>
 <p>After restarting QGIS, an SCP toolbar should now be available.</p>
+<p>We are going to conduct an unsupervised classification of land cover using the composite from the previous lab.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/composite.png"><img alt="Composite" class="bg-primary mb-1 align-center" src="_images/composite.png" style="width: 80%;" /></a>
+<p>To create this composite in the SCP plugin, open the Band Set section of the plugin. Add, in order, the texture (variance of the first order PCA) surface, the NDVI, and the first order PCA. Ensure that all of these files have the same spatial reference and the same bit depth. If necessary, use the Assign Projection tool to change the spatial reference, and use the GDAL Raster Calculator to change the bit depth (using the expression A * 1.0 to keep values the same). We also need to make sure we weigh the bands properly – they have significantly different data ranges. Right click each of the rasters/bands in Layers, and navigate to Properties -&gt; Information. Take note of the value next to STATISTICS_MEAN. Under multiplicative factor, enter the value equal to 1/STATISTICS_MEAN for each band.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/bandset.jpg"><img alt="Composite" class="bg-primary mb-1 align-center" src="_images/bandset.jpg" style="width: 80%;" /></a>
+<p>Under Band set tools, you can also export your multiband image as a virtual raster or as a locally saved raster. When viewing the multiband image in QGIS, you may need to set the Symbology to an Updated canvas, zoom in slightly, then change Symbology to Current canvas.</p>
+<p>Under Band processing, select Clustering, change Number of classes to a desired value, and change Seed signatures to Use random seed signatures. The following is an unsupervised classification using 11 clusters:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/unsupervised.jpg"><img alt="Unsupervised" class="bg-primary mb-1 align-center" src="_images/unsupervised.jpg" style="width: 80%;" /></a>
+<p>We can see better detail zoomed in:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/unsupzoom.jpg"><img alt="Zoomed" class="bg-primary mb-1 align-center" src="_images/unsupzoom.jpg" style="width: 80%;" /></a>
+<p>The classification seems to have identified water, forest cover, and certain types of agriculture, but the results are inconsistent.</p>
 </section>
-<section id="unsupervised-classification-in-qgis">
-<h2>Unsupervised Classification in QGIS<a class="headerlink" href="#unsupervised-classification-in-qgis" title="Link to this heading">#</a></h2>
+<section id="unsupervised-classification-in-arcgis-pro">
+<h2>Unsupervised Classification in ArcGIS Pro<a class="headerlink" href="#unsupervised-classification-in-arcgis-pro" title="Link to this heading">#</a></h2>
+<p>In ArcGIS Pro, navigate to Imagery -&gt; Classification Wizard. Under Classification Method, select Unsupervised, Classification Type Pixel based, use default classification schema (this will assign default land cover classes), and select an output location. In the next window, define 11 Maxinum Number of Classes. After running the algorithm, our results are similar to the unsupervised classification in QGIS:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/arcgisuns.jpg"><img alt="ArcGIS" class="bg-primary mb-1 align-center" src="_images/arcgisuns.jpg" style="width: 80%;" /></a>
+<p>And zoomed in:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/arcgiszoom.jpg"><img alt="Zoom" class="bg-primary mb-1 align-center" src="_images/arcgiszoom.jpg" style="width: 80%;" /></a>
+<p>A notable issue is that the unsupervised algorithm is classifying shaded areas into unique classes. The algorithm is therefore not recognizing the variability within classes. A supervised classification will be necessary to train the algorithm to recognize these qualities of the landscape.</p>
+</section>
+<section id="supervised-classification-in-qgis">
+<h2>Supervised Classification in QGIS<a class="headerlink" href="#supervised-classification-in-qgis" title="Link to this heading">#</a></h2>
+<p>For the supervised classification, we will simplify the inputs. Create a new band set in the SCP plugin, and add Bands 1-7 and 9. They are all scaled the same, no need to weigh them. Note that we could optionally enter the multiplicative and additive scale factors to convert to reflectance. Create a virtual raster and visualize the imagery. Minimize the window and open the SCP Dock (under View -&gt; Panels).</p>
+<p>In the SCP Dock, click on Training input and then the Create a new training input button. Save your file, then in the SCP Working Toolbar click on the Create a ROI polygon button. Draw an ROI polygon over water, for example. Change the C Name to Water, and then click the save button. Now continue with Forest, followed by any other desired classes.</p>
+<p>When done, highlight all classes in the table in the SCP Dock and click the Calculate signatures for highlighted items button. Highlight the items again and click on the Add highlighted signatures to spectral signature plot button. The following graph shows the spectral signatures of our defined classes.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/specsignature.jpg"><img alt="Spectral Signatures" class="bg-primary mb-1 align-center" src="_images/specsignature.jpg" style="width: 80%;" /></a>
+<p>Next, we return to the SCP plugin menu and click on Classification, under Band Processing. Select the input band set, use training data from Class ID, and select the Minimum Distance algorithm. Click Run.</p>
+<p>We now have a classified map:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/supclass.jpg"><img alt="Supervised Classification" class="bg-primary mb-1 align-center" src="_images/supclass.jpg" style="width: 80%;" /></a>
+<p>Overall, this classification is more meaningful than the unsupervised classification. The algorithm was able to define broad land cover categories. The southern part of the area of interest is not classified as well, so we may want to develop an alternate classification scheme for that area.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/supzoom.jpg"><img alt="Zoom" class="bg-primary mb-1 align-center" src="_images/supzoom.jpg" style="width: 80%;" /></a>
+</section>
+<section id="supervised-classification-in-arcgis-pro">
+<h2>Supervised Classification in ArcGIS Pro<a class="headerlink" href="#supervised-classification-in-arcgis-pro" title="Link to this heading">#</a></h2>
+<p>In ArcGIS Pro, select your multiband imagery in Contents, and navigate to Imagery -&gt; Classification Tools -&gt; Training Samples Manager. Draw training polygons for each land cover class and save. Navigate to Imagery -&gt; Classification Wizard. Select Supervised classification, pixel-based, and Generate from training samples the Classification schema, selecting your training polygons. Choose a K-Nearest Neighbor classifier and run the tool to generate a land cover map:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/arcgissup.jpg"><img alt="ArcGIS" class="bg-primary mb-1 align-center" src="_images/arcgissup.jpg" style="width: 80%;" /></a>
+<p>This classification was not as successful as the previous supervised classification in QGIS, but it could be improved with additional training polygons.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/arcsupzoom.jpg"><img alt="Zoom" class="bg-primary mb-1 align-center" src="_images/arcsupzoom.jpg" style="width: 80%;" /></a>
+<p>In the next lab, we will improve significantly on these techniques by leveraging Google Earth Engine.</p>
 </section>
 <section id="required-readings">
 <h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>
@@ -480,8 +517,10 @@ Research in the Study of Cultural Landscapes. Human Ecology 31(2):215-232.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-qgis">Supervised Classification in QGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification-in-qgis">Unsupervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification-in-arcgis-pro">Unsupervised Classification in ArcGIS Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-qgis">Supervised Classification in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification-in-arcgis-pro">Supervised Classification in ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 </ul>
   </nav></div>

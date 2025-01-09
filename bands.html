@@ -380,8 +380,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-compositing">Band Compositing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-ratios">Band Ratios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-analysis">Principal Component Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
@@ -632,11 +632,15 @@ highlight water.</p>
 <p>We can visualize the NDVI with a green color scheme.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/ndvi.jpg"><img alt="NDVI" class="bg-primary mb-1 align-center" src="_images/ndvi.jpg" style="width: 80%;" /></a>
 </section>
-<section id="principal-components-analysis">
-<h2>Principal components analysis<a class="headerlink" href="#principal-components-analysis" title="Link to this heading">#</a></h2>
+<section id="principal-component-analysis">
+<h2>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Link to this heading">#</a></h2>
 <p>Principal components analysis calculates variability through several iterations, with each iteration showing less variability.</p>
 <p>In ArcGIS Pro run the Principal Components Analysis tool by loading the individual raster bands and selecting the number of principal component iteration (this value should match the number of inputs). Change the output to a folder rather than a geodatabase, and do not enter a filetype extension after the filename if you want to produce a raster for each iteration. The tool will load a new multiband raster containing all the principal components. You can manually load each individual component from the same folder.</p>
-<p>In QGIS, go to Plugins, Manage and Install Plugins, search for Semi-Automatic Classification Plugin, and install. There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it). Under SCP, click Band Set. From the Single band list, load the individual bands (you may need to click refresh and make sure the bands are in your Layers contents). Click Basic Tools, then Algorithm Band Weight. Each band is weighted equally (1) by default. In this case, our rasters all have the same range, so we do not need to weigh them.</p>
+<p>In QGIS, go to Plugins, Manage and Install Plugins, search for Semi-Automatic Classification Plugin, and install. There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it). If you receive an error message, you may need to upgrade some dependencies. If so, open the OSGEO4W Shell and run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">remotior</span><span class="o">-</span><span class="n">sensus</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">torch</span>
+</pre></div>
+</div>
+<p>Under SCP, click Band Set. From the Single band list, load the individual bands (you may need to click refresh and make sure the bands are in your Layers contents). Each band is weighted equally (1) by default. In this case, our rasters all have the same range, so we do not need to weigh them.</p>
 <p>Click Band Processing, then PCA, select Number of Components and choose a number of iterations. Click Run.</p>
 <p>Note that ArcGIS Pro and QGIS may produce different results, but variability will decrease with each iteration.</p>
 <p>The following image shows the first order PCA, second order PCA, and third order PCA from left to right.</p>
@@ -645,7 +649,7 @@ highlight water.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/pcacomposite.jpg"><img alt="PCA Composite" class="bg-primary mb-1 align-center" src="_images/pcacomposite.jpg" style="width: 80%;" /></a>
 </section>
 <section id="texture-analysis">
-<h2>Texture analysis<a class="headerlink" href="#texture-analysis" title="Link to this heading">#</a></h2>
+<h2>Texture Analysis<a class="headerlink" href="#texture-analysis" title="Link to this heading">#</a></h2>
 <p>Texture analysis is used in remote sensing to highlight differences between materials. In QGIS, the GRASS tool <a class="reference external" href="https://grass.osgeo.org/grass-stable/manuals/r.texture.html">r.texture</a> calculates several metrics, variance being the most common method used.</p>
 <p>Run r.texture, select the input raster, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder. Note that this tool inputs the folder as a string, so do not use any spaces in your folder path.</p>
 <p>The following image is a texture (variance) analysis of the first order Principal Component Analysis, highlighting the differences between different types of land cover:</p>
@@ -831,8 +835,8 @@ El-Baz, pp. 137-160. Springer, New York. <a class="reference external" href="htt
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-compositing">Band Compositing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-ratios">Band Ratios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vegetation-indices-ndvi">Vegetation indices (NDVI)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-analysis">Principal Component Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-analysis">Texture Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
