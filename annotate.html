@@ -373,9 +373,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-editing-in-arcgis-pro">Feature Editing in ArcGIS Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-editing-in-qgis">Feature Editing in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-a-feature-typology">Developing a Feature Typology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annotation-methods">Annotation Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-citations">Additional Citations</a></li>
 </ul>
             </nav>
         </div>
@@ -389,17 +392,27 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="annotating-lidar-data">
 <h1>10. Annotating Lidar Data<a class="headerlink" href="#annotating-lidar-data" title="Link to this heading">#</a></h1>
-<p>Coming soon</p>
-<section id="coming-soon">
-<h2>Coming soon<a class="headerlink" href="#coming-soon" title="Link to this heading">#</a></h2>
-<p>Coming soon</p>
+<p>In this lab we will annotate archaeological features in lidar data. In the next lab, we will prepare our annotations to be entered as training data into a machine learning model.</p>
+<section id="feature-editing-in-arcgis-pro">
+<h2>Feature Editing in ArcGIS Pro<a class="headerlink" href="#feature-editing-in-arcgis-pro" title="Link to this heading">#</a></h2>
+<p>Review the editing tools in <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/editing/a-quick-tour-of-editing.htm">ArcGIS Pro</a>.</p>
 </section>
-<section id="id1">
-<h2>Coming soon<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>Coming soon</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+<section id="feature-editing-in-qgis">
+<h2>Feature Editing in QGIS<a class="headerlink" href="#feature-editing-in-qgis" title="Link to this heading">#</a></h2>
+<p>Review the editing tools in <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html">QGIS</a>.</p>
+</section>
+<section id="developing-a-feature-typology">
+<h2>Developing a Feature Typology<a class="headerlink" href="#developing-a-feature-typology" title="Link to this heading">#</a></h2>
+<p>Before annotating features, we need to develop a consistent typology of feature classes. The most basic classes might be additive (convex) vs. subtractive (concave) features. Additive features are built features that were created by adding material to the natural terrain (for example, buildings, berms, mounds, walls, etc.). Subtractive features are excavated features that were created by removing material (for example, ditches, reservoirs, canals, etc.). These typologies must be informed by local knowledge and ground-based research.</p>
+<p>At Quirigua, Guatemala, Wendy Ashmore (2007) produced a useful architectural and archaeological feature classification:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="images/ashmore.jpg"><img alt="Ashmore" class="bg-primary mb-1 align-center" src="images/ashmore.jpg" style="width: 80%;" /></a>
+<p>Other citations below discuss other typologies.</p>
+</section>
+<section id="annotation-methods">
+<h2>Annotation Methods<a class="headerlink" href="#annotation-methods" title="Link to this heading">#</a></h2>
+<p>The next step in annotation involves deciding how features should be annotated. The most basic approach uses points to mark features.</p>
+<p>We can then expand to using lines to annotate linear features.</p>
+<p>Finally, we can use polygons to define the shape of feature footprints.</p>
 </section>
 <section id="required-readings">
 <h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>
@@ -408,6 +421,10 @@ Magnoni, and M. Pérez. 2020. Structure, Density, Area, and Volume as Complement
 Science: Reports, 29. <a class="reference external" href="https://doi.org/10.1016/j.jasrep.2019.102178">https://doi.org/10.1016/j.jasrep.2019.102178</a></p>
 <p>Rostain, Stéphen et al. 2024. Two Thousand Years of Garden Urbanism in the Upper Amazon. Science 383:6679. <a class="reference external" href="https://doi.org/10.1126/science.adi6317">https://doi.org/10.1126/science.adi6317</a>.</p>
 <p>Schroder, Whittaker et al. 2020. The Lowland Maya Settlement Landscape: Environmental LiDAR and Ecology. Journal of Archaeological Science: Reports 33:102543. <a class="reference external" href="https://doi.org/10.1016/j.jasrep.2020.102543">https://doi.org/10.1016/j.jasrep.2020.102543</a></p>
+</section>
+<section id="additional-citations">
+<h2>Additional Citations<a class="headerlink" href="#additional-citations" title="Link to this heading">#</a></h2>
+<p>Ashmore, Wendy. 2007. Settlement Archaeology at Quirigua. University of Pennsylvania Museum of Archaeology and Anthropology, Philadelphia.</p>
 </section>
 </section>
 
@@ -476,9 +493,12 @@ Science: Reports, 29. <a class="reference external" href="https://doi.org/10.101
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-editing-in-arcgis-pro">Feature Editing in ArcGIS Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-editing-in-qgis">Feature Editing in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-a-feature-typology">Developing a Feature Typology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annotation-methods">Annotation Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-citations">Additional Citations</a></li>
 </ul>
   </nav></div>
 

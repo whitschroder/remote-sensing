@@ -21,6 +21,10 @@ QGIS is an open source GIS software available for Windows, Mac, and Linux. Downl
 
 To access data for the class, you will need a [USGS Earth Explorer](https://earthexplorer.usgs.gov/) account. Sign up [here](https://ers.cr.usgs.gov/register).
 
+## NASA Earth Data Search
+
+Other data are available at [NASA Earth Data Search](https://search.earthdata.nasa.gov/search). You will need to register with a university or government email address. 
+
 ## Google Earth Pro
 
 Download Google Earth Pro for desktop [here](https://www.google.com/earth/about/versions/#download-pro).
@@ -28,6 +32,10 @@ Download Google Earth Pro for desktop [here](https://www.google.com/earth/about/
 ## Google Earth Engine
 
 Register for Google Earth Engine [here](https://code.earthengine.google.com/register). You can login with your UF email or a personal Gmail account.
+
+## Pix4Dcapture Pro
+
+[Pix4Dcapture Pro](https://www.pix4d.com/product/pix4dcapture/) is a smartphone app for planning drone surveys. You will need to register for an account. Some features are only available with a paid subscription (30 day trial), but basic features are free.
 
 ## R
 
@@ -40,3 +48,15 @@ LAStools is a suite of tools for Windows and Linux for processing, analyzing, an
 ## Cloud Compare
 
 Cloud Compare is a point cloud software. Download the latest stable release [here](https://www.danielgm.net/cc/).
+
+## Python
+
+[Python](https://www.python.org/) is a programming language that we will use for machine learning classification. Python may already come preinstalled on your computer, and it is included with installations of ArcGIS Pro and QGIS. If necessary Python can be downloaded separately [here](https://www.python.org/downloads/).
+
+## Jupyter Notebook
+
+[Jupyter Notebook](https://jupyter.org/) is a Python-based data notebook for writing and executing Python code. [Installation](https://jupyter.org/install) is done through the Command Prompt or Terminal of your computer and requires that Python (with pip) is already installed.
+
+## Google Colab
+
+Alternatively, [Google Colab](https://colab.research.google.com/) is a hosted notebook service that does not require any local installations on your computer.
