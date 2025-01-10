@@ -58,7 +58,7 @@ Slope refers to the rate of change in elevation from one location to the next, i
 
 ## Aspect
 
-Aspect refers to the rate of change in slope from one location to the next, in other words, the second derivative of elevation. In simpler terms, Aspect refers to the direction of the slope. Aspect alone may not be useful for visualizing topography, but it represents an important intermediate variable that can be used in topographic analyses.
+Aspect refers to the direction of slope from one location to the next. Aspect alone may not be useful for visualizing topography, but it represents an important intermediate variable that can be used in topographic analyses.
 
 ## Aspect-Slope
 
@@ -66,7 +66,7 @@ A mix of the slope and aspect surfaces can combine the best of the slope map's t
 
 ## Curvature
 
-Curvature refers to the rate of change in aspect from one location to the next, in other words, the third derivative of elevation. A negative curvature value indicates that the surface is upwardly concave, while a positive curvature value indicates that the surface is upwardly convex. The average absolute curvature of a surface can also generally serve as an index of the ruggedness of the landscape, with higher values reflecting more rugged terrain. Curvature is used as an intermediate measurement for hydrological analyses and ground point classification algorithms. The Curvature tool is available in ArcGIS Pro.
+Curvature refers to the rate of change in aspect from one location to the next, in other words, the second derivative of elevation. A negative curvature value indicates that the surface is upwardly concave, while a positive curvature value indicates that the surface is upwardly convex. The average absolute curvature of a surface can also generally serve as an index of the ruggedness of the landscape, with higher values reflecting more rugged terrain. Curvature is used as an intermediate measurement for hydrological analyses and ground point classification algorithms. The Curvature tool is available in ArcGIS Pro.
 
 ## Relief Visualization Toolbox
 
