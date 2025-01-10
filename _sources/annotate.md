@@ -16,7 +16,7 @@ Before annotating features, we need to develop a consistent typology of feature 
 
 At Quirigua, Guatemala, Wendy Ashmore (2007) produced a useful architectural and archaeological feature classification:
 
-```{image} /images/ashmore.jpg
+```{image} /images/ashmore.jpeg
 :alt: Ashmore
 :class: bg-primary mb-1
 :width: 80%
