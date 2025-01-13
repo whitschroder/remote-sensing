@@ -219,3 +219,5 @@ Orengo, H.A., Francesc C. Conesa, Arnau Garcia-Molsosa, and Cameron A. Petrie. 2
 Automated Detection of Archaeological Mounds Using Machine-Learning Classification of 
 Multisensor and Multitemporal Satellite Data. PNAS 117(31):18240-18250.
 <https://doi.org/10.1073/pnas.2005583117>
+
+Orengo, H.A. and Cameron A. Petrie. 2017. Multi-scale relief model (MSRM): a new algorithm for the visualization of subtle topographic change of variable size in digital elevation models. Earth Surface Processes and Landforms 43(6):1361-1369. <https://doi.org/10.1002/esp.4317>
