@@ -21,7 +21,7 @@ Switch to stereo mode under Model Menu -> View Mode -> Stereo Mode. Click the Sh
 :align: center
 ```
 
-Additional instructions on stereoscopy in Agisoft Metashape is available [here](https://agisoft.freshdesk.com/support/solutions/articles/31000153699-stereo-pair-selection-measurements-and-navigation).
+Additional instructions on stereoscopy in Agisoft Metashape are available [here](https://agisoft.freshdesk.com/support/solutions/articles/31000153699-stereo-pair-selection-measurements-and-navigation).
 
 Stereo Mapping is also available in [ArcGIS Pro](https://pro.arcgis.com/en/pro-app/latest/help/analysis/image-analyst/introduction-to-stereo-mapping.htm).
 
