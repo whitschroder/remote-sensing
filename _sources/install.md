@@ -4,13 +4,17 @@
 
 Agisoft Metashape is a 3D modeling software using photogrammetry. Download the Professional version 
 [here](https://www.agisoft.com/downloads/installer/). You can use Metashape without saving for an unlimited
-time. To save your work, you will need to begin a 30-day trial. Do not begin the 30-day trial until class starts.
+time. To save your work, you will need to begin a 30-day trial. Do not begin the 30-day trial until class starts. Instead, use the software in Demo mode.
+
+## RealityCapture
+
+Reality Capture is a free photogrammetry software and a good alternative to Agisoft Metashape. Go to <https://www.capturingreality.com/> and click on the Download now button at the top right of the page. Download the Epic Games Launcher and open the installer. Click through the default installation options, and click Update if prompted after installing. You will then need to create an account or link an existing account (for example, through Google, Apple, etc.). Once linked, click Continue. Open Epic Games and enter the confirmation code that was sent to your email. Once Epic Games is open, click on Unreal Engine and then RealityCapture. Click Download. Once installed, RealityCapture should be available in under Library in the Epic Games Launcher. Note that the Epic Games Launcher is automatically added to your Startup apps. Turn off this setting if needed.
 
 ## ArcGIS Pro
 
 A license for ArcGIS Pro is available for University of Florida students through the 
 [GeoPlan Center](https://www.geoplan.ufl.edu/software/arcgis-pro/). Follow the instructions to download the
-most recent version. ArcGIS Pro is only available for Windows.
+most recent version. During the installation, you may be prompted to update Microsoft .NET Desktop Runtime. Click on the link provided in the pop-up window, and download the specific version listed (currently version 8, x64). ArcGIS Pro is only available for Windows.
 
 ## QGIS
 
