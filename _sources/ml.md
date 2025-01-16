@@ -75,7 +75,7 @@ We will use lidar data from NASA G-LiHT's 2013 flights over southeastern Mexico.
 
 All data must be in the same format with the same bit depth. The training data (multiband raster and annotated surface) must have the exact same coordinate system, spatial extent, and dimensions. 
 
-In QGIS, load the DEM raster and the annotated features. Use the Rasterize (vector to raster) tool to convert the features to a raster. Change the fixed value fo burn to 1, output raster size units to Georeferenced units, and the width and height resolution to match the DEM raster. Under Output extent, select Calculate from Layer, and select the DEM raster.
+In QGIS, load the DEM raster and the annotated features. Use the Rasterize (vector to raster) tool to convert the features to a raster. Change the fixed value of burn to 1, output raster size units to Georeferenced units, and the width and height resolution to match the DEM raster. Under Output extent, select Calculate from Layer, and select the DEM raster.
 
 In ArcGIS Pro, run the Polygon to Raster tool to convert the features to raster. Under Environments, select the DEM raster under Extent (Extent of a Layer) and Snap Raster. The tool assigns each structure a unique value, so run the Slice tool with number of output zones set to 1, and starting value for output set to 1.
 
