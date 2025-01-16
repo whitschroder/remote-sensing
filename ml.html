@@ -60,6 +60,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ml';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -375,6 +377,10 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-libraries">Install Python Libraries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-data">Prepare Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-variables-and-reshape-data">Define Variables and Reshape Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-results">Assessing the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-test-data">Predicting the Test Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
             </nav>
@@ -392,7 +398,7 @@
 <p>This lab uses a modified approach to <a class="reference external" href="https://towardsdatascience.com/neural-network-for-satellite-data-classification-using-tensorflow-in-python-a13bcf38f3e1">image classification using neural networks</a> in the TensorFlow Python library.</p>
 <section id="install-python-libraries">
 <h2>Install Python Libraries<a class="headerlink" href="#install-python-libraries" title="Link to this heading">#</a></h2>
-<p>We will use <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a> to run the Python code for this exercise. Your computer should already have Python installed. Run the following code in Jupyter Notebook to locate Python.</p>
+<p>We will use <a class="reference external" href="https://colab.research.google.com/">Google Colab</a> to run the Python code for this exercise. Doing so does not require any local installations on your computer, but you will need a Google account. Alternatively, you can download <a class="reference external" href="https://www.python.org/">Python</a> and run the code in <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a>, for example. If you are running the code locally and need to locate Python, you can use the following code:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="n">locate_python</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exec_prefix</span>
@@ -400,7 +406,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">locate_python</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now in the Command Prompt navigate to the Scripts folder in the Python location folder and run the following lines to install the necessary libraries.</p>
+<p>To install the Python libraries locally, in the Command Prompt navigate to the Scripts folder in the Python location folder and run the following lines to install the necessary libraries.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyrsgis</span>
 </pre></div>
 </div>
@@ -413,9 +419,175 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">Tensorflow</span>
 </pre></div>
 </div>
+<p>Alternatively, in Google Colab, run the same code with an exclamation point (!) before the commands. This symbol serves as an escape symbol to tell Google Colab the code is a command and not Python.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install pyrsgis
+</pre></div>
+</div>
+<p>The other libraries should already be installed in Google Colab, but if not, run the same commands above with the exclamation point in front.</p>
+<p>Once installed, import the following (either in Jupyter Notebook or Google Colab, now no exclamation point is needed because from now on we are working strictly in Python):</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrsgis</span> <span class="kn">import</span> <span class="n">raster</span>
+</pre></div>
+</div>
+<p>In Google Colab, run the following command to “print working directory:”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pwd
+</pre></div>
+</div>
+<p>In Jupyter Notebook, run the following code to locate your working directory:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>And to change your working directory:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;folderpath&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result should be /content.</p>
 </section>
 <section id="prepare-data">
 <h2>Prepare Data<a class="headerlink" href="#prepare-data" title="Link to this heading">#</a></h2>
+<p>For this exercise, we need training data and test data, all in raster format. The training data will be 1) a multiband raster surface representing elevation and elevation derivatives and 2) an annotated surface representing archaeological features. The test data will be a separate multiband raster surface representing elevation and elevation derivatives that has not yet been annotated. We will build a model to identify archaeological features given similar input topographical data.</p>
+<p>We will use lidar data from NASA G-LiHT’s 2013 flights over southeastern Mexico. Download the <a class="reference external" href="https://glihtdata.gsfc.nasa.gov/files/G-LiHT/AMIGACarb_Yuc_North_2_GLAS_Apr2013/lidar/las/AMIGACarb_Yuc_North_2_GLAS_Apr2013_l3s454.las.gz">AMIGACarb_Yuc_North_2_GLAS_Apr2013_l3s454.las</a> and <a class="reference external" href="https://glihtdata.gsfc.nasa.gov/files/G-LiHT/AMIGACarb_Yuc_North_2_GLAS_Apr2013/lidar/las/AMIGACarb_Yuc_North_2_GLAS_Apr2013_l3s455.las.gz">AMIGACarb_Yuc_North_2_GLAS_Apr2023_l3s455.las</a> files.</p>
+<p>All data must be in the same format with the same bit depth. The training data (multiband raster and annotated surface) must have the exact same coordinate system, spatial extent, and dimensions.</p>
+</section>
+<section id="define-variables-and-reshape-data">
+<h2>Define Variables and Reshape Data<a class="headerlink" href="#define-variables-and-reshape-data" title="Link to this heading">#</a></h2>
+<p>Before training the model, we need to upload the training and test data, and reformat them for the machine learning algorithm. If working in Google Colab, mount your Google Drive:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the lefthand Files window, you should be able to navigate to your Drive files under content/drive/MyDrive.</p>
+<p>Now we can define our variables in Google Colab or Jupyter Notebook, where inputcomp is our input training multiband raster composite surface, inputannot is a raster surface of our annotations, and testcomp is our testing multiband raster composite surface for after we train the model:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">inputcomp</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/MLfiles/s416composite.tif&#39;</span>
+<span class="n">inputannot</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/MLfiles/s416strs.tif&#39;</span>
+<span class="n">testcomp</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/MLfiles/s415composite.tif&#39;</span>
+</pre></div>
+</div>
+<p>Now we reshape the data into an array (essentially a list of values assigned to a category) and print the results:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds1</span><span class="p">,</span> <span class="n">featuresinput</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">inputcomp</span><span class="p">,</span> <span class="n">bands</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">ds2</span><span class="p">,</span> <span class="n">labelinput</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">inputannot</span><span class="p">,</span> <span class="n">bands</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ds3</span><span class="p">,</span> <span class="n">featurestest</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">testcomp</span><span class="p">,</span> <span class="n">bands</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Composite Input: &quot;</span><span class="p">,</span> <span class="n">featuresinput</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Annotated Input: &quot;</span><span class="p">,</span> <span class="n">labelinput</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Data: &quot;</span><span class="p">,</span> <span class="n">featurestest</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we reshape the data into a two-dimensional array (essentially making each pixel it’s own row in a table):</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrsgis.convert</span> <span class="kn">import</span> <span class="n">changeDimension</span>
+
+<span class="n">featuresinput</span> <span class="o">=</span> <span class="n">changeDimension</span><span class="p">(</span><span class="n">featuresinput</span><span class="p">)</span>
+<span class="n">labelinput</span> <span class="o">=</span> <span class="n">changeDimension</span><span class="p">(</span><span class="n">labelinput</span><span class="p">)</span>
+<span class="n">featurestest</span> <span class="o">=</span> <span class="n">changeDimension</span><span class="p">(</span><span class="n">featurestest</span><span class="p">)</span>
+<span class="n">nBands</span> <span class="o">=</span> <span class="n">featuresinput</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">labelinput</span> <span class="o">=</span> <span class="p">(</span><span class="n">labelinput</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">nBands</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Composite Input: &quot;</span><span class="p">,</span> <span class="n">featuresinput</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Annotated Input: &quot;</span><span class="p">,</span> <span class="n">labelinput</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Data: &quot;</span><span class="p">,</span> <span class="n">featurestest</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="training-the-model">
+<h2>Training the Model<a class="headerlink" href="#training-the-model" title="Link to this heading">#</a></h2>
+<p>We are now ready to train our model. First, we split the training data into training (60%) and test (40%) samples to avoid overfitting the data:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">xTrain</span><span class="p">,</span> <span class="n">xTest</span><span class="p">,</span> <span class="n">yTrain</span><span class="p">,</span> <span class="n">yTest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">featuresinput</span><span class="p">,</span> <span class="n">labelinput</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">xTrain</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">yTrain</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">xTest</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">yTest</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we normalize the data to ensure all data ranges between 0 and 1. To normalize data, use the following equation:</p>
+<div class="math notranslate nohighlight">
+\[
+{\text{Normalization}} = {{\text{Input - min}} \over {\text{max - min}}}
+\]</div>
+<p>For 8-bit data:</p>
+<div class="math notranslate nohighlight">
+\[
+{\text{Normalization}} = {{\text{Input - 0}} \over {\text{255 - 0}}}
+\]</div>
+<p>Which is the following in code:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">xTrain</span> <span class="o">=</span> <span class="n">xTrain</span><span class="o">/</span><span class="mf">255.0</span>
+<span class="n">xTest</span> <span class="o">=</span> <span class="n">xTest</span><span class="o">/</span><span class="mf">255.0</span>
+<span class="n">featurestest</span> <span class="o">=</span> <span class="n">featurestest</span><span class="o">/</span><span class="mf">255.0</span>
+</pre></div>
+</div>
+<p>And we additionally reshape one more time to a three-dimensional array:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">xTrain</span> <span class="o">=</span> <span class="n">xTrain</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">xTrain</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xTrain</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">xTest</span> <span class="o">=</span> <span class="n">xTest</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">xTest</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xTest</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">featurestest</span> <span class="o">=</span> <span class="n">featurestest</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">featurestest</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">,</span><span class="n">featurestest</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">xTrain</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">xTest</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">featurestest</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we can define the model:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+	<span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nBands</span><span class="p">)),</span>
+	<span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+	<span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimize</span><span class="o">=</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;sparse_categorical_crossentropy&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>And finally, we can run the model:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xTrain</span><span class="p">,</span> <span class="n">yTrain</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="assessing-the-results">
+<h2>Assessing the Results<a class="headerlink" href="#assessing-the-results" title="Link to this heading">#</a></h2>
+<p>Once the model has been trained, we can test the accuracy of the model on the test data:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
+
+<span class="n">yTestPredicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xTest</span><span class="p">)</span>
+<span class="n">yTestPredicted</span> <span class="o">=</span> <span class="n">yTestPredicted</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">yTestPredicted</span> <span class="o">=</span> <span class="p">(</span><span class="n">yTestPredicted</span><span class="o">&gt;</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">cMatrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">yTest</span><span class="p">,</span> <span class="n">yTestPredicted</span><span class="p">)</span>
+<span class="n">pScore</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">yTest</span><span class="p">,</span> <span class="n">yTestPredicted</span><span class="p">)</span>
+<span class="n">rScore</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">yTest</span><span class="p">,</span> <span class="n">yTestPredicted</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cMatrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">P-score: </span><span class="si">%.3f</span><span class="s2">, R-Score: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pScore</span><span class="p">,</span> <span class="n">rScore</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>We can view the confusion matrix with the pandas library:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">yTest</span><span class="p">,</span> <span class="n">yTestPredicted</span><span class="p">)</span>
+<span class="n">disp</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="o">=</span><span class="n">cm</span><span class="p">)</span>
+<span class="n">disp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="predicting-the-test-data">
+<h2>Predicting the Test Data<a class="headerlink" href="#predicting-the-test-data" title="Link to this heading">#</a></h2>
+<p>Now we can use the trained model on brand new data for predictions:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">featurestest</span><span class="p">)</span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">predicted</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>And we can convert back to raster:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">predicted</span><span class="p">,</span> <span class="p">(</span><span class="n">ds3</span><span class="o">.</span><span class="n">RasterYSize</span><span class="p">,</span> <span class="n">ds3</span><span class="o">.</span><span class="n">RasterXSize</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>And export for viewing:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">outFile</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/MLfiles/prediction.tif&#39;</span>
+<span class="n">raster</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">ds3</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">outFile</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
@@ -498,6 +670,10 @@ Remote Sensing 13(9):1759. <a class="reference external" href="https://doi.org/1
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-libraries">Install Python Libraries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-data">Prepare Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-variables-and-reshape-data">Define Variables and Reshape Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-results">Assessing the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-test-data">Predicting the Test Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 </ul>
   </nav></div>
