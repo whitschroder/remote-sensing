@@ -25,7 +25,7 @@ pip install scikit-learn
 ```
 
 ```
-pip install numpy
+pip install "numpy<2.0"
 ```
 
 ```
@@ -74,6 +74,10 @@ For this exercise, we need training data and test data, all in raster format. Th
 We will use lidar data from NASA G-LiHT's 2013 flights over southeastern Mexico. Download the [AMIGACarb_Yuc_North_2_GLAS_Apr2013_l3s454.las](https://glihtdata.gsfc.nasa.gov/files/G-LiHT/AMIGACarb_Yuc_North_2_GLAS_Apr2013/lidar/las/AMIGACarb_Yuc_North_2_GLAS_Apr2013_l3s454.las.gz) and [AMIGACarb_Yuc_North_2_GLAS_Apr2023_l3s455.las](https://glihtdata.gsfc.nasa.gov/files/G-LiHT/AMIGACarb_Yuc_North_2_GLAS_Apr2013/lidar/las/AMIGACarb_Yuc_North_2_GLAS_Apr2013_l3s455.las.gz) files.
 
 All data must be in the same format with the same bit depth. The training data (multiband raster and annotated surface) must have the exact same coordinate system, spatial extent, and dimensions. 
+
+In QGIS, load the DEM raster and the annotated features. Use the Rasterize (vector to raster) tool to convert the features to a raster. Change the fixed value fo burn to 1, output raster size units to Georeferenced units, and the width and height resolution to match the DEM raster. Under Output extent, select Calculate from Layer, and select the DEM raster.
+
+In ArcGIS Pro, run the Polygon to Raster tool to convert the features to raster. Under Environments, select the DEM raster under Extent (Extent of a Layer) and Snap Raster. The tool assigns each structure a unique value, so run the Slice tool with number of output zones set to 1, and starting value for output set to 1.
 
 ## Define Variables and Reshape Data
 
@@ -165,7 +169,7 @@ And we additionally reshape one more time to a three-dimensional array:
 ```Python
 xTrain = xTrain.reshape((xTrain.shape[0], 1, xTrain.shape[1]))
 xTest = xTest.reshape((xTest.shape[0], 1, xTest.shape[1]))
-featurestest = featurestest.reshape((featurestest.shape[0],1,featurestest.shape[1])
+featurestest = featurestest.reshape((featurestest.shape[0],1,featurestest.shape[1]))
 
 print(xTrain.shape, xTest.shape, featurestest.shape)
 ```
@@ -180,7 +184,7 @@ model = keras.Sequential([
 	keras.layers.Dense(14, activation='relu'),
 	keras.layers.Dense(2, activation='softmax')])
 
-model.compile(optimize="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
+model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
 ```
 
 And finally, we can run the model:
