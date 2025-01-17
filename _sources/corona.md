@@ -12,7 +12,7 @@ Uncorrected CORONA imagery is available through the [USGS Earth Explorer](https:
 
 ## Stitching Imagery
 
-[Hugin](https://hugin.sourceforge.io/) can be used to stitch the CORONA imagery into a single transect. Load images, Align images, and Create panorama.
+[Hugin](https://hugin.sourceforge.io/) can be used to stitch the CORONA imagery into a single transect. Load images in order (I have had best results with lens type: Orthographic). If the Camera and Lens window pops up, click Cancel if you do not have the metadata. You may get the option to mask out portions of the photo (optional). Then, Align images, and if successful, Create panorama.
 
 ## ArcGIS Pro
 
@@ -36,7 +36,7 @@ Refer to the [Georeferencing tools](https://pro.arcgis.com/en/pro-app/latest/hel
 
 The procedure is similar in QGIS. To add the .csv file with coordinates to QGIS, use the Add Delimited Text Layer option under Layer.
 
-Refer to the [Georeferencer](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_raster/georeferencer.html) for instructions.
+Refer to the [Georeferencer](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_raster/georeferencer.html) for instructions. The Georeferencer is available under Layers.
 
 ## Limitations
 
