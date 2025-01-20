@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Digital Surface Models and Orthoimagery in Reality Capture &#8212; Archaeological Remote Sensing</title>
+    <title>Bonus: Photogrammetry Workflow in RealityCapture &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -60,9 +60,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'reality';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'rc';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Drone Mission Planning for Photogrammetry" href="drones.html" />
+    <link rel="prev" title="3. Digital Surface Models and Orthoimagery in Agisoft Metashape" href="agisoft.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +115,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -168,12 +168,12 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="agisoft.html">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="rc.html">Bonus: Photogrammetry Workflow in RealityCapture</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="agisoft.html">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Bonus: Photogrammetry Workflow in RealityCapture</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
@@ -260,7 +260,7 @@
       
       
       
-      <li><a href="https://github.com/whitschroder/remote-sensing/issues/new?title=Issue%20on%20page%20%2Freality.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/whitschroder/remote-sensing/issues/new?title=Issue%20on%20page%20%2Frc.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -290,7 +290,7 @@
       
       
       
-      <li><a href="_sources/reality.md" target="_blank"
+      <li><a href="_sources/rc.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -366,7 +366,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Digital Surface Models and Orthoimagery in Reality Capture</h1>
+    <h1>Bonus: Photogrammetry Workflow in RealityCapture</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,10 +376,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-links">Additional links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">Layout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-imagery">Add Imagery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#align-images">Align Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-model">Calculate Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-and-colorize">Texture and Colorize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system-and-ground-control-points">Coordinate System and Ground Control Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ortho-projection">Ortho Projection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export">Export</a></li>
 </ul>
             </nav>
         </div>
@@ -391,33 +395,68 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="digital-surface-models-and-orthoimagery-in-reality-capture">
-<h1>Digital Surface Models and Orthoimagery in Reality Capture<a class="headerlink" href="#digital-surface-models-and-orthoimagery-in-reality-capture" title="Link to this heading">#</a></h1>
-<p>Coming soon</p>
-<section id="coming-soon">
-<h2>Coming soon<a class="headerlink" href="#coming-soon" title="Link to this heading">#</a></h2>
-<p>Coming soon</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="bonus-photogrammetry-workflow-in-realitycapture">
+<h1>Bonus: Photogrammetry Workflow in RealityCapture<a class="headerlink" href="#bonus-photogrammetry-workflow-in-realitycapture" title="Link to this heading">#</a></h1>
+<p>This lab follows the same workflow as in Agisoft Metashape using RealityCapture, which is a free alternative software. Instructions for installing RealityCapture are available <a class="reference external" href="https://whitschroder.github.io/remote-sensing/install.html">here</a>.</p>
+<section id="layout">
+<h2>Layout<a class="headerlink" href="#layout" title="Link to this heading">#</a></h2>
+<p>Adjust the layout to remove the default Help screen. Layout options are available at the top left or top right of the RealityCapture menu. Also turn on the Settings pane.</p>
 </section>
-<section id="id1">
-<h2>Coming soon<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>Coming soon</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+<section id="add-imagery">
+<h2>Add Imagery<a class="headerlink" href="#add-imagery" title="Link to this heading">#</a></h2>
+<p>Under Workflow, click on Inputs in the Add imagery section of the main toolbar. Navigate to your images and add them.</p>
 </section>
-<section id="citations">
-<h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">#</a></h2>
-<div class="docutils container" id="id2">
-<div role="list" class="citation-list">
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>HdHPK14<span class="fn-bracket">]</span></span>
-<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
-</div>
-</div>
-</div>
+<section id="align-images">
+<h2>Align Images<a class="headerlink" href="#align-images" title="Link to this heading">#</a></h2>
+<p>In the Process section of the Workflow menu, click Align images.</p>
 </section>
-<section id="additional-links">
-<h2>Additional links<a class="headerlink" href="#additional-links" title="Link to this heading">#</a></h2>
+<section id="calculate-model">
+<h2>Calculate Model<a class="headerlink" href="#calculate-model" title="Link to this heading">#</a></h2>
+<p>Next, click Calculate Model using Normal detail. Optionally, click Simplify after generating the model to reduce the size and complexity of the mesh (decimate).</p>
+</section>
+<section id="texture-and-colorize">
+<h2>Texture and Colorize<a class="headerlink" href="#texture-and-colorize" title="Link to this heading">#</a></h2>
+<p>The next two steps, Texture and Colorize and the imagery over the model.</p>
+</section>
+<section id="coordinate-system-and-ground-control-points">
+<h2>Coordinate System and Ground Control Points<a class="headerlink" href="#coordinate-system-and-ground-control-points" title="Link to this heading">#</a></h2>
+<p>In the Application Settings menu, click on Coordinate systems. Change the Project coordinate system to the appropriate option and click Yes to match the output coordinate system. The vertical coordinate system units must match the horizontal coordinate system units (i.e. select a planar coordinate system such as UTM). In Google Earth Pro, select at least 3 areas for ground control points in your imagery. Enter these values into an Excel spreadsheet in the following format:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Point</p></th>
+<th class="head"><p>X</p></th>
+<th class="head"><p>Y</p></th>
+<th class="head"><p>Z</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>x coordinate</p></td>
+<td><p>y coordinate</p></td>
+<td><p>z coordinate</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>x coordinate</p></td>
+<td><p>y coordinate</p></td>
+<td><p>z coordinate</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Save the spreadsheet as a .csv file. In the Import &amp; Metadata section of the Workflow menu, click Ground Control, navigate to your .csv file and open. Select the appropriate File format (Name, X, Y, Alt), Values separator (comma), and whether to Ignore first line (only if the table has a header).</p>
+</section>
+<section id="ortho-projection">
+<h2>Ortho Projection<a class="headerlink" href="#ortho-projection" title="Link to this heading">#</a></h2>
+<p>In the final option in the Process section of the Workflow menu, click Ortho Projection. In the Ortho Projection Tool menu, click Render.</p>
+</section>
+<section id="export">
+<h2>Export<a class="headerlink" href="#export" title="Link to this heading">#</a></h2>
+<p>In the Output section of the Workflow menu, click Export. Under Ortho Projections, DTM and DSM, select Digital Surface Model.</p>
 </section>
 </section>
 
@@ -451,6 +490,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="agisoft.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3. Digital Surface Models and Orthoimagery in Agisoft Metashape</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="drones.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">4. Drone Mission Planning for Photogrammetry</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -468,10 +525,14 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-soon">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Coming soon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-links">Additional links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">Layout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-imagery">Add Imagery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#align-images">Align Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-model">Calculate Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-and-colorize">Texture and Colorize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system-and-ground-control-points">Coordinate System and Ground Control Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ortho-projection">Ortho Projection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export">Export</a></li>
 </ul>
   </nav></div>
 
