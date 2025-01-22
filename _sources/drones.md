@@ -126,7 +126,7 @@ $$
 
 Several plugins are available in QGIS for drone mission planning. The Flight Planner plugin requires drone camera specifications, an area of interest, and an optional terrain layer as input, and the plugin outputs a flight path with waypoints. These waypoints can then be uploaded to the drone, using for example the [Litchi](https://flylitchi.com/) app.
 
-Another option is the [UAV Mapping Path Generator (for Litchi)](https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission), which requires slightly different inputs to generate similar outputs.
+Another option is the [UAV Mapping Path Generator (for Litchi)](https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission), which requires slightly different inputs to generate similar outputs, or [WaypointMap](https://www.waypointmap.com/).
 
 In the Flight Planner plugin, the input must be a polygon in a projected coordinate system, measured in meters, UTM, for example. Refer to the editing tools in [QGIS](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html) or [ArcGIS Pro](https://pro.arcgis.com/en/pro-app/latest/help/editing/a-quick-tour-of-editing.htm) to create polygons.
 

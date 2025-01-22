@@ -379,6 +379,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dem-vs-dsm-vs-dtm">DEM vs. DSM vs. DTM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#srtm">SRTM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aster">ASTER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#airsar">AIRSAR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-3d-elevation-program-3dep">USGS 3D Elevation Program (3DEP)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-calculator">Raster Calculator</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtm-filter">DTM Filter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-vertical-projection">Define Vertical Projection</a></li>
@@ -393,6 +395,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transparency-and-blending">Transparency and Blending</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topographic-position-index">Topographic Position Index</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geomorphons">Geomorphons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-scale-relief-model-msrm">Multi-scale Relief Model (MSRM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>
@@ -415,7 +418,7 @@
 </section>
 <section id="srtm">
 <h2>SRTM<a class="headerlink" href="#srtm" title="Link to this heading">#</a></h2>
-<p>The Shuttle Radar Topography Mission (SRTM) used two radar antennae mounted on the Space Shuttle Endeavour in 2000 to produce the first near global DEM, specifically 80% of the Earth’s land surface between 60° north and 56° south latitude. Radar is generally able to penetrate vegetation, but topographic mapping can still be challenging in densely forested areas and rugged terrain.</p>
+<p>The Shuttle Radar Topography Mission (SRTM) used two radar antennae mounted on the Space Shuttle Endeavour in 2000 to produce the first near global DEM, specifically 80% of the Earth’s land surface between 60° north and 56° south latitude. Although radar can penetrate vegetation, results can be poor in densely forested areas and rugged terrain.</p>
 <p>SRTM data are available in three formats:</p>
 <p><b>SRTM Non-Void Filled</b> elevation data contains voids from densely forested areas and rugged terrain at a resolution of 1-arc second (approximately 30 m at the equator) in the United States and 3-arc seconds (approximately 90 m at the equator) outside the United States.</p>
 <p><b>SRTM Void Filled</b> elevation data combined interpolation and other data sources to fill voids. The resolution is 1-arc second (approximately 30 m at the equator) in the United States and 3-arc seconds (approximately 90 m at the equator) outside the United States.</p>
@@ -426,6 +429,14 @@
 <h2>ASTER<a class="headerlink" href="#aster" title="Link to this heading">#</a></h2>
 <p>The Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) was a Japanese multispectral sensor mounted on NASA’s Terra satellite in 1999. Stereo imagery was processed to generate the first version of the ASTER Global Digital Elevation Model (GDEM), perhaps more appropriately called a DSM, covering 99% of the Earth’s land surface between 83° north and 83° south latitude. The third version of the GDEM was released in 2019 with significant improvements, removing above ground artifacts.</p>
 <p>ASTER data are no longer available through the USGS Earth Explorer and can instead be downloaded from <a class="reference external" href="https://search.earthdata.nasa.gov/search">NASA Earth Data Search</a>.</p>
+</section>
+<section id="airsar">
+<h2>AIRSAR<a class="headerlink" href="#airsar" title="Link to this heading">#</a></h2>
+<p>A product of the Jet Propulsion Laboratory (JPL), the Airborne Synthetic Aperture Radar (AIRSAR) instrument was an airborne system that operated from 1988 to 2004, collecting limited data over selected study regions, at approximately 5 m resolution. AIRSAR data can be browsed through a list of <a class="reference external" href="https://airsar.jpl.nasa.gov/cgi-bin/internet.plex">missions</a> a search for <a class="reference external" href="https://airsar.jpl.nasa.gov/cgi-bin/search.plex">precision data</a>, and an <a class="reference external" href="https://airsar.jpl.nasa.gov/cgi-bin/map.pl">interactive map</a>.</p>
+</section>
+<section id="usgs-3d-elevation-program-3dep">
+<h2>USGS 3D Elevation Program (3DEP)<a class="headerlink" href="#usgs-3d-elevation-program-3dep" title="Link to this heading">#</a></h2>
+<p>Near nationwide digital elevation models for the U.S. are available at the <a class="reference external" href="https://apps.nationalmap.gov/downloader/">National Map</a>. Data are available at 1 m, 5 m, 10 m, and 30 m resolution.</p>
 </section>
 <section id="raster-calculator">
 <h2>Raster Calculator<a class="headerlink" href="#raster-calculator" title="Link to this heading">#</a></h2>
@@ -484,6 +495,10 @@
 <section id="geomorphons">
 <h2>Geomorphons<a class="headerlink" href="#geomorphons" title="Link to this heading">#</a></h2>
 <p>Another approach to classifying landforms relies on the Geomorphons method. This tool has additional categories beyond a simple topographic position index. Geomorphons traditionally consist of 10 classes: 1) Flat, 2) Summit, 3) Ridge, 4) Shoulder, 5) Spur, 6) Slope, 7) Hollow, 8) Footslope, 9) Valley, and 10) Depression. The SAGA Geomorphons tool in QGIS classifies a DEM into these categories, based on parameters that like the Topographic Position Index are used to define the neighborhood or radius.</p>
+</section>
+<section id="multi-scale-relief-model-msrm">
+<h2>Multi-scale Relief Model (MSRM)<a class="headerlink" href="#multi-scale-relief-model-msrm" title="Link to this heading">#</a></h2>
+<p>The Multi-scape Relief Model is designed to extract landform morphology in low resolution digital elevation models. The implementation is based in <a class="reference external" href="https://whitschroder.github.io/remote-sensing/ml.html">Google Earth Engine</a> or <a class="reference external" href="https://github.com/horengo/Orengo_Petrie_2018_MSRM">Python</a>.</p>
 </section>
 <section id="required-readings">
 <h2>Required Readings<a class="headerlink" href="#required-readings" title="Link to this heading">#</a></h2>
@@ -568,6 +583,8 @@ northwest Belgium. Journal of Archaeological Science 38(12):3435-3446. <a class=
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dem-vs-dsm-vs-dtm">DEM vs. DSM vs. DTM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#srtm">SRTM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aster">ASTER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#airsar">AIRSAR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-3d-elevation-program-3dep">USGS 3D Elevation Program (3DEP)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-calculator">Raster Calculator</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtm-filter">DTM Filter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-vertical-projection">Define Vertical Projection</a></li>
@@ -582,6 +599,7 @@ northwest Belgium. Journal of Archaeological Science 38(12):3435-3446. <a class=
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transparency-and-blending">Transparency and Blending</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topographic-position-index">Topographic Position Index</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geomorphons">Geomorphons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-scale-relief-model-msrm">Multi-scale Relief Model (MSRM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-readings">Additional Readings</a></li>
 </ul>

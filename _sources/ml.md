@@ -261,3 +261,5 @@ Archaeologic Machine Learning for Shipwreck Detection Using Lidar and Sonar.
 Remote Sensing 13(9):1759. <https://doi.org/10.3390/rs13091759>
 
 Davis, D.S., J. Cook Hale, N. L. Hale, T. Z. Johnston, and M. C. Sanger. 2024. Bathymetric LiDAR and Semi-Automated Feature Extraction Assist Underwater Archaeological Surveys. Archaeological Prospection 31(2):171-186. <https://doi.org/10.1002/arp.1939>
+
+Gattiglia, Gabriele. 2025. Managing Artificial Intelligence in Archeology. An Overview. Journal of Cultural Heritage 71:225-233. <https://doi.org/10.1016/j.culher.2024.11.020>

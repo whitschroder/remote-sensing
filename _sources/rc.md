@@ -20,7 +20,7 @@ Next, click Calculate Model using Normal detail. Optionally, click Simplify afte
 
 ## Texture and Colorize
 
-The next two steps, Texture and Colorize and the imagery over the model.
+The next two steps, Texture and Colorize add the imagery over the model.
 
 ## Coordinate System and Ground Control Points
 
@@ -34,11 +34,12 @@ In the Application Settings menu, click on Coordinate systems. Change the Projec
 
 Save the spreadsheet as a .csv file. In the Import & Metadata section of the Workflow menu, click Ground Control, navigate to your .csv file and open. Select the appropriate File format (Name, X, Y, Alt), Values separator (comma), and whether to Ignore first line (only if the table has a header).
 
+Once the ground control points are imported, identify the location of the ground control points on the model. Confirm the location of tie points in each photo in the main contents pane.
+
 ## Ortho Projection
 
-In the final option in the Process section of the Workflow menu, click Ortho Projection. In the Ortho Projection Tool menu, click Render.
+In the final option in the Process section of the Workflow menu, click Ortho Projection. In the Ortho Projection Tool menu, change Type to Top and Estimate optimal resolution. Change the resolution if necessary and click Render.
 
 ## Export
 
-In the Output section of the Workflow menu, click Export. Under Ortho Projections, DTM and DSM, select Digital Surface Model. 
-
+In the Output section of the Workflow menu, click Export. Under Ortho Projections, DTM and DSM, select Digital Surface Model.

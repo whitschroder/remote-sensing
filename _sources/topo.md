@@ -8,7 +8,7 @@ The terms digital elevation model (DEM), digital surface model (DSM), and digita
 
 ## SRTM
 
-The Shuttle Radar Topography Mission (SRTM) used two radar antennae mounted on the Space Shuttle Endeavour in 2000 to produce the first near global DEM, specifically 80% of the Earth's land surface between 60° north and 56° south latitude. Radar is generally able to penetrate vegetation, but topographic mapping can still be challenging in densely forested areas and rugged terrain.
+The Shuttle Radar Topography Mission (SRTM) used two radar antennae mounted on the Space Shuttle Endeavour in 2000 to produce the first near global DEM, specifically 80% of the Earth's land surface between 60° north and 56° south latitude. Although radar can penetrate vegetation, results can be poor in densely forested areas and rugged terrain.
 
 SRTM data are available in three formats:
 
@@ -25,6 +25,14 @@ SRTM data are available through the [USGS Earth Explorer](https://earthexplorer.
 The Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) was a Japanese multispectral sensor mounted on NASA's Terra satellite in 1999. Stereo imagery was processed to generate the first version of the ASTER Global Digital Elevation Model (GDEM), perhaps more appropriately called a DSM, covering 99% of the Earth's land surface between 83° north and 83° south latitude. The third version of the GDEM was released in 2019 with significant improvements, removing above ground artifacts.
 
 ASTER data are no longer available through the USGS Earth Explorer and can instead be downloaded from [NASA Earth Data Search](https://search.earthdata.nasa.gov/search). 
+
+## AIRSAR
+
+A product of the Jet Propulsion Laboratory (JPL), the Airborne Synthetic Aperture Radar (AIRSAR) instrument was an airborne system that operated from 1988 to 2004, collecting limited data over selected study regions, at approximately 5 m resolution. AIRSAR data can be browsed through a list of [missions](https://airsar.jpl.nasa.gov/cgi-bin/internet.plex) a search for [precision data](https://airsar.jpl.nasa.gov/cgi-bin/search.plex), and an [interactive map](https://airsar.jpl.nasa.gov/cgi-bin/map.pl).
+
+## USGS 3D Elevation Program (3DEP)
+
+Near nationwide digital elevation models for the U.S. are available at the [National Map](https://apps.nationalmap.gov/downloader/). Data are available at 1 m, 5 m, 10 m, and 30 m resolution.
 
 ## Raster Calculator
 
@@ -85,6 +93,10 @@ A Topographic Position Index (TPI) models landforms in relation to their relativ
 ## Geomorphons
 
 Another approach to classifying landforms relies on the Geomorphons method. This tool has additional categories beyond a simple topographic position index. Geomorphons traditionally consist of 10 classes: 1) Flat, 2) Summit, 3) Ridge, 4) Shoulder, 5) Spur, 6) Slope, 7) Hollow, 8) Footslope, 9) Valley, and 10) Depression. The SAGA Geomorphons tool in QGIS classifies a DEM into these categories, based on parameters that like the Topographic Position Index are used to define the neighborhood or radius.
+
+## Multi-scale Relief Model (MSRM)
+
+The Multi-scape Relief Model is designed to extract landform morphology in low resolution digital elevation models. The implementation is based in [Google Earth Engine](https://whitschroder.github.io/remote-sensing/ml.html) or [Python](https://github.com/horengo/Orengo_Petrie_2018_MSRM).
 
 ## Required Readings
 
