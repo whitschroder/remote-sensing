@@ -60,7 +60,7 @@ Interpolation should be enabled, and Calculate vertex colors will assign RGB val
 
 This step is also optional and stretches a texture over the model based on stitching the images together. Sometimes the shaded mesh produces better results than the texture. This step tends to be the least computationally intensive step, and for that reason is worth running if the mesh has already been generated. The mesh and textures can also be exported to several formats outside of Metashape.
 
-## Readings
+## References
 
 Magnani, Matthew, Matthew Douglass, Whittaker Schroder, Jonathan Reeves, and David R. Braun. 2020. The Digital Revolution to Come: Photogrammetry in Archaeological Practice. American Antiquity 85(4):737-760. <https://digitalcommons.library.umaine.edu/ant_facpub/65/>
 

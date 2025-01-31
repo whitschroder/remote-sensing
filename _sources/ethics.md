@@ -1,6 +1,6 @@
 # Ethics in Remote Sensing
 
-## Readings
+## References
 
 Berman, Gabrielle, Sara de la Rosa, and Tanya Accone. 2018. 
 Ethical Considerations When Using Geospatial Technologies for Evidence Generation. 

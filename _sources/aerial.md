@@ -25,13 +25,11 @@ Additional instructions on stereoscopy in Agisoft Metashape are available [here]
 
 Stereo Mapping is also available in [ArcGIS Pro](https://pro.arcgis.com/en/pro-app/latest/help/analysis/image-analyst/introduction-to-stereo-mapping.htm).
 
-## Required Readings
+## References
 
 Verhoeven, Geert J. 2009. Providing an Archaeological Bird's-eye View -- an Overall 
 Picture of Ground-based Means to Execute Low-altitude Aerial Photography (LAAP) in
 Archaeology. Archaeological Prospection 16:233-249. [PDF](https://www.academia.edu/423604/Providing_An_Archaeological_Birds_eye_View_an_Overall_Picture_of_Ground_based_Means_to_Execute_Low_altitude_Aerial_Photography_LAAP_In_Archaeology)
-
-## Additional Readings
 
 Campana, Douglas V. 1977. Making Stereo-Photomacrographs for Archaeological Studies. Journal of Field Archaeology 4(4):435-440. <https://doi.org/10.2307/529399>
 

@@ -342,7 +342,7 @@ Blue -- water, urban, and bare earth
 4. Various shades of blue -- urban and land use
 Red -- shorelines and immediate land use changes
 
-## Required Readings
+## References
 
 Davis, D. S., Domic, A. I., Manahira, G., & Douglass, K. 2024. Geophysics Elucidate Long-term Socio-ecological Dynamics of Foraging, Pastoralism, and Mixed Subsistence Strategies on SW Madagascar. Journal of Anthropological Archaeology 75(101612). <https://doi.org/10.1016/j.jaa.2024.101612>
 
@@ -356,8 +356,6 @@ Lowland Maya Settlement Archaeology. Journal of Archaeological Science 35(10):27
 <https://doi.org/10.1016/j.jas.2008.05.003>
 
 Parcak, Sarah. 2009. Satellite Remote Sensing for Archaeology. Routledge, New York.
-
-## Additional Readings
 
 Amidon, Will. Middlebury Remote Sensing. 
 <https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured>

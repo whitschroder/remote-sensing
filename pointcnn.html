@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>10. Annotating Lidar Data &#8212; Archaeological Remote Sensing</title>
+    <title>Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN &#8212; Archaeological Remote Sensing</title>
   
   
   
@@ -60,11 +60,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'annotate';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pointcnn';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="11. Machine Learning Approaches in Remote Sensing" href="ml.html" />
-    <link rel="prev" title="Bonus: Lidar Processing and Analysis with LAStools" href="lastools.html" />
+    <link rel="next" title="12. Ground Penetrating Radar" href="gpr.html" />
+    <link rel="prev" title="11. Machine Learning Approaches in Remote Sensing" href="ml.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -185,9 +185,9 @@
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Annotating Lidar Data</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="pointcnn.html">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
@@ -263,7 +263,7 @@
       
       
       
-      <li><a href="https://github.com/whitschroder/remote-sensing/issues/new?title=Issue%20on%20page%20%2Fannotate.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/whitschroder/remote-sensing/issues/new?title=Issue%20on%20page%20%2Fpointcnn.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +293,7 @@
       
       
       
-      <li><a href="_sources/annotate.md" target="_blank"
+      <li><a href="_sources/pointcnn.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -356,9 +356,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -369,23 +367,11 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>10. Annotating Lidar Data</h1>
+    <h1>Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-editing-in-arcgis-pro">Feature Editing in ArcGIS Pro</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-editing-in-qgis">Feature Editing in QGIS</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-a-feature-typology">Developing a Feature Typology</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annotation-methods">Annotation Methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -395,97 +381,21 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="annotating-lidar-data">
-<h1>10. Annotating Lidar Data<a class="headerlink" href="#annotating-lidar-data" title="Link to this heading">#</a></h1>
-<p>In this lab we will annotate archaeological features in lidar data. In the next lab, we will prepare our annotations to be entered as training data into a machine learning model.</p>
-<section id="feature-editing-in-arcgis-pro">
-<h2>Feature Editing in ArcGIS Pro<a class="headerlink" href="#feature-editing-in-arcgis-pro" title="Link to this heading">#</a></h2>
-<p>Review the editing tools in <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/editing/a-quick-tour-of-editing.htm">ArcGIS Pro</a>.</p>
-</section>
-<section id="feature-editing-in-qgis">
-<h2>Feature Editing in QGIS<a class="headerlink" href="#feature-editing-in-qgis" title="Link to this heading">#</a></h2>
-<p>Review the editing tools in <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html">QGIS</a>.</p>
-</section>
-<section id="developing-a-feature-typology">
-<h2>Developing a Feature Typology<a class="headerlink" href="#developing-a-feature-typology" title="Link to this heading">#</a></h2>
-<p>Before annotating features, we need to develop a consistent typology of feature classes. The most basic classes might be additive (convex) vs. subtractive (concave) features. Additive features are built features that were created by adding material to the natural terrain (for example, buildings, berms, mounds, walls, etc.). Subtractive features are excavated features that were created by removing material (for example, ditches, reservoirs, canals, etc.). These typologies must be informed by local knowledge and ground-based research.</p>
-<p>At Quirigua, Guatemala, Wendy Ashmore (2007) produced a useful architectural and archaeological feature classification:</p>
-<p>I. Stratum (abbreviated S.):
-Matrix deposited by natural means (such as alluviation), each definable layer designated a stratum.</p>
-<p>II. Feature (abbreviated F.):
-Entity resulting from human activity not recoverable from its matrix without destroying its integrity: divided into constructed and cumulative features.</p>
-<p>A. Constructed feature</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="bonus-point-cloud-classification-in-arcgis-pro-with-pointcnn">
+<h1>Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN<a class="headerlink" href="#bonus-point-cloud-classification-in-arcgis-pro-with-pointcnn" title="Link to this heading">#</a></h1>
+<p>This workflow uses deep learning to classify LiDAR point clouds using <a class="reference external" href="https://developers.arcgis.com/python/latest/guide/point-cloud-segmentation-using-pointcnn/">PointCNN</a> in the ArcGIS Pro arcgis.learn module.</p>
 <ol class="arabic simple">
-<li><p>Architecture:
-Originally visible constructed features built on or up from ground level; divided into subcategories of structures and pavements: note that individual components of architecture, such as walls, fill, stairs, or floors, are designated units (abbreviated U.)</p></li>
+<li><p>Update ArcGIS Pro</p></li>
+<li><p>Install Deep Learning Libraries for the correct version of ArcGIS Pro: <a class="github reference external" href="https://github.com/Esri/deep-learning-frameworks">Esri/deep-learning-frameworks</a></p></li>
+<li><p>Prepare point cloud data:</p></li>
+<li><p>Merge all polygon annotations into a single part polygon (using the editing tool <a class="reference external" href="https://pro.arcgis.com/en/pro-app/3.3/help/editing/merge-features-into-one-feature.htm">Merge</a> after selecting all rows in the attribute table or <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/select-layer-by-attribute.htm">Select Layer by Attribute</a>).</p></li>
+<li><p>Use <a class="reference external" href="https://downloads.rapidlasso.de/html/las2las_README.html">las2las</a> (open source) to filter out ground classified points.</p></li>
+<li><p>Use <a class="reference external" href="https://downloads.rapidlasso.de/html/lasclip_README.html">lasclip</a> (licensed) with -classify 20, -interior, and -poly with the polygon annotation or use <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/3d-analyst/change-las-class-codes.htm">Change LAS Class Codes</a> in ArcGIS Pro.</p></li>
+<li><p>Create 2 polygons: one to define training (about 60-70%) and validation (30-40%) areas. The polygons should extend outside of the las file area and not overlap each other.</p></li>
+<li><p>Use <a class="reference external" href="https://downloads.rapidlasso.de/html/lasclip_README.html">lasclip</a> to generate separate input point cloud (training) and validation point cloud.</p></li>
+<li><p>Run the <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/3d-analyst/prepare-point-cloud-training-data.htm">Prepare Point Cloud Training Data</a> tool (block size = 250 m).</p></li>
+<li><p>Run the <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/3d-analyst/train-point-cloud-classification-model.htm">Train Point Cloud Classification Model</a> tool. This step may take a long time depending on the selected maximum number of epochs (default = 25).</p></li>
 </ol>
-<p>a. Structure (abbreviated Str.):
-Three-dimensional architecture: divided into operational categories of platforms, substructures, superstructures, and buildings: note that structure may be retained as an operational term when subcategories cannot be determined.</p>
-<p>i. Substructure (abbreviated Sub-str.):
-Elevated mass supporting construction.</p>
-<p>ii. Superstructure (abbreviated Sup-str.):
-Construction supported by a substructure.</p>
-<p>iii. Building (abbreviated Bldg.):
-Generic term for enclosed and roofed space; may correspond to superstructure, but here designation implies lack of substructure.</p>
-<p>iv. Platform (abbreviated Pl.):
-Elevated mass supporting or basal to one of more substructures or to one or more monuments.</p>
-<p>b. Pavement (abbreviated Pvmt.):
-Two-dimensional architecture (prepared surface, either paved or modified ground surface), divided into operational categories: plaza and court; note that pavement may be retained as an operational category when subcategories cannot be determined.</p>
-<p>i. Plaza:
-Pavement enclosed by structures on two or fewer sides.</p>
-<p>ii. Court:
-Pavement enclosed by structures on three or more sides.</p>
-<ol class="arabic simple" start="2">
-<li><p>Deposit:
-Feature built into architecture or under ground level; divided into sealed and unsealed categories.</p></li>
-</ol>
-<p>a. Unsealed deposit:
-Feature built under ground level, but not intentionally sealed; divided into operational categories: wells, pits.</p>
-<p>i. Well:
-Shaft excavated to water table; usually lined.</p>
-<p>ii. Pit:
-Intrusive excavation; usually unlined.</p>
-<p>b. Sealed deposit:
-Intentionally sealed deposits; divided into operational categories: burials, caches, special deposits.</p>
-<p>i. Burial (abbreviated Bu.):
-Interment with evidence of human remains.</p>
-<p>ii. Cache (abbreviated Ca.):
-Interment without human remains.</p>
-<p>iii. Special Deposit (abbreviated S.D.):
-Sealed deposit of undetermined nature.</p>
-<p>B. Cumulative Feature:
-Feature without evidence of deliberate building activity, resulting from accretion or subtraction; divided into use-related and transposed categories.</p>
-<ol class="arabic simple">
-<li><p>Use-related Cumulative Feature:
-Cumulative feature resulting from undisturbed and initial extraction or deposition of matrix, artifacts, and/or ecofacts produced by human activity; divided into operational categories: primary deposits and negative features.</p></li>
-</ol>
-<p>a. Primary Deposit (abbreviated Pr. D.):
-Unsealed deposit of use-related debris (e.g. workshop debris <i>in situ</i>; cf. Schiffer’s [1972] <i>de facto</i> refuse).</p>
-<p>b. Negative Feature (abbreviated N.F.):
-Unsealed deposit resulting from cumulative extraction of matrix (e.g. quarry).</p>
-<ol class="arabic simple" start="2">
-<li><p>Transposed Cumulative Features:
-Cumulative features resulting from secondary deposition of matrix, artifacts, and/or ecofacts; designated by a single operational term: midden (abbreviated Mdn.).</p></li>
-</ol>
-<p>C. Disturbed Feature (abbreviated D.F.):
-Any feature disturbed to a degree sufficient to prevent determination of original form or provenience.</p>
-<p>Other citations below discuss other typologies.</p>
-</section>
-<section id="annotation-methods">
-<h2>Annotation Methods<a class="headerlink" href="#annotation-methods" title="Link to this heading">#</a></h2>
-<p>The next step in annotation involves deciding how features should be annotated. The most basic approach uses points to mark features.</p>
-<p>We can then expand to using lines to annotate linear features.</p>
-<p>Finally, we can use polygons to define the shape of feature footprints.</p>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
-<p>Stanton, T. W., T. Ardren, N.C. Barth, J.C. Fernandez-Diaz, P. Rohrer, D. Meyer, S.J. Miller, A.
-Magnoni, and M. Pérez. 2020. Structure, Density, Area, and Volume as Complementary Tools to Understand Maya Settlement: An Analysis of Lidar Data along the Great Road between Coba and Yaxuná. Journal of Archaeological
-Science: Reports, 29. <a class="reference external" href="https://doi.org/10.1016/j.jasrep.2019.102178">https://doi.org/10.1016/j.jasrep.2019.102178</a></p>
-<p>Rostain, Stéphen et al. 2024. Two Thousand Years of Garden Urbanism in the Upper Amazon. Science 383:6679. <a class="reference external" href="https://doi.org/10.1126/science.adi6317">https://doi.org/10.1126/science.adi6317</a>.</p>
-<p>Schroder, Whittaker et al. 2020. The Lowland Maya Settlement Landscape: Environmental LiDAR and Ecology. Journal of Archaeological Science: Reports 33:102543. <a class="reference external" href="https://doi.org/10.1016/j.jasrep.2020.102543">https://doi.org/10.1016/j.jasrep.2020.102543</a></p>
-<p>Ashmore, Wendy. 2007. Settlement Archaeology at Quirigua. University of Pennsylvania Museum of Archaeology and Anthropology, Philadelphia.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -519,20 +429,20 @@ Science: Reports, 29. <a class="reference external" href="https://doi.org/10.101
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="lastools.html"
+       href="ml.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Bonus: Lidar Processing and Analysis with LAStools</p>
+        <p class="prev-next-title">11. Machine Learning Approaches in Remote Sensing</p>
       </div>
     </a>
     <a class="right-next"
-       href="ml.html"
+       href="gpr.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">11. Machine Learning Approaches in Remote Sensing</p>
+        <p class="prev-next-title">12. Ground Penetrating Radar</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -542,26 +452,6 @@ Science: Reports, 29. <a class="reference external" href="https://doi.org/10.101
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-editing-in-arcgis-pro">Feature Editing in ArcGIS Pro</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-editing-in-qgis">Feature Editing in QGIS</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-a-feature-typology">Developing a Feature Typology</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annotation-methods">Annotation Methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

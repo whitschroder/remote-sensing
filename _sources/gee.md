@@ -199,7 +199,7 @@ To develop more skills in Google Earth Engine, additional code is available at t
 
 [Remotely Sensing Cities and Environments](https://andrewmaclachlan.github.io/CASA0023/5_GEE_I.html)
 
-## Readings
+## References
 
 Alcover Firpi, Omar A. 2016. Satellite Data for All? Review of Google Earth Engine 
 for Archaeological Remote Sensing. Internet Archaeology 42. 

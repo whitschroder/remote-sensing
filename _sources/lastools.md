@@ -137,7 +137,7 @@ lastile -i C:\LAStools\bin\LTZ\Ground\Tiles\Ground\*.las -reverse_tiling -o C:\L
 blast2dem -i C:\LAStools\bin\LTZ\Ground\ltzground.las -keep_class 2 -o C:\LAStools\bin\LTZ\Ground\ltzwild.tif
 ```
 
-## Readings
+## References
 
 Kashani, Alireza G., Michael J. Olsen, Christopher E. Parrish, and Nicholas Wilson. 
 2015. A Review of LIDAR Radiometric Processing: From Ad Hoc Intensity 

@@ -188,7 +188,7 @@ The [Pix4Dcapture Pro](https://www.pix4d.com/product/pix4dcapture/) app is recom
 :align: center
 ```
 
-## Required Readings
+## References
 
 Olson, Kyle and Lynne M. Rouse. 2018. A Beginner’s Guide to Mesoscale Survey with 
 Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371. 
@@ -200,8 +200,6 @@ Roosevelt, Christopher H. 2014. Mapping Site-level Microtopography with Real-Tim
 Casana, Jesse, Adam Wiewel, Autumn Cool, Austin Chad Hill, Kevin D. Fisher, and 
 Elise J. Laugier. 2017. Advances in Archaeological Practice 5(4):310-327. 
 <https://doi.org/10.1017/aap.2017.23>
-
-## Additional Readings
 
 Lambers, Karsten, Henri Eisenbeiss, Martin Sauerbier, Denise Kupferschmidt, Thomas Gaisecker,
 Soheil Sotoodeh, and Thomas Hanusch. 2007. Combining photogrammetry and laser scanning for the

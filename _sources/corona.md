@@ -42,7 +42,7 @@ Refer to the [Georeferencer](https://docs.qgis.org/3.34/en/docs/user_manual/work
 
 This procedure is simplified and uses a "rubber sheet" method that stretches imagery two dimensionally, generating a relatively accurate georeferenced image. However, this method does not take into account topography (three dimensional orthorectification). Using an SRTM elevation raster for georeferencing can improve results. Refer to the many publications by Casana and colleagues for more complex approaches.
 
-## Required Readings
+## References
 
 Casana, Jesse. 2020. Global-Scale Archaeological Prospection Using CORONA Satellite
 Imagery: Automated, Crowd-Sourced, and Expert-led Approaches. Journal of Field
@@ -55,8 +55,6 @@ investigation of fortifications on Rome's eastern frontier. Antiquity, 1-18.
 Lindsay, Ian and Arshaluys Mkrtchyan. 2023. Free and Low-Cost Aerial Remote Sensing in
 Archaeology: An Overview of Data Sources and Recent Applications in the South Caucasus.
 Advances in Archaeological Practice 11(2):164-183. <https://doi.org/10.1017/aap.2023.3>
-
-## Additional Readings
 
 Casana, Jesse. 2014. New Approaches to Spatial Archaeometry: Applications from the Near
 East. Near Eastern Archaeology 77(3):171-175. [JSTOR](https://www.jstor.org/stable/10.5615/neareastarch.77.3.0171)

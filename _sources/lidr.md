@@ -690,7 +690,7 @@ raster.
 writeRaster(dtm_idw, "C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013 processed BE/s460gr.tif")
 ```
 
-## Readings
+## References
 
 Fernandez-Diaz, Juan Carlos, William E. Carter, Ramesh L. Shrestha, and 
 Craig L. Glennie. 2014. Now You See It… Now You Don’t: Understanding 

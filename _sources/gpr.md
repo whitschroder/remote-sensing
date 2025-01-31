@@ -1,6 +1,6 @@
 # 12. Ground Penetrating Radar
 
-## Readings
+## References
 
 Barba, L. and G. Pereira. 2003. Geophysical Study of Loma Guadalupe Archaeological Site in Michoacan, Mexico. Archaeologia Polona 41:118–122. <https://doi.org/10.13140/RG.2.1.3177.8803>
 

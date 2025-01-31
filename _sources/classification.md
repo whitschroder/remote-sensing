@@ -131,7 +131,7 @@ This classification was not as successful as the previous supervised classificat
 
 In the next lab, we will improve significantly on these techniques by leveraging Google Earth Engine.
 
-## Required Readings
+## References
 
 Brondízio, Eduardo S. and Rinku Roy Chowdhury. 2010. Spatiotemporal Methodologies in Environmental Anthropology: Geographic Information Systems, Remote Sensing, Landscape Changes, and Local Knowledge.
 In Environmental Social Sciences: Methods and Research Design, edited by Ismael Vaccaro, Eric Alden Smith,

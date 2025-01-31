@@ -247,7 +247,7 @@ outFile = '/content/drive/MyDrive/MLfiles/prediction.tif'
 raster.export(prediction, ds3, filename=outFile, dtype='float')
 ```
 
-## Readings
+## References
 
 Bickler, Simon H. 2021. Machine Learning Arrives in Archaeology. Advances in Archaeological
 Practice 9(2):186-191. <https://doi.org/10.1017/aap.2021.6>
