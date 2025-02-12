@@ -388,6 +388,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-calculator">Raster Calculator</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtm-filter">DTM Filter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-vertical-projection">Define Vertical Projection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-dem-symbology">Changing the DEM Symbology</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contours">Contours</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hillshade">Hillshade</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monochromatic-multidirectional-hillshade">Monochromatic Multidirectional Hillshade</a></li>
@@ -457,6 +458,10 @@
 <h2>Define Vertical Projection<a class="headerlink" href="#define-vertical-projection" title="Link to this heading">#</a></h2>
 <p>To conduct topographic analysis, ideally the horizontal and vertical measurement units will be the same. SRTM and ASTER data, however, are not defined in this way. The horizontal units are measured in degrees (latitude, longitude), while the vertical units are measured in meters. ArcGIS Pro can compensate for this discrepancy, but the vertical projection must first be defined. In ArcGIS Pro, the Define Projection tool can be used to define the vertical projection as Gravity-related, WGS 1984 Geoid. All tools will now apply a Z factor that is multiplied to the vertical units to compensate for the difference between horizontal and vertical units.</p>
 <p>In QGIS, the vertical projection must be defined alongside the horizontal projection. However, the QGIS tools do not automatically calculate the Z factor. For this reason, when working in QGIS always ensure that the data are projected to have the same horizontal and vertical units. Using the r.proj tool under GRASS or the Warp (reproject) tool under GDAL, redefine the projection into a projected coordinate system (UTM). In ArcGIS Pro, use the Project Raster tool in Data Management Tools. Use Google Earth to determine the correct UTM zone.</p>
+</section>
+<section id="changing-the-dem-symbology">
+<h2>Changing the DEM Symbology<a class="headerlink" href="#changing-the-dem-symbology" title="Link to this heading">#</a></h2>
+<p>A DEM can be viewed with any number of color schemes, including grayscale (singleband gray in QGIS) or multipart color (singleband pseudocolor in QGIS). These settings are available in ArcGIS Pro by right-clicking the appropriate layer in the Contents and selecting Symbology. In QGIS, the settings are available by right-clicking the appropriate layer in the Contents and selecting Properties -&gt; Symbology. The color scheme by default stretches to the minimum and maximum values of the DEM. Additional visualizations can change the contrast of the image and enhance features. These settings can be adjusted in QGIS under Min/Max Value Settings in Symbology. In ArcGIS Pro, the Stretch type can be changed in Symbology. Minimum Maximum, Percent Clip, and Standard Deviation (Min/max, Cumulative count cut, and Mean +/- standard deviation x, respectively, in QGIS) are all useful settings. The visualization can also be set to update when zooming in and out, using the Updated canvas option in Statistics extent in QGIS, or DRA (Dynamic Range Adjustment) in the Statistics section of Symbology in ArcGIS Pro.</p>
 </section>
 <section id="contours">
 <h2>Contours<a class="headerlink" href="#contours" title="Link to this heading">#</a></h2>
@@ -596,6 +601,7 @@ northwest Belgium. Journal of Archaeological Science 38(12):3435-3446. <a class=
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-calculator">Raster Calculator</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtm-filter">DTM Filter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-vertical-projection">Define Vertical Projection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-dem-symbology">Changing the DEM Symbology</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contours">Contours</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hillshade">Hillshade</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monochromatic-multidirectional-hillshade">Monochromatic Multidirectional Hillshade</a></li>
