@@ -342,7 +342,17 @@ Blue -- water, urban, and bare earth
 4. Various shades of blue -- urban and land use
 Red -- shorelines and immediate land use changes
 
+## Planet Imagery
+
+Higher resolution (approximately 3-meter) multispectral satellite imagery is available at <https://www.planet.com>. Limited access to imagery (3,000 square kilometers per month download limit) is available for education and research: <https://www.planet.com/industries/education-and-research/>. To apply for the basic account, you will need to provide a .edu email address, personal information, and a brief description of your project. You should receive a verification email within a couple of weeks. Once your account is confirmed, you can login and access data through the Planet Explorer or Basemaps Viewer. 
+
+Aerial imagery in the visible range (red, green, and blue) can be downloaded from the Basemaps Viewer, which provides the highest quality cloud-free imagery available each month. Zoom into your area of interest, choose the layer of interest, and click View Quads and Scenes. Select a point or draw an area, then click Download Quad. Multispectral data is available in the Planet Explorer. In the Planet Explorer, zoom to your area of interest, and click the Draw or upload an area of interest button on the right. Choose an option to draw an area of interest. The menu on the left will populate with options. View imagery by clicking the eye icon in the top right of the imagery thumbnail. Once you've identified the appropriate imagery, add the items to your order, click Order Scenes, and click through the options. When ready, a download link will be emailed to your email address on file.
+
+The downloaded imagery contains a raster showing the clipped region (imagery extent), and the multispectral imagery (usually containing AnalyticMS). Multispectral imagery contains 4 bands: near infrared (band 4), red (band 3), green (band 2), blue (band 1). These bands can be visualized in QGIS or ArcGIS Pro with different band combinations, or they can be used to generate indices, such as the NDVI, texture analysis, or principal component analysis.
+
 ## References
+
+Alders, W., Davis, D.S. & Haines, J.J. 2024. Archaeology in the Fourth Dimension: Studying Landscapes with Multitemporal PlanetScope Satellite Data. Journal of Archaeological Method and Theory 31:1588–1621. <https://doi.org/10.1007/s10816-024-09644-x>
 
 Davis, D. S., Domic, A. I., Manahira, G., & Douglass, K. 2024. Geophysics Elucidate Long-term Socio-ecological Dynamics of Foraging, Pastoralism, and Mixed Subsistence Strategies on SW Madagascar. Journal of Anthropological Archaeology 75(101612). <https://doi.org/10.1016/j.jaa.2024.101612>
 
