@@ -74,7 +74,7 @@ Slope refers to the rate of change in elevation from one location to the next de
 
 ## Aspect
 
-Aspect refers to the direction of slope from one location to the next. Aspect alone may not be useful for visualizing topography, but it represents an important intermediate variable that can be used in topographic analyses. Aspect can be calculated in ArcGIS Pro using the Aspect tool or the Surface Parameters tool. In QGIS, the Aspect tool in Raster terrain analysis and the r.slope.aspect tool in GRASS are available.
+Aspect refers to the direction of slope from one location to the next. Aspect alone may not be useful for visualizing topography, but it represents an important intermediate variable that can be used in topographic analyses. Aspect can be calculated in ArcGIS Pro using the Aspect tool or the Surface Parameters tool. In QGIS, the Aspect tool in Raster terrain analysis and the r.slope.aspect tool in GRASS are available. Note that aspect is traditionally calculated clockwise from north, for example, in both the Aspect tools in QGIS and ArcGIS Pro; however, the r.slope.aspect tool defaults to calculating aspect counterclockwise from east. For consistency, when running the r.slope.aspect tool, check the box "Create aspect as degrees clockwise from North (azimuth), with flat = -9999." The output in QGIS is a stretched raster with values from 0 to 360, but the best visualization is a classified or discrete symbology, which is the default output in ArcGIS Pro. In QGIS, upload the following aspect text file to the layer properties symbology: {Download}`Aspect.txt<./Aspect.txt>`. 
 
 ## Aspect-Slope
 
