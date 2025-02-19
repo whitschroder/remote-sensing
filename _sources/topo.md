@@ -96,7 +96,9 @@ Several visualizations can be displayed at one time using transparency or blendi
 
 The transparency option is available in ArcGIS Pro by selecting the appropriate layer in the Contents, clicking Raster Layer at the top of the screen, and changing Transparency (the default is 0.0%, meaning no transparency). Blending is available underneath the Transparency option, next to Layer Blend (the default is Normal, with many additional options under the dropdown). In QGIS Pro, right-click the appropriate layer in the Contents, and select Properties. Under Transparency, Global Opacity will change the transparency of the layer (the default is 100.0%, meaning full opacity). Blending is available in Symbology under Layer Rendering and Blending mode (the default is Normal, with many additional options under the dropdown). Note that transparency and blending will always be applied to the first/upper selected layer, and will affect the second/lower layer, which must be placed immediately below the first/upper layer (or any layers between them must be turned off/deselected). 
 
-A [Red Relief Image Map](https://www.rrim.jp/en/) has become a popular topographic visualization technique. This approach blends (multiplies) a red slope map over an openness or simplified local relief model. Instructions to create a simple red relief surface are available at the [Ancient Maya Settlement blog](https://ancientmayasettlement.com/2022/02/12/a-recipe-for-simple-red-relief/). 
+A [Red Relief Image Map](https://www.rrim.jp/en/) has become a popular topographic visualization technique. This approach blends (multiplies) a red slope map over an openness or simplified local relief model. Instructions to create a simple red relief surface are available at the [Ancient Maya Settlement blog](https://ancientmayasettlement.com/2022/02/12/a-recipe-for-simple-red-relief/).
+
+To visualize a slope and a simple local relief model in QGIS using the recommended color palettes, upload the following slope text file to the layer properties symbology ({Download}`RRIMslope.txt<./RRIMslope.txt>`) and the SLRM text file ({Download}`RRIMslrm.txt<./RRIMslrm.txt>`), respectively. In ArcGIS Pro, import the following slope layer file into the symbology ({Download}`RRIMslope.lyrx<./RRIMslope.lyrx>`), and the following SLRM layer file ({Download}`RRIMslrm.lyrx<./RRIMslrm.lyrx>`).
 
 ## Topographic Position Index
 
@@ -107,6 +109,8 @@ A Topographic Position Index (TPI) models landforms in relation to their relativ
 Another approach to classifying landforms relies on the Geomorphons method. This tool has additional categories beyond a simple topographic position index. Geomorphons traditionally consist of 10 classes: 1) Flat, 2) Summit, 3) Ridge, 4) Shoulder, 5) Spur, 6) Slope, 7) Hollow, 8) Footslope, 9) Valley, and 10) Depression. The SAGA Geomorphons tool in QGIS classifies a DEM into these categories, based on parameters that like the Topographic Position Index are used to define the neighborhood or radius. Other Geomorphons tools are available in QGIS and ArcGIS Pro.
 
 If the SAGA tools are not available and visible in the QGIS Processing Toolbox, under Plugins -> Manage and Install Plugins... install Processing Saga NextGen Provider. Then click on the main menu Settings -> Options -> Processing -> Providers. Under SAGAANG copy and paste the path to the SAGA folder. The SAGA folder should have been downloaded with the original QGIS installation. The path should be in your installed QGIS folder, for example in Windows, C:\Program Files\QGIS 3.34.14\apps\saga.
+
+To visualize a classified or discrete Geomorphons raster in QGIS, upload the following Geomorphons text file to the layer properties symbology: {Download}`Geomorphons.txt<./Geomorphons.txt>`.
 
 ## Multi-scale Relief Model (MSRM)
 

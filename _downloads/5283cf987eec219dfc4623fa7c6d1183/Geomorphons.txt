@@ -1,0 +1,12 @@
+# QGIS Generated Color Map Export File
+INTERPOLATION:EXACT
+1,220,220,220,255,Flat
+2,56,0,0,255,Peak
+3,200,0,0,255,Ridge
+4,255,80,20,255,Shoulder
+5,250,210,60,255,Spur
+6,255,255,60,255,Slope
+7,180,230,20,255,Hollow
+8,60,250,150,255,Footslope
+9,0,0,255,255,Valley
+10,0,0,0,255,Pit
