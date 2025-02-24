@@ -58,13 +58,19 @@ Landsat 8 and 9 data are delivered in a 16-bit unsigned format, while earlier La
 "16-bit raster" * 0.0000275 - 0.2
 ```
 
-The values should be between 0 and 1, which multiplied by 100 gives the percent reflectance (0% to 100%). Some values may fall below 0 and above 1, representing noise. If necessary, these values can be removed using a conditional expression in Raster Calculator:
+The values should be between 0 and 1, which multiplied by 100 gives the percent reflectance (0% to 100%). Some values may fall below 0 and above 1, representing noise. If necessary, these values can be removed using a conditional expression using Raster Calculator in ArcGIS Pro:
 
 ```
-Con("Reflectance raster" < 0, 0.0001,  Con("b4reflectance.tif" > 1, 1, "b4reflectance.tif")
+Con("Reflectance raster" < 0, 0.000001,  Con("Reflectance raster" > 1, 1, "Reflectance raster"))
 ```
 
-Values under 0 will be assigned a new value of 0.0001, values above 1 will be assigned a new value of 1, and all other values will remain unchanged. Alternatively, values under 0 can be assigned 0, or values under 0 and above 1 can be assigned NoData. I prefer to assign values under 0 a low value approaching 0 but not equaling 0. If values of 0 remain in the raster and algorithms are applied using division, values of 0 in the denominator would become NoData in these cases.
+Alternatively, a similar expression can be run in QGIS using IF:
+
+```
+if("Reflectance raster" < 0, 0.000001, if("Reflectance raster" > 1, 1, "Reflectance raster"))
+```
+
+Values under 0 will be assigned a new value of 0.000001, values above 1 will be assigned a new value of 1, and all other values will remain unchanged. Alternatively, values under 0 can be assigned 0, or values under 0 and above 1 can be assigned NoData (using the NoData value of the raster). I prefer to assign values under 0 a low value approaching 0 but not equaling 0. If values of 0 remain in the raster and algorithms are applied using division, values of 0 in the denominator would become NoData in these cases.
 
 ## Band Compositing
 
@@ -348,7 +354,7 @@ Higher resolution (approximately 3-meter) multispectral satellite imagery is ava
 
 Aerial imagery in the visible range (red, green, and blue) can be downloaded from the Basemaps Viewer, which provides the highest quality cloud-free imagery available each month. Zoom into your area of interest, choose the layer of interest, and click View Quads and Scenes. Select a point or draw an area, then click Download Quad. Multispectral data is available in the Planet Explorer. In the Planet Explorer, zoom to your area of interest, and click the Draw or upload an area of interest button on the right. Choose an option to draw an area of interest. The menu on the left will populate with options. View imagery by clicking the eye icon in the top right of the imagery thumbnail. Once you've identified the appropriate imagery, add the items to your order, click Order Scenes, and click through the options. When ready, a download link will be emailed to your email address on file.
 
-The downloaded imagery contains a raster showing the clipped region (imagery extent), and the multispectral imagery (usually containing AnalyticMS). Multispectral imagery contains 4 bands: near infrared (band 4), red (band 3), green (band 2), blue (band 1). These bands can be visualized in QGIS or ArcGIS Pro with different band combinations, or they can be used to generate indices, such as the NDVI, texture analysis, or principal component analysis.
+The downloaded imagery contains a raster showing the clipped region (imagery extent), and the multispectral imagery (usually containing AnalyticMS). Multispectral imagery contains 4 bands: near infrared (band 4), red (band 3), green (band 2), blue (band 1), or 8 bands: near infrared (band 8), red edge (band 7), red (band 6), yellow (band 5), green (band 4), green ii (band 3), blue (band 2), coastal blue (band 1). These bands can be visualized in QGIS or ArcGIS Pro with different band combinations, or they can be used to generate indices, such as the NDVI, texture analysis, or principal component analysis.
 
 ## References
 
