@@ -37,7 +37,7 @@ Earlier missions (Landsat 1-5) might be useful for historic purposes, and their 
 
 ## Download Imagery
 
-Imagery can be downloaded from [USGS Earth Explorer](https://earthexplorer.usgs.gov). Under Search Criteria, identify an area of interest and filter by Cloud Cover (under 10%). Under Data Sets, select Landsat Collection 2 Level-1 and Landsat 8-9 OLI/TIRS C2 L1, then click on Results. For this exercise, we will work with Landsat imagery around 16° 20' 23'' N and 90° 38' 27'' W. The Landsat 8 imagery acquired on 2017/4/3 is of a high quality with low cloud cover. Click on Product Options and download the Product Bundle. Extract all of the files to your desired folder.
+Imagery can be downloaded from [USGS Earth Explorer](https://earthexplorer.usgs.gov). Under Search Criteria, identify an area of interest and filter by Cloud Cover (under 10%). Under Data Sets, select Landsat Collection 2 Level-2 and Landsat 8-9 OLI/TIRS C2 L2, then click on Results. For this exercise, we will work with Landsat imagery around 16° 20' 23'' N and 90° 38' 27'' W. The Landsat 8 imagery acquired on 2017/4/3 is of a high quality with low cloud cover. Click on Product Options and download the Product Bundle. Extract all of the files to your desired folder.
 
 This folder should contain several Geotiff files and metadata. Each band is stored as a separate Geotiff file. To view band combinations, we will have to load these bands together as a single composite, multiband image.
 
