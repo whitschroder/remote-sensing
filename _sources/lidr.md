@@ -394,7 +394,7 @@ as a shapefile.
 ```R
 dtm_idw <- rasterize_terrain(las, res = 1, algorithm = knnidw(k = 10L, p = 2), 
 		shape = lassfc)
-plot(dtm_idw, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
+plot(dtm_idw, col = rev(terrcols), xlim = c(277400, 278100), ylim = c(2074300, 2074850))
 
 #Hillshade
 
