@@ -24,7 +24,6 @@ install.packages("lidR", dependencies = TRUE)
 install.packages("RStoolbox")
 install.packages("terra")
 install.packages("raster")
-install.packages("rgdal")
 
 # ggplot is used to produce publication quality images
 install.packages("ggplot2")
@@ -43,7 +42,6 @@ library(lidR)
 library(RStoolbox)
 library(terra)
 library(raster)
-library(rgdal)
 library(ggplot2)
 library(RColorBrewer)
 ```
@@ -94,9 +92,19 @@ density      : 10.43 pulses/m²
 
 summary(las)
 
+# Provides additional header information in tabular format
+
+payload(las)
+
 # Displays the number of points and their classification
 
 table(las$Classification)
+
+# Generates a histogram of the selected data
+
+hist(las$Intensity)
+
+hist(las$ReturnNumber)
 ```
 
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2  
@@ -282,7 +290,7 @@ density <- rasterize_density(las, res=1)
 
 # Specify the color palette
 
-cols <- brewer.pal(3, "BuGn")
+cols <- brewer.pal(9, "BuGn")
 pal <- colorRampPalette(cols)
 
 # Plot density
@@ -326,7 +334,8 @@ acceptable results.
 #DEM
 
 dtm_idw <- rasterize_terrain(las, res = 1, algorithm = knnidw(k = 10L, p = 2))
-plot(dtm_idw, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
+terrcols <- brewer.pal(11, "RdYlGn")
+plot(dtm_idw, col = rev(terrcols), xlim = c(277400, 278100), ylim = c(2074300, 2074850))
 
 #Hillshade
 

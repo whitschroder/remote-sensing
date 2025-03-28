@@ -425,7 +425,6 @@ following libraries or packages:</p>
 <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;RStoolbox&quot;</span><span class="p">)</span>
 <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;terra&quot;</span><span class="p">)</span>
 <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;raster&quot;</span><span class="p">)</span>
-<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;rgdal&quot;</span><span class="p">)</span>
 
 <span class="c1"># ggplot is used to produce publication quality images</span>
 <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
@@ -443,7 +442,6 @@ you will just have to load the necessary libraries every time you run the code.<
 <span class="nf">library</span><span class="p">(</span><span class="n">RStoolbox</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">rgdal</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span>
 </pre></div>
@@ -490,9 +488,19 @@ density      : 10.43 pulses/m²</p>
 
 <span class="nf">summary</span><span class="p">(</span><span class="n">las</span><span class="p">)</span>
 
+<span class="c1"># Provides additional header information in tabular format</span>
+
+<span class="nf">payload</span><span class="p">(</span><span class="n">las</span><span class="p">)</span>
+
 <span class="c1"># Displays the number of points and their classification</span>
 
 <span class="nf">table</span><span class="p">(</span><span class="n">las</span><span class="o">$</span><span class="n">Classification</span><span class="p">)</span>
+
+<span class="c1"># Generates a histogram of the selected data</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">las</span><span class="o">$</span><span class="n">Intensity</span><span class="p">)</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">las</span><span class="o">$</span><span class="n">ReturnNumber</span><span class="p">)</span>
 </pre></div>
 </div>
 <blockquote>
@@ -757,7 +765,7 @@ additional color palettes.</p>
 
 <span class="c1"># Specify the color palette</span>
 
-<span class="n">cols</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">brewer.pal</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BuGn&quot;</span><span class="p">)</span>
+<span class="n">cols</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">brewer.pal</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BuGn&quot;</span><span class="p">)</span>
 <span class="n">pal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colorRampPalette</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
 
 <span class="c1"># Plot density</span>
@@ -784,7 +792,8 @@ acceptable results.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">#DEM</span>
 
 <span class="n">dtm_idw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasterize_terrain</span><span class="p">(</span><span class="n">las</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">knnidw</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10L</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
-<span class="nf">plot</span><span class="p">(</span><span class="n">dtm_idw</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277400</span><span class="p">,</span><span class="w"> </span><span class="m">278100</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2074300</span><span class="p">,</span><span class="w"> </span><span class="m">2074850</span><span class="p">))</span>
+<span class="n">terrcols</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">brewer.pal</span><span class="p">(</span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RdYlGn&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">dtm_idw</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rev</span><span class="p">(</span><span class="n">terrcols</span><span class="p">),</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">277400</span><span class="p">,</span><span class="w"> </span><span class="m">278100</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2074300</span><span class="p">,</span><span class="w"> </span><span class="m">2074850</span><span class="p">))</span>
 
 <span class="c1">#Hillshade</span>
 
