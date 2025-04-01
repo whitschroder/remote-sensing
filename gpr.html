@@ -393,6 +393,15 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ground-penetrating-radar">
 <h1>12. Ground Penetrating Radar<a class="headerlink" href="#ground-penetrating-radar" title="Link to this heading">#</a></h1>
+<p>We will be using the <a class="reference external" href="https://emanuelhuber.github.io/RGPR/">RGPR package</a> in <a class="reference external" href="https://posit.co/download/rstudio-desktop/">R</a> to plot GPR data. After installing R and RStudio, install and load RGPR and its dependencies.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># install &quot;devtools&quot; if not already done</span>
+<span class="nf">if</span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">))</span><span class="w"> </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">)</span>
+<span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;emanuelhuber/RGPR&quot;</span><span class="p">)</span>
+<span class="c1"># load RGPR in the current R session</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">RGPR</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The rest of the code is available at <a class="reference external" href="https://emanuelhuber.github.io/RGPR/">RGPR</a>.</p>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <p>Barba, L. and G. Pereira. 2003. Geophysical Study of Loma Guadalupe Archaeological Site in Michoacan, Mexico. Archaeologia Polona 41:118–122. <a class="reference external" href="https://doi.org/10.13140/RG.2.1.3177.8803">https://doi.org/10.13140/RG.2.1.3177.8803</a></p>
