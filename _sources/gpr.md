@@ -6,11 +6,63 @@ We will be using the [RGPR package](https://emanuelhuber.github.io/RGPR/) in [R]
 # install "devtools" if not already done
 if(!require("devtools")) install.packages("devtools")
 devtools::install_github("emanuelhuber/RGPR")
+```
+
+```R
 # load RGPR in the current R session
 library(RGPR)
 ```
 
-The rest of the code is available at [RGPR](https://emanuelhuber.github.io/RGPR/).
+Download the Hollister Site data to your working directory. You can determine your working directory by running the following:
+
+```R
+getwd()
+```
+
+Once your data are in your working directory, run the following to change your working directory to the subfolder hollister_grid3:
+
+```R
+setwd("./Hollister Site/hollister_grid3")
+```
+
+Now load the Hollister Site data from the directory and make sure that after running print(LINES), you can see a list of all your files with the correct folder structure:
+
+```R
+LINES <- file.path(getwd(), paste0("FILE", sprintf("%03d", 101:181), ".DZT"))
+
+print(LINES)
+```
+
+Next we load the lines and define their orientation:
+
+```R
+mySurvey <- GPRsurvey(LINES)
+
+# The next line of code creates 81 lines, separated by 0.5 m, with a length of 40 m
+
+setGridCoord(mySurvey) <- list(xlines = 1:81,
+                             xpos = seq(0, by = 0.5, length.out = 81),
+                             xstart = rep(0, 81),
+                             xlength = rep(40, 81))
+
+# Now we can plot the survey without fiduciary markers
+
+plot(mySurvey, parFid = NULL)
+```
+
+Finally, we can interpolate the lines and plot a slice:
+
+```R
+SXY <- interpSlices(mySurvey, dx = 0.15, dy = 0.15, dz = 0.15, h = 6)
+
+plot(SXY[,,155], col = palGPR("grey"))
+```
+
+And a profile:
+
+```R
+plot(mySurvey[[8]], relTime0 = TRUE, addFid = FALSE, col = palGPR("grey2"), ylim = c(14,67))
+```
 
 ## References
 

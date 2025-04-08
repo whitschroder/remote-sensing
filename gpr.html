@@ -397,11 +397,51 @@
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># install &quot;devtools&quot; if not already done</span>
 <span class="nf">if</span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">))</span><span class="w"> </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">)</span>
 <span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;emanuelhuber/RGPR&quot;</span><span class="p">)</span>
-<span class="c1"># load RGPR in the current R session</span>
+</pre></div>
+</div>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># load RGPR in the current R session</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">RGPR</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The rest of the code is available at <a class="reference external" href="https://emanuelhuber.github.io/RGPR/">RGPR</a>.</p>
+<p>Download the Hollister Site data to your working directory. You can determine your working directory by running the following:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">getwd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Once your data are in your working directory, run the following to change your working directory to the subfolder hollister_grid3:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">setwd</span><span class="p">(</span><span class="s">&quot;./Hollister Site/hollister_grid3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now load the Hollister Site data from the directory and make sure that after running print(LINES), you can see a list of all your files with the correct folder structure:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">LINES</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="nf">getwd</span><span class="p">(),</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;FILE&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;%03d&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">101</span><span class="o">:</span><span class="m">181</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;.DZT&quot;</span><span class="p">))</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">LINES</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next we load the lines and define their orientation:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">mySurvey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">GPRsurvey</span><span class="p">(</span><span class="n">LINES</span><span class="p">)</span>
+
+<span class="c1"># The next line of code creates 81 lines, separated by 0.5 m, with a length of 40 m</span>
+
+<span class="nf">setGridCoord</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">xlines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">81</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">81</span><span class="p">),</span>
+<span class="w">                             </span><span class="n">xstart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">81</span><span class="p">),</span>
+<span class="w">                             </span><span class="n">xlength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="m">81</span><span class="p">))</span>
+
+<span class="c1"># Now we can plot the survey without fiduciary markers</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">,</span><span class="w"> </span><span class="n">parFid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we can interpolate the lines and plot a slice:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">SXY</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">interpSlices</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="n">dz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">SXY</span><span class="p">[,,</span><span class="m">155</span><span class="p">],</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">palGPR</span><span class="p">(</span><span class="s">&quot;grey&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>And a profile:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">[[</span><span class="m">8</span><span class="p">]],</span><span class="w"> </span><span class="n">relTime0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">addFid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">palGPR</span><span class="p">(</span><span class="s">&quot;grey2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">14</span><span class="p">,</span><span class="m">67</span><span class="p">))</span>
+</pre></div>
+</div>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <p>Barba, L. and G. Pereira. 2003. Geophysical Study of Loma Guadalupe Archaeological Site in Michoacan, Mexico. Archaeologia Polona 41:118–122. <a class="reference external" href="https://doi.org/10.13140/RG.2.1.3177.8803">https://doi.org/10.13140/RG.2.1.3177.8803</a></p>
