@@ -53,9 +53,9 @@ plot(mySurvey, parFid = NULL)
 Finally, we can interpolate the lines and plot a slice:
 
 ```R
-SXY <- interpSlices(mySurvey, dx = 0.15, dy = 0.15, dz = 0.15, h = 6)
+SXY <- interpSlices(mySurvey, dx = 0.15, dy = 0.15, dz = 0.25, h = 10)
 
-plot(SXY[,,155], col = palGPR("grey"))
+plot(SXY[,,120], col = palGPR("grey1"))
 ```
 
 And a profile:
