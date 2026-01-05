@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ANG 6930: Remote Sensing of Cultural Landscapes &#8212; Archaeological Remote Sensing</title>
+    <title>ANG 6930: Remote Sensing of Cultural Landscapes &#8212; Remote Sensing of Cultural Landscapes</title>
   
   
   
@@ -149,8 +149,8 @@
       
     
     
-    <img src="_static/tikal2.png" class="logo__image only-light" alt="Archaeological Remote Sensing - Home"/>
-    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Archaeological Remote Sensing - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-light" alt="Remote Sensing of Cultural Landscapes - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Remote Sensing of Cultural Landscapes - Home"/>
   
   
 </a></div>
@@ -182,18 +182,19 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pan.html">7. Pansharpening, Spectral Indices, and Texture Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="classification.html">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotate.html">Bonus: Annotating Lidar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Bonus: Machine Learning Approaches in Remote Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pointcnn.html">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -400,7 +401,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="ang-6930-remote-sensing-of-cultural-landscapes">
 <h1>ANG 6930: Remote Sensing of Cultural Landscapes<a class="headerlink" href="#ang-6930-remote-sensing-of-cultural-landscapes" title="Link to this heading">#</a></h1>
 <p><strong>University of Florida</strong><br />
-<strong>Spring 2025</strong></p>
+<strong>Spring 2026</strong></p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/Intensity.png"><img alt="Intensity" class="bg-primary mb-1 align-center" src="_images/Intensity.png" style="width: 80%;" /></a>
 <br>
 <p><strong>Instructor</strong><br />
@@ -433,10 +434,11 @@ By the end of the course, students will:</p>
 <p><strong>Prerequisites</strong><br />
 This class has no prerequisites, but some previous knowledge of GIS, coding, and photography will be beneficial.</p>
 <p><strong>Class Meetings</strong><br />
-Tuesday, Periods 3–5, 9:35 am–12:35 pm<br />
-Turlington B304</p>
+Friday, Periods 4–6, 10:40 am–1:40 pm<br />
+Weimer Hall 2050</p>
 <p><strong>Office Hours</strong><br />
-Tuesday 1:00–3:00 pm<br />
+Tuesday, 11:30 am–1:30 pm<br />
+Thursday, 12:30-1:30 pm<br />
 Turlington B129</p>
 <p><strong>Recommended Books and Resources</strong></p>
 <p>Fundamentals of Remote Sensing. A Canada Centre for Remote Sensing Tutorial.
@@ -488,18 +490,21 @@ Additional readings and case studies will be provided each week.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Attendance and Participation</p></td>
-<td><p>20%</p></td>
+<td><p>15%</p></td>
 </tr>
 <tr class="row-odd"><td><p>Weekly Labs</p></td>
 <td><p>30%</p></td>
 </tr>
-<tr class="row-even"><td><p>Project Site Selection</p></td>
-<td><p>10%</p></td>
+<tr class="row-even"><td><p>Seminar Facilitation</p></td>
+<td><p>15%</p></td>
 </tr>
-<tr class="row-odd"><td><p>Presentation</p></td>
-<td><p>10%</p></td>
+<tr class="row-odd"><td><p>Project Site Selection</p></td>
+<td><p>5%</p></td>
 </tr>
-<tr class="row-even"><td><p>Final Project</p></td>
+<tr class="row-even"><td><p>Presentation</p></td>
+<td><p>5%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Final Project</p></td>
 <td><p>30%</p></td>
 </tr>
 </tbody>
@@ -518,6 +523,8 @@ and other work in this course are consistent with university policies
 Readings will be posted on the course website and should be completed before the
 relevant class period. A goal of this course is to create a resource that students can use to learn
 about remote sensing, so feel free to contribute additional readings in the context of that week’s topic.</p>
+<p><strong>Seminar Facilitation</strong><br />
+Each week, students will be divided into teams to guide the discussion of that week’s readings, taking up somewhere between 30 and 60 minutes of class time. Each student will likely be responsible for two seminar discussions, depending on course enrollment.</p>
 <p><strong>Labs</strong><br />
 Every class period will have a lab component to introduce topics and techniques.
 We will use example data in class, and students will be required to conduct the same analyses
@@ -560,50 +567,50 @@ course evaluation results are available to students at
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Week 1 <br> January 14</p></td>
-<td><p>Course Introduction <br> Introduction to Remote Sensing <br> History of Remote Sensing <br> GPS and GNSS <br> Review GIS <br> Lab 1: Aerial Photography and Stereoscopic Imaging</p></td>
+<tr class="row-even"><td><p>Week 1 <br> January 16</p></td>
+<td><p>Course Introduction <br> Introduction to Remote Sensing <br> History of Remote Sensing <br> GPS and GNSS <br> Review GIS <br> Lab 1 (in class): Aerial Photography and Stereoscopic Imaging</p></td>
 </tr>
-<tr class="row-odd"><td><p>Week 2 <br> January 21</p></td>
-<td><p>Project Site Selection Due (posted as a Google Earth .kml file on the Canvas discussion board <br> Leveraging historic satellite imagery <br> Orthorectification and georeferencing <br> Lab 2: Orthorectifying CORONA Satellite Imagery</p></td>
+<tr class="row-odd"><td><p>Week 2 <br> January 23</p></td>
+<td><p>Project Site Selection Due (posted as a Google Earth .kml file on the Canvas discussion board <br> Leveraging historic satellite imagery <br> Orthorectification and georeferencing <br> Lab 2 (assigned): Orthorectifying CORONA Satellite Imagery</p></td>
 </tr>
-<tr class="row-even"><td><p>Week 3 <br> January 28</p></td>
-<td><p>Lab 3: Digital Surface Models and Orthoimagery in Agisoft Metashape <br> Drone Mission Planning <br> Principles of photography <br> Photogrammetry Structure from Motion (SfM) <br> Ground control points <br> Lab 4: Drone Mission Planning for Photogrammetry</p></td>
+<tr class="row-even"><td><p>Week 3 <br> January 30</p></td>
+<td><p>Lab 2 Due <br> Lab 3 (assigned): Digital Surface Models and Orthoimagery in Agisoft Metashape <br> Photogrammetry Structure from Motion (SfM) <br> Ground control points</p></td>
 </tr>
-<tr class="row-odd"><td><p>Week 4 <br> February 4</p></td>
-<td><p>Data Sources <br> Lab 5: Topographic Analysis with ASTER and SRTM Digital Elevation Models</p></td>
+<tr class="row-odd"><td><p>Week 4 <br> February 6</p></td>
+<td><p>Lab 3 Due <br> Lab 4 (assigned): Drone Mission Planning for Photogrammetry <br> Drone Mission Planning <br> Principles of photography</p></td>
 </tr>
-<tr class="row-even"><td><p>Week 5 <br> February 11</p></td>
-<td><p>Introduction to multispectral satellite imagery <br> Lab 6: Multispectral Imagery</p></td>
+<tr class="row-even"><td><p>Week 5 <br> February 13</p></td>
+<td><p>Lab 4 Due <br> Data Sources <br> Lab 5 (assigned): Topographic Analysis with ASTER and SRTM Digital Elevation Models</p></td>
 </tr>
-<tr class="row-odd"><td><p>Week 6 <br> February 18</p></td>
-<td><p>Land cover classification <br> Lab 7: Supervised and Unsupervised Land Cover Classification</p></td>
+<tr class="row-odd"><td><p>Week 6 <br> February 20</p></td>
+<td><p>Lab 5 Due <br> Introduction to multispectral satellite imagery <br> Lab 6 (assigned): Multispectral Imagery</p></td>
 </tr>
-<tr class="row-even"><td><p>Week 7 <br> February 25</p></td>
-<td><p>Remotely-sensed big data <br> Introduction to machine learning <br> Decision trees and random forest algorithms <br> Lab 8: Manipulating Remotely-Sensed Big Data in Google Earth Engine</p></td>
+<tr class="row-even"><td><p>Week 7 <br> February 27</p></td>
+<td><p>Lab 6 Due <br> Spectral indices <br> Lab 7 (assigned): Pansharpening, Spectral Indices, and Texture Analysis</p></td>
 </tr>
-<tr class="row-odd"><td><p>Week 8 <br> March 4</p></td>
-<td><p>Lidar for Archaeology <br> Data collection <br> Download datasets <br> Visualization and ground classification <br> Lab 9: Visualizing and Processing Lidar Point Clouds in R with the lidR Package</p></td>
+<tr class="row-odd"><td><p>Week 8 <br> March 6</p></td>
+<td><p>Lab 7 Due <br> Supervised and Unsupervised Land Cover Classification <br> Remotely-sensed big data <br> Introduction to machine learning <br> Decision trees and random forest algorithms <br> Lab 8 (assigned): Manipulating Remotely-Sensed Big Data in Google Earth Engine</p></td>
 </tr>
-<tr class="row-even"><td><p>Week 9 <br> March 11</p></td>
-<td><p>Annotating Lidar data <br> Lab 10: Annotating Lidar with Vectors</p></td>
+<tr class="row-even"><td><p>Week 9 <br> March 13</p></td>
+<td><p>Lab 8 Due <br> Lidar for Archaeology <br> Data collection <br> Download datasets <br> Visualization and ground classification <br> Lab 9 (assigned): Visualizing and Processing Lidar Point Clouds in R with the lidR Package</p></td>
 </tr>
-<tr class="row-odd"><td><p>Week 10 <br> March 18</p></td>
+<tr class="row-odd"><td><p>Week 10 <br> March 20</p></td>
 <td><p><strong>Spring Break</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>Week 11 <br> March 25</p></td>
-<td><p>Machine learning approaches in aerial remote sensing <br> TensorFlow, Python, and Google Colab <br> Lab 11: Machine Learning Approaches in Remote Sensing</p></td>
+<tr class="row-even"><td><p>Week 11 <br> March 27</p></td>
+<td><p>Subsurface Remote Sensing and Geophysics <br> GPR Demonstration</p></td>
 </tr>
-<tr class="row-odd"><td><p>Week 12 <br> April 1</p></td>
-<td><p>Subsurface Remote Sensing and Geophysics <br> GPR Demonstration <br> Lab 12: Ground Penetrating Radar</p></td>
+<tr class="row-odd"><td><p>Week 12 <br> April 3</p></td>
+<td><p>Lab 9 Due <br> Machine Learning Approaches in Remote Sensing <br> Analyzing GPR Data with R</p></td>
 </tr>
-<tr class="row-even"><td><p>Week 13 <br> April 8</p></td>
-<td><p>Ethics in Remote Sensing</p></td>
+<tr class="row-even"><td><p>Week 13 <br> April 10</p></td>
+<td><p>Ethics in Remote Sensing <br> Student Presentations</p></td>
 </tr>
-<tr class="row-odd"><td><p>Week 14 <br> April 15</p></td>
+<tr class="row-odd"><td><p>Week 14 <br> April 17</p></td>
 <td><p>Student Presentations</p></td>
 </tr>
-<tr class="row-even"><td><p>Week 15 <br> April 22</p></td>
-<td><p>Student Presentations</p></td>
+<tr class="row-even"><td><p>Week 15 <br> May 1</p></td>
+<td><p>Final Projects Due</p></td>
 </tr>
 </tbody>
 </table>
@@ -620,12 +627,10 @@ course evaluation results are available to students at
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pan.html">7. Pansharpening, Spectral Indices, and Texture Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 </div>
@@ -715,7 +720,7 @@ By Whittaker Schroder
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2026.
       <br/>
     
   </p>

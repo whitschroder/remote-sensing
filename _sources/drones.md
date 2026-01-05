@@ -188,14 +188,7 @@ The [Pix4Dcapture Pro](https://www.pix4d.com/product/pix4dcapture/) app is recom
 :align: center
 ```
 
-## References
-
-Olson, Kyle and Lynne M. Rouse. 2018. A Beginner’s Guide to Mesoscale Survey with 
-Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371. 
-<https://doi.org/10.1017/aap.2018.26>
-
-Roosevelt, Christopher H. 2014. Mapping Site-level Microtopography with Real-Time Kinematic Global Navigation Satellite Systems (RTK GNSS) and Unmanned Aerial Vehicle Photogrammetry (UAVP). Open Archaeology 1:29-53.
-<https://doi.org/10.2478/opar-2014-0003>
+## Readings
 
 Casana, Jesse, Adam Wiewel, Autumn Cool, Austin Chad Hill, Kevin D. Fisher, and 
 Elise J. Laugier. 2017. Advances in Archaeological Practice 5(4):310-327. 
@@ -205,6 +198,15 @@ Lambers, Karsten, Henri Eisenbeiss, Martin Sauerbier, Denise Kupferschmidt, Thom
 Soheil Sotoodeh, and Thomas Hanusch. 2007. Combining photogrammetry and laser scanning for the
 recording and modelling of the Late Intermediate Period site of Pinchango Alto, Palpa, Peru. Journal
 of Archaeological Science 34(10):1702-1712. <https://doi.org/10.1016/j.jas.2006.12.008>
+
+Olson, Kyle and Lynne M. Rouse. 2018. A Beginner’s Guide to Mesoscale Survey with 
+Quadrotor-UAV Systems. Advances in Archaeological Practice 6(4):357–371. 
+<https://doi.org/10.1017/aap.2018.26>
+
+## Additional References
+
+Roosevelt, Christopher H. 2014. Mapping Site-level Microtopography with Real-Time Kinematic Global Navigation Satellite Systems (RTK GNSS) and Unmanned Aerial Vehicle Photogrammetry (UAVP). Open Archaeology 1:29-53.
+<https://doi.org/10.2478/opar-2014-0003>
 
 Luna, M.A., M.S. Ale Isaac, A.R. Ragab, P. Campoy, P. Flores Peña, M. Molina. 2022. 
 Fast Multi-UAV Path Planning for Optimal Area Coverage in Aerial Sensing 

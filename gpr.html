@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>12. Ground Penetrating Radar &#8212; Archaeological Remote Sensing</title>
+    <title>Ground Penetrating Radar &#8212; Remote Sensing of Cultural Landscapes</title>
   
   
   
@@ -146,8 +146,8 @@
       
     
     
-    <img src="_static/tikal2.png" class="logo__image only-light" alt="Archaeological Remote Sensing - Home"/>
-    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Archaeological Remote Sensing - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-light" alt="Remote Sensing of Cultural Landscapes - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Remote Sensing of Cultural Landscapes - Home"/>
   
   
 </a></div>
@@ -179,18 +179,19 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pan.html">7. Pansharpening, Spectral Indices, and Texture Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="classification.html">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotate.html">Bonus: Annotating Lidar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Bonus: Machine Learning Approaches in Remote Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pointcnn.html">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Ground Penetrating Radar</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -369,7 +370,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>12. Ground Penetrating Radar</h1>
+    <h1>Ground Penetrating Radar</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -379,7 +380,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
             </nav>
         </div>
@@ -392,7 +394,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ground-penetrating-radar">
-<h1>12. Ground Penetrating Radar<a class="headerlink" href="#ground-penetrating-radar" title="Link to this heading">#</a></h1>
+<h1>Ground Penetrating Radar<a class="headerlink" href="#ground-penetrating-radar" title="Link to this heading">#</a></h1>
 <p>We will be using the <a class="reference external" href="https://emanuelhuber.github.io/RGPR/">RGPR package</a> in <a class="reference external" href="https://posit.co/download/rstudio-desktop/">R</a> to plot GPR data. After installing R and RStudio, install and load RGPR and its dependencies.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># install &quot;devtools&quot; if not already done</span>
 <span class="nf">if</span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">))</span><span class="w"> </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">)</span>
@@ -442,8 +444,11 @@
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">[[</span><span class="m">8</span><span class="p">]],</span><span class="w"> </span><span class="n">relTime0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">addFid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">palGPR</span><span class="p">(</span><span class="s">&quot;grey2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">14</span><span class="p">,</span><span class="m">67</span><span class="p">))</span>
 </pre></div>
 </div>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<section id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
+</section>
+<section id="additional-references">
+<h2>Additional References<a class="headerlink" href="#additional-references" title="Link to this heading">#</a></h2>
 <p>Barba, L. and G. Pereira. 2003. Geophysical Study of Loma Guadalupe Archaeological Site in Michoacan, Mexico. Archaeologia Polona 41:118–122. <a class="reference external" href="https://doi.org/10.13140/RG.2.1.3177.8803">https://doi.org/10.13140/RG.2.1.3177.8803</a></p>
 <p>Barba, L., J. Blancas, A. Ortiz, and D. Carballo. 2009. Geophysical Prospection and Aerial Photography in
 La Laguna, Tlaxcala, Mexico. ArchéoSciences 33(suppl.):17–20. <a class="reference external" href="https://doi.org/10.4000/archeosciences.1194">https://doi.org/10.4000/archeosciences.1194</a></p>
@@ -539,7 +544,8 @@ The Reconstruction of a WW1 Practice Trench. European Journal of Soil Science 66
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
   </nav></div>
 
@@ -564,7 +570,7 @@ By Whittaker Schroder
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2026.
       <br/>
     
   </p>

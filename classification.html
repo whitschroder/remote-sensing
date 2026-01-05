@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>7. Supervised and Unsupervised Land Cover Classification &#8212; Archaeological Remote Sensing</title>
+    <title>Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro &#8212; Remote Sensing of Cultural Landscapes</title>
   
   
   
@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="8. Manipulating Remotely-Sensed Big Data in Google Earth Engine" href="gee.html" />
-    <link rel="prev" title="6. Multispectral Imagery" href="bands.html" />
+    <link rel="prev" title="7. Pansharpening, Spectral Indices, and Texture Analysis" href="pan.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -146,8 +146,8 @@
       
     
     
-    <img src="_static/tikal2.png" class="logo__image only-light" alt="Archaeological Remote Sensing - Home"/>
-    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Archaeological Remote Sensing - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-light" alt="Remote Sensing of Cultural Landscapes - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Remote Sensing of Cultural Landscapes - Home"/>
   
   
 </a></div>
@@ -179,18 +179,19 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pan.html">7. Pansharpening, Spectral Indices, and Texture Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotate.html">Bonus: Annotating Lidar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Bonus: Machine Learning Approaches in Remote Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pointcnn.html">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -369,7 +370,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>7. Supervised and Unsupervised Land Cover Classification</h1>
+    <h1>Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,8 +396,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="supervised-and-unsupervised-land-cover-classification">
-<h1>7. Supervised and Unsupervised Land Cover Classification<a class="headerlink" href="#supervised-and-unsupervised-land-cover-classification" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="bonus-supervised-and-unsupervised-land-cover-classification-in-qgis-and-arcgis-pro">
+<h1>Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro<a class="headerlink" href="#bonus-supervised-and-unsupervised-land-cover-classification-in-qgis-and-arcgis-pro" title="Link to this heading">#</a></h1>
 <p>In this lab, we will conduct supervised and unsupervised land cover classifications of Landsat satellite imagery. Unsupervised classifications rely entirely on algorithms to classify differences in land cover. Supervised classifications instead use training data to define land cover types that assist the algorithm to classify land cover. Unsupervised classifications are generally not advisable unless the researcher has minimal understanding of the area of interest or is trying to parse out additional detail in land cover variation.</p>
 <section id="unsupervised-classification-in-qgis">
 <h2>Unsupervised Classification in QGIS<a class="headerlink" href="#unsupervised-classification-in-qgis" title="Link to this heading">#</a></h2>
@@ -489,12 +490,12 @@ Research in the Study of Cultural Landscapes. Human Ecology 31(2):215-232.
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="bands.html"
+       href="pan.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">6. Multispectral Imagery</p>
+        <p class="prev-next-title">7. Pansharpening, Spectral Indices, and Texture Analysis</p>
       </div>
     </a>
     <a class="right-next"
@@ -552,7 +553,7 @@ By Whittaker Schroder
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2026.
       <br/>
     
   </p>

@@ -1,4 +1,4 @@
-# 12. Ground Penetrating Radar
+# Ground Penetrating Radar
 
 We will be using the [RGPR package](https://emanuelhuber.github.io/RGPR/) in [R](https://posit.co/download/rstudio-desktop/) to plot GPR data. After installing R and RStudio, install and load RGPR and its dependencies.
 
@@ -64,7 +64,9 @@ And a profile:
 plot(mySurvey[[8]], relTime0 = TRUE, addFid = FALSE, col = palGPR("grey2"), ylim = c(14,67))
 ```
 
-## References
+## Readings
+
+## Additional References
 
 Barba, L. and G. Pereira. 2003. Geophysical Study of Loma Guadalupe Archaeological Site in Michoacan, Mexico. Archaeologia Polona 41:118–122. <https://doi.org/10.13140/RG.2.1.3177.8803>
 

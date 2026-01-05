@@ -116,15 +116,19 @@ To visualize a classified or discrete Geomorphons raster in QGIS, upload the fol
 
 The Multi-scale Relief Model is designed to extract landform morphology in low resolution digital elevation models. The implementation is based in [Google Earth Engine](https://whitschroder.github.io/remote-sensing/ml.html) or [Python](https://github.com/horengo/Orengo_Petrie_2018_MSRM). The Relief Visualization Toolbox also includes a similar tool.
 
-## References
+## Readings
 
 De Reu, Jeroen, Jean Bourgeois, Philippe De Smedt, Ann Zwertvaegher, Marc Antrop, Machteld Bats, Philippe
 De Maeyer, Peter Finke, Marc Van Meirvenne, Jacques Verniers, and Philippe Crombé. 2011. Measuring the relative
 topographic position of archaeological sites in the landscape, a case study on the Bronze Age barrows in
 northwest Belgium. Journal of Archaeological Science 38(12):3435-3446. <https://doi.org/10.1016/j.jas.2011.08.005>
 
+Garrison Discovering Maya Airborne Radar
+
 Golden, Charles and Bryce Davenport. "The Promise and Problem of Modeling Viewsheds in the Western Maya Lowlands." [PDF](https://www.academia.edu/2611078/Golden_and_Davenport_The_Promise_and_Problems_of_Modeling_Viewsheds_in_the_Western_Maya_Lowlands)
 
 Thompson, Amy. 2020. Detecting Classic Maya Settlements with Lidar-Derived Relief Visualizations. Remote Sensing 12(17):2838. <https://doi.org/10.3390/rs12172838>
+
+## Additional References
 
 Jasiewicz, Jarosław and Stepinski, Tomasz F. 2013 Geomorphons -- a pattern recognition approach to classification and mapping of landforms. [https://doi.org/10.1016/j.geomorph.2012.11.005](https://doi.org/10.1016/j.geomorph.2012.11.005)

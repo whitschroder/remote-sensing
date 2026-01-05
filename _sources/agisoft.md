@@ -60,11 +60,13 @@ Interpolation should be enabled, and Calculate vertex colors will assign RGB val
 
 This step is also optional and stretches a texture over the model based on stitching the images together. Sometimes the shaded mesh produces better results than the texture. This step tends to be the least computationally intensive step, and for that reason is worth running if the mesh has already been generated. The mesh and textures can also be exported to several formats outside of Metashape.
 
-## References
-
-Magnani, Matthew, Matthew Douglass, Whittaker Schroder, Jonathan Reeves, and David R. Braun. 2020. The Digital Revolution to Come: Photogrammetry in Archaeological Practice. American Antiquity 85(4):737-760. <https://digitalcommons.library.umaine.edu/ant_facpub/65/>
+## Readings
 
 McCarthy, John. 2014. Multi-image photogrammetry as a practical tool for cultural heritage survey and community engagement. Journal of Archaeological Science 43:175-185. <https://doi.org/10.1016/j.jas.2014.01.010>
+
+## Additional References
+
+Magnani, Matthew, Matthew Douglass, Whittaker Schroder, Jonathan Reeves, and David R. Braun. 2020. The Digital Revolution to Come: Photogrammetry in Archaeological Practice. American Antiquity 85(4):737-760. <https://digitalcommons.library.umaine.edu/ant_facpub/65/>
 
 Roosevelt, Christopher H. 2015. Excavation is <s>Destruction</s> Digitization: Advances in Archaeological Practice. Journal of Field Archaeology 40:325-346. <https://doi.org/10.1179/2042458215Y.0000000004>
 

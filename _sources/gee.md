@@ -199,7 +199,7 @@ To develop more skills in Google Earth Engine, additional code is available at t
 
 [Remotely Sensing Cities and Environments](https://andrewmaclachlan.github.io/CASA0023/5_GEE_I.html)
 
-## References
+## Readings
 
 Alcover Firpi, Omar A. 2016. Satellite Data for All? Review of Google Earth Engine 
 for Archaeological Remote Sensing. Internet Archaeology 42. 
@@ -214,6 +214,8 @@ Science: Reports 50:104094. <https://doi.org/10.1016/j.jasrep.2023.104094>
 Orengo, H.A., A. Garcia-Molsosa. 2019. A Brave New World for Archaeological Survey:
 Automated Machine Learning-Based Potsherd Detection Using High-Resolution Drone Imagery. 
 Journal of Archaeological Science 112: 105013. <https://doi.org/10.1016/j.jas.2019.105013>
+
+## Additional References
 
 Orengo, H.A., Francesc C. Conesa, Arnau Garcia-Molsosa, and Cameron A. Petrie. 2020.
 Automated Detection of Archaeological Mounds Using Machine-Learning Classification of 

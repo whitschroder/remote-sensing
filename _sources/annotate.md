@@ -1,4 +1,4 @@
-# 10. Annotating Lidar Data
+# Bonus: Annotating Lidar Data
 
 In this lab we will annotate archaeological features in lidar data. In the next lab, we will prepare our annotations to be entered as training data into a machine learning model.
 

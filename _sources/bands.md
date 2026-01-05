@@ -356,9 +356,7 @@ Aerial imagery in the visible range (red, green, and blue) can be downloaded fro
 
 The downloaded imagery contains a raster showing the clipped region (imagery extent), and the multispectral imagery (usually containing AnalyticMS). Multispectral imagery contains 4 bands: near infrared (band 4), red (band 3), green (band 2), blue (band 1), or 8 bands: near infrared (band 8), red edge (band 7), red (band 6), yellow (band 5), green (band 4), green ii (band 3), blue (band 2), coastal blue (band 1). These bands can be visualized in QGIS or ArcGIS Pro with different band combinations, or they can be used to generate indices, such as the NDVI, texture analysis, or principal component analysis.
 
-## References
-
-Alders, W., Davis, D.S. & Haines, J.J. 2024. Archaeology in the Fourth Dimension: Studying Landscapes with Multitemporal PlanetScope Satellite Data. Journal of Archaeological Method and Theory 31:1588–1621. <https://doi.org/10.1007/s10816-024-09644-x>
+## Readings
 
 Davis, D. S., Domic, A. I., Manahira, G., & Douglass, K. 2024. Geophysics Elucidate Long-term Socio-ecological Dynamics of Foraging, Pastoralism, and Mixed Subsistence Strategies on SW Madagascar. Journal of Anthropological Archaeology 75(101612). <https://doi.org/10.1016/j.jaa.2024.101612>
 
@@ -366,10 +364,7 @@ Estanqueiro, Marta, Aleksandar Šalamon, Helen Lewis, Barry Molloy, and Dragan J
 Sentinel-2 Imagery Analyses for Archaeological Site Detection: An Application to Late Bronze Age Settlements in Serbian Banat, Southern Carpathian Basin. Journal of Archaeological Science: Reports 51:104188.
 <https://doi.org/10.1016/j.jasrep.2023.104188>
 
-Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
-Nelson, and Jessica Munson. 2008. Evaluating the Use of IKONOS Satellite Imagery in 
-Lowland Maya Settlement Archaeology. Journal of Archaeological Science 35(10):2770-2777.
-<https://doi.org/10.1016/j.jas.2008.05.003>
+## Additional References
 
 Parcak, Sarah. 2009. Satellite Remote Sensing for Archaeology. Routledge, New York.
 

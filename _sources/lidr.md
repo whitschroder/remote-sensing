@@ -699,13 +699,26 @@ raster.
 writeRaster(dtm_idw, "C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013 processed BE/s460gr.tif")
 ```
 
-## References
+## Readings
 
 Fernandez-Diaz, Juan Carlos, William E. Carter, Ramesh L. Shrestha, and 
 Craig L. Glennie. 2014. Now You See It… Now You Don’t: Understanding 
 Airborne Mapping LiDAR Collection and Data Product Generation for Archaeological 
 Research in Mesoamerica. Remote Sensing 6(10):9951–10001. 
 <https://doi.org/10.3390/rs6109951>
+
+Rostain 2000 Years of Urbanism Ecuador
+
+Štular, Benjamin and Edisa Lozić. 2020. Comparison of Filters for Archaeology-Specific
+Ground Extraction from Airborne LiDAR Point Clouds. Remote Sensing 12(18):3025.
+<https://doi.org/10.3390/rs12183025>
+
+VanValkenburgh, Parker, K.C. Cushman, Luis Jaime Castillo Butters, Carol Rojas Vega,
+Carson B. Roberts, Charles Kepler, and James Kellner. 2020. Lasers without lost
+cities: using drone lidar to capture architectural complexity at Kuelap, Amazonas, Peru.
+<https://doi.org/10.1080/00934690.2020.1713287>
+
+## Additional References
 
 Mohan, Midhun, Rodrigo Vieira Leite, Eben North Broadbent, et al. 2021 
 (forthcoming). Individual Tree Detection Using UAV-lidar and UAV-SfM Data: 
@@ -714,19 +727,10 @@ A Tutorial for Beginners. Remote Sensing 12.
 Roussel, Jean-Romain, Tristan R.H. Goodbody, and Piotr Tompalski. 2023. The lidR package.
 <https://r-lidar.github.io/lidRbook/index.html>
 
-Štular, Benjamin and Edisa Lozić. 2020. Comparison of Filters for Archaeology-Specific
-Ground Extraction from Airborne LiDAR Point Clouds. Remote Sensing 12(18):3025.
-<https://doi.org/10.3390/rs12183025>
-
 VanValkenburgh, Parker. 2023. Seeing Through Trees: Lidar, Archaeology and the
 Possibility of Seeing Otherwise. In Active Landscape Photography, edited by Anne
 C. Godfrey. Routledge, London. 
 <https://www.taylorfrancis.com/chapters/edit/10.4324/9781003087717-5/seeing-trees-parker-vanvalkenburgh>
-
-VanValkenburgh, Parker, K.C. Cushman, Luis Jaime Castillo Butters, Carol Rojas Vega,
-Carson B. Roberts, Charles Kepler, and James Kellner. 2020. Lasers without lost
-cities: using drone lidar to capture architectural complexity at Kuelap, Amazonas, Peru.
-<https://doi.org/10.1080/00934690.2020.1713287>
 
 Young, James. LiDAR for Dummies. <https://ibis.geog.ubc.ca/courses/geog373/lectures/
 Handouts/LiDARforDummies.pdf>

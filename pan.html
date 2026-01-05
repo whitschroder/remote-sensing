@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Pansharpening Imagery &#8212; Archaeological Remote Sensing</title>
+    <title>7. Pansharpening, Spectral Indices, and Texture Analysis &#8212; Remote Sensing of Cultural Landscapes</title>
   
   
   
@@ -63,6 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pan';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro" href="classification.html" />
+    <link rel="prev" title="6. Multispectral Imagery" href="bands.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -114,8 +116,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -146,8 +146,8 @@
       
     
     
-    <img src="_static/tikal2.png" class="logo__image only-light" alt="Archaeological Remote Sensing - Home"/>
-    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Archaeological Remote Sensing - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-light" alt="Remote Sensing of Cultural Landscapes - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Remote Sensing of Cultural Landscapes - Home"/>
   
   
 </a></div>
@@ -168,7 +168,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
@@ -179,18 +179,19 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">7. Pansharpening, Spectral Indices, and Texture Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="classification.html">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotate.html">Bonus: Annotating Lidar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Bonus: Machine Learning Approaches in Remote Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pointcnn.html">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -369,7 +370,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Pansharpening Imagery</h1>
+    <h1>7. Pansharpening, Spectral Indices, and Texture Analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -380,6 +381,7 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
             </nav>
         </div>
@@ -391,16 +393,25 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="pansharpening-imagery">
-<h1>Pansharpening Imagery<a class="headerlink" href="#pansharpening-imagery" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pansharpening-spectral-indices-and-texture-analysis">
+<h1>7. Pansharpening, Spectral Indices, and Texture Analysis<a class="headerlink" href="#pansharpening-spectral-indices-and-texture-analysis" title="Link to this heading">#</a></h1>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
+<p>Alders, W., Davis, D.S. &amp; Haines, J.J. 2024. Archaeology in the Fourth Dimension: Studying Landscapes with Multitemporal PlanetScope Satellite Data. Journal of Archaeological Method and Theory 31:1588–1621. <a class="reference external" href="https://doi.org/10.1007/s10816-024-09644-x">https://doi.org/10.1007/s10816-024-09644-x</a>.</p>
+<p>Brondizio and Chowdhury. 2010. Spatiotemporal methodologies in environmental anthropology: geographic information systems, remote sensing, landscape changes, and local knowledge. In: Vaccaro I, Smith EA, Aswani S, eds. Environmental Social Sciences: Methods and Research Design. Cambridge University Press, pp. 266-298.</p>
 <p>Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
-Nelson, and Jessica Munson. 2008. Journal of Archaeological Science 35(10):2770-2777.</p>
+Nelson, and Jessica Munson. 2008. Evaluating the Use of IKONOS Satellite Imagery in
+Lowland Maya Settlement Archaeology. Journal of Archaeological Science 35(10):2770-2777.
+<a class="reference external" href="https://doi.org/10.1016/j.jas.2008.05.003">https://doi.org/10.1016/j.jas.2008.05.003</a></p>
+</section>
+<section id="additional-references">
+<h2>Additional References<a class="headerlink" href="#additional-references" title="Link to this heading">#</a></h2>
 <p>Saturno, William, Thomas L. Sever, Daniel E. Irwin, Burgess F. Howell, and Thomas G.
 Garrison. 2007. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
 El-Baz, pp. 137-160. Springer, New York.</p>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -433,6 +444,24 @@ El-Baz, pp. 137-160. Springer, New York.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="bands.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">6. Multispectral Imagery</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="classification.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -451,6 +480,7 @@ El-Baz, pp. 137-160. Springer, New York.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
   </nav></div>
 
@@ -475,7 +505,7 @@ By Whittaker Schroder
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2026.
       <br/>
     
   </p>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package &#8212; Archaeological Remote Sensing</title>
+    <title>9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package &#8212; Remote Sensing of Cultural Landscapes</title>
   
   
   
@@ -148,8 +148,8 @@
       
     
     
-    <img src="_static/tikal2.png" class="logo__image only-light" alt="Archaeological Remote Sensing - Home"/>
-    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Archaeological Remote Sensing - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-light" alt="Remote Sensing of Cultural Landscapes - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Remote Sensing of Cultural Landscapes - Home"/>
   
   
 </a></div>
@@ -181,18 +181,19 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pan.html">7. Pansharpening, Spectral Indices, and Texture Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="classification.html">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotate.html">Bonus: Annotating Lidar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Bonus: Machine Learning Approaches in Remote Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pointcnn.html">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -391,7 +392,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progressive-morphological-filter">Progressive Morphological Filter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiscale-curvature-classification">Multiscale Curvature Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-all-tiles-with-lascatalog">Classifying all tiles with lascatalog</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
             </nav>
         </div>
@@ -1034,29 +1036,33 @@ raster.</p>
 </pre></div>
 </div>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<section id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
 <p>Fernandez-Diaz, Juan Carlos, William E. Carter, Ramesh L. Shrestha, and
 Craig L. Glennie. 2014. Now You See It… Now You Don’t: Understanding
 Airborne Mapping LiDAR Collection and Data Product Generation for Archaeological
 Research in Mesoamerica. Remote Sensing 6(10):9951–10001.
 <a class="reference external" href="https://doi.org/10.3390/rs6109951">https://doi.org/10.3390/rs6109951</a></p>
+<p>Rostain 2000 Years of Urbanism Ecuador</p>
+<p>Štular, Benjamin and Edisa Lozić. 2020. Comparison of Filters for Archaeology-Specific
+Ground Extraction from Airborne LiDAR Point Clouds. Remote Sensing 12(18):3025.
+<a class="reference external" href="https://doi.org/10.3390/rs12183025">https://doi.org/10.3390/rs12183025</a></p>
+<p>VanValkenburgh, Parker, K.C. Cushman, Luis Jaime Castillo Butters, Carol Rojas Vega,
+Carson B. Roberts, Charles Kepler, and James Kellner. 2020. Lasers without lost
+cities: using drone lidar to capture architectural complexity at Kuelap, Amazonas, Peru.
+<a class="reference external" href="https://doi.org/10.1080/00934690.2020.1713287">https://doi.org/10.1080/00934690.2020.1713287</a></p>
+</section>
+<section id="additional-references">
+<h2>Additional References<a class="headerlink" href="#additional-references" title="Link to this heading">#</a></h2>
 <p>Mohan, Midhun, Rodrigo Vieira Leite, Eben North Broadbent, et al. 2021
 (forthcoming). Individual Tree Detection Using UAV-lidar and UAV-SfM Data:
 A Tutorial for Beginners. Remote Sensing 12.</p>
 <p>Roussel, Jean-Romain, Tristan R.H. Goodbody, and Piotr Tompalski. 2023. The lidR package.
 <a class="reference external" href="https://r-lidar.github.io/lidRbook/index.html">https://r-lidar.github.io/lidRbook/index.html</a></p>
-<p>Štular, Benjamin and Edisa Lozić. 2020. Comparison of Filters for Archaeology-Specific
-Ground Extraction from Airborne LiDAR Point Clouds. Remote Sensing 12(18):3025.
-<a class="reference external" href="https://doi.org/10.3390/rs12183025">https://doi.org/10.3390/rs12183025</a></p>
 <p>VanValkenburgh, Parker. 2023. Seeing Through Trees: Lidar, Archaeology and the
 Possibility of Seeing Otherwise. In Active Landscape Photography, edited by Anne
 C. Godfrey. Routledge, London.
 <a class="reference external" href="https://www.taylorfrancis.com/chapters/edit/10.4324/9781003087717-5/seeing-trees-parker-vanvalkenburgh">https://www.taylorfrancis.com/chapters/edit/10.4324/9781003087717-5/seeing-trees-parker-vanvalkenburgh</a></p>
-<p>VanValkenburgh, Parker, K.C. Cushman, Luis Jaime Castillo Butters, Carol Rojas Vega,
-Carson B. Roberts, Charles Kepler, and James Kellner. 2020. Lasers without lost
-cities: using drone lidar to capture architectural complexity at Kuelap, Amazonas, Peru.
-<a class="reference external" href="https://doi.org/10.1080/00934690.2020.1713287">https://doi.org/10.1080/00934690.2020.1713287</a></p>
 <p>Young, James. LiDAR for Dummies. &lt;<a class="reference external" href="https://ibis.geog.ubc.ca/courses/geog373/lectures/">https://ibis.geog.ubc.ca/courses/geog373/lectures/</a>
 Handouts/LiDARforDummies.pdf&gt;</p>
 </section>
@@ -1139,7 +1145,8 @@ Handouts/LiDARforDummies.pdf&gt;</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progressive-morphological-filter">Progressive Morphological Filter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiscale-curvature-classification">Multiscale Curvature Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-all-tiles-with-lascatalog">Classifying all tiles with lascatalog</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
   </nav></div>
 
@@ -1164,7 +1171,7 @@ By Whittaker Schroder
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2026.
       <br/>
     
   </p>

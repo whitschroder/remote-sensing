@@ -1,6 +1,6 @@
 # ANG 6930: Remote Sensing of Cultural Landscapes
 **University of Florida**  
-**Spring 2025**
+**Spring 2026**
 
 ```{image} /images/Intensity.png
 :alt: Intensity
@@ -43,11 +43,12 @@ By the end of the course, students will:
 This class has no prerequisites, but some previous knowledge of GIS, coding, and photography will be beneficial.
 
 **Class Meetings**  
-Tuesday, Periods 3–5, 9:35 am–12:35 pm  
-Turlington B304
+Friday, Periods 4–6, 10:40 am–1:40 pm  
+Weimer Hall 2050
 
 **Office Hours**  
-Tuesday 1:00–3:00 pm  
+Tuesday, 11:30 am–1:30 pm  
+Thursday, 12:30-1:30 pm  
 Turlington B129
 
 **Recommended Books and Resources**  
@@ -75,10 +76,11 @@ Additional readings and case studies will be provided each week.
 <https://catalog.ufl.edu/UGRD/academic-regulations/grades-grading-policies>
 |                              |     |
 | ---                          | --- |
-| Attendance and Participation | 20% |
+| Attendance and Participation | 15% |
 | Weekly Labs	               | 30% |
-| Project Site Selection       | 10% |
-| Presentation	               | 10% |
+| Seminar Facilitation         | 15% |
+| Project Site Selection       | 5% |
+| Presentation	               | 5% |
 | Final Project                | 30% |
 
 **Attendance and Participation**  
@@ -95,6 +97,9 @@ and other work in this course are consistent with university policies
 Readings will be posted on the course website and should be completed before the
 relevant class period. A goal of this course is to create a resource that students can use to learn 
 about remote sensing, so feel free to contribute additional readings in the context of that week’s topic.
+
+**Seminar Facilitation**  
+Each week, students will be divided into teams to guide the discussion of that week's readings, taking up somewhere between 30 and 60 minutes of class time. Each student will likely be responsible for two seminar discussions, depending on course enrollment.
 
 **Labs**  
 Every class period will have a lab component to introduce topics and techniques.
@@ -137,21 +142,21 @@ course evaluation results are available to students at
 
 |||
 | --- | --- |
-| Week 1 <br> January 14  | Course Introduction <br> Introduction to Remote Sensing <br> History of Remote Sensing <br> GPS and GNSS <br> Review GIS <br> Lab 1: Aerial Photography and Stereoscopic Imaging |
-| Week 2 <br> January 21  | Project Site Selection Due (posted as a Google Earth .kml file on the Canvas discussion board <br> Leveraging historic satellite imagery <br> Orthorectification and georeferencing <br> Lab 2: Orthorectifying CORONA Satellite Imagery |
-| Week 3 <br> January 28  | Lab 3: Digital Surface Models and Orthoimagery in Agisoft Metashape <br> Drone Mission Planning <br> Principles of photography <br> Photogrammetry Structure from Motion (SfM) <br> Ground control points <br> Lab 4: Drone Mission Planning for Photogrammetry |
-| Week 4 <br> February 4  | Data Sources <br> Lab 5: Topographic Analysis with ASTER and SRTM Digital Elevation Models |
-| Week 5 <br> February 11 | Introduction to multispectral satellite imagery <br> Lab 6: Multispectral Imagery |
-| Week 6 <br> February 18 | Land cover classification <br> Lab 7: Supervised and Unsupervised Land Cover Classification | 
-| Week 7 <br> February 25 | Remotely-sensed big data <br> Introduction to machine learning <br> Decision trees and random forest algorithms <br> Lab 8: Manipulating Remotely-Sensed Big Data in Google Earth Engine |
-| Week 8 <br> March 4	  | Lidar for Archaeology <br> Data collection <br> Download datasets <br> Visualization and ground classification <br> Lab 9: Visualizing and Processing Lidar Point Clouds in R with the lidR Package |
-| Week 9 <br> March 11    | Annotating Lidar data <br> Lab 10: Annotating Lidar with Vectors |
-| Week 10 <br> March 18   | **Spring Break** |
-| Week 11 <br> March 25   | Machine learning approaches in aerial remote sensing <br> TensorFlow, Python, and Google Colab <br> Lab 11: Machine Learning Approaches in Remote Sensing |
-| Week 12 <br> April 1    | Subsurface Remote Sensing and Geophysics <br> GPR Demonstration <br> Lab 12: Ground Penetrating Radar |
-| Week 13 <br> April 8    | Ethics in Remote Sensing |
-| Week 14 <br> April 15   | Student Presentations |
-| Week 15 <br> April 22   | Student Presentations |
+| Week 1 <br> January 16  | Course Introduction <br> Introduction to Remote Sensing <br> History of Remote Sensing <br> GPS and GNSS <br> Review GIS <br> Lab 1 (in class): Aerial Photography and Stereoscopic Imaging |
+| Week 2 <br> January 23  | Project Site Selection Due (posted as a Google Earth .kml file on the Canvas discussion board <br> Leveraging historic satellite imagery <br> Orthorectification and georeferencing <br> Lab 2 (assigned): Orthorectifying CORONA Satellite Imagery |
+| Week 3 <br> January 30  | Lab 2 Due <br> Lab 3 (assigned): Digital Surface Models and Orthoimagery in Agisoft Metashape <br> Photogrammetry Structure from Motion (SfM) <br> Ground control points |
+| Week 4 <br> February 6  | Lab 3 Due <br> Lab 4 (assigned): Drone Mission Planning for Photogrammetry <br> Drone Mission Planning <br> Principles of photography |
+| Week 5 <br> February 13 | Lab 4 Due <br> Data Sources <br> Lab 5 (assigned): Topographic Analysis with ASTER and SRTM Digital Elevation Models |
+| Week 6 <br> February 20 | Lab 5 Due <br> Introduction to multispectral satellite imagery <br> Lab 6 (assigned): Multispectral Imagery | 
+| Week 7 <br> February 27 | Lab 6 Due <br> Spectral indices <br> Lab 7 (assigned): Pansharpening, Spectral Indices, and Texture Analysis |
+| Week 8 <br> March 6	  | Lab 7 Due <br> Supervised and Unsupervised Land Cover Classification <br> Remotely-sensed big data <br> Introduction to machine learning <br> Decision trees and random forest algorithms <br> Lab 8 (assigned): Manipulating Remotely-Sensed Big Data in Google Earth Engine |
+| Week 9 <br> March 13    | Lab 8 Due <br> Lidar for Archaeology <br> Data collection <br> Download datasets <br> Visualization and ground classification <br> Lab 9 (assigned): Visualizing and Processing Lidar Point Clouds in R with the lidR Package |
+| Week 10 <br> March 20   | **Spring Break** |
+| Week 11 <br> March 27   | Subsurface Remote Sensing and Geophysics <br> GPR Demonstration |
+| Week 12 <br> April 3    | Lab 9 Due <br> Machine Learning Approaches in Remote Sensing <br> Analyzing GPR Data with R |
+| Week 13 <br> April 10   | Ethics in Remote Sensing <br> Student Presentations |
+| Week 14 <br> April 17   | Student Presentations |
+| Week 15 <br> May 1   | Final Projects Due |
 
 # Table of Contents
 

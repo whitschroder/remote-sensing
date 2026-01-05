@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. Multispectral Imagery &#8212; Archaeological Remote Sensing</title>
+    <title>6. Multispectral Imagery &#8212; Remote Sensing of Cultural Landscapes</title>
   
   
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'bands';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Supervised and Unsupervised Land Cover Classification" href="classification.html" />
+    <link rel="next" title="7. Pansharpening, Spectral Indices, and Texture Analysis" href="pan.html" />
     <link rel="prev" title="5. Topographic Analysis with ASTER and SRTM Digital Elevation Models" href="topo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -148,8 +148,8 @@
       
     
     
-    <img src="_static/tikal2.png" class="logo__image only-light" alt="Archaeological Remote Sensing - Home"/>
-    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Archaeological Remote Sensing - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-light" alt="Remote Sensing of Cultural Landscapes - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Remote Sensing of Cultural Landscapes - Home"/>
   
   
 </a></div>
@@ -181,18 +181,19 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pan.html">7. Pansharpening, Spectral Indices, and Texture Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="classification.html">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotate.html">Bonus: Annotating Lidar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Bonus: Machine Learning Approaches in Remote Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pointcnn.html">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -391,7 +392,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#planet-imagery">Planet Imagery</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
             </nav>
         </div>
@@ -751,17 +753,15 @@ Red – shorelines and immediate land use changes</p></li>
 <p>Aerial imagery in the visible range (red, green, and blue) can be downloaded from the Basemaps Viewer, which provides the highest quality cloud-free imagery available each month. Zoom into your area of interest, choose the layer of interest, and click View Quads and Scenes. Select a point or draw an area, then click Download Quad. Multispectral data is available in the Planet Explorer. In the Planet Explorer, zoom to your area of interest, and click the Draw or upload an area of interest button on the right. Choose an option to draw an area of interest. The menu on the left will populate with options. View imagery by clicking the eye icon in the top right of the imagery thumbnail. Once you’ve identified the appropriate imagery, add the items to your order, click Order Scenes, and click through the options. When ready, a download link will be emailed to your email address on file.</p>
 <p>The downloaded imagery contains a raster showing the clipped region (imagery extent), and the multispectral imagery (usually containing AnalyticMS). Multispectral imagery contains 4 bands: near infrared (band 4), red (band 3), green (band 2), blue (band 1), or 8 bands: near infrared (band 8), red edge (band 7), red (band 6), yellow (band 5), green (band 4), green ii (band 3), blue (band 2), coastal blue (band 1). These bands can be visualized in QGIS or ArcGIS Pro with different band combinations, or they can be used to generate indices, such as the NDVI, texture analysis, or principal component analysis.</p>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
-<p>Alders, W., Davis, D.S. &amp; Haines, J.J. 2024. Archaeology in the Fourth Dimension: Studying Landscapes with Multitemporal PlanetScope Satellite Data. Journal of Archaeological Method and Theory 31:1588–1621. <a class="reference external" href="https://doi.org/10.1007/s10816-024-09644-x">https://doi.org/10.1007/s10816-024-09644-x</a></p>
+<section id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
 <p>Davis, D. S., Domic, A. I., Manahira, G., &amp; Douglass, K. 2024. Geophysics Elucidate Long-term Socio-ecological Dynamics of Foraging, Pastoralism, and Mixed Subsistence Strategies on SW Madagascar. Journal of Anthropological Archaeology 75(101612). <a class="reference external" href="https://doi.org/10.1016/j.jaa.2024.101612">https://doi.org/10.1016/j.jaa.2024.101612</a></p>
 <p>Estanqueiro, Marta, Aleksandar Šalamon, Helen Lewis, Barry Molloy, and Dragan Jovanović. 2023.
 Sentinel-2 Imagery Analyses for Archaeological Site Detection: An Application to Late Bronze Age Settlements in Serbian Banat, Southern Carpathian Basin. Journal of Archaeological Science: Reports 51:104188.
 <a class="reference external" href="https://doi.org/10.1016/j.jasrep.2023.104188">https://doi.org/10.1016/j.jasrep.2023.104188</a></p>
-<p>Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
-Nelson, and Jessica Munson. 2008. Evaluating the Use of IKONOS Satellite Imagery in
-Lowland Maya Settlement Archaeology. Journal of Archaeological Science 35(10):2770-2777.
-<a class="reference external" href="https://doi.org/10.1016/j.jas.2008.05.003">https://doi.org/10.1016/j.jas.2008.05.003</a></p>
+</section>
+<section id="additional-references">
+<h2>Additional References<a class="headerlink" href="#additional-references" title="Link to this heading">#</a></h2>
 <p>Parcak, Sarah. 2009. Satellite Remote Sensing for Archaeology. Routledge, New York.</p>
 <p>Amidon, Will. Middlebury Remote Sensing.
 <a class="reference external" href="https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured">https://www.youtube.com/channel/UCgNXU17K63E2fzWxYv1-_4w/featured</a></p>
@@ -819,11 +819,11 @@ El-Baz, pp. 137-160. Springer, New York. <a class="reference external" href="htt
       </div>
     </a>
     <a class="right-next"
-       href="classification.html"
+       href="pan.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">7. Supervised and Unsupervised Land Cover Classification</p>
+        <p class="prev-next-title">7. Pansharpening, Spectral Indices, and Texture Analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -854,7 +854,8 @@ El-Baz, pp. 137-160. Springer, New York. <a class="reference external" href="htt
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-sharpening">Image Sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-final-composite">Creating a Final Composite</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#planet-imagery">Planet Imagery</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
   </nav></div>
 
@@ -879,7 +880,7 @@ By Whittaker Schroder
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2026.
       <br/>
     
   </p>

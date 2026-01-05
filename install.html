@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Install Required Software &#8212; Archaeological Remote Sensing</title>
+    <title>Install Required Software &#8212; Remote Sensing of Cultural Landscapes</title>
   
   
   
@@ -146,8 +146,8 @@
       
     
     
-    <img src="_static/tikal2.png" class="logo__image only-light" alt="Archaeological Remote Sensing - Home"/>
-    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Archaeological Remote Sensing - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-light" alt="Remote Sensing of Cultural Landscapes - Home"/>
+    <img src="_static/tikal2.png" class="logo__image only-dark pst-js-only" alt="Remote Sensing of Cultural Landscapes - Home"/>
   
   
 </a></div>
@@ -179,18 +179,19 @@
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bands.html">6. Multispectral Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classification.html">7. Supervised and Unsupervised Land Cover Classification</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pan.html">7. Pansharpening, Spectral Indices, and Texture Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="classification.html">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="annotate.html">10. Annotating Lidar Data</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ml.html">11. Machine Learning Approaches in Remote Sensing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotate.html">Bonus: Annotating Lidar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Bonus: Machine Learning Approaches in Remote Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pointcnn.html">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">12. Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -380,20 +381,19 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agisoft-metashape">Agisoft Metashape</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#realitycapture">RealityCapture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ufapps">UFApps</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-earth-explorer">USGS Earth Explorer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nasa-earth-data-search">NASA Earth Data Search</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-earth-pro">Google Earth Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-earth-engine">Google Earth Engine</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pix4dcapture-pro">Pix4Dcapture Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lastools">LAStools</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-compare">Cloud Compare</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-optional-software">Other Optional Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lastools">LAStools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pix4dcapture-pro">Pix4Dcapture Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#realitycapture">RealityCapture</a></li>
 </ul>
             </nav>
         </div>
@@ -413,20 +413,14 @@
 <a class="reference external" href="https://www.agisoft.com/downloads/installer/">here</a>. You can use Metashape without saving for an unlimited
 time. To save your work, you will need to begin a 30-day trial. Do not begin the 30-day trial until class starts. Instead, use the software in Demo mode.</p>
 </section>
-<section id="realitycapture">
-<h2>RealityCapture<a class="headerlink" href="#realitycapture" title="Link to this heading">#</a></h2>
-<p>RealityCapture is a free photogrammetry software and a good alternative to Agisoft Metashape. Go to <a class="reference external" href="https://www.capturingreality.com/">https://www.capturingreality.com/</a> and click on the Download now button at the top right of the page. Download the Epic Games Launcher and open the installer. Click through the default installation options, and click Update if prompted after installing. You will then need to create an account or link an existing account (for example, through Google, Apple, etc.). Once linked, click Continue. Open Epic Games and enter the confirmation code that was sent to your email. Once Epic Games is open, click on Unreal Engine and then RealityCapture. Click Download. Once installed, RealityCapture should be available under Library in the Epic Games Launcher. Note that the Epic Games Launcher is automatically added to your Startup apps. Turn off this setting if needed.</p>
-</section>
-<section id="arcgis-pro">
-<h2>ArcGIS Pro<a class="headerlink" href="#arcgis-pro" title="Link to this heading">#</a></h2>
-<p>A license for ArcGIS Pro is available for University of Florida students through the
-<a class="reference external" href="https://www.geoplan.ufl.edu/software/arcgis-pro/">GeoPlan Center</a>. Follow the instructions to download the
-most recent version. During the installation, you may be prompted to update Microsoft .NET Desktop Runtime. Click on the link provided in the pop-up window, and download the specific version listed (currently version 8, x64). ArcGIS Pro is only available for Windows.</p>
-</section>
 <section id="qgis">
 <h2>QGIS<a class="headerlink" href="#qgis" title="Link to this heading">#</a></h2>
 <p>QGIS is an open source GIS software available for Windows, Mac, and Linux. Download the Long Term Version
 <a class="reference external" href="https://www.qgis.org/download/">here</a>.</p>
+</section>
+<section id="ufapps">
+<h2>UFApps<a class="headerlink" href="#ufapps" title="Link to this heading">#</a></h2>
+<p>UFApps is an online virtual desktop that provides access to much of the software listed on this page (aside from Agisoft Metashape and Cloud Compare). Login to UF Apps and select either the Native Client or the HTML access. If you choose the former, you will have to download and install the Horizon Client. If using the HTML access, select UFApps Graphics for Adobe Photoshop and ArcGIS Pro, or UFApps Regular for QGIS. To open software in UF Apps, click the Windows button at the bottom center and search for the software, then click to open. To manage files, you will have to use the M Drive, accessible from the virtual desktop. To upload files to the M Drive, click on the side bar to the left, and the Open File Transfer panel at the top of the side bar. Click Upload, and Choose Files. To download files to your computer from the M Drive, click Download, then open a new window with your M Drive, navigate to the file you want to transfer, select it, and click CTRL + C or COMMAND + C. The file should appear in the File Transfer panel, click the download arrow, and select the download location. Transferring files is easier with the Horizon Client. Open the M Drive in the Horizon Client and open a separate file folder on your local computer. Highlight and drag the files from your local computer to the M Drive.</p>
 </section>
 <section id="usgs-earth-explorer">
 <h2>USGS Earth Explorer<a class="headerlink" href="#usgs-earth-explorer" title="Link to this heading">#</a></h2>
@@ -444,33 +438,34 @@ most recent version. During the installation, you may be prompted to update Micr
 <h2>Google Earth Engine<a class="headerlink" href="#google-earth-engine" title="Link to this heading">#</a></h2>
 <p>Register for Google Earth Engine <a class="reference external" href="https://code.earthengine.google.com/register">here</a>. You can login with your UF email or a personal Gmail account.</p>
 </section>
-<section id="pix4dcapture-pro">
-<h2>Pix4Dcapture Pro<a class="headerlink" href="#pix4dcapture-pro" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://www.pix4d.com/product/pix4dcapture/">Pix4Dcapture Pro</a> is a smartphone app for planning drone surveys. You will need to register for an account. Some features are only available with a paid subscription (30 day trial), but basic features are free.</p>
-</section>
 <section id="r">
 <h2>R<a class="headerlink" href="#r" title="Link to this heading">#</a></h2>
 <p>Download R and RStudio <a class="reference external" href="https://posit.co/download/rstudio-desktop/">here</a>.</p>
-</section>
-<section id="lastools">
-<h2>LAStools<a class="headerlink" href="#lastools" title="Link to this heading">#</a></h2>
-<p>LAStools is a suite of tools for Windows and Linux for processing, analyzing, and viewing LiDAR data. Download LAStools directly to your C Drive <a class="reference external" href="https://rapidlasso.de/downloads/">here</a>. Most tools require a license, though some are open source.</p>
 </section>
 <section id="cloud-compare">
 <h2>Cloud Compare<a class="headerlink" href="#cloud-compare" title="Link to this heading">#</a></h2>
 <p>Cloud Compare is a point cloud software. Download the latest stable release <a class="reference external" href="https://www.danielgm.net/cc/">here</a>.</p>
 </section>
-<section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://www.python.org/">Python</a> is a programming language that we will use for machine learning classification. Python may already come preinstalled on your computer, and it is included with installations of ArcGIS Pro and QGIS. If necessary Python can be downloaded separately <a class="reference external" href="https://www.python.org/downloads/">here</a>.</p>
+<section id="other-optional-software">
+<h2>Other Optional Software<a class="headerlink" href="#other-optional-software" title="Link to this heading">#</a></h2>
 </section>
-<section id="jupyter-notebook">
-<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a> is a Python-based data notebook for writing and executing Python code. <a class="reference external" href="https://jupyter.org/install">Installation</a> is done through the Command Prompt or Terminal of your computer and requires that Python (with pip) is already installed.</p>
+<section id="arcgis-pro">
+<h2>ArcGIS Pro<a class="headerlink" href="#arcgis-pro" title="Link to this heading">#</a></h2>
+<p>A license for ArcGIS Pro is available for University of Florida students through the
+<a class="reference external" href="https://www.geoplan.ufl.edu/software/arcgis-pro/">GeoPlan Center</a>. Follow the instructions to download the
+most recent version. During the installation, you may be prompted to update Microsoft .NET Desktop Runtime. Click on the link provided in the pop-up window, and download the specific version listed (currently version 8, x64). ArcGIS Pro is only available for Windows. To use ArcGIS Pro, you will need to sign in under the option “Your ArcGIS organization’s URL” at <a class="reference external" href="http://ufl.maps.arcgis.com">ufl.maps.arcgis.com</a>.</p>
 </section>
-<section id="google-colab">
-<h2>Google Colab<a class="headerlink" href="#google-colab" title="Link to this heading">#</a></h2>
-<p>Alternatively, <a class="reference external" href="https://colab.research.google.com/">Google Colab</a> is a hosted notebook service that does not require any local installations on your computer.</p>
+<section id="lastools">
+<h2>LAStools<a class="headerlink" href="#lastools" title="Link to this heading">#</a></h2>
+<p>LAStools is a suite of tools for Windows and Linux for processing, analyzing, and viewing LiDAR data. Download LAStools directly to your C Drive <a class="reference external" href="https://rapidlasso.de/downloads/">here</a>. Most tools require a license, though some are open source.</p>
+</section>
+<section id="pix4dcapture-pro">
+<h2>Pix4Dcapture Pro<a class="headerlink" href="#pix4dcapture-pro" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.pix4d.com/product/pix4dcapture/">Pix4Dcapture Pro</a> is a smartphone app for planning drone surveys. You will need to register for an account. Some features are only available with a paid subscription (30 day trial), but basic features are free.</p>
+</section>
+<section id="realitycapture">
+<h2>RealityCapture<a class="headerlink" href="#realitycapture" title="Link to this heading">#</a></h2>
+<p>RealityCapture is a free photogrammetry software and a good alternative to Agisoft Metashape. Go to <a class="reference external" href="https://www.capturingreality.com/">https://www.capturingreality.com/</a> and click on the Download now button at the top right of the page. Download the Epic Games Launcher and open the installer. Click through the default installation options, and click Update if prompted after installing. You will then need to create an account or link an existing account (for example, through Google, Apple, etc.). Once linked, click Continue. Open Epic Games and enter the confirmation code that was sent to your email. Once Epic Games is open, click on Unreal Engine and then RealityCapture. Click Download. Once installed, RealityCapture should be available under Library in the Epic Games Launcher. Note that the Epic Games Launcher is automatically added to your Startup apps. Turn off this setting if needed.</p>
 </section>
 </section>
 
@@ -540,20 +535,19 @@ most recent version. During the installation, you may be prompted to update Micr
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agisoft-metashape">Agisoft Metashape</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#realitycapture">RealityCapture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ufapps">UFApps</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-earth-explorer">USGS Earth Explorer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nasa-earth-data-search">NASA Earth Data Search</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-earth-pro">Google Earth Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-earth-engine">Google Earth Engine</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pix4dcapture-pro">Pix4Dcapture Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lastools">LAStools</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-compare">Cloud Compare</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-optional-software">Other Optional Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lastools">LAStools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pix4dcapture-pro">Pix4Dcapture Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#realitycapture">RealityCapture</a></li>
 </ul>
   </nav></div>
 
@@ -578,7 +572,7 @@ By Whittaker Schroder
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2026.
       <br/>
     
   </p>

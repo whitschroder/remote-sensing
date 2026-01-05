@@ -1,4 +1,4 @@
-# 7. Supervised and Unsupervised Land Cover Classification
+# Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro
 
 In this lab, we will conduct supervised and unsupervised land cover classifications of Landsat satellite imagery. Unsupervised classifications rely entirely on algorithms to classify differences in land cover. Supervised classifications instead use training data to define land cover types that assist the algorithm to classify land cover. Unsupervised classifications are generally not advisable unless the researcher has minimal understanding of the area of interest or is trying to parse out additional detail in land cover variation.
 
