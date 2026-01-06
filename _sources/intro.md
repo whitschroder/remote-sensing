@@ -77,9 +77,9 @@ Additional readings and case studies will be provided each week.
 |                              |     |
 | ---                          | --- |
 | Attendance and Participation | 15% |
-| Weekly Labs	               | 30% |
+| Weekly Labs	               | 32% |
 | Seminar Facilitation         | 15% |
-| Project Site Selection       | 5% |
+| Project Site Selection       | 3% |
 | Presentation	               | 5% |
 | Final Project                | 30% |
 
