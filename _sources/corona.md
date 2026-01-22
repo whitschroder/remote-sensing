@@ -8,17 +8,25 @@ The [Corona Atlas](https://corona.cast.uark.edu/) project has georeferenced and 
 
 ## USGS Earth Explorer
 
-Uncorrected CORONA imagery is available through the [USGS Earth Explorer](https://earthexplorer.usgs.gov/). To access imagery, create a free account, and select a location on the map. Click Data Sets and choose the Declassified Data options. Click Results. Only some imagery is available for download, while the rest have not been scanned digitally. Download the imagery and metadata.
+Uncorrected CORONA imagery is available through the [USGS Earth Explorer](https://earthexplorer.usgs.gov/). To access imagery, create a free account, and select a location on the map. Click Data Sets and choose the Declassified Data options. Click Results. Only some imagery is available for download, while the rest have not been scanned digitally. Download the imagery by clicking the Download Options button and refer to the metadata under Show Metadata and Browse.
 
 ## Stitching Imagery
 
-[Hugin](https://hugin.sourceforge.io/) can be used to stitch the CORONA imagery into a single transect. Load images in order (I have had best results with lens type: Orthographic). If the Camera and Lens window pops up, click Cancel if you do not have the metadata. You may get the option to mask out portions of the photo (optional). Then, Align images, and if successful, Create panorama.
+CORONA imagery will typically be downloaded as a zipped folder usually with four image files. These files can be stitched prior to loading them into QGIS.
 
-## ArcGIS Pro
+The best software for stitching is Adobe Photoshop, available through the Graphics Application interface in [UFApps](https://info.apps.ufl.edu). Download the files, unzip the folder, and then upload the images to your M Drive. Open Adobe Photoshop. Go to File -> Automate -> Photomerge. Browse to load the files and click OK (use the Automatic settings). Once complete, the panorama will load with each image as a separate layer. Go to Layer -> Flatten Image, then File -> Save As, and save as a new tiff file in the M Drive. Use the file transfer option to download the file, or open it in QGIS in the Regular Application interface of UFApps.
 
-Add the resulting panorama to an ArcGIS Pro map. Check the panorama carefully for any errors. If necessary, stitch the imagery with different parameters in Hugin.
+[Hugin](https://hugin.sourceforge.io/) is a free program that can also be used to stitch the CORONA imagery into a single transect. Load images in order (I have had best results with lens type: Orthographic). If the Camera and Lens window pops up, click Cancel if you do not have the metadata. You may get the option to mask out portions of the photo (optional). Then, Align images, and if successful, Create panorama. Stitching in Hugin can fail, unfortunately, especially when using a Mac.
 
-Copy the metadata from USGS Earth Explorer into a .csv file in the following format:
+Check the panorama carefully for any errors. If necessary, stitch the imagery with different parameters.
+
+If you do not have access to Adobe Photoshop, and Hugin does not work, you can still use the images in QGIS, but you will have to georeference each image individually.
+
+## QGIS
+
+Add the individual images or the stitched panorama to QGIS under Layer -> Add Layer -> Add Raster Layer. Next to Raster dataset(s), click the ellipsis, and navigate to the appropriate file(s).
+
+Copy the metadata from USGS Earth Explorer (you will have to click the Show Metadata and Browse button next to the Download Options button) into Google Earth Pro. Make sure under Tools -> Options, the units are set to Degrees, Minutes, Seconds. Add a Placemark and copy the coordinates from the Metadata into Latitude and Longitude. Click OK. Do this for the Center, NW Corner, NE Corner, SE Corner, and SW Corner. Then in Tools -> Options, change the units to Decimal Degrees. Right-click the placemarks and copy the Latitude and Longitude in decimal degrees to a .csv file (using Excel, for example) in the following format:
 
 | Point     | Latitude        | Longitude       |
 | ---       | ---             | ---             |
@@ -28,15 +36,25 @@ Copy the metadata from USGS Earth Explorer into a .csv file in the following for
 | SE Corner | Decimal Degrees | Decimal Degrees |
 | SW Corner | Decimal Degrees | Decimal Degrees |
 
+To add the .csv file with coordinates to QGIS, create a new project (Project -> New). Under File -> Project Properties, set a coordinate system. WGS 84 (EPSG:4326) is appropriate. Use the Add Delimited Text Layer option under Layer -> Add Layer. Under Geometry Definition -> Geometry CRS, select the same coordinate system. Then click Add.
+
+To view a basemap, under Plugins -> Manage and Install Plugins, search for QuickMapServices. Select it, and click Install Plugin. Under Web -> QuickMapServices -> Settings, click More Services, then Get contributed pack. Under Web -> QuickMapServices, select the basemap, for example, Google Satellite. If this menu is not available, try restarting QGIS.
+
+You might run into an error if running QGIS in UFApps. An alternate option for basemaps is to right-click XYZ Tiles in the Browser in QGIS, select New Connection and paste the following URL:
+
+```
+https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}
+```
+
+To georeference the imagery, refer to the [Georeferencer](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_raster/georeferencer.html) for instructions. The Georeferencer is available under Layer -> Georeferencer.
+
+## ArcGIS Pro
+
+The procedure is similar in ArcGIS Pro. Add the resulting panorama to an ArcGIS Pro map.  in Hugin.
+
 Make sure your ArcGIS Pro map is in the appropriate coordinate system for decimal degrees, add the .csv file, and use the [XY Table to Point](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/xy-table-to-point.htm) tool to add the coordinates to the map.
 
 Refer to the [Georeferencing tools](https://pro.arcgis.com/en/pro-app/latest/help/data/imagery/georeferencing-tools.htm) in ArcGIS Pro. Using the Imagery basemap or Google Earth Pro, identify at least 10 control points to georeference the CORONA imagery. Use the Spline transformation for higher accuracy.
-
-## QGIS
-
-The procedure is similar in QGIS. To add the .csv file with coordinates to QGIS, use the Add Delimited Text Layer option under Layer.
-
-Refer to the [Georeferencer](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_raster/georeferencer.html) for instructions. The Georeferencer is available under Layers.
 
 ## Limitations
 

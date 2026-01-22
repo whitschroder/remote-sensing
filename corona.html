@@ -383,8 +383,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corona-atlas">Corona Atlas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-earth-explorer">USGS Earth Explorer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stitching-imagery">Stitching Imagery</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
@@ -408,16 +408,20 @@
 </section>
 <section id="usgs-earth-explorer">
 <h2>USGS Earth Explorer<a class="headerlink" href="#usgs-earth-explorer" title="Link to this heading">#</a></h2>
-<p>Uncorrected CORONA imagery is available through the <a class="reference external" href="https://earthexplorer.usgs.gov/">USGS Earth Explorer</a>. To access imagery, create a free account, and select a location on the map. Click Data Sets and choose the Declassified Data options. Click Results. Only some imagery is available for download, while the rest have not been scanned digitally. Download the imagery and metadata.</p>
+<p>Uncorrected CORONA imagery is available through the <a class="reference external" href="https://earthexplorer.usgs.gov/">USGS Earth Explorer</a>. To access imagery, create a free account, and select a location on the map. Click Data Sets and choose the Declassified Data options. Click Results. Only some imagery is available for download, while the rest have not been scanned digitally. Download the imagery by clicking the Download Options button and refer to the metadata under Show Metadata and Browse.</p>
 </section>
 <section id="stitching-imagery">
 <h2>Stitching Imagery<a class="headerlink" href="#stitching-imagery" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://hugin.sourceforge.io/">Hugin</a> can be used to stitch the CORONA imagery into a single transect. Load images in order (I have had best results with lens type: Orthographic). If the Camera and Lens window pops up, click Cancel if you do not have the metadata. You may get the option to mask out portions of the photo (optional). Then, Align images, and if successful, Create panorama.</p>
+<p>CORONA imagery will typically be downloaded as a zipped folder usually with four image files. These files can be stitched prior to loading them into QGIS.</p>
+<p>The best software for stitching is Adobe Photoshop, available through the Graphics Application interface in <a class="reference external" href="https://info.apps.ufl.edu">UFApps</a>. Download the files, unzip the folder, and then upload the images to your M Drive. Open Adobe Photoshop. Go to File -&gt; Automate -&gt; Photomerge. Browse to load the files and click OK (use the Automatic settings). Once complete, the panorama will load with each image as a separate layer. Go to Layer -&gt; Flatten Image, then File -&gt; Save As, and save as a new tiff file in the M Drive. Use the file transfer option to download the file, or open it in QGIS in the Regular Application interface of UFApps.</p>
+<p><a class="reference external" href="https://hugin.sourceforge.io/">Hugin</a> is a free program that can also be used to stitch the CORONA imagery into a single transect. Load images in order (I have had best results with lens type: Orthographic). If the Camera and Lens window pops up, click Cancel if you do not have the metadata. You may get the option to mask out portions of the photo (optional). Then, Align images, and if successful, Create panorama. Stitching in Hugin can fail, unfortunately, especially when using a Mac.</p>
+<p>Check the panorama carefully for any errors. If necessary, stitch the imagery with different parameters.</p>
+<p>If you do not have access to Adobe Photoshop, and Hugin does not work, you can still use the images in QGIS, but you will have to georeference each image individually.</p>
 </section>
-<section id="arcgis-pro">
-<h2>ArcGIS Pro<a class="headerlink" href="#arcgis-pro" title="Link to this heading">#</a></h2>
-<p>Add the resulting panorama to an ArcGIS Pro map. Check the panorama carefully for any errors. If necessary, stitch the imagery with different parameters in Hugin.</p>
-<p>Copy the metadata from USGS Earth Explorer into a .csv file in the following format:</p>
+<section id="qgis">
+<h2>QGIS<a class="headerlink" href="#qgis" title="Link to this heading">#</a></h2>
+<p>Add the individual images or the stitched panorama to QGIS under Layer -&gt; Add Layer -&gt; Add Raster Layer. Next to Raster dataset(s), click the ellipsis, and navigate to the appropriate file(s).</p>
+<p>Copy the metadata from USGS Earth Explorer (you will have to click the Show Metadata and Browse button next to the Download Options button) into Google Earth Pro. Make sure under Tools -&gt; Options, the units are set to Degrees, Minutes, Seconds. Add a Placemark and copy the coordinates from the Metadata into Latitude and Longitude. Click OK. Do this for the Center, NW Corner, NE Corner, SE Corner, and SW Corner. Then in Tools -&gt; Options, change the units to Decimal Degrees. Right-click the placemarks and copy the Latitude and Longitude in decimal degrees to a .csv file (using Excel, for example) in the following format:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Point</p></th>
@@ -449,13 +453,19 @@
 </tbody>
 </table>
 </div>
+<p>To add the .csv file with coordinates to QGIS, create a new project (Project -&gt; New). Under File -&gt; Project Properties, set a coordinate system. WGS 84 (EPSG:4326) is appropriate. Use the Add Delimited Text Layer option under Layer -&gt; Add Layer. Under Geometry Definition -&gt; Geometry CRS, select the same coordinate system. Then click Add.</p>
+<p>To view a basemap, under Plugins -&gt; Manage and Install Plugins, search for QuickMapServices. Select it, and click Install Plugin. Under Web -&gt; QuickMapServices -&gt; Settings, click More Services, then Get contributed pack. Under Web -&gt; QuickMapServices, select the basemap, for example, Google Satellite. If this menu is not available, try restarting QGIS.</p>
+<p>You might run into an error if running QGIS in UFApps. An alternate option for basemaps is to right-click XYZ Tiles in the Browser in QGIS, select New Connection and paste the following URL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://www.google.cn/maps/vt?lyrs=s@189&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}
+</pre></div>
+</div>
+<p>To georeference the imagery, refer to the <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/working_with_raster/georeferencer.html">Georeferencer</a> for instructions. The Georeferencer is available under Layer -&gt; Georeferencer.</p>
+</section>
+<section id="arcgis-pro">
+<h2>ArcGIS Pro<a class="headerlink" href="#arcgis-pro" title="Link to this heading">#</a></h2>
+<p>The procedure is similar in ArcGIS Pro. Add the resulting panorama to an ArcGIS Pro map.  in Hugin.</p>
 <p>Make sure your ArcGIS Pro map is in the appropriate coordinate system for decimal degrees, add the .csv file, and use the <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/xy-table-to-point.htm">XY Table to Point</a> tool to add the coordinates to the map.</p>
 <p>Refer to the <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/data/imagery/georeferencing-tools.htm">Georeferencing tools</a> in ArcGIS Pro. Using the Imagery basemap or Google Earth Pro, identify at least 10 control points to georeference the CORONA imagery. Use the Spline transformation for higher accuracy.</p>
-</section>
-<section id="qgis">
-<h2>QGIS<a class="headerlink" href="#qgis" title="Link to this heading">#</a></h2>
-<p>The procedure is similar in QGIS. To add the .csv file with coordinates to QGIS, use the Add Delimited Text Layer option under Layer.</p>
-<p>Refer to the <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/working_with_raster/georeferencer.html">Georeferencer</a> for instructions. The Georeferencer is available under Layers.</p>
 </section>
 <section id="limitations">
 <h2>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">#</a></h2>
@@ -557,8 +567,8 @@ Heritage Science 12:322. <a class="reference external" href="https://www.nature.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corona-atlas">Corona Atlas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usgs-earth-explorer">USGS Earth Explorer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stitching-imagery">Stitching Imagery</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-pro">ArcGIS Pro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
