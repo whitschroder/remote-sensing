@@ -14,7 +14,13 @@ Uncorrected CORONA imagery is available through the [USGS Earth Explorer](https:
 
 CORONA imagery will typically be downloaded as a zipped folder usually with four image files. These files can be stitched prior to loading them into QGIS.
 
-The best software for stitching is Adobe Photoshop, available through the Graphics Application interface in [UFApps](https://info.apps.ufl.edu). Download the files, unzip the folder, and then upload the images to your M Drive. Open Adobe Photoshop. Go to File -> Automate -> Photomerge. Browse to load the files and click OK (use the Automatic settings). Once complete, the panorama will load with each image as a separate layer. Go to Layer -> Flatten Image, then File -> Save As, and save as a new tiff file in the M Drive. Use the file transfer option to download the file, or open it in QGIS in the Regular Application interface of UFApps.
+The best software for stitching is Adobe Photoshop, available through the Graphics Application interface in [UFApps](https://info.apps.ufl.edu). Download the files, unzip the folder, and then upload the images to your M Drive. Open Adobe Photoshop. Go to File -> Automate -> Photomerge. Browse to load the files and click OK (use the Automatic settings). Once complete, the panorama will load with each image as a separate layer. Go to Layer -> Flatten Image, then File -> Save As, and save as a new tiff file in the M Drive. If using the web browser version of UFApps, use the file transfer option to download the file by opening the M Drive alongside the file transfer window. Copy the file by selecting it in the M Drive, and the download should start.
+
+Very large files cannot be downloaded from the web browser version of UFApps. Instead, open the panorama file in QGIS in the Regular Application interface of UFApps.
+
+Alternatively, download the desktop client with the following [instructions](https://info.apps.ufl.edu/frequently-asked-questions/first-time-use-installation-instructions/using-desktop-client/installing-horizon-fullclient). Then follow this [link](https://info.apps.ufl.edu/frequently-asked-questions/first-time-use-installation-instructions/using-desktop-client/opening-horizon-fullclient) to open the Horizon client, this [link](https://info.apps.ufl.edu/frequently-asked-questions/first-time-use-installation-instructions/using-desktop-client/file-access) to grant file access between your computer and the virtual desktop, and this [link](https://info.apps.ufl.edu/frequently-asked-questions/first-time-use-installation-instructions/using-desktop-client/saving-to-your-pc) to transfer files. You may need to restart or wait for the changes to be made.
+
+You can also use an external drive to transfer files. You will need to change the settings in the Horizon Client to recognize external drives at startup and when connected. The external drive will only be recognized by the Horizon Client when it is not recognized by your local computer. Eject the external drive from your local computer, but leave the drive connected. It should then connect to your Horizon Client virtual desktop. Once connected, in the virtual desktop, click on the arrow at bottom right to open the Safely Remove Hardware and Eject Media button. Click this button, but do not eject the drive. The information should list the name of the drive (D: for example). Open the File Explorer or M Drive in the virtual desktop. You will not see the external drive in the file explorer, but if you type D:\ in the address bar and press Enter, you will navigate to your external drive. Drag files from your M: Drive to the D: Drive. The file transfer will be very slow.
 
 [Hugin](https://hugin.sourceforge.io/) is a free program that can also be used to stitch the CORONA imagery into a single transect. Load images in order (I have had best results with lens type: Orthographic). If the Camera and Lens window pops up, click Cancel if you do not have the metadata. You may get the option to mask out portions of the photo (optional). Then, Align images, and if successful, Create panorama. Stitching in Hugin can fail, unfortunately, especially when using a Mac.
 
@@ -46,11 +52,15 @@ You might run into an error if running QGIS in UFApps. An alternate option for b
 https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}
 ```
 
-To georeference the imagery, refer to the [Georeferencer](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_raster/georeferencer.html) for instructions. The Georeferencer is available under Layer -> Georeferencer.
+To georeference the imagery, refer to the [Georeferencer](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_raster/georeferencer.html) for instructions. The Georeferencer is available under Layer -> Georeferencer. You will want to identify landmarks in the Corona imagery that are still visible in the basemap. Click Open Raster and select the Corona image. Use the Add GCP point, then click a landmark in the Corona image (Georeferencer window), click From Map Canvas, then click the same point in the Google basemap. The Link Georeferencer to QGIS button will update the Georeferencer based on ground control points (GCPs).
+
+When ready, after adding at least 10 ground control points, click the play button (Start georeferencing). A window will prompt you to select a location to save and a transformation method (select Thin Plate Spline). The resampling method can be set to Nearest Neighbor or Cubic. Click OK and press the play button again.
+
+The result will be added to the map. Check the alignment, and if necessary, you can add additional ground control points as long as you do not close the Georeferencer.
 
 ## ArcGIS Pro
 
-The procedure is similar in ArcGIS Pro. Add the resulting panorama to an ArcGIS Pro map.  in Hugin.
+The procedure is similar in ArcGIS Pro. Add the resulting panorama to an ArcGIS Pro map using the Add Data button.
 
 Make sure your ArcGIS Pro map is in the appropriate coordinate system for decimal degrees, add the .csv file, and use the [XY Table to Point](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/xy-table-to-point.htm) tool to add the coordinates to the map.
 
