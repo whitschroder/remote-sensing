@@ -123,9 +123,10 @@ De Maeyer, Peter Finke, Marc Van Meirvenne, Jacques Verniers, and Philippe Cromb
 topographic position of archaeological sites in the landscape, a case study on the Bronze Age barrows in
 northwest Belgium. Journal of Archaeological Science 38(12):3435-3446. <https://doi.org/10.1016/j.jas.2011.08.005>
 
-Garrison Discovering Maya Airborne Radar
+Garrison, Thomas G., Bruce Chapman, Stephen Houston, Edwin Román, and  
+Jose Luis Garrido López. 2011. Discovering Ancient Maya Settlements Using Airborne Radar Elevation Data. Journal of Archaeological Science 38(7):1655-1662. <https://doi.org/10.1016/j.jas.2011.02.031>
 
-Golden, Charles and Bryce Davenport. "The Promise and Problem of Modeling Viewsheds in the Western Maya Lowlands." [PDF](https://www.academia.edu/2611078/Golden_and_Davenport_The_Promise_and_Problems_of_Modeling_Viewsheds_in_the_Western_Maya_Lowlands)
+Golden, Charles and Bryce Davenport. 2013. "The Promise and Problem of Modeling Viewsheds in the Western Maya Lowlands." In Mapping Archaeological Landscapes from Space, edited by Douglas C. Comer and Michael J. Harrower, pp. 145-157. Springer, New York. [PDF](https://www.academia.edu/2611078/Golden_and_Davenport_The_Promise_and_Problems_of_Modeling_Viewsheds_in_the_Western_Maya_Lowlands)
 
 Thompson, Amy. 2020. Detecting Classic Maya Settlements with Lidar-Derived Relief Visualizations. Remote Sensing 12(17):2838. <https://doi.org/10.3390/rs12172838>
 
