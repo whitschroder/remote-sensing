@@ -64,7 +64,7 @@ This step is also optional and stretches a texture over the model based on stitc
 
 McCarthy, John. 2014. Multi-image photogrammetry as a practical tool for cultural heritage survey and community engagement. Journal of Archaeological Science 43:175-185. <https://doi.org/10.1016/j.jas.2014.01.010>
 
-Lambers, Karsten, Henri Eisenbeiss, Martin Sauerbier, Denise Kupferschmidt, Thomas Gaisecker, Soheil Sotoodeh, and Thomas Hanusch. 2007. Combining photogrammetry and laser scanning for the recording and modelling of the Late Intermediate Period site of Pinchango Alto, Palpa, Peru. Journal of Archaeological Science 34(10):1702-1712.
+Lambers, Karsten, Henri Eisenbeiss, Martin Sauerbier, Denise Kupferschmidt, Thomas Gaisecker, Soheil Sotoodeh, and Thomas Hanusch. 2007. Combining photogrammetry and laser scanning for the recording and modelling of the Late Intermediate Period site of Pinchango Alto, Palpa, Peru. Journal of Archaeological Science 34(10):1702-1712. <https://doi.org/10.1016/j.jas.2006.12.008>
 
 Roosevelt, Christopher H. 2015. Excavation is <s>Destruction</s> Digitization: Advances in Archaeological Practice. Journal of Field Archaeology 40:325-346. <https://doi.org/10.1179/2042458215Y.0000000004>
 
@@ -73,3 +73,6 @@ Roosevelt, Christopher H. 2015. Excavation is <s>Destruction</s> Digitization: A
 Magnani, Matthew, Matthew Douglass, Whittaker Schroder, Jonathan Reeves, and David R. Braun. 2020. The Digital Revolution to Come: Photogrammetry in Archaeological Practice. American Antiquity 85(4):737-760. <https://digitalcommons.library.umaine.edu/ant_facpub/65/>
 
 Yastikli, Naci. 2007. Documentation of Cultural Heritage Using Digital Photogrammetry and Laser Scanning. Journal of Cultural Heritage 8(4):423-427. <https://doi.org/10.1016/j.culher.2007.06.003>
+
+Whittenburg, Aaron M. 2017. Communal hunting in the Colorado high country: archaeological investigations of three game drive sites near Rollins Pass, Grand County, Colorado. MA thesis, Colorado State University, Fort Collins. <https://mountainscholar.org/items/41c09d2a-83f4-4229-8e34-39212e25bb56>
+
