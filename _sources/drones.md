@@ -64,7 +64,7 @@ $$
 \text{Ground Sampling Distance (GSD)} = {{\text{Flight Altitude (H) * Sensor Width (Sw)}} \over {\text{Focal Length (f) * Image Width (IMw)}}}
 $$
 
-Flight Altitude is user defined, but all other constants depend on drone specifications, which can be difficult to find. An online GSD calculator with drone specifications is available [here](https://www.handalselaras.com/calculator/).
+Flight Altitude is user defined, but all other constants depend on drone specifications, which can be difficult to find. An online GSD calculator with drone specifications is available [here](https://www.aerialimagingtechnology.com/metric-gsd-calculator).
 
 ## Oblique Imagery
 
@@ -130,7 +130,11 @@ Another option is the [UAV Mapping Path Generator (for Litchi)](https://www.tech
 
 In the Flight Planner plugin, the input must be a polygon in a projected coordinate system, measured in meters, UTM, for example. Refer to the editing tools in [QGIS](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html) or [ArcGIS Pro](https://pro.arcgis.com/en/pro-app/latest/help/editing/a-quick-tour-of-editing.htm) to create polygons.
 
-The Flight Planner menu is available under Plugins in QGIS. After entering the specifications, click Run.
+The Flight Planner menu is available under Plugins in QGIS. In addition to a polygon input, the plugin requires a DEM. The purpose of the DEM is to adjust waypoints based on terrain following. This feature is optional, as the plugin can assume a consistent above ground height. However, for the plugin to work, an input DEM is necessary regardless. 
+
+An SRTM elevation surface for the area of interest can be downloaded from [USGS Earth Explorer](https://earthexplorer.usgs.gov). Note that if you want to use terrain following mode, you may need to reproject the SRTM to the same UTM system. The layer can be reprojected by using the r.proj tool.
+
+After entering the specifications, click Run.
 
 ```{image} /images/flightplanner.jpg
 :alt: Flight Planner
@@ -148,7 +152,7 @@ The plugin will produce the following transects:
 :align: center
 ```
 
-And the waypoints file will include the GPS coordinates that can be uploaded to a flight app.
+And the waypoints file will include the GPS coordinates that can be uploaded to a flight app. Note that most flight apps will use latitude/longitude coordinates, while the Flight Planner plugin outputs to UTM. To add latitude/longitude to the attribute table, use Add X/Y fields to layer and specify the coordinate system as EPSG:4326. Then right-click the output table by right-clicking the new layer in the Contents and selecting Export -> Save vector layer as, and choose output file format as .csv.
 
 The UAV Mapping Path Generator (for Litchi)/Drone Path is available under the Vector menu in QGIS. We use the following parameters, load an area of interest, and draw a line parallel to the desired transects when prompted.
 
@@ -187,6 +191,50 @@ The [Pix4Dcapture Pro](https://www.pix4d.com/product/pix4dcapture/) app is recom
 :width: 80%
 :align: center
 ```
+
+## DJI Mapper for Newer DJI Drones
+
+Newer DJI drones are not compatible with most flight planning apps because DJI have not released their software development kit (SDK) to allow an app to communicate with the drone. However, most drones, including DJI, I have waypoint features, where waypoints and paths can be programmed into the drone. Flight planning using waypoints can be tedious, but [DJI Mapper](https://github.com/YarosMallorca/DJI-Mapper) is a useful tool to automate the generation of waypoints based on flight parameters. The program outputs a waypoint file that can be uploaded to the DJI drone.
+
+## Other Drones
+
+All recreational drones should have waypoint capabilities. When all else fails, the coordinates generated with the Flight Planner plugin in QGIS can be exported to a text-based .csv file. This text file can then be manually edited to match the format of the relevant drone. The following is an example of a format used by the Innoflight ScanLift 800 drone:
+
+| | | | | | | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0 | 16 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | -27.5098610 | 153.2224884 | 0.00 | 1 |
+| 0 | 3 | 22 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.0000000 | 0.0000000 | 50.00 | 1 |
+| 0 | 0 | 178 | 1.000000 | 5.000000 | 0.000000 | 0.000000 | 0.0000000 | 0.0000000 | 0.00 | 1 |
+| 0 | 3 | 16 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | -27.5108490 | 153.2256317 | 50.00 | 1 |
+| 0 | 3 | 206 | 55.439999 | 0.000000 | 0.000000 | 0.000000 | 0.0000000 | 0.0000000 | 0.00 | 1 |
+| 0 | 3 | 16 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | -27.5145512 | 153.2249908 | 50.00 | 1 |
+| 0 | 3 | 206 | 55.439999 | 0.000000 | 0.000000 | 0.000000 | 0.0000000 | 0.0000000 | 0.00 | 1 |
+| 0 | 3 | 16 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | -27.5145016 | 153.224873 | 50.00 | 1 |
+| 0 | 3 | 206 | 55.439999 | 0.000000 | 0.000000 | 0.000000 | 0.0000000 | 0.0000000 | 0.00 | 1 |
+| 0 | 3 | 16 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | -27.5100117 | 153.2252808 | 50.00 | 1 |
+| 0 | 3 | 206 | 55.439999 | 0.000000 | 0.000000 | 0.000000 | 0.0000000 | 0.0000000 | 0.00 | 1 |
+| 0 | 3 | 16 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | -27.5091724 | 153.2249146 | 50.00 | 1 |
+| 0 | 0 | 20 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.0000000 | 0.0000000 | 0.00 | 1 |
+
+The first row of the chart establishes the home point with coordinates in the eighth and ninth columns. The second row establishes the flight height (50 m) in the tenth column. The third row defines the flight speed (5 m/s) in the fifth column. The fourth row and all other rows with the value of 16 in the third column define the coordinates for waypoints. The fifth row and all other rows with the value of 206 in the third column trigger the camera (only if a camera is integrated into the system). The fourth column after 206 determines the distance (55.439999 m) between photos. The final row sends the drone back to the home point to land.
+
+The following are the commands used in the third column.
+
+| CODE | COMMAND |
+| --- | --- |
+| 22 | Take Off |
+| 178 | Mission Speed |
+| 16 | Waypoint |
+| 20 | Go to Mission Home Point |
+| 206 | Camera Shutter |
+
+If using the QGIS Flight Planner plugin, you may need to manually calculate some of these variables. For example, you might need to calculate distance between photos and speed. You can use the Measure Line tool in QGIS to measure the distance in meters between waypoints. For example, the distance between waypoints might be 15 m. The speed of the drone to take photos every 2 seconds would therefore be equal to 15 m / 2 seconds, or a speed of 7.5 m/s.
+
+To calculate the length of the flight, right-click the flight line in the Contents, open the Field Calculator, type the Output field name (Length, for example), then under Expression, type $length, and change the output field type to Decimal number (real). In the attribute table you should see the value for the length (measured in meters if using UTM). Note that the Measure Line tool can also be used.
+
+Now take that length value, for example 463 m and divide by the speed. At 7.5 m/s, that flight length would take approximately 61.7 seconds, or just over a minute. Note that the drone is not consistently flying 7.5 m/s, as it will need to slow down at times to make turns, but this will give a rough estimate. This time will also not include the time needed for the drone to return to the home point (this value can be added by measuring the distance between the last waypoint and the home point or first waypoint).
+
+All drones will have different formatting for waypoints, but they should all have the capability to upload waypoints in a text file in similar fashion. The specific format will have to be determined by consulting the manual or creating waypoints with a flight controller and exporting them as a text file to view the appropriate format.
 
 ## Readings
 

@@ -24,6 +24,8 @@ Guided image matching specifies the key point limit by megapixel rather than by 
 
 Adaptive camera model fitting will take into account camera parameters in the metadata of images to reduce distortion. This option should generally be checked unless the user would like to use manual settings. Additionally, historic imagery will not have the necessary metadata.
 
+Note that if your aerial photos are oblique, you will receive a warning message to provide capture distance. Doing so will assist Agisoft Metashape in accurately aligning photos. The capture distance can be entered in the Reference tab (to the right of Workspace at the lower left). Each image will have information, for example, coordinates listed in the table at top left. Select all images, right-click and choose Set capture distance. Enter the height of the camera/aerial vehicle. If unknown, you can ignore this warning.
+
 ## Build Point Cloud
 
 After aligning photos and building a sparse point cloud, the next step densifies the point cloud. The Quality used should be equivalent to or lower than the accuracy used in the previous step. Mild depth filtering is the most appropriate option. Calculate point colors will assign RGB colors to the point cloud based on photos, and Calculate point confidence will assign a confidence level to the generated points. These options will allow users to filter points based on color and/or confidence in later steps. Ideally, both options should be selected but disabling them will reduce processing time.
@@ -46,11 +48,11 @@ The next step builds an orthomosaic image by stitching the photos together over 
 
 The DEM and/or orthomosaic can be exported as a .tif file outside of Metashape. At this stage, the user can change the coordinate system and resolution to suit their needs. The point cloud can also be exported as an .laz file.
 
-## Build Mesh
+## Build Model
 
 The next step, building a mesh, is optional, creating essentially a triangulated irregular network (TIN) to interpolate values between the points in the dense cloud. This step is the most processing intensive.
 
-The mesh can be generated from the dense point cloud, but large datasets will require very high RAM, estimated [here](http://www.agisoft.com/pdf/tips_and_tricks/PhotoScan_Memory_Requirements.pdf). A preferable option is to use depth maps, which are produced during an intermediate step in building the dense point cloud. This option should be selected only if Mild depth filtering was used in the previous step, and if the same level of Quality is selected in the point cloud and mesh steps. Face count should also match the Quality selection. Note that at the Build Mesh step, selecting lower qualities will not actually reduce processing time, as no matter what level is selected, the mesh is generated at the highest quality and then decimated.
+The mesh can be generated from the dense point cloud, but large datasets will require very high RAM, estimated [here](http://www.agisoft.com/pdf/tips_and_tricks/PhotoScan_Memory_Requirements.pdf). A preferable option is to use depth maps, which are produced during an intermediate step in building the dense point cloud. This option should be selected only if Mild depth filtering was used in the previous step, and if the same level of Quality is selected in the point cloud and mesh steps. Face count should also match the Quality selection. Note that at the Build Model step, selecting lower qualities will not actually reduce processing time, as no matter what level is selected, the mesh is generated at the highest quality and then decimated.
 
 Surface type has two options: Arbitrary (3D) and Height field (2.5D). Arbitrary (3D) will create a smoother three dimensional model. Specifically, Arbitrary (3D) mode can have multiple height values (Z) given an X and Y coordinate, whereas Height field (2.5D) will have a single height value (Z), generally the maximum value, for every X and Y coordinate. For geospatial applications and generating a top down digital surface or elevation model, Height field (2.5D) is sufficient, but if a true 3D model is needed, Arbitrary (3D) mode will be necessary, requiring much higher processing.
 

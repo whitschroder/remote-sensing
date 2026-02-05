@@ -388,6 +388,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagery-overlap">Imagery Overlap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-qgis">Drone Mission Planning in QGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-pix4dcapture-pro">Drone Mission Planning in Pix4Dcapture Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dji-mapper-for-newer-dji-drones">DJI Mapper for Newer DJI Drones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-drones">Other Drones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
@@ -443,7 +445,7 @@ by the image width of the photo in pixels.</p>
 \[
 \text{Ground Sampling Distance (GSD)} = {{\text{Flight Altitude (H) * Sensor Width (Sw)}} \over {\text{Focal Length (f) * Image Width (IMw)}}}
 \]</div>
-<p>Flight Altitude is user defined, but all other constants depend on drone specifications, which can be difficult to find. An online GSD calculator with drone specifications is available <a class="reference external" href="https://www.handalselaras.com/calculator/">here</a>.</p>
+<p>Flight Altitude is user defined, but all other constants depend on drone specifications, which can be difficult to find. An online GSD calculator with drone specifications is available <a class="reference external" href="https://www.aerialimagingtechnology.com/metric-gsd-calculator">here</a>.</p>
 </section>
 <section id="oblique-imagery">
 <h2>Oblique Imagery<a class="headerlink" href="#oblique-imagery" title="Link to this heading">#</a></h2>
@@ -481,11 +483,13 @@ by the image width of the photo in pixels.</p>
 <p>Several plugins are available in QGIS for drone mission planning. The Flight Planner plugin requires drone camera specifications, an area of interest, and an optional terrain layer as input, and the plugin outputs a flight path with waypoints. These waypoints can then be uploaded to the drone, using for example the <a class="reference external" href="https://flylitchi.com/">Litchi</a> app.</p>
 <p>Another option is the <a class="reference external" href="https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission">UAV Mapping Path Generator (for Litchi)</a>, which requires slightly different inputs to generate similar outputs, or <a class="reference external" href="https://www.waypointmap.com/">WaypointMap</a>.</p>
 <p>In the Flight Planner plugin, the input must be a polygon in a projected coordinate system, measured in meters, UTM, for example. Refer to the editing tools in <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html">QGIS</a> or <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/editing/a-quick-tour-of-editing.htm">ArcGIS Pro</a> to create polygons.</p>
-<p>The Flight Planner menu is available under Plugins in QGIS. After entering the specifications, click Run.</p>
+<p>The Flight Planner menu is available under Plugins in QGIS. In addition to a polygon input, the plugin requires a DEM. The purpose of the DEM is to adjust waypoints based on terrain following. This feature is optional, as the plugin can assume a consistent above ground height. However, for the plugin to work, an input DEM is necessary regardless.</p>
+<p>An SRTM elevation surface for the area of interest can be downloaded from <a class="reference external" href="https://earthexplorer.usgs.gov">USGS Earth Explorer</a>. Note that if you want to use terrain following mode, you may need to reproject the SRTM to the same UTM system. The layer can be reprojected by using the r.proj tool.</p>
+<p>After entering the specifications, click Run.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/flightplanner.jpg"><img alt="Flight Planner" class="bg-primary mb-1 align-center" src="_images/flightplanner.jpg" style="width: 80%;" /></a>
 <p>The plugin will produce the following transects:</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/flightplan1.jpg"><img alt="Flight Plan 1" class="bg-primary mb-1 align-center" src="_images/flightplan1.jpg" style="width: 80%;" /></a>
-<p>And the waypoints file will include the GPS coordinates that can be uploaded to a flight app.</p>
+<p>And the waypoints file will include the GPS coordinates that can be uploaded to a flight app. Note that most flight apps will use latitude/longitude coordinates, while the Flight Planner plugin outputs to UTM. To add latitude/longitude to the attribute table, use Add X/Y fields to layer and specify the coordinate system as EPSG:4326. Then right-click the output table by right-clicking the new layer in the Contents and selecting Export -&gt; Save vector layer as, and choose output file format as .csv.</p>
 <p>The UAV Mapping Path Generator (for Litchi)/Drone Path is available under the Vector menu in QGIS. We use the following parameters, load an area of interest, and draw a line parallel to the desired transects when prompted.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/dronepath.jpg"><img alt="Drone Path" class="bg-primary mb-1 align-center" src="_images/dronepath.jpg" style="width: 80%;" /></a>
 <p>The plugin will produce the following transects:</p>
@@ -497,6 +501,220 @@ by the image width of the photo in pixels.</p>
 <h2>Drone Mission Planning in Pix4Dcapture Pro<a class="headerlink" href="#drone-mission-planning-in-pix4dcapture-pro" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://www.pix4d.com/product/pix4dcapture/">Pix4Dcapture Pro</a> app is recommended for most drone mission planning. Within the app, users can plan missions that are then uploaded to the drone.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/pix4d.png"><img alt="Pix4D" class="bg-primary mb-1 align-center" src="_images/pix4d.png" style="width: 80%;" /></a>
+</section>
+<section id="dji-mapper-for-newer-dji-drones">
+<h2>DJI Mapper for Newer DJI Drones<a class="headerlink" href="#dji-mapper-for-newer-dji-drones" title="Link to this heading">#</a></h2>
+<p>Newer DJI drones are not compatible with most flight planning apps because DJI have not released their software development kit (SDK) to allow an app to communicate with the drone. However, most drones, including DJI, I have waypoint features, where waypoints and paths can be programmed into the drone. Flight planning using waypoints can be tedious, but <a class="reference external" href="https://github.com/YarosMallorca/DJI-Mapper">DJI Mapper</a> is a useful tool to automate the generation of waypoints based on flight parameters. The program outputs a waypoint file that can be uploaded to the DJI drone.</p>
+</section>
+<section id="other-drones">
+<h2>Other Drones<a class="headerlink" href="#other-drones" title="Link to this heading">#</a></h2>
+<p>All recreational drones should have waypoint capabilities. When all else fails, the coordinates generated with the Flight Planner plugin in QGIS can be exported to a text-based .csv file. This text file can then be manually edited to match the format of the relevant drone. The following is an example of a format used by the Innoflight ScanLift 800 drone:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>16</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>-27.5098610</p></td>
+<td><p>153.2224884</p></td>
+<td><p>0.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>50.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>178</p></td>
+<td><p>1.000000</p></td>
+<td><p>5.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>16</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>-27.5108490</p></td>
+<td><p>153.2256317</p></td>
+<td><p>50.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>206</p></td>
+<td><p>55.439999</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>16</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>-27.5145512</p></td>
+<td><p>153.2249908</p></td>
+<td><p>50.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>206</p></td>
+<td><p>55.439999</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>16</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>-27.5145016</p></td>
+<td><p>153.224873</p></td>
+<td><p>50.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>206</p></td>
+<td><p>55.439999</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>16</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>-27.5100117</p></td>
+<td><p>153.2252808</p></td>
+<td><p>50.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>206</p></td>
+<td><p>55.439999</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>16</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>-27.5091724</p></td>
+<td><p>153.2249146</p></td>
+<td><p>50.00</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>20</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.0000000</p></td>
+<td><p>0.00</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The first row of the chart establishes the home point with coordinates in the eighth and ninth columns. The second row establishes the flight height (50 m) in the tenth column. The third row defines the flight speed (5 m/s) in the fifth column. The fourth row and all other rows with the value of 16 in the third column define the coordinates for waypoints. The fifth row and all other rows with the value of 206 in the third column trigger the camera (only if a camera is integrated into the system). The fourth column after 206 determines the distance (55.439999 m) between photos. The final row sends the drone back to the home point to land.</p>
+<p>The following are the commands used in the third column.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>CODE</p></th>
+<th class="head"><p>COMMAND</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>Take Off</p></td>
+</tr>
+<tr class="row-odd"><td><p>178</p></td>
+<td><p>Mission Speed</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>Waypoint</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>Go to Mission Home Point</p></td>
+</tr>
+<tr class="row-even"><td><p>206</p></td>
+<td><p>Camera Shutter</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If using the QGIS Flight Planner plugin, you may need to manually calculate some of these variables. For example, you might need to calculate distance between photos and speed. You can use the Measure Line tool in QGIS to measure the distance in meters between waypoints. For example, the distance between waypoints might be 15 m. The speed of the drone to take photos every 2 seconds would therefore be equal to 15 m / 2 seconds, or a speed of 7.5 m/s.</p>
+<p>To calculate the length of the flight, right-click the flight line in the Contents, open the Field Calculator, type the Output field name (Length, for example), then under Expression, type $length, and change the output field type to Decimal number (real). In the attribute table you should see the value for the length (measured in meters if using UTM). Note that the Measure Line tool can also be used.</p>
+<p>Now take that length value, for example 463 m and divide by the speed. At 7.5 m/s, that flight length would take approximately 61.7 seconds, or just over a minute. Note that the drone is not consistently flying 7.5 m/s, as it will need to slow down at times to make turns, but this will give a rough estimate. This time will also not include the time needed for the drone to return to the home point (this value can be added by measuring the distance between the last waypoint and the home point or first waypoint).</p>
+<p>All drones will have different formatting for waypoints, but they should all have the capability to upload waypoints in a text file in similar fashion. The specific format will have to be determined by consulting the manual or creating waypoints with a flight controller and exporting them as a text file to view the appropriate format.</p>
 </section>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
@@ -588,6 +806,8 @@ Applications. Sensors 22:2297. <a class="reference external" href="https://doi.o
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagery-overlap">Imagery Overlap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-qgis">Drone Mission Planning in QGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-pix4dcapture-pro">Drone Mission Planning in Pix4Dcapture Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dji-mapper-for-newer-dji-drones">DJI Mapper for Newer DJI Drones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-drones">Other Drones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>

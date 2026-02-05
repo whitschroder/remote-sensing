@@ -386,7 +386,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-dem">Build DEM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-orthomosaic">Build Orthomosaic</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-dem-and-orthomosaic">Export DEM and Orthomosaic</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-mesh">Build Mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-model">Build Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-texture">Build Texture</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
@@ -417,6 +417,7 @@ photographs using photogrammetry or Structure from Motion (SfM). Nearly all step
 <p>Exclude stationary tie points should be used if certain objects in the background of photos are static across several images, for example, if an object is being rotated on a turntable, or if people or other objects are in the background.</p>
 <p>Guided image matching specifies the key point limit by megapixel rather than by image when very high resolution imagery is used.</p>
 <p>Adaptive camera model fitting will take into account camera parameters in the metadata of images to reduce distortion. This option should generally be checked unless the user would like to use manual settings. Additionally, historic imagery will not have the necessary metadata.</p>
+<p>Note that if your aerial photos are oblique, you will receive a warning message to provide capture distance. Doing so will assist Agisoft Metashape in accurately aligning photos. The capture distance can be entered in the Reference tab (to the right of Workspace at the lower left). Each image will have information, for example, coordinates listed in the table at top left. Select all images, right-click and choose Set capture distance. Enter the height of the camera/aerial vehicle. If unknown, you can ignore this warning.</p>
 </section>
 <section id="build-point-cloud">
 <h2>Build Point Cloud<a class="headerlink" href="#build-point-cloud" title="Link to this heading">#</a></h2>
@@ -439,10 +440,10 @@ photographs using photogrammetry or Structure from Motion (SfM). Nearly all step
 <h2>Export DEM and Orthomosaic<a class="headerlink" href="#export-dem-and-orthomosaic" title="Link to this heading">#</a></h2>
 <p>The DEM and/or orthomosaic can be exported as a .tif file outside of Metashape. At this stage, the user can change the coordinate system and resolution to suit their needs. The point cloud can also be exported as an .laz file.</p>
 </section>
-<section id="build-mesh">
-<h2>Build Mesh<a class="headerlink" href="#build-mesh" title="Link to this heading">#</a></h2>
+<section id="build-model">
+<h2>Build Model<a class="headerlink" href="#build-model" title="Link to this heading">#</a></h2>
 <p>The next step, building a mesh, is optional, creating essentially a triangulated irregular network (TIN) to interpolate values between the points in the dense cloud. This step is the most processing intensive.</p>
-<p>The mesh can be generated from the dense point cloud, but large datasets will require very high RAM, estimated <a class="reference external" href="http://www.agisoft.com/pdf/tips_and_tricks/PhotoScan_Memory_Requirements.pdf">here</a>. A preferable option is to use depth maps, which are produced during an intermediate step in building the dense point cloud. This option should be selected only if Mild depth filtering was used in the previous step, and if the same level of Quality is selected in the point cloud and mesh steps. Face count should also match the Quality selection. Note that at the Build Mesh step, selecting lower qualities will not actually reduce processing time, as no matter what level is selected, the mesh is generated at the highest quality and then decimated.</p>
+<p>The mesh can be generated from the dense point cloud, but large datasets will require very high RAM, estimated <a class="reference external" href="http://www.agisoft.com/pdf/tips_and_tricks/PhotoScan_Memory_Requirements.pdf">here</a>. A preferable option is to use depth maps, which are produced during an intermediate step in building the dense point cloud. This option should be selected only if Mild depth filtering was used in the previous step, and if the same level of Quality is selected in the point cloud and mesh steps. Face count should also match the Quality selection. Note that at the Build Model step, selecting lower qualities will not actually reduce processing time, as no matter what level is selected, the mesh is generated at the highest quality and then decimated.</p>
 <p>Surface type has two options: Arbitrary (3D) and Height field (2.5D). Arbitrary (3D) will create a smoother three dimensional model. Specifically, Arbitrary (3D) mode can have multiple height values (Z) given an X and Y coordinate, whereas Height field (2.5D) will have a single height value (Z), generally the maximum value, for every X and Y coordinate. For geospatial applications and generating a top down digital surface or elevation model, Height field (2.5D) is sufficient, but if a true 3D model is needed, Arbitrary (3D) mode will be necessary, requiring much higher processing.</p>
 <p>Interpolation should be enabled, and Calculate vertex colors will assign RGB values from the photos. Finally, if using depth maps to build the mesh, the Reuse depth maps option should be selected if they were generated in the previous step. If not selected, the depth maps will be generated again, adding unnecessary processing.</p>
 </section>
@@ -537,7 +538,7 @@ photographs using photogrammetry or Structure from Motion (SfM). Nearly all step
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-dem">Build DEM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-orthomosaic">Build Orthomosaic</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-dem-and-orthomosaic">Export DEM and Orthomosaic</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-mesh">Build Mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-model">Build Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-texture">Build Texture</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
