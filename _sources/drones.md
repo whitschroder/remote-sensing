@@ -102,16 +102,16 @@ For drone photogrammetry, you must ensure that your photos have enough overlap t
 ```
 Image credit: [Luna et al. 2022](https://www.mdpi.com/1424-8220/22/6/2297)
 
-Finally, flight overlap and drone altitude will affect the speed that the drone can fly while taking photos. The shutter speed is also a factor, but the effects are generally negligible at speeds faster than 1/1000. A more significant factor is the photo interval, or the number of seconds between photos. A good rule of thumb is to allow 2 seconds between photos. To calculate drone speed, we need to know the dimensions of our photos, which we can calculate using ground sampling distance. This time, we use the height rather than the width of the photos because of the directionality of the flight.
+Finally, flight overlap and drone altitude will affect the speed that the drone can fly while taking photos. The shutter speed is also a factor, but the effects are generally negligible at shutter speeds faster than 1/1000. A more significant factor is the photo interval, or the number of seconds between photos. A good rule of thumb is to allow 2 seconds between photos. To calculate drone speed, we need to know the dimensions of our photos, which we can calculate using ground sampling distance. This time, we use the height rather than the width of the photos because of the directionality of the flight.
 
 $$
 \text{Distance Covered (Dh)} = \text{Image Height (IMh) * Ground Sampling Distance (GSD)}
 $$
 
-For the desired overlap, the drone should not traverse the full Distance Covered (Dh) value but rather a fraction of that distance. For 70% overlap, we want the drone to traverse only 30% of the distance. Therefore,
+For the desired overlap, the drone should not traverse the full Distance Covered (Dh) value but rather a fraction of that distance. For 70% overlap (or 0.7), we want the drone to traverse only 30% of the distance (or 0.3). Therefore,
 
 $$
-\text{Drone Speed (s)} = {{\text{Distance Covered (Dh) * (1 - Overlap)}} \over {\text{100 * Photo Interval}}}
+\text{Drone Speed (s)} = {{\text{Distance Covered (Dh) * (1 - Overlap)}} \over {\text{Photo Interval}}}
 $$
 
 A useful calculator is available [here](https://www.pix-pro.com/blog/photogrammetry-calculator).
@@ -119,7 +119,7 @@ A useful calculator is available [here](https://www.pix-pro.com/blog/photogramme
 The final variable is the distance between transects. Here, we use the horizontal distance covered.
 
 $$
-\text{Transect Spacing} = {{\text{Distance Covered (Dw) * (1 - Overlap)}} \over {\text{100}}}
+\text{Transect Spacing} = {{\text{Distance Covered (Dw) * (1 - Overlap)}}}
 $$ 
 
 ## Drone Mission Planning in QGIS
@@ -194,7 +194,7 @@ The [Pix4Dcapture Pro](https://www.pix4d.com/product/pix4dcapture/) app is recom
 
 ## DJI Mapper for Newer DJI Drones
 
-Newer DJI drones are not compatible with most flight planning apps because DJI have not released their software development kit (SDK) to allow an app to communicate with the drone. However, most drones, including DJI, I have waypoint features, where waypoints and paths can be programmed into the drone. Flight planning using waypoints can be tedious, but [DJI Mapper](https://github.com/YarosMallorca/DJI-Mapper) is a useful tool to automate the generation of waypoints based on flight parameters. The program outputs a waypoint file that can be uploaded to the DJI drone.
+Newer DJI drones are not compatible with most flight planning apps because DJI have not released their software development kit (SDK) to allow an app to communicate with the drone. However, most drones, including DJI, have waypoint features, where waypoints and paths can be programmed into the drone. Flight planning using waypoints through the flight controller can be tedious, but [DJI Mapper](https://github.com/YarosMallorca/DJI-Mapper) is a useful tool to automate the generation of waypoints based on flight parameters. The program outputs a waypoint file that can be uploaded to the DJI drone.
 
 ## Other Drones
 
@@ -228,13 +228,17 @@ The following are the commands used in the third column.
 | 20 | Go to Mission Home Point |
 | 206 | Camera Shutter |
 
-If using the QGIS Flight Planner plugin, you may need to manually calculate some of these variables. For example, you might need to calculate distance between photos and speed. You can use the Measure Line tool in QGIS to measure the distance in meters between waypoints. For example, the distance between waypoints might be 15 m. The speed of the drone to take photos every 2 seconds would therefore be equal to 15 m / 2 seconds, or a speed of 7.5 m/s.
+Note that if the camera is not integrated into the drone, the camera itself can be set to take photos at a set interval before take off (2 seconds, for example).
+
+If using the QGIS Flight Planner plugin, you may need to manually calculate some variables. For example, you might need to calculate distance between photos and speed. You can use the Measure Line tool in QGIS to measure the distance in meters between waypoints. For example, the distance between waypoints might be 15 m. The speed of the drone to take photos every 2 seconds would therefore be equal to 15 m / 2 seconds, or a speed of 7.5 m/s.
 
 To calculate the length of the flight, right-click the flight line in the Contents, open the Field Calculator, type the Output field name (Length, for example), then under Expression, type $length, and change the output field type to Decimal number (real). In the attribute table you should see the value for the length (measured in meters if using UTM). Note that the Measure Line tool can also be used.
 
 Now take that length value, for example 463 m and divide by the speed. At 7.5 m/s, that flight length would take approximately 61.7 seconds, or just over a minute. Note that the drone is not consistently flying 7.5 m/s, as it will need to slow down at times to make turns, but this will give a rough estimate. This time will also not include the time needed for the drone to return to the home point (this value can be added by measuring the distance between the last waypoint and the home point or first waypoint).
 
 All drones will have different formatting for waypoints, but they should all have the capability to upload waypoints in a text file in similar fashion. The specific format will have to be determined by consulting the manual or creating waypoints with a flight controller and exporting them as a text file to view the appropriate format.
+
+Even with all this planning, learning to map with any drone will take some trial and error, based on the drone model as well as the local conditions.
 
 ## Readings
 
