@@ -122,11 +122,17 @@ $$
 \text{Transect Spacing} = {{\text{Distance Covered (Dw) * (1 - Overlap)}}}
 $$ 
 
-## Drone Mission Planning in QGIS
+## Drone Mission Planning in the QGIS Flight Planner
 
 Several plugins are available in QGIS for drone mission planning. The Flight Planner plugin requires drone camera specifications, an area of interest, and an optional terrain layer as input, and the plugin outputs a flight path with waypoints. These waypoints can then be uploaded to the drone, using for example the [Litchi](https://flylitchi.com/) app.
 
-Another option is the [UAV Mapping Path Generator (for Litchi)](https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission), which requires slightly different inputs to generate similar outputs, or [WaypointMap](https://www.waypointmap.com/).
+The Flight Planner plugin can be installed under the Plugins menu. However, if working on a Mac, you may need to install additional dependencies. You will likely see an error that scipy is not installed. If so, find the location of your QGIS installation and verify where python is stored. The following folder path is the likely location. Open the Terminal on your Mac and type the following and press Enter:
+
+```
+/Applications/QGIS.app/Contents/Frameworks/lib/python -m pip install scipy matplotlib
+```
+
+Open QGIS and verify that you do not receive any error messages.
 
 In the Flight Planner plugin, the input must be a polygon in a projected coordinate system, measured in meters, UTM, for example. Refer to the editing tools in [QGIS](https://docs.qgis.org/3.34/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html) or [ArcGIS Pro](https://pro.arcgis.com/en/pro-app/latest/help/editing/a-quick-tour-of-editing.htm) to create polygons.
 
@@ -152,9 +158,27 @@ The plugin will produce the following transects:
 :align: center
 ```
 
-And the waypoints file will include the GPS coordinates that can be uploaded to a flight app. Note that most flight apps will use latitude/longitude coordinates, while the Flight Planner plugin outputs to UTM. To add latitude/longitude to the attribute table, use Add X/Y fields to layer and specify the coordinate system as EPSG:4326. Then right-click the output table by right-clicking the new layer in the Contents and selecting Export -> Save vector layer as, and choose output file format as .csv.
+You might receive an error regarding coordinate systems even if your data are correctly projected. This error can be ignored.
 
-The UAV Mapping Path Generator (for Litchi)/Drone Path is available under the Vector menu in QGIS. We use the following parameters, load an area of interest, and draw a line parallel to the desired transects when prompted.
+The waypoints file will include the GPS coordinates that can be uploaded to a flight app. Note that most flight apps will use latitude/longitude coordinates, while the Flight Planner plugin outputs to UTM. To add latitude/longitude to the attribute table, use Add X/Y fields to layer and specify the coordinate system as EPSG:4326. Then right-click the output table by right-clicking the new layer in the Contents and selecting Export -> Save vector layer as, and choose output file format as .csv.
+
+## GeoFlight Planner
+
+A better option might be the GeoFlight Planner plugin in QGIS. Once installed, the plugin is available under the GeoFlight Planner menu in QGIS.
+
+First open the GSD and Overlap -- Mission Calculator. Select a drone model or enter custom specifications. Click Save Drone Data to Flight Planner. 
+
+Several drop-down menus are available to calculate flight parameters. Click on Ideal Flight Speed Calculator. Enter the Flight Altitude, Shutter Speed, Frontal Overlap, and Min Shooting Interval, leaving other settings at their default. Click Calculate Optimal Speed. Take note of the Max Speed (Motion Blur) and Max Speed (Write Interval) values. Ideally, the Max Speed (Motion Blur) should be higher than the Max Speed (Write Interval). Adjust the shutter speed and recalculate if necessary. Flying at the Max Speed (Write Interval) should be fine. The recommended speed at the bottom is based on an arbitrary safety factor and should only be consulted if photos come out blurry when using the Max Speed (Write Interval).
+
+When ready, exit out of the GSD and Overlap -- Mission Calculator. Next, open GeoFlight Planner -> Horizontal Flight Plan -> Sensor. Load the polygon representing your area of interest. You will also need to draw a line representing the first flight line and direction. Use any coordinate system. Set Flight Height, Side Overlap, Forward Overlap, and Flight Speed (based on the result from the Ideal Flight Speed Calculator). Click Run.
+
+The output attribute table will already have waypoint coordinates in latitude/longitude that can be uploaded to a drone.
+
+## Other QGIS Plugins
+
+Another option is the [UAV Mapping Path Generator (for Litchi)](https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission), which requires slightly different inputs to generate similar outputs. 
+
+Once the plugin is installed, the UAV Mapping Path Generator (for Litchi)/Drone Path is available under the Vector menu in QGIS. We use the following parameters, load an area of interest, and draw a line parallel to the desired transects when prompted.
 
 ```{image} /images/dronepath.jpg
 :alt: Drone Path
@@ -192,13 +216,15 @@ The [Pix4Dcapture Pro](https://www.pix4d.com/product/pix4dcapture/) app is recom
 :align: center
 ```
 
-## DJI Mapper for Newer DJI Drones
+## Other Options
 
 Newer DJI drones are not compatible with most flight planning apps because DJI have not released their software development kit (SDK) to allow an app to communicate with the drone. However, most drones, including DJI, have waypoint features, where waypoints and paths can be programmed into the drone. Flight planning using waypoints through the flight controller can be tedious, but [DJI Mapper](https://github.com/YarosMallorca/DJI-Mapper) is a useful tool to automate the generation of waypoints based on flight parameters. The program outputs a waypoint file that can be uploaded to the DJI drone.
 
+[WaypointMap](https://www.waypointmap.com/) is another excellent resource for planning drone flights; however, it is subscription-based for full functionality.
+
 ## Other Drones
 
-All recreational drones should have waypoint capabilities. When all else fails, the coordinates generated with the Flight Planner plugin in QGIS can be exported to a text-based .csv file. This text file can then be manually edited to match the format of the relevant drone. The following is an example of a format used by the Innoflight ScanLift 800 drone:
+All recreational drones should have waypoint capabilities. When all else fails, the coordinates generated with the flight planner plugins in QGIS can be exported to a text-based .csv file. This text file can then be manually edited to match the format of the relevant drone. The following is an example of a format used by the Innoflight ScanLift 800 drone:
 
 | | | | | | | | | | | |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

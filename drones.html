@@ -386,9 +386,11 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-sampling-distance">Ground Sampling Distance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblique-imagery">Oblique Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagery-overlap">Imagery Overlap</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-qgis">Drone Mission Planning in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-the-qgis-flight-planner">Drone Mission Planning in the QGIS Flight Planner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geoflight-planner">GeoFlight Planner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-qgis-plugins">Other QGIS Plugins</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-pix4dcapture-pro">Drone Mission Planning in Pix4Dcapture Pro</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dji-mapper-for-newer-dji-drones">DJI Mapper for Newer DJI Drones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-options">Other Options</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-drones">Other Drones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
@@ -478,10 +480,14 @@ by the image width of the photo in pixels.</p>
 \text{Transect Spacing} = {{\text{Distance Covered (Dw) * (1 - Overlap)}}}
 \]</div>
 </section>
-<section id="drone-mission-planning-in-qgis">
-<h2>Drone Mission Planning in QGIS<a class="headerlink" href="#drone-mission-planning-in-qgis" title="Link to this heading">#</a></h2>
+<section id="drone-mission-planning-in-the-qgis-flight-planner">
+<h2>Drone Mission Planning in the QGIS Flight Planner<a class="headerlink" href="#drone-mission-planning-in-the-qgis-flight-planner" title="Link to this heading">#</a></h2>
 <p>Several plugins are available in QGIS for drone mission planning. The Flight Planner plugin requires drone camera specifications, an area of interest, and an optional terrain layer as input, and the plugin outputs a flight path with waypoints. These waypoints can then be uploaded to the drone, using for example the <a class="reference external" href="https://flylitchi.com/">Litchi</a> app.</p>
-<p>Another option is the <a class="reference external" href="https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission">UAV Mapping Path Generator (for Litchi)</a>, which requires slightly different inputs to generate similar outputs, or <a class="reference external" href="https://www.waypointmap.com/">WaypointMap</a>.</p>
+<p>The Flight Planner plugin can be installed under the Plugins menu. However, if working on a Mac, you may need to install additional dependencies. You will likely see an error that scipy is not installed. If so, find the location of your QGIS installation and verify where python is stored. The following folder path is the likely location. Open the Terminal on your Mac and type the following and press Enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="n">QGIS</span><span class="o">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">scipy</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+<p>Open QGIS and verify that you do not receive any error messages.</p>
 <p>In the Flight Planner plugin, the input must be a polygon in a projected coordinate system, measured in meters, UTM, for example. Refer to the editing tools in <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html">QGIS</a> or <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/editing/a-quick-tour-of-editing.htm">ArcGIS Pro</a> to create polygons.</p>
 <p>The Flight Planner menu is available under Plugins in QGIS. In addition to a polygon input, the plugin requires a DEM. The purpose of the DEM is to adjust waypoints based on terrain following. This feature is optional, as the plugin can assume a consistent above ground height. However, for the plugin to work, an input DEM is necessary regardless.</p>
 <p>An SRTM elevation surface for the area of interest can be downloaded from <a class="reference external" href="https://earthexplorer.usgs.gov">USGS Earth Explorer</a>. Note that if you want to use terrain following mode, you may need to reproject the SRTM to the same UTM system. The layer can be reprojected by using the r.proj tool.</p>
@@ -489,8 +495,21 @@ by the image width of the photo in pixels.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/flightplanner.jpg"><img alt="Flight Planner" class="bg-primary mb-1 align-center" src="_images/flightplanner.jpg" style="width: 80%;" /></a>
 <p>The plugin will produce the following transects:</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/flightplan1.jpg"><img alt="Flight Plan 1" class="bg-primary mb-1 align-center" src="_images/flightplan1.jpg" style="width: 80%;" /></a>
-<p>And the waypoints file will include the GPS coordinates that can be uploaded to a flight app. Note that most flight apps will use latitude/longitude coordinates, while the Flight Planner plugin outputs to UTM. To add latitude/longitude to the attribute table, use Add X/Y fields to layer and specify the coordinate system as EPSG:4326. Then right-click the output table by right-clicking the new layer in the Contents and selecting Export -&gt; Save vector layer as, and choose output file format as .csv.</p>
-<p>The UAV Mapping Path Generator (for Litchi)/Drone Path is available under the Vector menu in QGIS. We use the following parameters, load an area of interest, and draw a line parallel to the desired transects when prompted.</p>
+<p>You might receive an error regarding coordinate systems even if your data are correctly projected. This error can be ignored.</p>
+<p>The waypoints file will include the GPS coordinates that can be uploaded to a flight app. Note that most flight apps will use latitude/longitude coordinates, while the Flight Planner plugin outputs to UTM. To add latitude/longitude to the attribute table, use Add X/Y fields to layer and specify the coordinate system as EPSG:4326. Then right-click the output table by right-clicking the new layer in the Contents and selecting Export -&gt; Save vector layer as, and choose output file format as .csv.</p>
+</section>
+<section id="geoflight-planner">
+<h2>GeoFlight Planner<a class="headerlink" href="#geoflight-planner" title="Link to this heading">#</a></h2>
+<p>A better option might be the GeoFlight Planner plugin in QGIS. Once installed, the plugin is available under the GeoFlight Planner menu in QGIS.</p>
+<p>First open the GSD and Overlap – Mission Calculator. Select a drone model or enter custom specifications. Click Save Drone Data to Flight Planner.</p>
+<p>Several drop-down menus are available to calculate flight parameters. Click on Ideal Flight Speed Calculator. Enter the Flight Altitude, Shutter Speed, Frontal Overlap, and Min Shooting Interval, leaving other settings at their default. Click Calculate Optimal Speed. Take note of the Max Speed (Motion Blur) and Max Speed (Write Interval) values. Ideally, the Max Speed (Motion Blur) should be higher than the Max Speed (Write Interval). Adjust the shutter speed and recalculate if necessary. Flying at the Max Speed (Write Interval) should be fine. The recommended speed at the bottom is based on an arbitrary safety factor and should only be consulted if photos come out blurry when using the Max Speed (Write Interval).</p>
+<p>When ready, exit out of the GSD and Overlap – Mission Calculator. Next, open GeoFlight Planner -&gt; Horizontal Flight Plan -&gt; Sensor. Load the polygon representing your area of interest. You will also need to draw a line representing the first flight line and direction. Use any coordinate system. Set Flight Height, Side Overlap, Forward Overlap, and Flight Speed (based on the result from the Ideal Flight Speed Calculator). Click Run.</p>
+<p>The output attribute table will already have waypoint coordinates in latitude/longitude that can be uploaded to a drone.</p>
+</section>
+<section id="other-qgis-plugins">
+<h2>Other QGIS Plugins<a class="headerlink" href="#other-qgis-plugins" title="Link to this heading">#</a></h2>
+<p>Another option is the <a class="reference external" href="https://www.techforwildlife.com/blog/2024/8/19/creating-a-mapping-mission">UAV Mapping Path Generator (for Litchi)</a>, which requires slightly different inputs to generate similar outputs.</p>
+<p>Once the plugin is installed, the UAV Mapping Path Generator (for Litchi)/Drone Path is available under the Vector menu in QGIS. We use the following parameters, load an area of interest, and draw a line parallel to the desired transects when prompted.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/dronepath.jpg"><img alt="Drone Path" class="bg-primary mb-1 align-center" src="_images/dronepath.jpg" style="width: 80%;" /></a>
 <p>The plugin will produce the following transects:</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/flightplan2.jpg"><img alt="Flight Plan 2" class="bg-primary mb-1 align-center" src="_images/flightplan2.jpg" style="width: 80%;" /></a>
@@ -502,13 +521,14 @@ by the image width of the photo in pixels.</p>
 <p>The <a class="reference external" href="https://www.pix4d.com/product/pix4dcapture/">Pix4Dcapture Pro</a> app is recommended for most drone mission planning. Within the app, users can plan missions that are then uploaded to the drone.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/pix4d.png"><img alt="Pix4D" class="bg-primary mb-1 align-center" src="_images/pix4d.png" style="width: 80%;" /></a>
 </section>
-<section id="dji-mapper-for-newer-dji-drones">
-<h2>DJI Mapper for Newer DJI Drones<a class="headerlink" href="#dji-mapper-for-newer-dji-drones" title="Link to this heading">#</a></h2>
+<section id="other-options">
+<h2>Other Options<a class="headerlink" href="#other-options" title="Link to this heading">#</a></h2>
 <p>Newer DJI drones are not compatible with most flight planning apps because DJI have not released their software development kit (SDK) to allow an app to communicate with the drone. However, most drones, including DJI, have waypoint features, where waypoints and paths can be programmed into the drone. Flight planning using waypoints through the flight controller can be tedious, but <a class="reference external" href="https://github.com/YarosMallorca/DJI-Mapper">DJI Mapper</a> is a useful tool to automate the generation of waypoints based on flight parameters. The program outputs a waypoint file that can be uploaded to the DJI drone.</p>
+<p><a class="reference external" href="https://www.waypointmap.com/">WaypointMap</a> is another excellent resource for planning drone flights; however, it is subscription-based for full functionality.</p>
 </section>
 <section id="other-drones">
 <h2>Other Drones<a class="headerlink" href="#other-drones" title="Link to this heading">#</a></h2>
-<p>All recreational drones should have waypoint capabilities. When all else fails, the coordinates generated with the Flight Planner plugin in QGIS can be exported to a text-based .csv file. This text file can then be manually edited to match the format of the relevant drone. The following is an example of a format used by the Innoflight ScanLift 800 drone:</p>
+<p>All recreational drones should have waypoint capabilities. When all else fails, the coordinates generated with the flight planner plugins in QGIS can be exported to a text-based .csv file. This text file can then be manually edited to match the format of the relevant drone. The following is an example of a format used by the Innoflight ScanLift 800 drone:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -806,9 +826,11 @@ Applications. Sensors 22:2297. <a class="reference external" href="https://doi.o
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-sampling-distance">Ground Sampling Distance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblique-imagery">Oblique Imagery</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagery-overlap">Imagery Overlap</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-qgis">Drone Mission Planning in QGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-the-qgis-flight-planner">Drone Mission Planning in the QGIS Flight Planner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geoflight-planner">GeoFlight Planner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-qgis-plugins">Other QGIS Plugins</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-mission-planning-in-pix4dcapture-pro">Drone Mission Planning in Pix4Dcapture Pro</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dji-mapper-for-newer-dji-drones">DJI Mapper for Newer DJI Drones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-options">Other Options</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-drones">Other Drones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>

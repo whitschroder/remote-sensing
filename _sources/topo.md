@@ -60,17 +60,9 @@ A DEM can be viewed with any number of color schemes, including grayscale (singl
 
 A DEM alone is not particularly useful for visualizing topography. More commonly, contour lines are generated to show topography. The Contour tool in ArcGIS Pro can create linear contours at defined intervals. Each contour represents the elevation along that line -- closer contour lines represent steeper terrain. The Simplify Line tool can be used to smooth out these contours generated from a high resolution DEM. In QGIS, use the Contour tool in GDAL or the r.contour tool in GRASS.
 
-## Hillshade
-
-Hillshading or shaded relief is a technique used to model how light and shadow might fall across a landscape. The Azimuth represents the hypothetical direction of the light source, while Altitude represents the vertical angle of the light source relative to the viewer. The convention is to have the direction of the light source coming from the northwest, although this direction would of course change throughout the day and year based on the position of the sun. A DEM can be viewed as a hillshade model in QGIS by right-clicking the appropriate layer in the contents, selecting Properties -> Symbology, and changing Render type under Band Rendering from Singleband gray to Hillshade. The visualization can be improved by changing the Resampling (at the bottom of the Symbology window in Properties) from Nearest Neighbor to Bilinear or Cubic when zoomed in. In ArcGIS Pro, a DEM can be viewed as a hillshade by right-clicking on the layer in the Contents and selecting Symbology. In the window that pops up, change Stretch to Shaded Relief. The color scheme defaults to a Multipart Color Scheme, but can be changed to grayscale if preferred. Alternatively, I recommend creating separate layers/files using the Hillshade tools in ArcGIS Pro or QGIS. 
-
-## Monochromatic Multidirectional Hillshade
-
-A drawback of using Hillshade is that in areas with steeper slopes, some areas will be over and under exposed. This effect can be improved by modeling the Hillshade from several different angles (Azimuths) and combining them. In ArcGIS Pro, a Multidirectional option is available under Imagery -> Raster Functions -> Surface -> Hillshade. A similar tool (Multidirectional hillshade) is available in QGIS with the Whitebox Workflows for QGIS plugin (available in the main menu Plugins -> Manage and Install Plugins...), using the Full 360 mode setting. The multidirectional hillshade can be produced manually by creating several separate hillshade layers with different azimuth settings and combining them with transparencies or blending (see below).
-
 ## Slope
 
-Slope refers to the rate of change in elevation from one location to the next defined by a consistent neighborhood around each pixel, in other words, the first derivative of elevation. A Slope map can highlight topography more dramatically than a Hillshade. The drawback is that a Slope map will not show the direction of the slope, so elevated areas can be impossible to distinguish from low lying areas. ArcGIS Pro has several slope tools, including Slope in Spatial Analyst, which uses a default 3 x 3 pixel neighborhood, and Surface Parameters that allows users to change the neighborhood size. In QGIS, the basic tool is Slope under Raster terrain analysis, or r.slope.aspect in GRASS, which offers more functionality similar to the Surface Parameters tool in ArcGIS Pro. After generating a slope surface, I recommend changing the Symbology to either a stretched grayscale or another monochromatic color scheme, setting or inverting the color scheme so that the darker color represents higher slopes and the whiter color represents lower slopes.
+Slope refers to the rate of change in elevation from one location to the next defined by a consistent neighborhood around each pixel, in other words, the first derivative of elevation. A Slope map can highlight topography more dramatically than other visualizations like Hillshade (see below). The drawback is that a Slope map will not show the direction of the slope, so elevated areas can be impossible to distinguish from low lying areas. ArcGIS Pro has several slope tools, including Slope in Spatial Analyst, which uses a default 3 x 3 pixel neighborhood, and Surface Parameters that allows users to change the neighborhood size. In QGIS, the basic tool is Slope under Raster terrain analysis, or r.slope.aspect in GRASS, which offers more functionality similar to the Surface Parameters tool in ArcGIS Pro. After generating a slope surface, I recommend changing the Symbology to either a stretched grayscale or another monochromatic color scheme, setting or inverting the color scheme so that the darker color represents higher slopes and the whiter color represents lower slopes.
 
 ## Aspect
 
@@ -79,6 +71,38 @@ Aspect refers to the direction of slope from one location to the next. Aspect al
 ## Aspect-Slope
 
 A mix of the slope and aspect surfaces can combine the best of the slope map's topographic visualization with the directionality calculated in the aspect. An Aspect-Slope map can be generated in ArcGIS Pro under Imagery -> Raster Functions -> Surface -> Aspect-Slope. Note that this Raster Function does not automatically apply a Z Factor, so the input DEM must be in a projected coordinate system. The correct Z Factor value can alternatively be copied from the Hillshade tool for better results. A similar effect can be produced in ArcGIS Pro or QGIS by generating separate grayscale slope and multicolor aspect surfaces and combining them with transparencies or blending (see below).
+
+## Hillshade
+
+Hillshading or shaded relief is a technique used to model how light and shadow might fall across a landscape. The Azimuth represents the hypothetical direction of the light source, while Altitude represents the vertical angle of the light source relative to the viewer. The convention is to have the direction of the light source coming from the northwest, although this direction would of course change throughout the day and year based on the position of the sun. A DEM can be viewed as a hillshade model in QGIS by right-clicking the appropriate layer in the contents, selecting Properties -> Symbology, and changing Render type under Band Rendering from Singleband gray to Hillshade. The visualization can be improved by changing the Resampling (at the bottom of the Symbology window in Properties) from Nearest Neighbor to Bilinear or Cubic when zoomed in. In ArcGIS Pro, a DEM can be viewed as a hillshade by right-clicking on the layer in the Contents and selecting Symbology. In the window that pops up, change Stretch to Shaded Relief. The color scheme defaults to a Multipart Color Scheme, but can be changed to grayscale if preferred. Alternatively, I recommend creating separate layers/files using the Hillshade tools in ArcGIS Pro or QGIS.
+
+The hillshade is technically a type of Aspect-Slope map. A hillshade can be generated with the following formula in Raster Calculator:
+
+```
+255 * ((cos((90 - Altitude) * 3.14159265 / 180) * cos("Slope" * 3.14159265/180)) + (sin((90 - Altitude) * 3.14159265 / 180) * sin("Slope" * 3.14159265/180) * cos((Azimuth * 3.14159265/180) - ("Aspect" * 3.14159265 / 180))))
+```
+
+Altitude in degrees refers to the angle of the sun above the horizon (45 is a typical value), Azimuth refers to the direction of the sun in degress (345 is a typical value), "Slope" is a slope surface in degrees, and "Aspect" is an aspect surface in degrees where 0 is north.
+
+Note that this formula will output float values from -255.0 to 255.0. A traditional hillshade will be in 8-bit format with only integer values from 0 to 255. To match a more traditional hillshade output, negative values can be set to zero by using a conditional statement in Raster Calculator in QGIS:
+
+```
+if ("Hillshade" < 0, 0, "Hillshade")
+```
+
+In ArcGIS Pro:
+
+```
+Con ("Hillshade" < 0, 0, "Hillshade")
+```
+
+"Hillshade" represents the output from the slope-aspect calculation. A conditional statement can be read as:
+
+If the hillshade values are less than 0, set them to 0, otherwise use the original hillshade value. In such a statement, all negative values will be set to 0, and positive values will remain the same.
+
+## Monochromatic Multidirectional Hillshade
+
+A drawback of using Hillshade is that in areas with steeper slopes, some areas will be over and under exposed. This effect can be improved by modeling the Hillshade from several different angles (Azimuths) and combining them. In ArcGIS Pro, a Multidirectional option is available under Imagery -> Raster Functions -> Surface -> Hillshade. A similar tool (Multidirectional hillshade) is available in QGIS with the Whitebox Workflows for QGIS plugin (available in the main menu Plugins -> Manage and Install Plugins...), using the Full 360 mode setting. The multidirectional hillshade can be produced manually by creating several separate hillshade layers with different azimuth settings and combining them with transparencies or blending (see below).
 
 ## Curvature
 
@@ -94,7 +118,7 @@ Several tools are useful for archaeological analysis, including Openness, simpli
 
 Several visualizations can be displayed at one time using transparency or blending. Adding a 50% transparency to an upper layer over a lower layer can be useful, for example placing a transparent DEM over hillshade or slope. Blending, in contrast, more evenly combines two layers. Multiply is commonly used to darken imagery, where whiter areas become transparent in the top layer and blacker areas become darker by multiplying the colors of the base and upper layer.
 
-The transparency option is available in ArcGIS Pro by selecting the appropriate layer in the Contents, clicking Raster Layer at the top of the screen, and changing Transparency (the default is 0.0%, meaning no transparency). Blending is available underneath the Transparency option, next to Layer Blend (the default is Normal, with many additional options under the dropdown). In QGIS Pro, right-click the appropriate layer in the Contents, and select Properties. Under Transparency, Global Opacity will change the transparency of the layer (the default is 100.0%, meaning full opacity). Blending is available in Symbology under Layer Rendering and Blending mode (the default is Normal, with many additional options under the dropdown). Note that transparency and blending will always be applied to the first/upper selected layer, and will affect the second/lower layer, which must be placed immediately below the first/upper layer (or any layers between them must be turned off/deselected). 
+The transparency option is available in ArcGIS Pro by selecting the appropriate layer in the Contents, clicking Raster Layer at the top of the screen, and changing Transparency (the default is 0.0%, meaning no transparency). Blending is available underneath the Transparency option, next to Layer Blend (the default is Normal, with many additional options under the dropdown). In QGIS, right-click the appropriate layer in the Contents, and select Properties. Under Transparency, Global Opacity will change the transparency of the layer (the default is 100.0%, meaning full opacity). Blending is available in Symbology under Layer Rendering and Blending mode (the default is Normal, with many additional options under the dropdown). Note that transparency and blending will always be applied to the first/upper selected layer, and will affect the second/lower layer, which must be placed immediately below the first/upper layer (or any layers between them must be turned off/deselected). 
 
 A [Red Relief Image Map](https://www.rrim.jp/en/) has become a popular topographic visualization technique. This approach blends (multiplies) a red slope map over an openness or simplified local relief model. Instructions to create a simple red relief surface are available at the [Ancient Maya Settlement blog](https://ancientmayasettlement.com/2022/02/12/a-recipe-for-simple-red-relief/).
 
@@ -108,7 +132,11 @@ A Topographic Position Index (TPI) models landforms in relation to their relativ
 
 Another approach to classifying landforms relies on the Geomorphons method. This tool has additional categories beyond a simple topographic position index. Geomorphons traditionally consist of 10 classes: 1) Flat, 2) Summit, 3) Ridge, 4) Shoulder, 5) Spur, 6) Slope, 7) Hollow, 8) Footslope, 9) Valley, and 10) Depression. The SAGA Geomorphons tool in QGIS classifies a DEM into these categories, based on parameters that like the Topographic Position Index are used to define the neighborhood or radius. Other Geomorphons tools are available in QGIS and ArcGIS Pro.
 
-If the SAGA tools are not available and visible in the QGIS Processing Toolbox, under Plugins -> Manage and Install Plugins... install Processing Saga NextGen Provider. Then click on the main menu Settings -> Options -> Processing -> Providers. Under SAGAANG copy and paste the path to the SAGA folder. The SAGA folder should have been downloaded with the original QGIS installation. The path should be in your installed QGIS folder, for example in Windows, C:\Program Files\QGIS 3.34.14\apps\saga.
+If the SAGA tools are not available and visible in the QGIS Processing Toolbox, under Plugins -> Manage and Install Plugins... install Processing Saga NextGen Provider. Then click on the main menu Settings -> Options -> Processing -> Providers. Under SAGAANG copy and paste the path to the SAGA folder. The SAGA folder should have been downloaded with the original QGIS installation. The path should be in your installed QGIS folder, for example in Windows, C:\Program Files\QGIS 3.40.14\apps\saga. Check the box that says Enable SAGA Import/Export optimizations.
+
+On a Mac, install the same Processing Saga NextGen Provider plugin. Take note under the plugin details what version of SAGA is supported. Download the appropriate version of SAGA for Mac from the [SAGA download page](https://sourceforge.net/projects/saga-gis/files). Once installed move the app to the Applications folder. You might need to adjust your privacy settings to allow SAGA. Find the folder where saga_cmd is installed. It should be something like /Applications/SAGA.app/Contents/MacOS.
+
+In QGIS, navigate to Settings -> Options -> Processing -> Providers and paste the correct folder path under SAGAANG. Check the box that says Enable SAGA Import/Export optimizations.
 
 To visualize a classified or discrete Geomorphons raster in QGIS, upload the following Geomorphons text file to the layer properties symbology: {Download}`Geomorphons.txt<./Geomorphons.txt>`.
 
