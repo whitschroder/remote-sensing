@@ -44,7 +44,11 @@ A simple comparison of SRTM and ASTER data can be done with Raster Calculator, s
 
 ## DTM Filter
 
-Artifacts in ASTER data can be further removed by using the DTM filter (slope-based) tool in QGIS. This tool takes a DEM as its input and smooths areas of significant slope. 
+Artifacts in ASTER data can be further removed by using the DTM filter (slope-based) tool in QGIS. This tool takes a DEM as its input and smooths areas of significant slope. The tool takes as input a DEM, a kernel/search radius, and a terrain slope. The terrain slope should represent the maximum slope of the topography so that any values above the slope will be filtered out. For example, on flat terrain a slope of 30% might represent an above-ground object like vegetation. The tool outputs two surfaces, a ground layer and a non-ground layer. The ground layer ideally represents the actual elevation of the terrain, while the non-ground layer represents above ground pixels that were removed.
+
+The resulting ground surface will consist of scattered pixels rather than a continuous surface. Some tweaking of the terrain slope parameter may be necessary. After generating the ground surface, the r.fillnulls tool can be used to interpolate values and fill gaps. The interpolation method should be set to bilinear. The output will be a smoothed DEM that may be more useful for applications including hydrological analysis.
+
+The DTM filter tool is best used at a local level, since at a landscape level terrain slope can vary significantly.
 
 ## Define Vertical Projection
 

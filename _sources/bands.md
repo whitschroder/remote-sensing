@@ -364,6 +364,8 @@ Estanqueiro, Marta, Aleksandar Šalamon, Helen Lewis, Barry Molloy, and Dragan J
 Sentinel-2 Imagery Analyses for Archaeological Site Detection: An Application to Late Bronze Age Settlements in Serbian Banat, Southern Carpathian Basin. Journal of Archaeological Science: Reports 51:104188.
 <https://doi.org/10.1016/j.jasrep.2023.104188>
 
+Ronchi, Diego, Marco Limongiello, Emanuel Demetrescu, and Daniele Ferdani. 2023. Multispectral UAV data and GPR survey for archeological anomaly detection supporting 3D reconstruction. Sensors 23:2769. <https://doi.org/10.3390/s23052769>
+
 ## Additional References
 
 Parcak, Sarah. 2009. Satellite Remote Sensing for Archaeology. Routledge, New York.
