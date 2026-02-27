@@ -526,19 +526,35 @@
 <p>In ArcGIS Pro, we just have to add the combined .txt file or Raster Product (usually ______MTL.txt). We can then alter the visualization and band combination under Symbology.</p>
 <p>In QGIS, we have to build a virtual raster. Go to Raster -&gt; Miscellaneous -&gt; Build Virtual Raster. Under Input layers, we will add only the 30 meter bands listed in the chart above: Bands 1, 2, 3, 4, 5, 6, 7, and 9, in order. Set Resolution to Highest and Place each input file into a separate band. The visualization and band combination can be edited under the Properties of the Virtual raster. Bilinear Resampling and an updated canvas (DRA in ArcGIS Pro) can improve visualization.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/rgb.jpg"><img alt="RGB" class="bg-primary mb-1 align-center" src="_images/rgb.jpg" style="width: 80%;" /></a>
-<p>Landsat 8 and 9 data are delivered in a 16-bit unsigned format, while earlier Landsat imagery is delivered in an 8-bit unsigned format. To convert these digital numbers to reflectance values for subsequent analyses, refer to <a class="reference external" href="https://www.usgs.gov/faqs/how-do-i-use-a-scale-factor-landsat-level-2-science-products">scale factors</a> provided by the USGS. For Landsat 8 and 9, the scale factor is 0.0000275 with an offset of -0.2. In Raster Calculator, we can use the following expression:</p>
+<p>Landsat 8 and 9 data are delivered in a 16-bit unsigned format, while earlier Landsat imagery is delivered in an 8-bit unsigned format. To convert these digital numbers to reflectance values, refer to <a class="reference external" href="https://www.usgs.gov/faqs/how-do-i-use-a-scale-factor-landsat-level-2-science-products">scale factors</a> provided by the USGS. For Landsat 8 and 9, the scale factor is 0.0000275 with an offset of -0.2. In Raster Calculator, we can use the following expression:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;16-bit raster&quot;</span> <span class="o">*</span> <span class="mf">0.0000275</span> <span class="o">-</span> <span class="mf">0.2</span>
 </pre></div>
 </div>
-<p>The values should be between 0 and 1, which multiplied by 100 gives the percent reflectance (0% to 100%). Some values may fall below 0 and above 1, representing noise. If necessary, these values can be removed using a conditional expression using Raster Calculator in ArcGIS Pro:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Con</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.000001</span><span class="p">,</span>  <span class="n">Con</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Reflectance raster&quot;</span><span class="p">))</span>
+<p>The values should be between 0 and 1, which multiplied by 100 gives the percent reflectance (0% to 100%). Some values may fall below 0 and above 1, representing an overcorrection for atmospheric effects. If necessary, these values can be removed using a conditional expression using Raster Calculator in ArcGIS Pro (Con) or QGIS (if):</p>
+<ol class="arabic simple">
+<li><p>Changing negative values to zero:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Con</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="n">Con</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Reflectance raster&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Alternatively, a similar expression can be run in QGIS using IF:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.000001</span><span class="p">,</span> <span class="k">if</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Reflectance raster&quot;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">if</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Reflectance raster&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Values under 0 will be assigned a new value of 0.000001, values above 1 will be assigned a new value of 1, and all other values will remain unchanged. Alternatively, values under 0 can be assigned 0, or values under 0 and above 1 can be assigned NoData (using the NoData value of the raster). I prefer to assign values under 0 a low value approaching 0 but not equaling 0. If values of 0 remain in the raster and algorithms are applied using division, values of 0 in the denominator would become NoData in these cases.</p>
+<ol class="arabic simple" start="2">
+<li><p>Changing negative values to NoData:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Con</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span>  <span class="n">Con</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Reflectance raster&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span> <span class="k">if</span><span class="p">(</span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Reflectance raster&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Adding the absolute value of the minimum value to the raster (my preferred method):</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Reflectance raster&quot;</span> <span class="o">+</span> <span class="s2">&quot;Minimum Value&quot;</span>
+</pre></div>
+</div>
 </section>
 <section id="band-compositing">
 <h2>Band Compositing<a class="headerlink" href="#band-compositing" title="Link to this heading">#</a></h2>
@@ -642,6 +658,7 @@ highlight water.</p>
 \]</div>
 <p>We can visualize the NDVI with a green color scheme.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/ndvi.jpg"><img alt="NDVI" class="bg-primary mb-1 align-center" src="_images/ndvi.jpg" style="width: 80%;" /></a>
+<p>Or we can use a green color scheme with values under 0 (water) set to blue. Here is an example color scheme for QGIS: (<a class="reference download internal" download="" href="_downloads/e2a02ba6af621bb9100e693de4bd4e9e/ndvi.txt"><code class="xref download docutils literal notranslate"><span class="pre">ndvi.txt</span></code></a>)</p>
 </section>
 <section id="principal-component-analysis">
 <h2>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Link to this heading">#</a></h2>
@@ -676,7 +693,7 @@ highlight water.</p>
 <section id="texture-analysis">
 <h2>Texture Analysis<a class="headerlink" href="#texture-analysis" title="Link to this heading">#</a></h2>
 <p>Texture analysis is used in remote sensing to highlight differences between materials. In QGIS, the GRASS tool <a class="reference external" href="https://grass.osgeo.org/grass-stable/manuals/r.texture.html">r.texture</a> calculates several metrics, variance being the most common method used.</p>
-<p>Run r.texture, select the input raster, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder. Note that this tool inputs the folder as a string, so do not use any spaces in your folder path.</p>
+<p>Run r.texture, select the input raster, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder. Note that this tool inputs the folder as a string, so do not use any spaces in your folder path, or put the folder path in quotes.</p>
 <p>The following image is a texture (variance) analysis of the first order Principal Component Analysis, highlighting the differences between different types of land cover:</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/texture.jpg"><img alt="Texture" class="bg-primary mb-1 align-center" src="_images/texture.jpg" style="width: 80%;" /></a>
 </section>

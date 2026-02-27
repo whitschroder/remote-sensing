@@ -52,25 +52,44 @@ In QGIS, we have to build a virtual raster. Go to Raster -> Miscellaneous -> Bui
 :align: center
 ```
 
-Landsat 8 and 9 data are delivered in a 16-bit unsigned format, while earlier Landsat imagery is delivered in an 8-bit unsigned format. To convert these digital numbers to reflectance values for subsequent analyses, refer to [scale factors](https://www.usgs.gov/faqs/how-do-i-use-a-scale-factor-landsat-level-2-science-products) provided by the USGS. For Landsat 8 and 9, the scale factor is 0.0000275 with an offset of -0.2. In Raster Calculator, we can use the following expression:
+Landsat 8 and 9 data are delivered in a 16-bit unsigned format, while earlier Landsat imagery is delivered in an 8-bit unsigned format. To convert these digital numbers to reflectance values, refer to [scale factors](https://www.usgs.gov/faqs/how-do-i-use-a-scale-factor-landsat-level-2-science-products) provided by the USGS. For Landsat 8 and 9, the scale factor is 0.0000275 with an offset of -0.2. In Raster Calculator, we can use the following expression:
 
 ```
 "16-bit raster" * 0.0000275 - 0.2
 ```
 
-The values should be between 0 and 1, which multiplied by 100 gives the percent reflectance (0% to 100%). Some values may fall below 0 and above 1, representing noise. If necessary, these values can be removed using a conditional expression using Raster Calculator in ArcGIS Pro:
+The values should be between 0 and 1, which multiplied by 100 gives the percent reflectance (0% to 100%). Some values may fall below 0 and above 1, representing an overcorrection for atmospheric effects. If necessary, these values can be removed using a conditional expression using Raster Calculator in ArcGIS Pro (Con) or QGIS (if):
+
+1) Changing negative values to zero:
+
 
 ```
-Con("Reflectance raster" < 0, 0.000001,  Con("Reflectance raster" > 1, 1, "Reflectance raster"))
+Con("Reflectance raster" < 0, 0,  Con("Reflectance raster" > 1, 1, "Reflectance raster"))
 ```
 
-Alternatively, a similar expression can be run in QGIS using IF:
 
 ```
-if("Reflectance raster" < 0, 0.000001, if("Reflectance raster" > 1, 1, "Reflectance raster"))
+if("Reflectance raster" < 0, 0, if("Reflectance raster" > 1, 1, "Reflectance raster"))
 ```
 
-Values under 0 will be assigned a new value of 0.000001, values above 1 will be assigned a new value of 1, and all other values will remain unchanged. Alternatively, values under 0 can be assigned 0, or values under 0 and above 1 can be assigned NoData (using the NoData value of the raster). I prefer to assign values under 0 a low value approaching 0 but not equaling 0. If values of 0 remain in the raster and algorithms are applied using division, values of 0 in the denominator would become NoData in these cases.
+2) Changing negative values to NoData:
+
+
+```
+Con("Reflectance raster" < 0, 0/0,  Con("Reflectance raster" > 1, 1, "Reflectance raster"))
+```
+
+
+```
+if("Reflectance raster" < 0, 0/0, if("Reflectance raster" > 1, 1, "Reflectance raster"))
+```
+
+3) Adding the absolute value of the minimum value to the raster (my preferred method):
+
+
+```
+"Reflectance raster" + "Minimum Value"
+```
 
 ## Band Compositing
 
@@ -184,6 +203,8 @@ We can visualize the NDVI with a green color scheme.
 :align: center
 ```
 
+Or we can use a green color scheme with values under 0 (water) set to blue. Here is an example color scheme for QGIS: ({Download}`ndvi.txt<./ndvi.txt>`)
+
 ## Principal Component Analysis
 
 Principal components analysis calculates variability through several iterations, with each iteration showing less variability.
@@ -246,7 +267,7 @@ The following image shows the PCA composite, with PCA1, PCA2, and PCA3 shown as 
 
 Texture analysis is used in remote sensing to highlight differences between materials. In QGIS, the GRASS tool [r.texture](https://grass.osgeo.org/grass-stable/manuals/r.texture.html) calculates several metrics, variance being the most common method used.
 
-Run r.texture, select the input raster, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder. Note that this tool inputs the folder as a string, so do not use any spaces in your folder path.
+Run r.texture, select the input raster, select Textural Measurement Method(s) (var = variance), select size of moving window (must be an odd integer, 3 is the default), and choose an output folder. Note that this tool inputs the folder as a string, so do not use any spaces in your folder path, or put the folder path in quotes.
 
 The following image is a texture (variance) analysis of the first order Principal Component Analysis, highlighting the differences between different types of land cover:
 
