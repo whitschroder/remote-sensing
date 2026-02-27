@@ -1,4 +1,4 @@
-# Ground Penetrating Radar
+# 9. Ground Penetrating Radar
 
 We will be using the [RGPR package](https://emanuelhuber.github.io/RGPR/) in [R](https://posit.co/download/rstudio-desktop/) to plot GPR data. After installing R and RStudio, install and load RGPR and its dependencies.
 

@@ -190,10 +190,32 @@ Principal components analysis calculates variability through several iterations,
 
 In ArcGIS Pro run the Principal Components Analysis tool by loading the individual raster bands and selecting the number of principal component iteration (this value should match the number of inputs). Change the output to a folder rather than a geodatabase, and do not enter a filetype extension after the filename if you want to produce a raster for each iteration. The tool will load a new multiband raster containing all the principal components. You can manually load each individual component from the same folder.
 
-In QGIS, go to Plugins, Manage and Install Plugins, search for Semi-Automatic Classification Plugin, and install. There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it). If you receive an error message, you may need to upgrade some dependencies. If so, open the OSGEO4W Shell and run the following command:
+In QGIS, go to Plugins, Manage and Install Plugins, search for Semi-Automatic Classification Plugin, and install. There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it). If you receive an error message, you may need to upgrade some dependencies. If so, exit out of QGIS, and in Windows, open the OSGEO4W Shell and run the following command:
 
 ```
 pip3 install --upgrade remotior-sensus scikit-learn torch
+```
+
+On a Mac, the SCP plugin does not work on the latest version of QGIS. You will have to install an older version of QGIS, for example, [QGIS 3.34](https://download.osgeo.org/qgis/mac/macos/ltr/qgis_ltr_final-3_34_15_20250117_182824.dmg). Other long-term release versions are available [here](https://download.osgeo.org/qgis/mac/macos/ltr). Once installed, locate the folder path where you have QGIS 3.34 installed. You will have to right-click QGIS 3.34 in Applications, and select Show Package Contents. Navigate through the folders to locate the Python and pip3 installations. The folder should be something like /Applications/QGIS-LTR.app/Contents/MacOS/bin. Verify that this is the correct folder, if not modify the below code to match the correct folder structure.
+
+Open the Mac Terminal and copy the following, then press Enter:
+
+```
+/Applications/QGIS-LTR.app/Contents/MacOS/bin/pip3 install --upgrade remotior-sensus scikit-learn torch
+```
+
+If prompted, install command line developer tools, agree to the license statement, and run the above code again.
+
+Then run the following:
+
+```
+/Applications/QGIS-LTR.app/Contents/MacOS/bin/pip3 install numpy==1.26.4
+```
+
+And finally run the following:
+
+```
+/Applications/QGIS-LTR.app/Contents/MacOS/bin/pip3 install --upgrade remotior-sensus
 ```
 
 Under SCP, click Band Set. From the Single band list, load the individual bands (you may need to click refresh and make sure the bands are in your Layers contents). Each band is weighted equally (1) by default. In this case, our rasters all have the same range, so we do not need to weigh them. 
@@ -237,7 +259,7 @@ The following image is a texture (variance) analysis of the first order Principa
 
 ## Image Sharpening
 
-All Landsat 8 bands are at 30 m resolution, except for Band 8 (Panchromatic), which is at 15 m resolution. The higher resolution Band 8 can be used to sharpen the imagery of the other bands. Pansharpening is typically done on three-band composites (see above). Each of these three bands is typically pansharpened separately and then combined into a new composite. The following formulae apply to an RGB composite (4-3-2), but any three bands can be used. Raster Calculator can be used to generate the pansharpened bands; be sure to specify the output resolution to be the same value as the panchromatic band (in this case 15 meters).
+All Landsat 8 bands are at approximately 30 m resolution, except for Band 8 (Panchromatic), which is at approximately 15 m resolution. The higher resolution Band 8 can be used to sharpen the imagery of the other bands. Pansharpening is typically done on three-band composites (see above). Each of these three bands is typically pansharpened separately and then combined into a new composite. The following formulae apply to an RGB composite (4-3-2), but any three bands can be used. Raster Calculator can be used to generate the pansharpened bands; be sure to specify the output resolution to be the same value as the panchromatic band (in this case 15 meters).
 
 <b>The Brovey Transformation</b>
 
@@ -365,6 +387,15 @@ Sentinel-2 Imagery Analyses for Archaeological Site Detection: An Application to
 <https://doi.org/10.1016/j.jasrep.2023.104188>
 
 Ronchi, Diego, Marco Limongiello, Emanuel Demetrescu, and Daniele Ferdani. 2023. Multispectral UAV data and GPR survey for archeological anomaly detection supporting 3D reconstruction. Sensors 23:2769. <https://doi.org/10.3390/s23052769>
+
+Alders, W., Davis, D.S. & Haines, J.J. 2024. Archaeology in the Fourth Dimension: Studying Landscapes with Multitemporal PlanetScope Satellite Data. Journal of Archaeological Method and Theory 31:1588–1621. <https://doi.org/10.1007/s10816-024-09644-x>.
+
+Brondizio and Chowdhury. 2010. Spatiotemporal methodologies in environmental anthropology: geographic information systems, remote sensing, landscape changes, and local knowledge. In: Vaccaro I, Smith EA, Aswani S, eds. Environmental Social Sciences: Methods and Research Design. Cambridge University Press, pp. 266-298.
+
+Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
+Nelson, and Jessica Munson. 2008. Evaluating the Use of IKONOS Satellite Imagery in 
+Lowland Maya Settlement Archaeology. Journal of Archaeological Science 35(10):2770-2777.
+<https://doi.org/10.1016/j.jas.2008.05.003>
 
 ## Additional References
 

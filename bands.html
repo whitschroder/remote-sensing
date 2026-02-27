@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'bands';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Pansharpening, Spectral Indices, and Texture Analysis" href="pan.html" />
+    <link rel="next" title="Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro" href="classification.html" />
     <link rel="prev" title="5. Topographic Analysis with ASTER and SRTM Digital Elevation Models" href="topo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,20 +180,19 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="drones.html">4. Drone Mission Planning for Photogrammetry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topo.html">5. Topographic Analysis with ASTER and SRTM Digital Elevation Models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Multispectral Imagery</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="pan.html">7. Pansharpening, Spectral Indices, and Texture Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">6. Multispectral Imagery</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="classification.html">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="gee.html">8. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">9. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1"><a class="reference internal" href="gee.html">7. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">8. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="annotate.html">Bonus: Annotating Lidar Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml.html">Bonus: Machine Learning Approaches in Remote Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pointcnn.html">Bonus: Point Cloud Classification in ArcGIS Pro with PointCNN</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="gpr.html">Ground Penetrating Radar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpr.html">9. Ground Penetrating Radar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethics.html">Ethics in Remote Sensing</a></li>
 </ul>
 
@@ -648,8 +647,22 @@ highlight water.</p>
 <h2>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Link to this heading">#</a></h2>
 <p>Principal components analysis calculates variability through several iterations, with each iteration showing less variability.</p>
 <p>In ArcGIS Pro run the Principal Components Analysis tool by loading the individual raster bands and selecting the number of principal component iteration (this value should match the number of inputs). Change the output to a folder rather than a geodatabase, and do not enter a filetype extension after the filename if you want to produce a raster for each iteration. The tool will load a new multiband raster containing all the principal components. You can manually load each individual component from the same folder.</p>
-<p>In QGIS, go to Plugins, Manage and Install Plugins, search for Semi-Automatic Classification Plugin, and install. There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it). If you receive an error message, you may need to upgrade some dependencies. If so, open the OSGEO4W Shell and run the following command:</p>
+<p>In QGIS, go to Plugins, Manage and Install Plugins, search for Semi-Automatic Classification Plugin, and install. There should now be an SCP menu in QGIS (try restarting QGIS if you don’t see it). If you receive an error message, you may need to upgrade some dependencies. If so, exit out of QGIS, and in Windows, open the OSGEO4W Shell and run the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">remotior</span><span class="o">-</span><span class="n">sensus</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">torch</span>
+</pre></div>
+</div>
+<p>On a Mac, the SCP plugin does not work on the latest version of QGIS. You will have to install an older version of QGIS, for example, <a class="reference external" href="https://download.osgeo.org/qgis/mac/macos/ltr/qgis_ltr_final-3_34_15_20250117_182824.dmg">QGIS 3.34</a>. Other long-term release versions are available <a class="reference external" href="https://download.osgeo.org/qgis/mac/macos/ltr">here</a>. Once installed, locate the folder path where you have QGIS 3.34 installed. You will have to right-click QGIS 3.34 in Applications, and select Show Package Contents. Navigate through the folders to locate the Python and pip3 installations. The folder should be something like /Applications/QGIS-LTR.app/Contents/MacOS/bin. Verify that this is the correct folder, if not modify the below code to match the correct folder structure.</p>
+<p>Open the Mac Terminal and copy the following, then press Enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="n">QGIS</span><span class="o">-</span><span class="n">LTR</span><span class="o">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">MacOS</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">remotior</span><span class="o">-</span><span class="n">sensus</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">torch</span>
+</pre></div>
+</div>
+<p>If prompted, install command line developer tools, agree to the license statement, and run the above code again.</p>
+<p>Then run the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="n">QGIS</span><span class="o">-</span><span class="n">LTR</span><span class="o">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">MacOS</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip3</span> <span class="n">install</span> <span class="n">numpy</span><span class="o">==</span><span class="mf">1.26.4</span>
+</pre></div>
+</div>
+<p>And finally run the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="n">QGIS</span><span class="o">-</span><span class="n">LTR</span><span class="o">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">MacOS</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">remotior</span><span class="o">-</span><span class="n">sensus</span>
 </pre></div>
 </div>
 <p>Under SCP, click Band Set. From the Single band list, load the individual bands (you may need to click refresh and make sure the bands are in your Layers contents). Each band is weighted equally (1) by default. In this case, our rasters all have the same range, so we do not need to weigh them.</p>
@@ -669,7 +682,7 @@ highlight water.</p>
 </section>
 <section id="image-sharpening">
 <h2>Image Sharpening<a class="headerlink" href="#image-sharpening" title="Link to this heading">#</a></h2>
-<p>All Landsat 8 bands are at 30 m resolution, except for Band 8 (Panchromatic), which is at 15 m resolution. The higher resolution Band 8 can be used to sharpen the imagery of the other bands. Pansharpening is typically done on three-band composites (see above). Each of these three bands is typically pansharpened separately and then combined into a new composite. The following formulae apply to an RGB composite (4-3-2), but any three bands can be used. Raster Calculator can be used to generate the pansharpened bands; be sure to specify the output resolution to be the same value as the panchromatic band (in this case 15 meters).</p>
+<p>All Landsat 8 bands are at approximately 30 m resolution, except for Band 8 (Panchromatic), which is at approximately 15 m resolution. The higher resolution Band 8 can be used to sharpen the imagery of the other bands. Pansharpening is typically done on three-band composites (see above). Each of these three bands is typically pansharpened separately and then combined into a new composite. The following formulae apply to an RGB composite (4-3-2), but any three bands can be used. Raster Calculator can be used to generate the pansharpened bands; be sure to specify the output resolution to be the same value as the panchromatic band (in this case 15 meters).</p>
 <p><b>The Brovey Transformation</b></p>
 <div class="math notranslate nohighlight">
 \[
@@ -760,6 +773,12 @@ Red – shorelines and immediate land use changes</p></li>
 Sentinel-2 Imagery Analyses for Archaeological Site Detection: An Application to Late Bronze Age Settlements in Serbian Banat, Southern Carpathian Basin. Journal of Archaeological Science: Reports 51:104188.
 <a class="reference external" href="https://doi.org/10.1016/j.jasrep.2023.104188">https://doi.org/10.1016/j.jasrep.2023.104188</a></p>
 <p>Ronchi, Diego, Marco Limongiello, Emanuel Demetrescu, and Daniele Ferdani. 2023. Multispectral UAV data and GPR survey for archeological anomaly detection supporting 3D reconstruction. Sensors 23:2769. <a class="reference external" href="https://doi.org/10.3390/s23052769">https://doi.org/10.3390/s23052769</a></p>
+<p>Alders, W., Davis, D.S. &amp; Haines, J.J. 2024. Archaeology in the Fourth Dimension: Studying Landscapes with Multitemporal PlanetScope Satellite Data. Journal of Archaeological Method and Theory 31:1588–1621. <a class="reference external" href="https://doi.org/10.1007/s10816-024-09644-x">https://doi.org/10.1007/s10816-024-09644-x</a>.</p>
+<p>Brondizio and Chowdhury. 2010. Spatiotemporal methodologies in environmental anthropology: geographic information systems, remote sensing, landscape changes, and local knowledge. In: Vaccaro I, Smith EA, Aswani S, eds. Environmental Social Sciences: Methods and Research Design. Cambridge University Press, pp. 266-298.</p>
+<p>Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
+Nelson, and Jessica Munson. 2008. Evaluating the Use of IKONOS Satellite Imagery in
+Lowland Maya Settlement Archaeology. Journal of Archaeological Science 35(10):2770-2777.
+<a class="reference external" href="https://doi.org/10.1016/j.jas.2008.05.003">https://doi.org/10.1016/j.jas.2008.05.003</a></p>
 </section>
 <section id="additional-references">
 <h2>Additional References<a class="headerlink" href="#additional-references" title="Link to this heading">#</a></h2>
@@ -778,6 +797,8 @@ Unpublished PhD dissertation, Pennsylvania State University. <a class="reference
 Garrison. 2007. Putting Us on the Map: Remote Sensing Investigation of the Ancient Maya Landscape. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
 El-Baz, pp. 137-160. Springer, New York. <a class="reference external" href="https://link.springer.com/chapter/10.1007/0-387-44455-6_6">https://link.springer.com/chapter/10.1007/0-387-44455-6_6</a></p>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -820,11 +841,11 @@ El-Baz, pp. 137-160. Springer, New York. <a class="reference external" href="htt
       </div>
     </a>
     <a class="right-next"
-       href="pan.html"
+       href="classification.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">7. Pansharpening, Spectral Indices, and Texture Analysis</p>
+        <p class="prev-next-title">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
