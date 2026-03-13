@@ -2,7 +2,9 @@
 
 Google Earth Engine provides an interface to process large amounts of spatial imagery with a few lines of code. Rather than searching for and downloading many raster files, Google Earth Engine processes imagery in the cloud. In this lab, students will learn how to conduct a supervised land classification in Google Earth Engine using JavaScript.
 
-After creating your Google Earth Engine account, go to <https://code.earthengine.google.com>. Then, create a new script.
+To get started with Google Earth Engine, you must have a Google account. Once logged into your Google account, register [here](https://code.earthengine.google.com/register). Click on the option to Get Started for noncommercial use. Select your organization type as academic, and continue through the necessary steps. Select the Community plan. Then click Register, and enable the Google Earth Engine API.
+
+Once registered, go to <https://code.earthengine.google.com>. You may be prompted to create a new project. Then, create a new script.
 
 ## Import Data
 
