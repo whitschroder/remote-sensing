@@ -707,7 +707,7 @@ Airborne Mapping LiDAR Collection and Data Product Generation for Archaeological
 Research in Mesoamerica. Remote Sensing 6(10):9951–10001. 
 <https://doi.org/10.3390/rs6109951>
 
-Rostain 2000 Years of Urbanism Ecuador
+Rostain, Stephén, Antoine Dorison, Geoffrey de Saulieu, Heiko Prümers, Jean-Luc le Pennec, Fernando Mejía Mejía, Ana Maritza Freire, Jaime R. Pagán-Jiménez, and Philippe Descola. 2024. Two Thousand Years of Garden Urbanism in the Upper Amazon. Science 383(6679). <https://doi.org/10.1126/science.adi6317>
 
 Štular, Benjamin and Edisa Lozić. 2020. Comparison of Filters for Archaeology-Specific
 Ground Extraction from Airborne LiDAR Point Clouds. Remote Sensing 12(18):3025.

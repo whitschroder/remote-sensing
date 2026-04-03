@@ -405,7 +405,7 @@
 <p>Once registered, go to <a class="reference external" href="https://code.earthengine.google.com">https://code.earthengine.google.com</a>. You may be prompted to create a new project. Then, create a new script.</p>
 <section id="import-data">
 <h2>Import Data<a class="headerlink" href="#import-data" title="Link to this heading">#</a></h2>
-<p>The first step is to define a region. The simplest approach is to use the tools in the map area to create a marker (point). This marker will appear in the Imports section at the top of the script as a variable called geometry. Change the name of this variable to point. Next, we will import Landsat 8 imagery. Under Search places and datasets…, type Landsat 8, and select USGS Landsat 8 Level 2, Collection 2, Tier 1 and click the Import button. Change the name of the variable under Imports to ls8_sr. We can also import elevation data. Search for SRTM, and import NASA SRTM Digital Elevation 30m. Rename this variable to srtm.</p>
+<p>The first step is to define a region. The simplest approach is to use the tools in the map area to create a marker (point). This marker will appear in the Imports section at the top of the script as a variable called geometry. Change the name of this variable to point. Alternatively, you can create a region by adding a new layer under Geometry Imports. Using the shape or rectangular, geometry draw your region on the map. Rename this variable to region. Next, we will import Landsat 8 imagery. Under Search places and datasets…, type Landsat 8, and select USGS Landsat 8 Level 2, Collection 2, Tier 1 and click the Import button. Change the name of the variable under Imports to ls8_sr. We can also import elevation data. Search for SRTM, and import NASA SRTM Digital Elevation 30m. Rename this variable to srtm.</p>
 <p>The following code will center the map over your point when the code is run.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">point</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">);</span>
 </pre></div>
@@ -414,6 +414,15 @@
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">srtm</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">min</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;SRTM DEM&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>If you have drawn a region, you can clip any layer to the region by creating a new variable.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">srtmclip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">srtm</span><span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">region</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then add this new variable to the map:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">srtmclip</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">min</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;SRTM Clip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Note that you may need to adjust the minimum and maximum values based on the elevation range in your area of interest.</p>
 </section>
 <section id="generate-a-cloud-free-composite">
 <h2>Generate a Cloud Free Composite<a class="headerlink" href="#generate-a-cloud-free-composite" title="Link to this heading">#</a></h2>

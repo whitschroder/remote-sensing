@@ -8,7 +8,7 @@ Once registered, go to <https://code.earthengine.google.com>. You may be prompte
 
 ## Import Data
 
-The first step is to define a region. The simplest approach is to use the tools in the map area to create a marker (point). This marker will appear in the Imports section at the top of the script as a variable called geometry. Change the name of this variable to point. Next, we will import Landsat 8 imagery. Under Search places and datasets..., type Landsat 8, and select USGS Landsat 8 Level 2, Collection 2, Tier 1 and click the Import button. Change the name of the variable under Imports to ls8_sr. We can also import elevation data. Search for SRTM, and import NASA SRTM Digital Elevation 30m. Rename this variable to srtm.
+The first step is to define a region. The simplest approach is to use the tools in the map area to create a marker (point). This marker will appear in the Imports section at the top of the script as a variable called geometry. Change the name of this variable to point. Alternatively, you can create a region by adding a new layer under Geometry Imports. Using the shape or rectangular, geometry draw your region on the map. Rename this variable to region. Next, we will import Landsat 8 imagery. Under Search places and datasets..., type Landsat 8, and select USGS Landsat 8 Level 2, Collection 2, Tier 1 and click the Import button. Change the name of the variable under Imports to ls8_sr. We can also import elevation data. Search for SRTM, and import NASA SRTM Digital Elevation 30m. Rename this variable to srtm.
 
 The following code will center the map over your point when the code is run.
 
@@ -21,6 +21,20 @@ Now we can add the SRTM to the map.
 ```JavaScript
 Map.addLayer(srtm, {min:0, max:3000}, 'SRTM DEM');
 ```
+
+If you have drawn a region, you can clip any layer to the region by creating a new variable.
+
+```JavaScript
+var srtmclip = srtm.clip(region);
+```
+
+Then add this new variable to the map:
+
+```JavaScript
+Map.addLayer(srtmclip, {min:0, max:3000}, 'SRTM Clip');
+```
+
+Note that you may need to adjust the minimum and maximum values based on the elevation range in your area of interest.
 
 ## Generate a Cloud Free Composite
 
