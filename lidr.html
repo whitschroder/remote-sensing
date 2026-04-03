@@ -710,6 +710,7 @@ I recommend viewing point clouds in dedicated software like
 <p>Jean-Romain Roussel, Tristan R.H. Goodbody, and Piotr Tompalski offer a <a class="reference external" href="https://r-lidar.github.io/lidRbook/io.html#plot">useful
 function</a> to plot cross sections of point data. Cross sections can be useful to view
 the accuracy of ground classification.</p>
+<p>First, you will need to define the coordinates of your cross section. Using QGIS or Google Earth, identify coordinates p1 and p2 that are within your study area. The p1 variable defines the (x,y) coordinates of the first point, and the p2 variable defines the (x,y) coordinates of the second point. Connecting these two points creates your profile line.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the x and y coordinates for the cross section, and the width of the </span>
 <span class="c1"># cross section.</span>
 
@@ -750,6 +751,7 @@ the accuracy of ground classification.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/classification.jpeg"><img alt="Classification" class="bg-primary mb-1 align-center" src="_images/classification.jpeg" style="width: 100%;" /></a>
 <p>Based on this crossection, the ground classification failed in some areas. We’ll
 pursue options later to improve the ground classification in R.</p>
+<p>If you get an error message in this step, it is likely due to your p1 and p2 points being incorrect. You can plot your cross section line over a raster of your data to verify the points line up with your data. See below under the plot density function.</p>
 </section>
 <section id="generate-raster-surfaces">
 <h2>Generate Raster Surfaces<a class="headerlink" href="#generate-raster-surfaces" title="Link to this heading">#</a></h2>
@@ -774,6 +776,11 @@ additional color palettes.</p>
 <span class="nf">plot</span><span class="p">(</span><span class="n">density</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">pal</span><span class="p">(</span><span class="m">20</span><span class="p">))</span>
 </pre></div>
 </div>
+<p>To visualize your profile line based on variables p1 and p2 above, after plotting the density raster, run the following:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">segments</span><span class="p">(</span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p2</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p2</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dotted&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You should see the profile line plotted over the raster. If you do not see your profile line, your points are outside of the data. You will have to determine correct values and redefine the p1 and p2 variables above.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/bigdensity.jpeg"><img alt="Density" class="bg-primary mb-1 align-center" src="_images/bigdensity.jpeg" style="width: 100%;" /></a>
 <p>We can also generate a density surface using only ground classified points, and we
 can set the axis limits to better view the data.</p>

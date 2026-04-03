@@ -218,6 +218,8 @@ Jean-Romain Roussel, Tristan R.H. Goodbody, and Piotr Tompalski offer a [useful
 function](https://r-lidar.github.io/lidRbook/io.html#plot) to plot cross sections of point data. Cross sections can be useful to view
 the accuracy of ground classification.
 
+First, you will need to define the coordinates of your cross section. Using QGIS or Google Earth, identify coordinates p1 and p2 that are within your study area. The p1 variable defines the (x,y) coordinates of the first point, and the p2 variable defines the (x,y) coordinates of the second point. Connecting these two points creates your profile line.
+
 ```R
 # Define the x and y coordinates for the cross section, and the width of the 
 # cross section.
@@ -273,6 +275,8 @@ plot_crossection(las, p1, p2, width, colour_by = factor(Classification))
 Based on this crossection, the ground classification failed in some areas. We'll
 pursue options later to improve the ground classification in R.
 
+If you get an error message in this step, it is likely due to your p1 and p2 points being incorrect. You can plot your cross section line over a raster of your data to verify the points line up with your data. See below under the plot density function.
+
 ## Generate Raster Surfaces
 
 Several raster surfaces can be generated from point cloud data, including but not
@@ -297,6 +301,14 @@ pal <- colorRampPalette(cols)
 
 plot(density, col = pal(20))
 ```
+
+To visualize your profile line based on variables p1 and p2 above, after plotting the density raster, run the following:
+
+```R
+segments(x0 = p1[1], y0 = p1[2], x1 = p2[1], y1 = p2[2], col = "black", lwd = 5, lty = "dotted")
+```
+
+You should see the profile line plotted over the raster. If you do not see your profile line, your points are outside of the data. You will have to determine correct values and redefine the p1 and p2 variables above.
 
 
 ```{image} /images/bigdensity.jpeg
