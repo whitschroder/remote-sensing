@@ -66,14 +66,25 @@ Data can be browsed at <https://glihtdata.gsfc.nasa.gov/files/G-LiHT>. For this 
 download the [AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.las.gz](https://glihtdata.gsfc.nasa.gov/files/G-LiHT/AMIGACarb_Yuc_Centro_GLAS_Apr2013/lidar/las/AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.las.gz) file. 
 You will need [7-zip](https://www.7-zip.org) to extract the .las file.
 
-Now, import the file into R. Assuming your file is in C:/, use the following code (or
-update the folder location in the R code):
+Now, import the file into R. You can either copy the folder path and load into R, or copy the file to your working directory. To determine your working directory:
+
+```R
+getwd()
+```
+
+Or to change your working directory:
+
+```R
+setwd("C:\\Your\\Full\\Directory\\Here")
+```
+
+Assuming your file is in your working directory:
 
 ```R
 # Import file
 # Creates a string based on your file location
 
-file <- "C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.laz"
+file <- "AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.las"
 
 # Reads the file as an .las or .laz
 

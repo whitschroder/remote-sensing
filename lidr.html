@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Bonus: Lidar Processing and Analysis with LAStools" href="lastools.html" />
-    <link rel="prev" title="7. Manipulating Remotely-Sensed Big Data in Google Earth Engine" href="gee.html" />
+    <link rel="prev" title="Bonus: Sentinel-2 Data in Google Earth Engine" href="sentinel.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -184,7 +184,10 @@
 <li class="toctree-l2"><a class="reference internal" href="classification.html">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="gee.html">7. Manipulating Remotely-Sensed Big Data in Google Earth Engine</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="gee.html">7. Leveraging Remotely-Sensed Big Data in Google Earth Engine</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="sentinel.html">Bonus: Sentinel-2 Data in Google Earth Engine</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">8. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lastools.html">Bonus: Lidar Processing and Analysis with LAStools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="annotate.html">Bonus: Annotating Lidar Data</a></li>
@@ -462,12 +465,19 @@ either .las or .laz format.</p>
 Data can be browsed at <a class="reference external" href="https://glihtdata.gsfc.nasa.gov/files/G-LiHT">https://glihtdata.gsfc.nasa.gov/files/G-LiHT</a>. For this exercise,
 download the <a class="reference external" href="https://glihtdata.gsfc.nasa.gov/files/G-LiHT/AMIGACarb_Yuc_Centro_GLAS_Apr2013/lidar/las/AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.las.gz">AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.las.gz</a> file.
 You will need <a class="reference external" href="https://www.7-zip.org">7-zip</a> to extract the .las file.</p>
-<p>Now, import the file into R. Assuming your file is in C:/, use the following code (or
-update the folder location in the R code):</p>
+<p>Now, import the file into R. You can either copy the folder path and load into R, or copy the file to your working directory. To determine your working directory:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">getwd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Or to change your working directory:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">setwd</span><span class="p">(</span><span class="s">&quot;C:\\Your\\Full\\Directory\\Here&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Assuming your file is in your working directory:</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import file</span>
 <span class="c1"># Creates a string based on your file location</span>
 
-<span class="n">file</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;C:/AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.laz&quot;</span>
+<span class="n">file</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;AMIGACarb_Yuc_Centro_GLAS_Apr2013_l1s460.las&quot;</span>
 
 <span class="c1"># Reads the file as an .las or .laz</span>
 
@@ -1117,12 +1127,12 @@ Handouts/LiDARforDummies.pdf&gt;</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="gee.html"
+       href="sentinel.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">7. Manipulating Remotely-Sensed Big Data in Google Earth Engine</p>
+        <p class="prev-next-title">Bonus: Sentinel-2 Data in Google Earth Engine</p>
       </div>
     </a>
     <a class="right-next"

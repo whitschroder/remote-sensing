@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>7. Pansharpening, Spectral Indices, and Texture Analysis &#8212; Remote Sensing of Cultural Landscapes</title>
+    <title>Bonus: Sentinel-2 Data in Google Earth Engine &#8212; Remote Sensing of Cultural Landscapes</title>
   
   
   
@@ -60,9 +60,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pan';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sentinel';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Visualizing and Processing Lidar Point Clouds in R with the lidR Package" href="lidr.html" />
+    <link rel="prev" title="7. Leveraging Remotely-Sensed Big Data in Google Earth Engine" href="gee.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +115,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -168,7 +168,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Required Software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aerial.html">1. Aerial Photography and Stereoscopic Imaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="corona.html">2. Orthorectifying CORONA Satellite Imagery</a></li>
@@ -182,8 +182,8 @@
 <li class="toctree-l2"><a class="reference internal" href="classification.html">Bonus: Supervised and Unsupervised Land Cover Classification in QGIS and ArcGIS Pro</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="gee.html">7. Leveraging Remotely-Sensed Big Data in Google Earth Engine</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="sentinel.html">Bonus: Sentinel-2 Data in Google Earth Engine</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="gee.html">7. Leveraging Remotely-Sensed Big Data in Google Earth Engine</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Bonus: Sentinel-2 Data in Google Earth Engine</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="lidr.html">8. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -266,7 +266,7 @@
       
       
       
-      <li><a href="https://github.com/whitschroder/remote-sensing/issues/new?title=Issue%20on%20page%20%2Fpan.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/whitschroder/remote-sensing/issues/new?title=Issue%20on%20page%20%2Fsentinel.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -296,7 +296,7 @@
       
       
       
-      <li><a href="_sources/pan.md" target="_blank"
+      <li><a href="_sources/sentinel.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -372,7 +372,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>7. Pansharpening, Spectral Indices, and Texture Analysis</h1>
+    <h1>Bonus: Sentinel-2 Data in Google Earth Engine</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,8 +382,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-cloud-free-composite">Generate a Cloud Free Composite</a></li>
 </ul>
             </nav>
         </div>
@@ -395,22 +395,62 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="pansharpening-spectral-indices-and-texture-analysis">
-<h1>7. Pansharpening, Spectral Indices, and Texture Analysis<a class="headerlink" href="#pansharpening-spectral-indices-and-texture-analysis" title="Link to this heading">#</a></h1>
-<section id="readings">
-<h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
-<p>Alders, W., Davis, D.S. &amp; Haines, J.J. 2024. Archaeology in the Fourth Dimension: Studying Landscapes with Multitemporal PlanetScope Satellite Data. Journal of Archaeological Method and Theory 31:1588–1621. <a class="reference external" href="https://doi.org/10.1007/s10816-024-09644-x">https://doi.org/10.1007/s10816-024-09644-x</a>.</p>
-<p>Brondizio and Chowdhury. 2010. Spatiotemporal methodologies in environmental anthropology: geographic information systems, remote sensing, landscape changes, and local knowledge. In: Vaccaro I, Smith EA, Aswani S, eds. Environmental Social Sciences: Methods and Research Design. Cambridge University Press, pp. 266-298.</p>
-<p>Garrison, Thomas G., Stephen D. Houston, Charles Golden, Takeshi Inomata, Zachary
-Nelson, and Jessica Munson. 2008. Evaluating the Use of IKONOS Satellite Imagery in
-Lowland Maya Settlement Archaeology. Journal of Archaeological Science 35(10):2770-2777.
-<a class="reference external" href="https://doi.org/10.1016/j.jas.2008.05.003">https://doi.org/10.1016/j.jas.2008.05.003</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="bonus-sentinel-2-data-in-google-earth-engine">
+<h1>Bonus: Sentinel-2 Data in Google Earth Engine<a class="headerlink" href="#bonus-sentinel-2-data-in-google-earth-engine" title="Link to this heading">#</a></h1>
+<p>Landsat data has a 30 m resolution, up to 15 m resolution with pansharpening. Archaeologists might prefer using Sentinel-2 data, which can have up to a 10 m resolution. The process to import Sentinel-2 data into Google Earth Engine is the same as for Landsat data.</p>
+<section id="import-data">
+<h2>Import Data<a class="headerlink" href="#import-data" title="Link to this heading">#</a></h2>
+<p>Here we assume you have defined a region using the geometry and renamed it to region. Next, we will import Sentinel-2 imagery. Under Search places and datasets…, type Sentinel, and select Harmonized Sentinel-2 MSI: MultiSpectral Instrument, Level-2A (SR) and click the Import button. Change the name of the variable under Imports to sentinel.</p>
+<p>The following code will center the map over your point when the code is run.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">region</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
-<section id="additional-references">
-<h2>Additional References<a class="headerlink" href="#additional-references" title="Link to this heading">#</a></h2>
-<p>Saturno, William, Thomas L. Sever, Daniel E. Irwin, Burgess F. Howell, and Thomas G.
-Garrison. 2007. In Remote Sensing in Archaeology, edited by James Wiseman and Farouk
-El-Baz, pp. 137-160. Springer, New York.</p>
+<section id="generate-a-cloud-free-composite">
+<h2>Generate a Cloud Free Composite<a class="headerlink" href="#generate-a-cloud-free-composite" title="Link to this heading">#</a></h2>
+<p>Next we will define some variables, including a date range and amount of cloud cover.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2023-12-31&#39;</span><span class="p">;</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">cloud_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">30</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Imagery will now be filtered to dates within the year 2023 with less than 30% cloud cover using the following code.</p>
+<p>Next, filter the imagery by cloud cover, date, region, and apply the offset of 0.0001 to convert to surface reflectance.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">sentinelfiltered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sentinel</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span><span class="nx">end</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">region</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">filterMetadata</span><span class="p">(</span><span class="s1">&#39;CLOUDY_PIXEL_PERCENTAGE&#39;</span><span class="p">,</span><span class="s1">&#39;less_than&#39;</span><span class="p">,</span><span class="nx">cloud_max</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="nx">print</span><span class="p">(</span><span class="nx">sentinelfiltered</span><span class="p">);</span>
+
+<span class="c1">// Function to mask clouds using the Sentinel-2 QA band</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">maskS2clouds</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">qa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;QA60&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Bits 10 and 11 are clouds and cirrus, respectively.</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">cloudBitMask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">cirrusBitMask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mf">11</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Both flags should be set to zero, indicating clear conditions.</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">qa</span><span class="p">.</span><span class="nx">bitwiseAnd</span><span class="p">(</span><span class="nx">cloudBitMask</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">and</span><span class="p">(</span><span class="nx">qa</span><span class="p">.</span><span class="nx">bitwiseAnd</span><span class="p">(</span><span class="nx">cirrusBitMask</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="mf">0</span><span class="p">));</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">updateMask</span><span class="p">(</span><span class="nx">mask</span><span class="p">).</span><span class="nx">divide</span><span class="p">(</span><span class="mf">10000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//apply cloud mask function and offset function</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">sentinel_masked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sentinelfiltered</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">maskS2clouds</span><span class="p">);</span>
+<span class="nx">print</span><span class="p">(</span><span class="nx">sentinel_masked</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now add the Sentinel-2 composite to the map.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="c1">//create Sentinel median composite and display</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">composite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sentinel_masked</span><span class="p">.</span><span class="nx">median</span><span class="p">().</span><span class="nx">clip</span><span class="p">(</span><span class="nx">region</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">composite</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Sentinel 2 composite&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This composite can now be edited and used the same as the Landsat data from the previous <a class="reference external" href="https://whitschroder.github.io/remote-sensing/gee.html">section</a>.</p>
 </section>
 </section>
 
@@ -444,6 +484,24 @@ El-Baz, pp. 137-160. Springer, New York.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="gee.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">7. Leveraging Remotely-Sensed Big Data in Google Earth Engine</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lidr.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">8. Visualizing and Processing Lidar Point Clouds in R with the lidR Package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -461,8 +519,8 @@ El-Baz, pp. 137-160. Springer, New York.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-a-cloud-free-composite">Generate a Cloud Free Composite</a></li>
 </ul>
   </nav></div>
 
