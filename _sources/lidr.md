@@ -37,6 +37,16 @@ You only have to use the install.packages command once. After all packages are i
 you will just have to load the necessary libraries every time you run the code.
 :::
 
+If you see a warning that Rtools is not installed, download the appropriate version of Rtools for your R version [here](https://cran.r-project.org/bin/windows/Rtools).
+
+To get your R version, run the following in RStudio:
+
+```R
+version
+```
+
+Once installed, run the following to load the libraries:
+
 ```R
 library(lidR)
 library(RStoolbox)
@@ -324,8 +334,8 @@ can set the axis limits to better view the data.
 ```R
 densitygr <- rasterize_density(lasground, res=1)
 
-plot(density, xlim = c(277400, 278100), ylim = c(2074300, 2074850), col=pal(20))
-plot(densitygr, xlim = c(277400, 278100), ylim = c(2074300, 2074850), col=pal(20))
+plot(density, maxcell = Inf, xlim = c(277400, 278100), ylim = c(2074300, 2074850), col=pal(20))
+plot(densitygr, maxcell = Inf, xlim = c(277400, 278100), ylim = c(2074300, 2074850), col=pal(20))
 ```
 
 ```{image} /images/density.jpeg
@@ -347,13 +357,19 @@ acceptable results.
 
 dtm_idw <- rasterize_terrain(las, res = 1, algorithm = knnidw(k = 10L, p = 2))
 terrcols <- brewer.pal(11, "RdYlGn")
-plot(dtm_idw, col = rev(terrcols), xlim = c(277400, 278100), ylim = c(2074300, 2074850))
+plot(dtm_idw, col = rev(terrcols), maxcell = Inf, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
 
 #Hillshade
 
 dtm_prod <- terrain(dtm_idw, v = c("slope", "aspect"), unit = "radians")
 dtm_hillshade <- shade(slope = dtm_prod$slope, aspect = dtm_prod$aspect, angle = 45, direction = 315)
-plot(dtm_hillshade, col = gray(0:30/30), legend = FALSE, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
+plot(dtm_hillshade, col = gray(0:30/30), maxcell = Inf, legend = FALSE, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
+```
+
+For a more continuous DEM:
+
+```R
+plot(dtm_idw, col = terrain.colors(100), maxcell = Inf, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
 ```
 
 ```{image} /images/demhs.jpeg
@@ -406,13 +422,13 @@ as a shapefile.
 ```R
 dtm_idw <- rasterize_terrain(las, res = 1, algorithm = knnidw(k = 10L, p = 2), 
 		shape = lassfc)
-plot(dtm_idw, col = rev(terrcols), xlim = c(277400, 278100), ylim = c(2074300, 2074850))
+plot(dtm_idw, col = rev(terrcols), maxcell = Inf, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
 
 #Hillshade
 
 dtm_prod <- terrain(dtm_idw, v = c("slope", "aspect"), unit = "radians")
 dtm_hillshade <- shade(slope = dtm_prod$slope, aspect = dtm_prod$aspect, angle = 45, direction = 315)
-plot(dtm_hillshade, col = gray(0:30/30), legend = FALSE, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
+plot(dtm_hillshade, col = gray(0:30/30), maxcell = Inf, legend = FALSE, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
 ```
 
 ```{image} /images/newdem.jpeg
@@ -452,7 +468,7 @@ smoothed <- terra::focal(dsm, w, fun = mean, na.rm = TRUE)
 
 dsms <- c(dsm, filled, smoothed)
 names(dsms) <- c("Base", "Filled", "Smoothed")
-plot(dsms, col = col, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
+plot(dsms, col = col, maxcell = Inf, xlim = c(277400, 278100), ylim = c(2074300, 2074850))
 ```
 
 ```{image} /images/dsm.jpeg
