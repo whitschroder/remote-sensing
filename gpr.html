@@ -382,6 +382,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reitz-field">Reitz Field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hollister-site">Hollister Site</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>
@@ -407,6 +409,67 @@
 <span class="nf">library</span><span class="p">(</span><span class="n">RGPR</span><span class="p">)</span>
 </pre></div>
 </div>
+<section id="reitz-field">
+<h2>Reitz Field<a class="headerlink" href="#reitz-field" title="Link to this heading">#</a></h2>
+<p>Download the Reitz Field data to your working directory. You can determine your working directory by running the following:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">getwd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Or you can set your working directory:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">setwd</span><span class="p">(</span><span class="s">&quot;C:\\Your\\Working\\Directory&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once your data are in your working directory, run the following to change your working directory to the subfolder REITZ.PRJ:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">setwd</span><span class="p">(</span><span class="s">&quot;./REITZ.PRJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The REITZ.PRJ folder should have all of the .dzt files, each one representing a single transect.</p>
+<p>Now load the Reitz data from the directory and make sure that after running print(LINES), you can see a list of all your files with the correct folder structure:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">LINES</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="nf">getwd</span><span class="p">(),</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;REITZ_&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;%04d&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">11</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;.DZT&quot;</span><span class="p">))</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">LINES</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The code searches the working directory folder (in this case REITZ.PRJ) and loads all files ending in .dzt, beginning with REITZ_, followed by a 4 digit number ending in 1 through 11. This code will have to be updated depending on how the files are stored.</p>
+<p>Next we load the lines and define their orientation:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">mySurvey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">GPRsurvey</span><span class="p">(</span><span class="n">LINES</span><span class="p">)</span>
+
+<span class="c1"># The next line of code creates 11 lines, separated by 0.5 m </span>
+<span class="c1"># (negative indicates moving from left right), with a length of 15 m</span>
+
+<span class="nf">setGridCoord</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">xlines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">11</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="p">),</span>
+<span class="w">                               </span><span class="n">xstart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">11</span><span class="p">),</span>
+<span class="w">                               </span><span class="n">xlength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">11</span><span class="p">))</span>
+
+<span class="c1"># Now we can plot the survey without fiduciary markers</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">,</span><span class="w"> </span><span class="n">parFid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/first_plot.jpg"><img alt="First Plot" class="bg-primary mb-1 align-center" src="_images/first_plot.jpg" style="width: 80%;" /></a>
+<p>However, according to our notes, we alternated directions with each transect. Starting from the southeast ending at the northwest. The following code reverses every other transect:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">mySurvey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">reverse</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;zigzag&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/second_plot.jpg"><img alt="Second Plot" class="bg-primary mb-1 align-center" src="_images/second_plot.jpg" style="width: 80%;" /></a>
+<p>To plot the fifth profile (in order of data collection from right to left):</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">[[</span><span class="m">5</span><span class="p">]],</span><span class="w"> </span><span class="n">relTime0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">addFid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">palGPR</span><span class="p">(</span><span class="s">&quot;grey2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">13</span><span class="p">,</span><span class="m">40</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>We can try to interpret some of the signals as shown:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/third_plot.jpg"><img alt="Second Plot" class="bg-primary mb-1 align-center" src="_images/third_plot.jpg" style="width: 80%;" /></a>
+<p>Finally, we can interpolate the lines and plot a slice:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">SXY</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">interpSlices</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="n">dz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.56</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">SXY</span><span class="p">[,,</span><span class="m">120</span><span class="p">],</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">palGPR</span><span class="p">(</span><span class="s">&quot;grey2&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="_images/slice.jpg"><img alt="Slice" class="bg-primary mb-1 align-center" src="_images/slice.jpg" style="width: 80%;" /></a>
+<p>There appears to be a storm drain running from northeast to the middle west, turning at a right angle to the southeast. However, more processing is needed to clarify.</p>
+</section>
+<section id="hollister-site">
+<h2>Hollister Site<a class="headerlink" href="#hollister-site" title="Link to this heading">#</a></h2>
 <p>Download the Hollister Site data to your working directory. You can determine your working directory by running the following:</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">getwd</span><span class="p">()</span>
 </pre></div>
@@ -446,6 +509,7 @@
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mySurvey</span><span class="p">[[</span><span class="m">8</span><span class="p">]],</span><span class="w"> </span><span class="n">relTime0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">addFid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">palGPR</span><span class="p">(</span><span class="s">&quot;grey2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">14</span><span class="p">,</span><span class="m">67</span><span class="p">))</span>
 </pre></div>
 </div>
+</section>
 <section id="readings">
 <h2>Readings<a class="headerlink" href="#readings" title="Link to this heading">#</a></h2>
 </section>
@@ -546,6 +610,8 @@ The Reconstruction of a WW1 Practice Trench. European Journal of Soil Science 66
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reitz-field">Reitz Field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hollister-site">Hollister Site</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-references">Additional References</a></li>
 </ul>

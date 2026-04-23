@@ -13,6 +13,110 @@ devtools::install_github("emanuelhuber/RGPR")
 library(RGPR)
 ```
 
+## Reitz Field
+
+Download the Reitz Field data to your working directory. You can determine your working directory by running the following:
+
+```R
+getwd()
+```
+
+Or you can set your working directory:
+
+```R
+setwd("C:\\Your\\Working\\Directory")
+```
+
+Once your data are in your working directory, run the following to change your working directory to the subfolder REITZ.PRJ:
+
+```R
+setwd("./REITZ.PRJ")
+```
+
+The REITZ.PRJ folder should have all of the .dzt files, each one representing a single transect.
+
+Now load the Reitz data from the directory and make sure that after running print(LINES), you can see a list of all your files with the correct folder structure:
+
+```R
+LINES <- file.path(getwd(), paste0("REITZ_", sprintf("%04d", 1:11), ".DZT"))
+
+print(LINES)
+```
+
+The code searches the working directory folder (in this case REITZ.PRJ) and loads all files ending in .dzt, beginning with REITZ_, followed by a 4 digit number ending in 1 through 11. This code will have to be updated depending on how the files are stored.
+
+Next we load the lines and define their orientation:
+
+```R
+mySurvey <- GPRsurvey(LINES)
+
+# The next line of code creates 11 lines, separated by 0.5 m 
+# (negative indicates moving from left right), with a length of 15 m
+
+setGridCoord(mySurvey) <- list(xlines = 1:11,
+                               xpos = seq(0, by = -0.5, length.out = 11),
+                               xstart = rep(0, 11),
+                               xlength = rep(15, 11))
+
+# Now we can plot the survey without fiduciary markers
+
+plot(mySurvey, parFid = NULL)
+```
+
+```{image} /images/first_plot.jpg
+:alt: First Plot
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+However, according to our notes, we alternated directions with each transect. Starting from the southeast ending at the northwest. The following code reverses every other transect:
+
+```R
+mySurvey <- reverse(mySurvey, id = "zigzag")
+```
+
+```{image} /images/second_plot.jpg
+:alt: Second Plot
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+To plot the fifth profile (in order of data collection from right to left):
+
+```R
+plot(mySurvey[[5]], relTime0 = TRUE, addFid = FALSE, col = palGPR("grey2"), ylim = c(13,40))
+```
+
+We can try to interpret some of the signals as shown:
+
+```{image} /images/third_plot.jpg
+:alt: Second Plot
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+Finally, we can interpolate the lines and plot a slice:
+
+```R
+SXY <- interpSlices(mySurvey, dx = 0.15, dy = 0.15, dz = 0.56, h = 10)
+
+plot(SXY[,,120], col = palGPR("grey2"))
+```
+
+```{image} /images/slice.jpg
+:alt: Slice
+:class: bg-primary mb-1
+:width: 80%
+:align: center
+```
+
+There appears to be a storm drain running from northeast to the middle west, turning at a right angle to the southeast. However, more processing is needed to clarify.
+
+## Hollister Site
+
 Download the Hollister Site data to your working directory. You can determine your working directory by running the following:
 
 ```R
